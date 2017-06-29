@@ -1,0 +1,650 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!--QRDA Header-->
+  <realmCode code="US" />
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040" />
+  <!--US Realm Header Template Id-->
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" />
+  <!--QRDA templateId-->
+  <templateId root="2.16.840.1.113883.10.20.24.1.1" />
+  <!--QDM-based QRDA templateId-->
+  <templateId root="2.16.840.1.113883.10.20.24.1.2" />
+  <!--CONF: CMS_0001 and CMS_0002-->
+  <templateId root="2.16.840.1.113883.10.20.24.1.3" />
+  <!--This is the globally unique identifier for this QRDA document-->
+  <id root="b595dcf1-d32a-42a8-9dd0-9402ab7d210a" extension="000096499579" />
+  <!--QRDA document type code-->
+  <code code="55182-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Quality Measure Report" />
+  <title>QRDA Incidence Report</title>
+  <!--This is the document creation time-->
+  <effectiveTime value="20150615142656" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" />
+  <languageCode code="en" />
+  <recordTarget>
+    <patientRole>
+      <!--Patient SID-->
+      <id root="2.16.840.1.113883.3.110.3.1" extension="558587091288925820" />
+      <addr>
+        <streetAddressLine nullFlavor="NI" />
+        <city nullFlavor="NI" />
+        <state nullFlavor="NI" />
+        <postalCode nullFlavor="NI" />
+        <country>US</country>
+      </addr>
+      <telecom use="WP" nullFlavor="NI" />
+      <patient>
+        <name>
+          <given>firstname</given>
+          <family>lastname</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.18.2" displayName="Female" sdtc:valueSet="2.16.840.1.113762.1.4.1" />
+        <birthTime value="19971030" />
+        <maritalStatusCode nullFlavor="NI" />
+        <raceCode code="2106-3" codeSystem="2.16.840.1.113883.6.238" displayName="White" sdtc:valueSet="2.16.840.1.114222.4.11.836" />
+        <ethnicGroupCode code="2186-5" codeSystem="2.16.840.1.113883.6.238" displayName="Not Hispanic or Latino" sdtc:valueSet="2.16.840.1.114222.4.11.837" />
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <author>
+    <time value="20150615142656" />
+    <assignedAuthor>
+      <!-- NPI -->
+      <id root="2.16.840.1.113883.4.6" extension="1891732988" />
+      <addr>
+        <streetAddressLine nullFlavor="NI" />
+        <city nullFlavor="NI" />
+        <state nullFlavor="NI" />
+        <postalCode nullFlavor="NI" />
+        <country nullFlavor="NI" />
+      </addr>
+      <telecom use="WP" nullFlavor="NI" />
+      <assignedAuthoringDevice>
+        <manufacturerModelName>HCA CQM</manufacturerModelName>
+        <softwareName>HCA CQM Report Generator</softwareName>
+      </assignedAuthoringDevice>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <!--CCN Number-->
+        <id root="2.16.840.1.113883.4.336" extension="800890" />
+        <!-- Tax ID -->
+        <id root="2.16.840.1.113883.4.2" extension="12-2345678" />
+        <!-- HCO ID -->
+        <id root="1.3.6.1.4.1.33895" extension="9999" />
+        <name>HCA CQM</name>
+        <telecom use="WP" nullFlavor="NI" />
+        <addr>
+          <streetAddressLine nullFlavor="NI" />
+          <city nullFlavor="NI" />
+          <state nullFlavor="NI" />
+          <postalCode nullFlavor="NI" />
+          <country nullFlavor="NI" />
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <informationRecipient>
+    <intendedRecipient>
+      <id root="2.16.840.1.113883.3.249.7" extension="HQR_EHR" />
+    </intendedRecipient>
+  </informationRecipient>
+  <legalAuthenticator>
+    <time value="20150615142656" />
+    <signatureCode code="S" />
+    <assignedEntity>
+      <id extension="KP00017" root="2.16.840.1.113883.19" />
+      <addr>
+        <streetAddressLine nullFlavor="NI" />
+        <city nullFlavor="NI" />
+        <state nullFlavor="NI" />
+        <postalCode nullFlavor="NI" />
+        <country nullFlavor="NI" />
+      </addr>
+      <telecom use="WP" nullFlavor="NI" />
+      <assignedPerson>
+        <name>
+          <given nullFlavor="NI" />
+          <family nullFlavor="NI" />
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </legalAuthenticator>
+  <documentationOf typeCode="DOC">
+    <serviceEvent classCode="PCPR">
+      <effectiveTime>
+        <low value="20150415102100" />
+        <high value="20150415112400" />
+      </effectiveTime>
+      <performer typeCode="PRF">
+        <assignedEntity>
+          <!-- NPI -->
+          <id root="2.16.840.1.113883.4.6" extension="123654789" />
+          <representedOrganization>
+            <!-- Tax ID -->
+            <id root="2.16.840.1.113883.4.2" extension="12-3456789" />
+            <!--CCN Number-->
+            <id root="2.16.840.1.113883.4.336" extension="800890" />
+          </representedOrganization>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+  <componentOf>
+    <encompassingEncounter>
+      <id root="2.16.840.1.113883.4.336" extension="100054" />
+      <effectiveTime>
+        <low value="20150415102100" />
+        <high value="20150415112400" />
+      </effectiveTime>
+    </encompassingEncounter>
+  </componentOf>
+  <component>
+    <structuredBody>
+      <component>
+        <section>
+          <!--This is the templateId for Measure Section-->
+          <templateId root="2.16.840.1.113883.10.20.24.2.2" />
+          <!--This is the templateId for Measure Section QDM-->
+          <templateId root="2.16.840.1.113883.10.20.24.2.3" />
+          <!--This is the LOINC code for "Measure document". This stays the same for all measure section required by QRDA standard-->
+          <code code="55186-1" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Measure Section</title>
+          <text>Included Measures</text>
+          <!--1..* Organizers, each containing a reference to an eMeasure-->
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="3044cca1-c2c3-45ae-93d4-260a6db1abce" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-6a8b0a3b30c6" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Median Time from ED Arrival to ED Departure for Discharge ED Patients</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="3fd13096-2c8f-40b5-9297-b714e8de9133" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="4" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="3603c1af-eb46-4c3e-9008-7ed1cd9725b4" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-64cb12982d97" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Median Time from ED Arrival to ED Departure for Admitted ED Patients</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="9a033274-3d9b-11e1-8634-00237d5bf174" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="d477d85e-fe19-48c8-85fd-53f079ac56ed" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9e682a3b29ae" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Anticoagulation Therapy for Atrial Fibrillation-Flutter</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="03876d69-085b-415c-ae9d-9924171040c2" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="4" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="aa752020-6d74-417c-8695-8217adb15108" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-95dd11681ccc" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Antithrombotic Therapy By End of Hospital Day 2</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="93f3479f-75d8-4731-9a3f-b7749d8bcd37" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="3f0654cf-950a-4511-9d71-2220b708dc5c" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9edbdf9f2cc2" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>VTE Patients with Anticoagulation Overlap Therapy</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="6f069bb2-b3c4-4bf4-adc5-f6dd424a10b7" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="81c54b11-61c7-403e-ba5b-ae00aa7fcef6" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-95de69f81cf4" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Thrombolytic Therapy</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="2838875a-07b5-4bf0-be04-c3eb99f53975" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="4" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="b2730b10-2c6c-4515-81da-184e5adb2391" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-95dd84641cd4" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Assessed for Rehabilitation</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="7dc26160-e615-4cc2-879c-75985189ec1a" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="6a4c938b-0a88-4b6c-9f32-05657d3e5452" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9e6e127929e3" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Discharged on Antithrombotic Therapy</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="42bf391f-38a3-4c0f-9ece-dcd47e9609d9" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="8dc60f33-2049-48a4-bcc1-3e02773046dc" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9e73dc162a27" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Discharged on Statin Medication</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="1f503318-bb8d-4b91-af63-223ae0a2328e" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="330f8e84-f9ff-4853-9cd6-052c976fdfcd" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-95de2f641cec" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Stroke Education</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="217fdf0d-3d64-4720-9116-d5e5afa27f2c" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="3b377778-f0f4-4ca8-b516-dc4eb3eb6508" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9edba9142cba" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>VTE Prophylaxis</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="38b0b5ec-0f63-466f-8fe3-2cd20ddd1622" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="8470f717-f499-44b4-ab6b-3814cb44c7df" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-65df36c22e97" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>VTE Patients with Heparin Protocol</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="bcce43dd-08e3-46c3-bfdd-0b1b472690f0" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="d9ff87c3-5f75-4422-b758-6eb7ad399e6d" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-6670a0c42f05" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>VTE Discharge Instructions</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="7fe69617-fa28-4305-a2b8-ceb6bcd9693d" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="f10242e7-5d60-4a8d-8311-e11953dd3580" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-64e3651a2dcc" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Median Admit Decision Time to ED Departure Time for Admitted ED Patients</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="979f21bd-3f93-4cdd-8273-b23dfe9c0513" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="4acdc37a-9963-4cad-9c5c-842514a2e7d2" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-6678b7972f10" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Incidence of Potentially-Preventable VTE</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="32cfc834-843a-4f45-b359-8e158eac4396" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="44c625cc-3364-478e-81ff-e805d4c7ccdb" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9edb149b2ca8" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>VTE Prophylaxis - ICU</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="fa91ba68-1e66-4a23-8eb2-baa8e6df2f2f" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <!-- This is the templateId for the Reporting Parameters section -->
+          <templateId root="2.16.840.1.113883.10.20.17.2.1" />
+          <code code="55187-9" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Reporting Parameters</title>
+          <text />
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <!--This is the templateId for Reporting Parameters Act-->
+              <templateId root="2.16.840.1.113883.10.20.17.3.8" />
+              <id root="dfd259d8-3df1-4848-9e58-6eb3b813882d" />
+              <code code="252116004" codeSystem="2.16.840.1.113883.6.96" displayName="Observation Parameters" />
+              <effectiveTime>
+                <low value="20150401" />
+                <high value="20150630" />
+              </effectiveTime>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <!--********* Patient Data Section *********-->
+      <component>
+        <section>
+          <!--This is the templateId for Patient Data section-->
+          <templateId root="2.16.840.1.113883.10.20.17.2.4" />
+          <!--This is the templateId for Patient Data QDM section-->
+          <templateId root="2.16.840.1.113883.10.20.24.2.1" />
+          <code code="55188-7" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Patient Data</title>
+          <text />
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.24.3.55" />
+              <id root="52597a92-880d-44ae-bc16-eddbdb4c1218" />
+              <code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment source" />
+              <text>MEDICARE</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high nullFlavor="UNK" />
+              </effectiveTime>
+              <value xsi:type="CD" sdtc:valueSet="2.16.840.1.114222.4.11.3591" code="1" codeSystem="2.16.840.1.113883.3.221.5" displayName="MEDICARE" />
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!--Problem observation template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+              <!--Diagnosis template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.11" />
+              <id root="90b4ec7a-af70-4cb8-a884-2bd2948a4072" />
+              <code code="282291009" displayName="diagnosis" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150403134300" />
+                <high value="20150403134300" />
+              </effectiveTime>
+              <value xsi:type="CD" code="558.9" codeSystem="2.16.840.1.113883.6.103" displayName="NONINF GASTROENTERIT NEC" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.262" />
+              <!-- Status -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem Status (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.6" />
+                  <!-- Problem Status, Active template -->
+                  <templateId root="2.16.840.1.113883.10.20.24.3.94" />
+                  <id root="4c6dc7c1-6c11-4a14-bb5c-f691a915da70" />
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+                  <statusCode code="completed" />
+                  <value xsi:type="CD" code="55561003" displayName="active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry>
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--Encounter activities template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!--Encounter performed template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="62ccbcca-c802-4671-966f-890377d1d7f8" />
+              <code code="4525004" codeSystem="2.16.840.1.113883.6.96" displayName="Emergency department patient visit (procedure)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.292" />
+              <text>Emergency department patient visit (procedure)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150415102100" />
+                <high value="20150415143300" />
+              </effectiveTime>
+              <participant typeCode="LOC">
+                <!-- Facility Location template -->
+                <templateId root="2.16.840.1.113883.10.20.24.3.100" />
+                <time>
+                  <low value="20150415102100" />
+                  <high value="20150415143300" />
+                </time>
+                <participantRole classCode="SDLOC">
+                  <code code="1108-0" codeSystem="2.16.840.1.113883.6.259" />
+                </participantRole>
+              </participant>
+            </encounter>
+          </entry>
+          <entry>
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--Encounter activities template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!--Encounter performed template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="83e3ec6e-97db-4117-9063-e11c400cbaba" />
+              <code code="183452005" codeSystem="2.16.840.1.113883.6.96" displayName="Emergency hospital admission (procedure)" sdtc:valueSet="2.16.840.1.113883.3.666.5.307" />
+              <text>Emergency hospital admission (procedure)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150415134100" />
+                <high value="20150415112400" />
+              </effectiveTime>
+              <sdtc:dischargeDispositionCode code="306689006" codeSystem="2.16.840.1.113883.6.96" />
+            </encounter>
+          </entry>
+          <entry>
+            <encounter classCode="ENC" moodCode="RQO">
+              <!--  Plan of Care Activity Encounter template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.40" />
+              <!-- Encounter order template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.22" />
+              <id root="53d60a84-f8a4-4d7e-8eb1-408c3809a076" />
+              <code code="73607007" codeSystem="2.16.840.1.113883.6.96" displayName="Hospital admission, emergency, from emergency room (procedure)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.295" />
+              <text>Hospital admission, emergency, from emergency room (procedure)</text>
+              <statusCode code="new" />
+              <author>
+                <time value="20150415134100" />
+                <assignedAuthor>
+                  <id nullFlavor="NI" />
+                </assignedAuthor>
+              </author>
+            </encounter>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

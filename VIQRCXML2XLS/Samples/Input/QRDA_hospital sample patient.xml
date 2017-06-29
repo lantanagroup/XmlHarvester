@@ -1,0 +1,1310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!--QRDA Header-->
+  <realmCode code="US" />
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040" />
+  <!--US Realm Header Template Id-->
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" />
+  <!--QRDA templateId-->
+  <templateId root="2.16.840.1.113883.10.20.24.1.1" />
+  <!--QDM-based QRDA templateId-->
+  <templateId root="2.16.840.1.113883.10.20.24.1.2" />
+  <!--CONF: CMS_0001 and CMS_0002-->
+  <templateId root="2.16.840.1.113883.10.20.24.1.3" />
+  <!--This is the globally unique identifier for this QRDA document-->
+  <id root="b595dcf1-d32a-42a8-9dd0-9402ab7d210a" extension="000096499579" />
+  <!--QRDA document type code-->
+  <code code="55182-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Quality Measure Report" />
+  <title>QRDA Incidence Report</title>
+  <!--This is the document creation time-->
+  <effectiveTime value="20150615142656" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" />
+  <languageCode code="en" />
+  <recordTarget>
+    <patientRole>
+      <!--Patient SID-->
+      <id root="2.16.840.1.113883.3.110.3.1" extension="558587091288925820" />
+      <addr>
+        <streetAddressLine nullFlavor="NI" />
+        <city nullFlavor="NI" />
+        <state nullFlavor="NI" />
+        <postalCode nullFlavor="NI" />
+        <country>US</country>
+      </addr>
+      <telecom use="WP" nullFlavor="NI" />
+      <patient>
+        <name>
+          <given>firstname</given>
+          <family>lastname</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.18.2" displayName="Female" sdtc:valueSet="2.16.840.1.113762.1.4.1" />
+        <birthTime value="19971030" />
+        <maritalStatusCode nullFlavor="NI" />
+        <raceCode code="2106-3" codeSystem="2.16.840.1.113883.6.238" displayName="White" sdtc:valueSet="2.16.840.1.114222.4.11.836" />
+        <ethnicGroupCode code="2186-5" codeSystem="2.16.840.1.113883.6.238" displayName="Not Hispanic or Latino" sdtc:valueSet="2.16.840.1.114222.4.11.837" />
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <author>
+    <time value="20150615142656" />
+    <assignedAuthor>
+      <!-- NPI -->
+      <id root="2.16.840.1.113883.4.6" extension="1891732988" />
+      <addr>
+        <streetAddressLine nullFlavor="NI" />
+        <city nullFlavor="NI" />
+        <state nullFlavor="NI" />
+        <postalCode nullFlavor="NI" />
+        <country nullFlavor="NI" />
+      </addr>
+      <telecom use="WP" nullFlavor="NI" />
+      <assignedAuthoringDevice>
+        <manufacturerModelName>HCA CQM</manufacturerModelName>
+        <softwareName>HCA CQM Report Generator</softwareName>
+      </assignedAuthoringDevice>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <!--CCN Number-->
+        <id root="2.16.840.1.113883.4.336" extension="800890" />
+        <!-- Tax ID -->
+        <id root="2.16.840.1.113883.4.2" extension="12-2345678" />
+        <!-- HCO ID -->
+        <id root="1.3.6.1.4.1.33895" extension="9999" />
+        <name>HCA CQM</name>
+        <telecom use="WP" nullFlavor="NI" />
+        <addr>
+          <streetAddressLine nullFlavor="NI" />
+          <city nullFlavor="NI" />
+          <state nullFlavor="NI" />
+          <postalCode nullFlavor="NI" />
+          <country nullFlavor="NI" />
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <informationRecipient>
+    <intendedRecipient>
+      <id root="2.16.840.1.113883.3.249.7" extension="HQR_EHR" />
+    </intendedRecipient>
+  </informationRecipient>
+  <legalAuthenticator>
+    <time value="20150615142656" />
+    <signatureCode code="S" />
+    <assignedEntity>
+      <id extension="KP00017" root="2.16.840.1.113883.19" />
+      <addr>
+        <streetAddressLine nullFlavor="NI" />
+        <city nullFlavor="NI" />
+        <state nullFlavor="NI" />
+        <postalCode nullFlavor="NI" />
+        <country nullFlavor="NI" />
+      </addr>
+      <telecom use="WP" nullFlavor="NI" />
+      <assignedPerson>
+        <name>
+          <given nullFlavor="NI" />
+          <family nullFlavor="NI" />
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </legalAuthenticator>
+  <documentationOf typeCode="DOC">
+    <serviceEvent classCode="PCPR">
+      <effectiveTime>
+        <low value="20150415134100" />
+        <high value="20150422122000" />
+      </effectiveTime>
+      <performer typeCode="PRF">
+        <assignedEntity>
+          <!-- NPI -->
+          <id root="2.16.840.1.113883.4.6" extension="123654789" />
+          <representedOrganization>
+            <!-- Tax ID -->
+            <id root="2.16.840.1.113883.4.2" extension="12-3456789" />
+            <!--CCN Number-->
+            <id root="2.16.840.1.113883.4.336" extension="800890" />
+          </representedOrganization>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+  <componentOf>
+    <encompassingEncounter>
+      <id root="2.16.840.1.113883.4.336" extension="100054" />
+      <effectiveTime>
+        <low value="20150415134100" />
+        <high value="20150422122000" />
+      </effectiveTime>
+    </encompassingEncounter>
+  </componentOf>
+  <component>
+    <structuredBody>
+      <component>
+        <section>
+          <!--This is the templateId for Measure Section-->
+          <templateId root="2.16.840.1.113883.10.20.24.2.2" />
+          <!--This is the templateId for Measure Section QDM-->
+          <templateId root="2.16.840.1.113883.10.20.24.2.3" />
+          <!--This is the LOINC code for "Measure document". This stays the same for all measure section required by QRDA standard-->
+          <code code="55186-1" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Measure Section</title>
+          <text>Included Measures</text>
+          <!--1..* Organizers, each containing a reference to an eMeasure-->
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="3044cca1-c2c3-45ae-93d4-260a6db1abce" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-6a8b0a3b30c6" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Median Time from ED Arrival to ED Departure for Discharge ED Patients</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="3fd13096-2c8f-40b5-9297-b714e8de9133" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="4" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="3603c1af-eb46-4c3e-9008-7ed1cd9725b4" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-64cb12982d97" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Median Time from ED Arrival to ED Departure for Admitted ED Patients</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="9a033274-3d9b-11e1-8634-00237d5bf174" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="d477d85e-fe19-48c8-85fd-53f079ac56ed" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9e682a3b29ae" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Anticoagulation Therapy for Atrial Fibrillation-Flutter</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="03876d69-085b-415c-ae9d-9924171040c2" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="4" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="aa752020-6d74-417c-8695-8217adb15108" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-95dd11681ccc" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Antithrombotic Therapy By End of Hospital Day 2</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="93f3479f-75d8-4731-9a3f-b7749d8bcd37" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="3f0654cf-950a-4511-9d71-2220b708dc5c" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9edbdf9f2cc2" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>VTE Patients with Anticoagulation Overlap Therapy</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="6f069bb2-b3c4-4bf4-adc5-f6dd424a10b7" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="81c54b11-61c7-403e-ba5b-ae00aa7fcef6" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-95de69f81cf4" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Thrombolytic Therapy</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="2838875a-07b5-4bf0-be04-c3eb99f53975" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="4" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="b2730b10-2c6c-4515-81da-184e5adb2391" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-95dd84641cd4" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Assessed for Rehabilitation</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="7dc26160-e615-4cc2-879c-75985189ec1a" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="6a4c938b-0a88-4b6c-9f32-05657d3e5452" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9e6e127929e3" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Discharged on Antithrombotic Therapy</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="42bf391f-38a3-4c0f-9ece-dcd47e9609d9" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="8dc60f33-2049-48a4-bcc1-3e02773046dc" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9e73dc162a27" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Discharged on Statin Medication</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="1f503318-bb8d-4b91-af63-223ae0a2328e" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="330f8e84-f9ff-4853-9cd6-052c976fdfcd" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-95de2f641cec" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Stroke Education</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="217fdf0d-3d64-4720-9116-d5e5afa27f2c" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="3b377778-f0f4-4ca8-b516-dc4eb3eb6508" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9edba9142cba" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>VTE Prophylaxis</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="38b0b5ec-0f63-466f-8fe3-2cd20ddd1622" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="8470f717-f499-44b4-ab6b-3814cb44c7df" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-65df36c22e97" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>VTE Patients with Heparin Protocol</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="bcce43dd-08e3-46c3-bfdd-0b1b472690f0" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="d9ff87c3-5f75-4422-b758-6eb7ad399e6d" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-6670a0c42f05" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>VTE Discharge Instructions</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="7fe69617-fa28-4305-a2b8-ceb6bcd9693d" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="f10242e7-5d60-4a8d-8311-e11953dd3580" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-64e3651a2dcc" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Median Admit Decision Time to ED Departure Time for Admitted ED Patients</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="979f21bd-3f93-4cdd-8273-b23dfe9c0513" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="4acdc37a-9963-4cad-9c5c-842514a2e7d2" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-43db-d64c-0144-6678b7972f10" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Incidence of Potentially-Preventable VTE</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="32cfc834-843a-4f45-b359-8e158eac4396" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <id root="44c625cc-3364-478e-81ff-e805d4c7ccdb" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure: QualityMeasureDocument/id it is a GUID -->
+                  <id root="2.16.840.1.113883.4.738" extension="40280381-446b-b8c2-0144-9edb149b2ca8" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>VTE Prophylaxis - ICU</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="fa91ba68-1e66-4a23-8eb2-baa8e6df2f2f" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="3" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <!-- This is the templateId for the Reporting Parameters section -->
+          <templateId root="2.16.840.1.113883.10.20.17.2.1" />
+          <code code="55187-9" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Reporting Parameters</title>
+          <text />
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <!--This is the templateId for Reporting Parameters Act-->
+              <templateId root="2.16.840.1.113883.10.20.17.3.8" />
+              <id root="dfd259d8-3df1-4848-9e58-6eb3b813882d" />
+              <code code="252116004" codeSystem="2.16.840.1.113883.6.96" displayName="Observation Parameters" />
+              <effectiveTime>
+                <low value="20150401" />
+                <high value="20150630" />
+              </effectiveTime>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <!--********* Patient Data Section *********-->
+      <component>
+        <section>
+          <!--This is the templateId for Patient Data section-->
+          <templateId root="2.16.840.1.113883.10.20.17.2.4" />
+          <!--This is the templateId for Patient Data QDM section-->
+          <templateId root="2.16.840.1.113883.10.20.24.2.1" />
+          <code code="55188-7" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Patient Data</title>
+          <text />
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.24.3.55" />
+              <id root="52597a92-880d-44ae-bc16-eddbdb4c1218" />
+              <code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment source" />
+              <text>MEDICARE</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low nullFlavor="UNK" />
+                <high nullFlavor="UNK" />
+              </effectiveTime>
+              <value xsi:type="CD" sdtc:valueSet="2.16.840.1.114222.4.11.3591" code="1" codeSystem="2.16.840.1.113883.3.221.5" displayName="MEDICARE" />
+            </observation>
+          </entry>
+          <entry>
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--Encounter activities template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!--Encounter performed template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="62ccbcca-c802-4671-966f-890377d1d7f8" />
+              <code code="4525004" codeSystem="2.16.840.1.113883.6.96" displayName="Emergency department patient visit (procedure)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.292" />
+              <text>Emergency department patient visit (procedure)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150415102100" />
+                <high value="20150415134000" />
+              </effectiveTime>
+              <participant typeCode="LOC">
+                <!-- Facility Location template -->
+                <templateId root="2.16.840.1.113883.10.20.24.3.100" />
+                <time>
+                  <low value="20150415102100" />
+                  <high value="20150415143000" />
+                </time>
+                <participantRole classCode="SDLOC">
+                  <code code="1108-0" codeSystem="2.16.840.1.113883.6.259" />
+                </participantRole>
+              </participant>
+            </encounter>
+          </entry>
+          <entry>
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--Encounter activities template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!--Encounter performed template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="83e3ec6e-97db-4117-9063-e11c400cbaba" />
+              <code code="183452005" codeSystem="2.16.840.1.113883.6.96" displayName="Emergency hospital admission (procedure)" sdtc:valueSet="2.16.840.1.113883.3.666.5.307" />
+              <text>Emergency hospital admission (procedure)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150415134100" />
+                <high value="20150422122000" />
+              </effectiveTime>
+              <sdtc:dischargeDispositionCode code="306689006" codeSystem="2.16.840.1.113883.6.96" />
+            </encounter>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!--Problem observation template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+              <!--Diagnosis template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.11" />
+              <id root="1d2923a3-7624-4f8d-88b3-5db7cadb837e" />
+              <code code="282291009" displayName="diagnosis" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" />
+              <text>Depressive disorder, not elsewhere classified</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150415134100" />
+                <high value="20150415134100" />
+              </effectiveTime>
+              <value xsi:type="CD" code="311" codeSystem="2.16.840.1.113883.6.103" displayName="Depressive disorder, not elsewhere classified" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.262" />
+              <!-- Status -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem Status (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.6" />
+                  <!-- Problem Status, Active template -->
+                  <templateId root="2.16.840.1.113883.10.20.24.3.94" />
+                  <id root="19dbae18-1b3c-4fff-99ce-9d4fbecca956" />
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+                  <statusCode code="completed" />
+                  <value xsi:type="CD" code="55561003" displayName="active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!--Problem observation template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+              <!--Diagnosis template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.11" />
+              <id root="0e0cda6c-6f57-4f5e-b260-166f6368de75" />
+              <code code="282291009" displayName="diagnosis" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" />
+              <text>Depressive disorder, not elsewhere classified</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150415134100" />
+                <high value="20150415134100" />
+              </effectiveTime>
+              <value xsi:type="CD" code="311" codeSystem="2.16.840.1.113883.6.103" displayName="Depressive disorder, not elsewhere classified" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.299" />
+              <!-- Status -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem Status (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.6" />
+                  <!-- Problem Status, Active template -->
+                  <templateId root="2.16.840.1.113883.10.20.24.3.94" />
+                  <id root="a49990bb-b777-404c-ad44-a4255a2d92f3" />
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+                  <statusCode code="completed" />
+                  <value xsi:type="CD" code="55561003" displayName="active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!--Problem observation template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+              <!--Diagnosis template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.11" />
+              <id root="09a21022-8b9d-458e-be94-ec1f853f15a9" />
+              <code code="282291009" displayName="diagnosis" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" />
+              <text>Anxiety state, unspecified</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150415134100" />
+                <high value="20150415134100" />
+              </effectiveTime>
+              <value xsi:type="CD" code="300.00" codeSystem="2.16.840.1.113883.6.103" displayName="Anxiety state, unspecified" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.262" />
+              <!-- Status -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem Status (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.6" />
+                  <!-- Problem Status, Active template -->
+                  <templateId root="2.16.840.1.113883.10.20.24.3.94" />
+                  <id root="64cdb85e-2312-4066-a6ea-19baf23e0468" />
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+                  <statusCode code="completed" />
+                  <value xsi:type="CD" code="55561003" displayName="active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!--Problem observation template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+              <!--Diagnosis template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.11" />
+              <id root="03d717b7-e289-47c7-b00e-39d74821a216" />
+              <code code="282291009" displayName="diagnosis" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" />
+              <text>Anxiety state, unspecified</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150415134100" />
+                <high value="20150415134100" />
+              </effectiveTime>
+              <value xsi:type="CD" code="300.00" codeSystem="2.16.840.1.113883.6.103" displayName="Anxiety state, unspecified" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.299" />
+              <!-- Status -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem Status (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.6" />
+                  <!-- Problem Status, Active template -->
+                  <templateId root="2.16.840.1.113883.10.20.24.3.94" />
+                  <id root="31de5ba4-ac72-480c-bfb4-0c0eeae4c224" />
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+                  <statusCode code="completed" />
+                  <value xsi:type="CD" code="55561003" displayName="active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!--Problem observation template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+              <!--Diagnosis template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.11" />
+              <id root="89d9f8c2-85c1-4867-b70d-6e9b654fc820" />
+              <code code="282291009" displayName="diagnosis" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" />
+              <text>Alcohol abuse, unspecified</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150415134100" />
+                <high value="20150415134100" />
+              </effectiveTime>
+              <value xsi:type="CD" code="305.00" codeSystem="2.16.840.1.113883.6.103" displayName="Alcohol abuse, unspecified" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.262" />
+              <!-- Status -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem Status (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.6" />
+                  <!-- Problem Status, Active template -->
+                  <templateId root="2.16.840.1.113883.10.20.24.3.94" />
+                  <id root="79c60e91-df0a-4e4b-8a4e-bd8a6dd73c08" />
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+                  <statusCode code="completed" />
+                  <value xsi:type="CD" code="55561003" displayName="active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!--Problem observation template-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+              <!--Diagnosis template-->
+              <templateId root="2.16.840.1.113883.10.20.24.3.11" />
+              <id root="dcbdc46f-c42f-4514-9336-ba2d95095279" />
+              <code code="282291009" displayName="diagnosis" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" />
+              <text>Alcohol abuse, unspecified</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150415134100" />
+                <high value="20150415134100" />
+              </effectiveTime>
+              <value xsi:type="CD" code="305.00" codeSystem="2.16.840.1.113883.6.103" displayName="Alcohol abuse, unspecified" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.299" />
+              <!-- Status -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem Status (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.6" />
+                  <!-- Problem Status, Active template -->
+                  <templateId root="2.16.840.1.113883.10.20.24.3.94" />
+                  <id root="4ae0a01e-bc69-4c43-b5a2-1ff1aa851579" />
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+                  <statusCode code="completed" />
+                  <value xsi:type="CD" code="55561003" displayName="active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="6986568e-f677-42b9-b55e-c17e22f86cce" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150416100000" />
+                <high value="20150416100000" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="69b2cdcc-8016-480a-a6b0-fec69cf5fac4" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150416200000" />
+                <high value="20150416200000" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="3cfcf87b-cd6f-4cdc-a808-36b208d69338" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150417080000" />
+                <high value="20150417080000" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="9c8d915d-19b8-4e0d-ace9-01b63ee3a9bb" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150417200000" />
+                <high value="20150417200000" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="75188ee4-a54c-4886-898a-a754d2ff950f" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150418080900" />
+                <high value="20150418080900" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="a227aefb-a0f2-48c2-92f8-5e2ad70e90b9" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150418194100" />
+                <high value="20150418194100" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="48935f15-3e7f-4752-a952-cc8dcb117170" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150419080000" />
+                <high value="20150419080000" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="1e5fbe23-cb45-45a2-874e-f5ab2b195b20" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150419205600" />
+                <high value="20150419205600" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="d4f66f1a-3e1d-48cc-b553-67adaa869b1a" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150420084500" />
+                <high value="20150420084500" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="ae68d019-2f40-4296-aaf5-096131d668ba" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150420200000" />
+                <high value="20150420200000" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="37f01997-b621-4450-806f-94f85e4061d1" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150421084800" />
+                <high value="20150421084800" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure Activity Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.7" />
+              <id root="c2def776-3aeb-4881-88fb-ffbd99a4b5f1" />
+              <code code="360030002" codeSystem="2.16.840.1.113883.6.96" />
+              <text>Intermittent pneumatic compression stockings (physical object)</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150422084300" />
+                <high value="20150422084300" />
+              </effectiveTime>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <playingDevice classCode="DEV">
+                    <code code="442111003" codeSystem="2.16.840.1.113883.6.96" displayName="Intermittent pneumatic compression stockings (physical object)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.214" />
+                  </playingDevice>
+                </participantRole>
+              </participant>
+            </procedure>
+          </entry>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <!-- Medication, Administered template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.42" />
+              <id root="ffb1731d-e340-4046-a0e5-c3e6a95323ec" />
+              <code code="416118004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Administration" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150417052900" />
+                <high value="20150417052900" />
+              </effectiveTime>
+              <entryRelationship typeCode="COMP">
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                  <!-- Medication Activity (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+                  <id root="577edc87-e03e-4a59-bdb9-2c5e41421786" />
+                  <text>0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe</text>
+                  <statusCode code="Completed" />
+                  <effectiveTime xsi:type="IVL_TS">
+                    <low value="20150417052900" />
+                    <high value="20150417052900" />
+                  </effectiveTime>
+                  <routeCode code="34206005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" />
+                  <consumable>
+                    <manufacturedProduct classCode="MANU">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23" />
+                      <manufacturedMaterial>
+                        <code code="854235" codeSystem="2.16.840.1.113883.6.88" displayName="0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.219" />
+                      </manufacturedMaterial>
+                    </manufacturedProduct>
+                  </consumable>
+                </substanceAdministration>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <!-- Medication, Administered template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.42" />
+              <id root="18720959-0091-4887-9c1f-0f477b221a53" />
+              <code code="416118004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Administration" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150416061700" />
+                <high value="20150416061700" />
+              </effectiveTime>
+              <entryRelationship typeCode="COMP">
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                  <!-- Medication Activity (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+                  <id root="ac50c199-5167-4ecf-9838-6b7a6427c996" />
+                  <text>0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe</text>
+                  <statusCode code="Completed" />
+                  <effectiveTime xsi:type="IVL_TS">
+                    <low value="20150416061700" />
+                    <high value="20150416061700" />
+                  </effectiveTime>
+                  <routeCode code="34206005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" />
+                  <consumable>
+                    <manufacturedProduct classCode="MANU">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23" />
+                      <manufacturedMaterial>
+                        <code code="854235" codeSystem="2.16.840.1.113883.6.88" displayName="0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.219" />
+                      </manufacturedMaterial>
+                    </manufacturedProduct>
+                  </consumable>
+                </substanceAdministration>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <!-- Medication, Administered template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.42" />
+              <id root="b4b5da8b-3e99-4765-979d-f6c871e2f114" />
+              <code code="416118004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Administration" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150418055200" />
+                <high value="20150418055200" />
+              </effectiveTime>
+              <entryRelationship typeCode="COMP">
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                  <!-- Medication Activity (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+                  <id root="ddf220d4-4843-4bc0-abbe-50f829baae24" />
+                  <text>0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe</text>
+                  <statusCode code="Completed" />
+                  <effectiveTime xsi:type="IVL_TS">
+                    <low value="20150418055200" />
+                    <high value="20150418055200" />
+                  </effectiveTime>
+                  <routeCode code="34206005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" />
+                  <consumable>
+                    <manufacturedProduct classCode="MANU">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23" />
+                      <manufacturedMaterial>
+                        <code code="854235" codeSystem="2.16.840.1.113883.6.88" displayName="0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.219" />
+                      </manufacturedMaterial>
+                    </manufacturedProduct>
+                  </consumable>
+                </substanceAdministration>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <!-- Medication, Administered template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.42" />
+              <id root="b233df0c-df2e-452f-be0a-025f8c247eb2" />
+              <code code="416118004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Administration" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150419053400" />
+                <high value="20150419053400" />
+              </effectiveTime>
+              <entryRelationship typeCode="COMP">
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                  <!-- Medication Activity (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+                  <id root="3a11ad46-4bdc-47df-bff8-25d35907e7d4" />
+                  <text>0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe</text>
+                  <statusCode code="Completed" />
+                  <effectiveTime xsi:type="IVL_TS">
+                    <low value="20150419053400" />
+                    <high value="20150419053400" />
+                  </effectiveTime>
+                  <routeCode code="34206005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" />
+                  <consumable>
+                    <manufacturedProduct classCode="MANU">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23" />
+                      <manufacturedMaterial>
+                        <code code="854235" codeSystem="2.16.840.1.113883.6.88" displayName="0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.219" />
+                      </manufacturedMaterial>
+                    </manufacturedProduct>
+                  </consumable>
+                </substanceAdministration>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <!-- Medication, Administered template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.42" />
+              <id root="3cd26710-0e6b-49f7-afb8-99bfc862a52f" />
+              <code code="416118004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Administration" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150420061100" />
+                <high value="20150420061100" />
+              </effectiveTime>
+              <entryRelationship typeCode="COMP">
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                  <!-- Medication Activity (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+                  <id root="406c72a2-a020-47f3-8427-a1f5e3bcc014" />
+                  <text>0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe</text>
+                  <statusCode code="Completed" />
+                  <effectiveTime xsi:type="IVL_TS">
+                    <low value="20150420061100" />
+                    <high value="20150420061100" />
+                  </effectiveTime>
+                  <routeCode code="34206005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" />
+                  <consumable>
+                    <manufacturedProduct classCode="MANU">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23" />
+                      <manufacturedMaterial>
+                        <code code="854235" codeSystem="2.16.840.1.113883.6.88" displayName="0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.219" />
+                      </manufacturedMaterial>
+                    </manufacturedProduct>
+                  </consumable>
+                </substanceAdministration>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <!-- Medication, Administered template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.42" />
+              <id root="dc9a4614-746c-497b-a5f8-d164faa9f61e" />
+              <code code="416118004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Administration" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150421045200" />
+                <high value="20150421045200" />
+              </effectiveTime>
+              <entryRelationship typeCode="COMP">
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                  <!-- Medication Activity (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+                  <id root="0f0d44fa-48e5-4655-b1dc-b4fbcce2c00b" />
+                  <text>0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe</text>
+                  <statusCode code="Completed" />
+                  <effectiveTime xsi:type="IVL_TS">
+                    <low value="20150421045200" />
+                    <high value="20150421045200" />
+                  </effectiveTime>
+                  <routeCode code="34206005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" />
+                  <consumable>
+                    <manufacturedProduct classCode="MANU">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23" />
+                      <manufacturedMaterial>
+                        <code code="854235" codeSystem="2.16.840.1.113883.6.88" displayName="0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.219" />
+                      </manufacturedMaterial>
+                    </manufacturedProduct>
+                  </consumable>
+                </substanceAdministration>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <!-- Medication, Administered template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.42" />
+              <id root="b0d09c45-ecd0-43d2-a4c0-bc662c0a6160" />
+              <code code="416118004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Administration" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20150422061400" />
+                <high value="20150422061400" />
+              </effectiveTime>
+              <entryRelationship typeCode="COMP">
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                  <!-- Medication Activity (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+                  <id root="15232abb-acb1-4e81-b2ae-5e542443fb16" />
+                  <text>0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe</text>
+                  <statusCode code="Completed" />
+                  <effectiveTime xsi:type="IVL_TS">
+                    <low value="20150422061400" />
+                    <high value="20150422061400" />
+                  </effectiveTime>
+                  <routeCode code="34206005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" />
+                  <consumable>
+                    <manufacturedProduct classCode="MANU">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23" />
+                      <manufacturedMaterial>
+                        <code code="854235" codeSystem="2.16.840.1.113883.6.88" displayName="0.4 ML Enoxaparin sodium 100 MG/ML Prefilled Syringe" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.219" />
+                      </manufacturedMaterial>
+                    </manufacturedProduct>
+                  </consumable>
+                </substanceAdministration>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry>
+            <encounter classCode="ENC" moodCode="RQO">
+              <!--  Plan of Care Activity Encounter template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.40" />
+              <!-- Encounter order template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.22" />
+              <id root="53d60a84-f8a4-4d7e-8eb1-408c3809a076" />
+              <code code="73607007" codeSystem="2.16.840.1.113883.6.96" displayName="Hospital admission, emergency, from emergency room (procedure)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.295" />
+              <text>Hospital admission, emergency, from emergency room (procedure)</text>
+              <statusCode code="new" />
+              <author>
+                <time value="20150415134100" />
+                <assignedAuthor>
+                  <id nullFlavor="NI" />
+                </assignedAuthor>
+              </author>
+            </encounter>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

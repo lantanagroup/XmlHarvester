@@ -122,6 +122,58 @@ namespace VIQRCXML2XLS
                 // Ignore
             }
         }
+        private WorkbookStylesPart AddStyleSheet(SpreadsheetDocument spreadsheet)
+        {
+            WorkbookStylesPart stylesheet = spreadsheet.WorkbookPart.AddNewPart<WorkbookStylesPart>();
+
+            Stylesheet workbookstylesheet = new Stylesheet();
+
+            Font font0 = new Font();         // Default font
+
+            Font font1 = new Font();         // Bold font
+            DocumentFormat.OpenXml.Spreadsheet.Bold bold = new DocumentFormat.OpenXml.Spreadsheet.Bold();
+            font1.Append(bold);
+
+            DocumentFormat.OpenXml.Spreadsheet.Fonts fonts = new DocumentFormat.OpenXml.Spreadsheet.Fonts();      // <APENDING Fonts>
+            fonts.Append(font0);
+            fonts.Append(font1);
+
+            // <Fills>
+            Fill fill0 = new Fill();        // Default fill
+
+            Fills fills = new Fills();      // <APENDING Fills>
+            fills.Append(fill0);
+
+            // <Borders>
+            DocumentFormat.OpenXml.Spreadsheet.Border border0 = new DocumentFormat.OpenXml.Spreadsheet.Border();     // Defualt border
+
+            Borders borders = new Borders();    // <APENDING Borders>
+            borders.Append(border0);
+
+            // <CellFormats>
+            CellFormat cellformat0 = new CellFormat() { FontId = 0, FillId = 0, BorderId = 0 }; // Default style : Mandatory | Style ID =0
+
+            CellFormat cellformat1 = new CellFormat() { FontId = 1 };  // Style with Bold text ; Style ID = 1
+
+
+            // <APENDING CellFormats>
+            CellFormats cellformats = new CellFormats();
+            cellformats.Append(cellformat0);
+            cellformats.Append(cellformat1);
+
+
+            // Append FONTS, FILLS , BORDERS & CellFormats to stylesheet <Preserve the ORDER>
+            workbookstylesheet.Append(fonts);
+            workbookstylesheet.Append(fills);
+            workbookstylesheet.Append(borders);
+            workbookstylesheet.Append(cellformats);
+
+            // Finalize
+            stylesheet.Stylesheet = workbookstylesheet;
+            stylesheet.Stylesheet.Save();
+
+            return stylesheet;
+        }
 
         private void Convert_Click(object sender, RoutedEventArgs e)
         {
@@ -140,6 +192,9 @@ namespace VIQRCXML2XLS
                     // create the workbook
                     spreadSheet.AddWorkbookPart();
                     spreadSheet.WorkbookPart.Workbook = new Workbook();     // create the worksheet
+
+                    AddStyleSheet(spreadSheet);
+
                     spreadSheet.WorkbookPart.AddNewPart<WorksheetPart>();
                     spreadSheet.WorkbookPart.WorksheetParts.First().Worksheet = new Worksheet();
 
@@ -155,7 +210,8 @@ namespace VIQRCXML2XLS
                             new Cell()
                             {
                                 DataType = CellValues.String,
-                                CellValue = new CellValue(columnConfig.Header)
+                                CellValue = new CellValue(columnConfig.Header),
+                                StyleIndex = 1
                             });
                     }
 
@@ -176,10 +232,11 @@ namespace VIQRCXML2XLS
                         foreach (var columnConfig in columnConfigs)
                         {
                             XmlNodeList nodes = null;
+                            string xpath = columnConfig.Xpath;
 
                             try
                             {
-                                nodes = !string.IsNullOrEmpty(columnConfig.Xpath) ? xmlDoc.SelectNodes(columnConfig.Xpath, nsManager) : null;
+                                nodes = !string.IsNullOrEmpty(xpath) ? xmlDoc.SelectNodes(xpath, nsManager) : null;
                             }
                             catch (Exception ex)
                             {
@@ -205,10 +262,15 @@ namespace VIQRCXML2XLS
                             }
 
                             string cellValue = string.Empty;
+                            bool boldCell = false;
+
                             for (var i = 0; i < nodes.Count; i++)
                             {
                                 if (i > 0)
+                                {
                                     cellValue += "\r\n\r\n";
+                                    boldCell = true;
+                                }
 
                                 string nodeValue = nodes[i].Value;
 
@@ -227,12 +289,18 @@ namespace VIQRCXML2XLS
                                 cellValue += nodeValue;
                             }
 
-                            xmlRow.AppendChild(
-                                new Cell()
-                                {
-                                    DataType = CellValues.String,
-                                    CellValue = new CellValue(cellValue)
-                                });
+                            Cell cell = new Cell()
+                            {
+                                DataType = CellValues.String,
+                                CellValue = new CellValue(cellValue)
+                            };
+                            xmlRow.AppendChild(cell);
+
+                            if (boldCell)
+                            {
+                                this.logText.Text += "Multiple values found for XPath \"" + xpath + "\"\r\n";
+                                cell.StyleIndex = 1;
+                            }
                         }
                     }
 
@@ -251,11 +319,19 @@ namespace VIQRCXML2XLS
                     spreadSheet.WorkbookPart.Workbook.Save();
 
                     OpenXmlValidator validator = new OpenXmlValidator();
+                    var validationResults = validator.Validate(spreadSheet);
 
-                    foreach (var validationError in validator.Validate(spreadSheet))
+                    if (validationResults.Count() > 0)
                     {
-                        Console.WriteLine("Error " + validationError.Description);
+                        this.logText.Text += "\r\n\r\nExcel validation errors:";
+
+                        foreach (var validationError in validationResults)
+                        {
+                            this.logText.Text += "\r\n" + validationError.Description;
+                        }
                     }
+
+                    System.Windows.Forms.MessageBox.Show("Done");
                 }
             }
             catch (Exception ex)

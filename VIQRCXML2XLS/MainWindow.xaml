@@ -31,7 +31,7 @@
             <Label x:Name="label_Copy" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="What directory should the converted files be saved to?" Margin="5,2"/>
             <TextBox x:Name="outputDirectoryText" Grid.Row="3" Grid.Column="0" IsReadOnly="true" Margin="5,2"/>
             <Button x:Name="outputDirectoryButton" Grid.Row="3" Grid.Column="1" Content="Select" Margin="5,2" Click="outputDirectoryButton_Click" />
-            <TextBox x:Name="logText" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="True" />
+            <TextBox x:Name="logText" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" />
         </Grid>
     </DockPanel>
 </Window>

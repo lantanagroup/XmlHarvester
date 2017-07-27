@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="config">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="column"/>
+        <xs:element maxOccurs="unbounded" ref="group"/>
+      </xs:sequence>
+      <xs:attribute name="tableName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="header"> </xs:element>
+  <xs:element name="group">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="column"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="group"/>
+      </xs:sequence>
+      <xs:attribute name="context" use="required"/>
+      <xs:attribute name="tableName" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="column">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="name" use="required" type="xs:NCName"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

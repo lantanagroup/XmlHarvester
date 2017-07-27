@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config tableName="record">
+  <!-- Header columns - all groups are related to this header/record data -->
+  <column name="patientName">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name</column>
+  <column name="dateOfBirth">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:birthTime</column>
+  <column name="sex">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:administrativeGenderCode</column>
+  <column name="race">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:raceCode</column>
+  <column name="ethnicity">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:ethnicGroupCode</column>
+  
+  <!-- Measures -->
+  <group tableName="measures" context="//cda:organizer[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.98']">
+    <column name="measureId">cda:reference/cda:externalDocument/cda:id/@extension</column>
+    <column name="version">cda:reference/cda:externalDocument/cda:versionNumber/@value</column>
+  </group>
+
+  <!-- Procedure Activity -->
+  <group tableName="procedureActivities" context="//cda:procedure[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.14']">
+    <column name="startingDate">cda:effectiveTime/cda:low/@value</column>
+    <column name="endingDate">cda:effectiveTime/cda:high/@value</column>
+
+    <group tableName="procedureActivityParticipants" context="cda:participant">
+      <column name="code">cda:participantRole/cda:playingDevice/cda:code/@code</column>
+      <column name="codeSystem">cda:participantRole/cda:playingDevice/cda:code/@codeSystem</column>
+      <column name="displayName">cda:participantRole/cda:playingDevice/cda:code/@displayName</column>
+    </group>
+  </group>
+  
+  <!-- Encounters -->
+  <group tableName="encounterActivities" context="//cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']">
+    <column name="startingDate">cda:effectiveTime/cda:low/@value</column>
+    <column name="endingDate">cda:effectiveTime/cda:high/@value</column>
+    <column name="locationCode">cda:participant/cda:participantRole/cda:code/@code</column>
+    <column name="locationCodeSystem">cda:participant/cda:participantRole/cda:code/@codeSystem</column>
+  </group>
+</config>

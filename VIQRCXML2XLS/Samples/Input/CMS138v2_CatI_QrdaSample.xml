@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="cda.xsl"?>
+
+<!--
+Date: October 31, 2012
+Disclaimer: These QRDA sample files are designed to provide a file that is valid for errors against the CDA.sdtc schema and QRDA schematron using hypothetical patient data; however, the content of the QRDA sample 
+documents may not have "clinically" consistent data.  Additionally, the files are valid against the referenced eMeasure to provide a general idea about the content and structure of a QDM-based QRDA. When eMeasure data 
+criteria are “or”, the QRDA documents may not have all of the Quality Data Elements data criteria specified in the eMeasure. These expected errors are listed in the file where they occur. In the Patient Data Section, the 
+narrative block may not consistently agree with the entries.  The narrative block does not reflect the dates/times present in the clinical statements.
+-->
+<!--
+Sample file valid with 17 measure specific warnings:
+"Encounter, Performed: Health & Behavioral Assessment - Individual" using "Health & Behavioral Assessment - Individual Grouping Value Set (2.16.840.1.113883.3.526.3.1020)" 
+"Encounter, Performed: Health and Behavioral Assessment - Initial" using "Health and Behavioral Assessment - Initial Grouping Value Set (2.16.840.1.113883.3.526.3.1245)" 
+"Encounter, Performed: Occupational Therapy Evaluation" using "Occupational Therapy Evaluation Grouping Value Set (2.16.840.1.113883.3.526.3.1011)" 
+"Encounter, Performed: Office Visit" using "Office Visit Grouping Value Set (2.16.840.1.113883.3.464.1003.101.12.1001)" 
+"Encounter, Performed: Ophthalmological Services" using "Ophthalmological Services Grouping Value Set (2.16.840.1.113883.3.526.3.1285)" 
+"Encounter, Performed: Preventive Care Services - Established Office Visit, 18 and Up" using "Preventive Care Services - Established Office Visit, 18 and Up Grouping Value Set (2.16.840.1.113883.3.464.1003.101.12.1025)" 
+"Encounter, Performed: Preventive Care Services - Group Counseling" using "Preventive Care Services - Group Counseling Grouping Value Set (2.16.840.1.113883.3.464.1003.101.12.1027)" 
+"Encounter, Performed: Preventive Care Services-Individual Counseling" using "Preventive Care Services-Individual Counseling Grouping Value Set (2.16.840.1.113883.3.464.1003.101.12.1026)" 
+"Encounter, Performed: Preventive Care Services-Initial Office Visit, 18 and Up" using "Preventive Care Services-Initial Office Visit, 18 and Up Grouping Value Set (2.16.840.1.113883.3.464.1003.101.12.1023)" 
+"Encounter, Performed: Preventive Care Services - Other" using "Preventive Care Services - Other Grouping Value Set (2.16.840.1.113883.3.464.1003.101.12.1030)" 
+"Encounter, Performed: Psychoanalysis" using "Psychoanalysis Grouping Value Set (2.16.840.1.113883.3.526.3.1141)" 
+"Encounter, Performed: Psych Visit - Diagnostic or Evaluative Interview" using "Psych Visit - Diagnostic or Evaluative Interview Grouping Value Set (2.16.840.1.113883.3.526.3.1013)" 
+"Encounter, Performed: Psych Visit - Individual Outpatient Interactive Psychotherapy" using "Psych Visit - Individual Outpatient Interactive Psychotherapy Grouping Value Set (2.16.840.1.113883.3.526.3.1015)" 
+"Encounter, Performed: Psych Visit - Individual Outpatient Psychotherapy" using "Psych Visit - Individual Outpatient Psychotherapy Grouping Value Set (2.16.840.1.113883.3.526.3.1014)" 
+"Encounter, Performed: Psych Visit - Medication Management" using "Psych Visit - Medication Management Grouping Value Set (2.16.840.1.113883.3.526.3.1019)"
+"Patient Characteristic: Tobacco Non-User" using "Tobacco Non-User Grouping Value Set (2.16.840.1.113883.3.526.3.1189)" 
+"Patient Characteristic: Tobacco User" using "Tobacco User Grouping Value Set (2.16.840.1.113883.3.526.3.1170)"
+-->
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 CDA/infrastructure/cda/CDA_SDTC.xsd" xmlns="urn:hl7-org:v3" xmlns:voc="urn:hl7-org:v3/voc" xmlns:sdtc="urn:hl7-org:sdtc">
+	<!-- QRDA Header -->
+	<realmCode code="US" />
+	<typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3" />
+	<!-- US Realm Header Template Id -->
+	<templateId root="2.16.840.1.113883.10.20.22.1.1" />
+	<!-- QRDA templateId -->
+	<templateId root="2.16.840.1.113883.10.20.24.1.1" />
+	<templateId root="2.16.840.1.113883.10.20.24.1.2" />
+	<id root="f2d5f971-d67a-4456-8833-213f01331ca6" />
+	<!-- QRDA document type code -->
+	<code code="55182-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Quality Measure Report" />
+	<title>QRDA Incidence Report</title>
+	<effectiveTime value="201212310000-0400" />
+	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" />
+	<languageCode code="en-US" />
+	<setId extension="111199021" root="2.16.840.1.113883.19" />
+	<!-- the original -->
+	<versionNumber value="1" />
+	<recordTarget>
+		<patientRole>
+			<id extension="12345" root="2.16.840.1.113883.4.572" />
+			<addr use="HP">
+				<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+				<streetAddressLine>17 Daws Rd.</streetAddressLine>
+				<city>Blue Bell</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<country>US</country>
+				<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+			</addr>
+			<telecom use="HP" value="tel:(781)555-1212" />
+			<!-- HP is "primary home" from AddressUse 2.16.840.1.113883.5.1119 -->
+			<patient>
+				<name use="L">
+					<!-- L is "Legal" from EntityNameUse 2.16.840.1.113883.5.45 -->
+					<prefix>Mr.</prefix>
+					<given>Adam</given>
+					<given qualifier="CL">Frankie</given>
+					<!-- CL is "Call me" from EntityNamePartQualifier
+               2.16.840.1.113883.5.43 -->
+					<family>Everyman</family>
+				</name>
+				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male" />
+				<birthTime value="19541125" />
+				<maritalStatusCode code="M" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatusCode" displayName="Married" />
+				<religiousAffiliationCode code="1013" codeSystem="2.16.840.1.113883.5.1076" codeSystemName="Religious Affiliation " displayName="Christian (non-Catholic, non-specific)" />
+				<raceCode code="2106-3" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="White" />
+				<ethnicGroupCode code="2186-5" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="Not Hispanic or Latino" />
+				<guardian>
+					<code code="GRFTH" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode" displayName="Grandfather" />
+					<addr use="HP">
+						<streetAddressLine>17 Daws Rd.</streetAddressLine>
+						<city>Blue Bell</city>
+						<state>MA</state>
+						<postalCode>02368</postalCode>
+						<country>US</country>
+					</addr>
+					<telecom use="HP" value="tel:(781)555-1212" />
+					<guardianPerson>
+						<name>
+							<given>Ralph</given>
+							<family>Relative</family>
+						</name>
+					</guardianPerson>
+				</guardian>
+				<birthplace>
+					<place>
+						<addr>
+							<state>MA</state>
+							<postalCode>02368</postalCode>
+							<country>US</country>
+						</addr>
+					</place>
+				</birthplace>
+				<languageCommunication>
+					<languageCode code="fr-CN" />
+					<modeCode code="RWR" codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode" displayName="Receive Written" />
+					<preferenceInd value="true" />
+				</languageCommunication>
+			</patient>
+			<providerOrganization>
+				<id root="2.16.840.1.113883.19" />
+				<name>Good Health Clinic</name>
+				<telecom use="WP" value="tel:(781)555-1212" />
+				<addr>
+					<streetAddressLine>21 North Ave</streetAddressLine>
+					<city>Burlington</city>
+					<state>MA</state>
+					<postalCode>02368</postalCode>
+					<country>US</country>
+				</addr>
+			</providerOrganization>
+		</patientRole>
+	</recordTarget>
+
+	<author>
+		<time value="20050329224411+0500" />
+		<assignedAuthor>
+			<id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+			<addr>
+				<streetAddressLine>21 North Ave.</streetAddressLine>
+				<city>Burlington</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom use="WP" value="tel:(555)555-1003" />
+			<assignedAuthoringDevice>
+				<manufacturerModelName>Good Health Medical Device</manufacturerModelName>
+				<softwareName>Good Health Report Generator</softwareName>
+			</assignedAuthoringDevice>
+		</assignedAuthor>
+	</author>
+
+	<custodian>
+		<assignedCustodian>
+			<representedCustodianOrganization>
+				<id root="2.16.840.1.113883.19.5" />
+				<name>Good Health Clinic</name>
+				<telecom use="WP" value="tel:(555)555-1212" />
+				<addr use="WP">
+					<streetAddressLine>17 Daws Rd.</streetAddressLine>
+					<city>Blue Bell</city>
+					<state>MA</state>
+					<postalCode>02368</postalCode>
+					<country>US</country>
+				</addr>
+			</representedCustodianOrganization>
+		</assignedCustodian>
+	</custodian>
+	<legalAuthenticator>
+		<time value="201212310000-0400" />
+		<signatureCode code="S" />
+		<assignedEntity>
+			<id extension="KP00017" root="2.16.840.1.113883.19" />
+			<addr>
+				<streetAddressLine>21 North Ave.</streetAddressLine>
+				<city>Burlington</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom use="WP" value="tel:(555)555-1003" />
+			<assignedPerson>
+				<name>
+					<given>Henry</given>
+					<family>Seven</family>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</legalAuthenticator>
+
+
+	<!--  QRDA Body -->
+	<component>
+		<structuredBody>
+
+			<component>
+				<section>
+					<!-- 
+    *****************************************************************
+    Measure Section
+    *****************************************************************
+  -->
+					<!-- This is the templateId for Measure Section -->
+					<templateId root="2.16.840.1.113883.10.20.24.2.2" />
+					<!-- This is the templateId for Measure Section QDM -->
+					<templateId root="2.16.840.1.113883.10.20.24.2.3" />
+					<!-- This is the LOINC code for "Measure document". This stays the same for 
+    all measure section required by QRDA standard -->
+					<code code="55186-1" codeSystem="2.16.840.1.113883.6.1" />
+					<title>Measure Section</title>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>eMeasure Title</th>
+									<th>Version neutral identifier</th>
+									<th>eMeasure Version Number</th>
+									<th>NQF eMeasure Number</th>
+									<th>Version specific identifier</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Preventive Care and Screening: Tobacco Use: Screening and Cessation
+										Intervention</td>
+									<td>e35791df-5b25-41bb-b260-673337bc44a8</td>
+									<td>0</td>
+									<td>0028</td>
+									<td>8a4d92b2-35fb-4aa7-0136-4ffda0686ce8</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry>
+						<organizer classCode="CLUSTER" moodCode="EVN">
+							<!-- This is the templateId for Measure Reference -->
+							<templateId root="2.16.840.1.113883.10.20.24.3.98" />
+							<!-- This is the templateId for eMeasure Reference QDM -->
+							<templateId root="2.16.840.1.113883.10.20.24.3.97" />
+							<statusCode code="completed" />
+							<reference typeCode="REFR">
+								<externalDocument classCode="DOC" moodCode="EVN">
+									<!-- SHALL: This is the version specific identifier for eMeasure:   QualityMeasureDocument/id  it is a GUID-->
+									<id root="8a4d92b2-35fb-4aa7-0136-4ffda0686ce8" />
+									<!-- SHOULD: This is the NQF Number, root is an NQF OID and for    eMeasure Number and extension is the eMeasure's NQF number -->
+									<id extension="0028" root="2.16.840.1.113883.3.560.1" />
+									<!-- SHOULD This is the title of the eMeasure -->
+									<text>Preventive Care and Screening: Tobacco Use: Screening and Cessation
+										Intervention</text>
+									<!-- SHOULD: setId is the eMeasure version neutral id  -->
+									<setId root="e35791df-5b25-41bb-b260-673337bc44a8" />
+									<!-- This is the sequential eMeasure Version number -->
+									<versionNumber value="1" />
+								</externalDocument>
+							</reference>
+						</organizer>
+					</entry>
+				</section>
+			</component>
+			<component>
+				<!-- 	Reporting Parameters -->
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.17.2.1" />
+					<code code="55187-9" codeSystem="2.16.840.1.113883.6.1" />
+					<title>Reporting Parameters</title>
+					<text>
+						<list>
+							<item>Reporting period: 01 Jan 2012 - 31 Dec 2012</item>
+						</list>
+					</text>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.17.3.8" />
+							<code code="252116004" codeSystem="2.16.840.1.113883.6.96" displayName="Observation Parameters" />
+							<effectiveTime>
+								<low value="20120101" />
+								<high value="20121231" />
+							</effectiveTime>
+						</act>
+					</entry>
+				</section>
+			</component>
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.17.2.4" />
+					<templateId root="2.16.840.1.113883.10.20.24.2.1" />
+					<code code="55188-7" codeSystem="2.16.840.1.113883.6.1" />
+					<title>Patient Data</title>
+
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Data Element - Value</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Encounter, Performed: Office Visit - NA</td>
+								</tr>
+								<tr>
+									<td>Patient Characteristic Payer: Payer - Foreign Fee/Foreign Medical
+										Program(FMP)</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Preventive Care Services-Initial Office Visit, 18 and Up
+										- NA</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Preventive Care Services - Group Counseling - NA</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Face-to-Face Interaction - visit out of hours
+										(procedure)</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Preventive Care Services - Established Office Visit, 18
+										and Up - NA</td>
+								</tr>
+								<tr>
+									<td>Intervention, Performed: Tobacco Use Screening - Have you used smokeless
+										tobacco product in the last 30 days</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Psych Visit - Medication Management - NA</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Psychoanalysis - NA</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Preventive Care Services-Individual Counseling - NA</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Occupational Therapy Evaluation - NA</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Psych Visit - Individual Outpatient Psychotherapy -
+										NA</td>
+								</tr>
+								<tr>
+									<td>Patient Characteristic: Tobacco User - Cigarette smoker (finding)</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Psych Visit - Individual Outpatient Interactive
+										Psychotherapy - NA</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Preventive Care Services - Other - NA</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Health and Behavioral Assessment - Initial - NA</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Psych Visit - Diagnostic or Evaluative Interview -
+										NA</td>
+								</tr>
+								<tr>
+									<td>Diagnosis, Active: Limited Life Expectancy - Terminal illness (finding)</td>
+								</tr>
+								<tr>
+									<td>Encounter, Performed: Health &amp; Behavioral Assessment - Individual -
+										NA</td>
+								</tr>
+								<tr>
+									<td>Intervention, Performed: Tobacco Use Cessation Counseling - NA</td>
+								</tr>
+								<tr>
+									<td>Patient Characteristic: Tobacco Non-User - Intolerant non-smoker
+										(finding)</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<!--  Encounter activities template -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.49" />
+							<!-- Encounter performed template -->
+							<templateId root="2.16.840.1.113883.10.20.24.3.23" />
+							<id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+							<code code="G0438" codeSystem="2.16.840.1.113883.6.14" codeSystemName="HCPCS" displayName="Annual wellness visit; includes a personalized prevention plan of service (PPS), initial visit" sdtc:valueSet="2.16.840.1.113883.3.526.3.1240" />
+							<text>Encounter, Performed: Annual Wellness Visit</text>
+							<statusCode code="completed" />
+							<!-- Length of Stay -->
+							<effectiveTime>
+								<!-- Attribute: admission datetime -->
+								<low value="20120329090000+0500" />
+								<!-- Attribute: discharge datetime -->
+								<high value="20120329103000+0500" />
+							</effectiveTime>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.24.3.55" />
+							<id root="4ddf1cc3-e325-472e-ad76-b2c66a5ee164" />
+							<code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment source" />
+							<statusCode code="completed" />
+							<value code="1" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="Source of Payment Typology" displayName="Medicare" sdtc:valueSet="2.16.840.1.114222.4.11.3591" xsi:type="CD" />
+						</observation>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<!--  Encounter activities template -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.49" />
+							<!-- Encounter performed template -->
+							<templateId root="2.16.840.1.113883.10.20.24.3.23" />
+							<id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+							<code code="87790002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="follow-up inpatient consultation visit (procedure)" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1048" />
+							<text>Encounter, Performed: Face-to-Face Interaction</text>
+							<statusCode code="completed" />
+
+							<!-- Length of Stay -->
+							<effectiveTime>
+								<!-- Attribute: admission datetime -->
+								<low value="20120329090000+0500" />
+								<!-- Attribute: discharge datetime -->
+								<high value="20120329103000+0500" />
+							</effectiveTime>
+
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<!-- Consolidation CDA: Procedure Activity Act template -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.12" />
+							<templateId root="2.16.840.1.113883.10.20.24.3.32" />
+							<id root="db734647-fc99-424c-a864-7e3cda82e703" />
+							<code code="225323000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Smoking cessation education (procedure)" sdtc:valueSet="2.16.840.1.113883.3.526.3.509" />
+							<text>Intervention, Performed: Tobacco Use Cessation Counseling</text>
+							<statusCode code="completed" />
+							<effectiveTime>
+								<low value="201203011130" />
+								<high value="201203011130" />
+							</effectiveTime>
+						</act>
+					</entry>
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.85" />
+							<id nullFlavor="NI" />
+							<code code="ASSERTION" displayName="Assertion" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode" />
+							<text>Patient Characteristic: Tobacco User</text>
+							<statusCode code="completed" />
+							<effectiveTime>
+								<low value="20120615" />
+							</effectiveTime>
+							<value xsi:type="CD" code="428071000124103" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Current Heavy tobacco smoker (finding)" sdtc:valueSet="2.16.840.1.113883.3.526.3.1170" />
+						</observation>
+					</entry>
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.85" />
+							<id nullFlavor="NI" />
+							<code code="ASSERTION" displayName="Assertion" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode" />
+							<text>Patient Characteristic: Tobacco Non-User</text>
+							<statusCode code="completed" />
+							<effectiveTime>
+								<low value="20120615" />
+							</effectiveTime>
+							<value xsi:type="CD" code="8392000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Non-smoker (finding)" sdtc:valueSet="2.16.840.1.113883.3.526.3.1189" />
+						</observation>
+					</entry>
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<!--  Problem observation template -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.4" />
+							<!-- Diagnosis, active template -->
+							<templateId root="2.16.840.1.113883.10.20.24.3.11" />
+							<id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+							<code code="282291009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="diagnosis" />
+
+							<statusCode code="completed" />
+							<effectiveTime>
+								<!-- Attribute: Start Datetime -->
+								<low value="20120329090000+0500" />
+								<!-- Attribute: Stop Datetime -->
+								<high value="20120329103000+0500" />
+							</effectiveTime>
+							<priorityCode code="63161005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Principal" />
+							<value code="300936002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Terminal illness (finding)" sdtc:valueSet="2.16.840.1.113883.3.526.3.1259" xsi:type="CD" />
+
+							<!-- Status -->
+							<entryRelationship typeCode="REFR">
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- Problem Status (consolidation) template -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.6" />
+									<!-- Problem Status, Active template -->
+									<templateId root="2.16.840.1.113883.10.20.24.3.94" />
+									<id root="bb0df042-77ee-4ee2-bc85-24adffdef4cc" />
+									<code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+									<statusCode code="completed" />
+									<value code="55561003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="active" xsi:type="CD" />
+								</observation>
+
+							</entryRelationship>
+						</observation>
+					</entry>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<!-- Consolidation CDA: Procedure Activity Act template -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.12" />
+							<templateId root="2.16.840.1.113883.10.20.24.3.32" />
+							<id root="db734647-fc99-424c-a864-7e3cda82e703" />
+							<code code="11366-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of tobacco use" sdtc:valueSet="2.16.840.1.113883.3.526.3.1278" />
+							<text>Intervention, Performed: Tobacco Use Screening</text>
+							<statusCode code="completed" />
+							<effectiveTime>
+								<low value="201203011130" />
+								<high value="201203011130" />
+							</effectiveTime>
+						</act>
+					</entry>
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.24.3.101" />
+							<id nullFlavor="NI" />
+							<code code="57036006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="length of gestation" />
+							<statusCode code="completed" />
+							<effectiveTime value="20120615" />
+							<!-- ?Note: valueSet of PQ "d" and "wk"-->
+							<value unit="d" value="259" xsi:type="PQ" />
+						</observation>
+					</entry>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!-- Medication Activity (consolidation) template -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" />
+							<!-- Medication, Active template -->
+							<templateId root="2.16.840.1.113883.10.20.24.3.41" />
+							<id root="c0ea7bf3-50e7-4e7a-83a3-e5a9ccbb8541" />
+							<text>Medication, Active: Tobacco Use Cessation Pharmacotherapy</text>
+							<statusCode code="active" />
+							<effectiveTime xsi:type="IVL_TS">
+								<!-- Attribute: start datetime -->
+								<low value="20110301" />
+								<!-- Attribute: stop datetime -->
+								<high value="20120301" />
+							</effectiveTime>
+
+							<!-- Attribute: frequency -->
+							<effectiveTime xsi:type="PIVL_TS" institutionSpecified="true" operator="A">
+								<period value="6" unit="h" />
+							</effectiveTime>
+							
+							<!-- Attribute: route -->
+							<routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="FDA RouteOfAdministration" displayName="ORAL" sdtc:valueSet="2.16.840.1.113883.3.88.12.3221.8.7" />
+							
+							<!-- Attribute: dose -->
+							<doseQuantity value="1" />
+							<maxDoseQuantity nullFlavor="UNK">
+								<numerator nullFlavor="UNK" />
+								<denominator nullFlavor="UNK" />
+							</maxDoseQuantity>
+							<administrationUnitCode code="C42998" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="FDA RouteOfAdministration" displayName="TABLET" sdtc:valueSet="2.16.840.1.113883.3.88.12.3221.8.11" />
+							
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- Medication Information (consolidation) template -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" />
+									<id root="37bfe02a-3e97-4bd6-9197-bbd0ed0de79e" />
+									<manufacturedMaterial>
+										<code code="198029" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" displayName="24 HR Nicotine 0.583 MG/HR Transdermal Patch" sdtc:valueSet="2.16.840.1.113883.3.526.3.1190" />
+									</manufacturedMaterial>
+									<manufacturerOrganization>
+										<name>Medication Factory Inc.</name>
+									</manufacturerOrganization>
+								</manufacturedProduct>
+							</consumable>
+						</substanceAdministration>
+					</entry>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="RQO">
+							<!-- Plan of Care Activity Substance Administration -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.42" />
+							<!-- Medication, Order template -->
+							<templateId root="2.16.840.1.113883.10.20.24.3.47" />
+							<id root="86cfdef1-016f-4c00-9bfb-8088a0e0ed7c" />
+							<text>Medication, Order: Tobacco Use Cessation Pharmacotherapy</text>
+							<statusCode code="new" />
+							<effectiveTime xsi:type="IVL_TS">
+								<!-- Attribute: start datetime -->
+								<low value="20110301" />
+								<!-- Attribute: stop datetime -->
+								<high value="20120301" />
+							</effectiveTime>
+
+							<!-- Attribute: frequency -->
+							<effectiveTime xsi:type="PIVL_TS" institutionSpecified="true" operator="A">
+								<period value="6" unit="h" />
+							</effectiveTime>
+
+							<!-- Attribute: route -->
+							<routeCode code="C38216" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="RESPIRATORY (INHALATION)" sdtc:valueSet="2.16.840.1.113883.3.88.12.3221.8.7" />
+
+							<!-- Attribute: dose -->
+							<doseQuantity value="1" />
+							<rateQuantity value="90" unit="ml/min" />
+							<maxDoseQuantity nullFlavor="UNK">
+								<numerator nullFlavor="UNK" />
+								<denominator nullFlavor="UNK" />
+							</maxDoseQuantity>
+							<administrationUnitCode code="C42944" displayName="INHALANT" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" sdtc:valueSet="2.16.840.1.113883.3.88.12.3221.8.11" />
+
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- Medication Information (consolidation) template -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" />
+									<id root="37bfe02a-3e97-4bd6-9197-bbd0ed0de79e" />
+									<manufacturedMaterial>
+										<code code="198029" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" displayName="24 HR Nicotine 0.583 MG/HR Transdermal Patch" sdtc:valueSet="2.16.840.1.113883.3.526.3.1190" />
+									</manufacturedMaterial>
+									<manufacturerOrganization>
+										<name>Medication Factory Inc.</name>
+									</manufacturerOrganization>
+								</manufacturedProduct>
+							</consumable>
+						</substanceAdministration>
+					</entry>
+				</section>
+			</component>
+		</structuredBody>
+	</component>
+
+</ClinicalDocument>

@@ -1,0 +1,1341 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="cda.xsl"?>
+
+<!--
+Date: October 31, 2012
+Disclaimer: These QRDA sample files are designed to provide a file that is valid for errors against the CDA.sdtc schema and QRDA schematron using hypothetical patient data; however, the content of the QRDA sample 
+documents may not have "clinically" consistent data.  Additionally, the files are valid against the referenced eMeasure to provide a general idea about the content and structure of a QDM-based QRDA. When eMeasure data 
+criteria are “or”, the QRDA documents may not have all of the Quality Data Elements data criteria specified in the eMeasure. These expected errors are listed in the file where they occur. In the Patient Data Section, the 
+narrative block may not consistently agree with the entries.  The narrative block does not reflect the dates/times present in the clinical statements.
+-->
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 CDA/infrastructure/cda/CDA_SDTC.xsd" xmlns="urn:hl7-org:v3" xmlns:voc="urn:hl7-org:v3/voc" xmlns:sdtc="urn:hl7-org:sdtc">
+  <!-- QRDA Header -->
+  <realmCode code="US" />
+  <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3" />
+  <!-- US Realm Header Template Id -->
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" />
+  <!-- QRDA templateId -->
+  <templateId root="2.16.840.1.113883.10.20.24.1.1" />
+  <!-- QRDA-QDM templateId -->
+  <templateId root="2.16.840.1.113883.10.20.24.1.2" />
+  <id root="f2d5f971-d67a-4456-8833-213f01331ca24" />
+  <!-- QRDA document type code -->
+  <code code="55182-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Quality Measure Report" />
+  <title>QRDA Incidence Report</title>
+  <effectiveTime value="201212310000-0400" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" />
+  <languageCode code="en-US" />
+  <setId extension="111199021" root="2.16.840.1.113883.19" />
+  <!-- the original -->
+  <versionNumber value="1" />
+  <recordTarget>
+    <patientRole>
+      <id extension="12345" root="2.16.840.1.113883.4.572" />
+      <addr use="HP">
+        <!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+        <streetAddressLine>17 Daws Rd.</streetAddressLine>
+        <city>Blue Bell</city>
+        <state>MA</state>
+        <postalCode>02368</postalCode>
+        <country>US</country>
+        <!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+      </addr>
+      <telecom use="HP" value="tel:(781)555-1212" />
+      <!-- HP is "primary home" from AddressUse 2.16.840.1.113883.5.1119 -->
+      <patient>
+        <name use="L">
+          <!-- L is "Legal" from EntityNameUse 2.16.840.1.113883.5.45 -->
+          <prefix>Mr.</prefix>
+          <given>Adam</given>
+          <given qualifier="CL">Frankie</given>
+          <!-- CL is "Call me" from EntityNamePartQualifier
+               2.16.840.1.113883.5.43 -->
+          <family>Everyman</family>
+        </name>
+        <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male" />
+        <birthTime value="19541125" />
+        <maritalStatusCode code="M" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatusCode" displayName="Married" />
+        <religiousAffiliationCode code="1013" codeSystem="2.16.840.1.113883.5.1076" codeSystemName="Religious Affiliation " displayName="Christian (non-Catholic, non-specific)" />
+        <raceCode code="2106-3" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="White" />
+        <ethnicGroupCode code="2186-5" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="Not Hispanic or Latino" />
+        <guardian>
+          <code code="GRFTH" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode" displayName="Grandfather" />
+          <addr use="HP">
+            <streetAddressLine>17 Daws Rd.</streetAddressLine>
+            <city>Blue Bell</city>
+            <state>MA</state>
+            <postalCode>02368</postalCode>
+            <country>US</country>
+          </addr>
+          <telecom use="HP" value="tel:(781)555-1212" />
+          <guardianPerson>
+            <name>
+              <given>Ralph</given>
+              <family>Relative</family>
+            </name>
+          </guardianPerson>
+        </guardian>
+        <birthplace>
+          <place>
+            <addr>
+              <state>MA</state>
+              <postalCode>02368</postalCode>
+              <country>US</country>
+            </addr>
+          </place>
+        </birthplace>
+        <languageCommunication>
+          <languageCode code="fr-CN" />
+          <modeCode code="RWR" codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode" displayName="Receive Written" />
+          <preferenceInd value="true" />
+        </languageCommunication>
+      </patient>
+      <providerOrganization>
+        <id root="2.16.840.1.113883.19" />
+        <name>Good Health Clinic</name>
+        <telecom use="WP" value="tel:(781)555-1212" />
+        <addr>
+          <streetAddressLine>21 North Ave</streetAddressLine>
+          <city>Burlington</city>
+          <state>MA</state>
+          <postalCode>02368</postalCode>
+          <country>US</country>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+
+  <author>
+    <time value="20050329224411+0500" />
+    <assignedAuthor>
+      <id nullFlavor="UNK" root="2.16.840.1.113883.4.6" />
+      <addr>
+        <streetAddressLine>21 North Ave.</streetAddressLine>
+        <city>Burlington</city>
+        <state>MA</state>
+        <postalCode>02368</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:(555)555-1003" />
+      <assignedAuthoringDevice>
+        <manufacturerModelName>Good Health Medical Device</manufacturerModelName>
+        <softwareName>Good Health Report Generator</softwareName>
+      </assignedAuthoringDevice>
+    </assignedAuthor>
+  </author>
+
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id root="2.16.840.1.113883.19.5" />
+        <name>Good Health Clinic</name>
+        <telecom use="WP" value="tel:(555)555-1212" />
+        <addr use="WP">
+          <streetAddressLine>17 Daws Rd.</streetAddressLine>
+          <city>Blue Bell</city>
+          <state>MA</state>
+          <postalCode>02368</postalCode>
+          <country>US</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <legalAuthenticator>
+    <time value="201212310000-0400" />
+    <signatureCode code="S" />
+    <assignedEntity>
+      <id extension="KP00017" root="2.16.840.1.113883.19" />
+      <addr>
+        <streetAddressLine>21 North Ave.</streetAddressLine>
+        <city>Burlington</city>
+        <state>MA</state>
+        <postalCode>02368</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:(555)555-1003" />
+      <assignedPerson>
+        <name>
+          <given>Henry</given>
+          <family>Seven</family>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </legalAuthenticator>
+
+
+  <!--  QRDA Body -->
+  <component>
+    <structuredBody>
+
+      <component>
+        <section>
+          <!-- 
+    *****************************************************************
+    Measure Section
+    *****************************************************************
+  -->
+          <!-- This is the templateId for Measure Section -->
+          <templateId root="2.16.840.1.113883.10.20.24.2.2" />
+          <!-- This is the templateId for Measure Section QDM -->
+          <templateId root="2.16.840.1.113883.10.20.24.2.3" />
+          <!-- This is the LOINC code for "Measure document". This stays the same for 
+    all measure section required by QRDA standard -->
+          <code code="55186-1" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Measure Section</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>eMeasure Title</th>
+                  <th>Version neutral identifier</th>
+                  <th>eMeasure Version Number</th>
+                  <th>NQF eMeasure Number</th>
+                  <th>Version specific identifier</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Preventive Care and Screening: Influenza Immunization</td>
+                  <td>a244aa29-7d11-4616-888a-86e376bfcc6f</td>
+                  <td>0</td>
+                  <td>0041</td>
+                  <td>8a4d92b2-35fb-4aa7-0136-508ea96175ed</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+              <!-- This is the templateId for Measure Reference -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.98" />
+              <!-- This is the templateId for eMeasure Reference QDM -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.97" />
+              <statusCode code="completed" />
+              <reference typeCode="REFR">
+                <externalDocument classCode="DOC" moodCode="EVN">
+                  <!-- SHALL: This is the version specific identifier for eMeasure:   QualityMeasureDocument/id  it is a GUID-->
+                  <id root="8a4d92b2-35fb-4aa7-0136-508ea96175ed" />
+                  <!-- SHOULD: This is the NQF Number, root is an NQF OID and for    eMeasure Number and extension is the eMeasure's NQF number -->
+                  <id extension="0041" root="2.16.840.1.113883.3.560.1" />
+                  <!-- SHOULD This is the title of the eMeasure -->
+                  <text>Preventive Care and Screening: Influenza Immunization</text>
+                  <!-- SHOULD: setId is the eMeasure version neutral id  -->
+                  <setId root="a244aa29-7d11-4616-888a-86e376bfcc6f" />
+                  <!-- This is the sequential eMeasure Version number -->
+                  <versionNumber value="1" />
+                </externalDocument>
+              </reference>
+            </organizer>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <!-- 	Reporting Parameters -->
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.17.2.1" />
+          <code code="55187-9" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Reporting Parameters</title>
+          <text>
+            <list>
+				<item>Reporting period: 01 Jan 2012 - 31 Dec 2012</item>
+			</list>
+          </text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.17.3.8" />
+              <code code="252116004" codeSystem="2.16.840.1.113883.6.96" displayName="Observation Parameters" />
+              <effectiveTime>
+                <low value="20120101" />
+                <high value="20121231" />
+              </effectiveTime>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.17.2.4" />
+          <templateId root="2.16.840.1.113883.10.20.24.2.1" />
+          <code code="55188-7" codeSystem="2.16.840.1.113883.6.1" />
+          <title>Patient Data</title>
+          
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Data Element - Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Diagnosis, Active: Intolerance to Influenza Vaccine - Influenza surface antigen vaccine adverse
+                    reaction (disorder)</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Nursing Facility Visit - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Outpatient Consultation - NA</td>
+                </tr>
+                <tr>
+                  <td>Communication: From Patient to Provider: Influenza Vaccination Declined - influenza vaccination
+                    declined (situation)</td>
+                </tr>
+                <tr>
+                  <td>Medication, Allergy: Influenza Vaccine - Novel Influenza-H1N1-09, all formulations</td>
+                </tr>
+                <tr>
+                  <td>Medication, Administered: Influenza Vaccine - Influenza, seasonal, injectable, preservative
+                    free</td>
+                </tr>
+                <tr>
+                  <td>Diagnosis, Active: Allergy to Influenza Vaccine - Influenza split virion vaccine allergy
+                    (disorder)</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Discharge Services - Nursing Facility - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Office Visit - NA</td>
+                </tr>
+                <tr>
+                  <td>Patient Characteristic Payer: Payer - Non-veteran care</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Encounter-Influenza - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Preventive Care- Initial Office Visit, 0 to 17 - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Preventive Care Services-Initial Office Visit, 18 and Up - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Preventive Care - Established Office Visit, 0 to 17 - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Preventive Care Services - Group Counseling - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Preventive Care Services - Established Office Visit, 18 and Up - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Patient Provider Interaction - home visit (procedure)</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Care Services in Long-Term Residential Facility - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Preventive Care Services-Individual Counseling - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Preventive Care Services - Other - NA</td>
+                </tr>
+                <tr>
+                  <td>Encounter, Performed: Home Healthcare Services - NA</td>
+                </tr>
+                <tr>
+                  <td>Diagnosis, Active: Allergy to eggs - Egg protein allergy (disorder)</td>
+                </tr>
+                <tr>
+                  <td>Communication: From Patient to Provider: Previous Receipt of Influenza Vaccine - Has influenza
+                    vaccination at work (finding)</td>
+                </tr>
+                <tr>
+                  <td>Procedure, Performed: Influenza Vaccination - Influenza vaccination (procedure)</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <!--  Problem observation template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+              <!-- Diagnosis, active template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.11" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="282291009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="diagnosis" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <!-- Attribute: Start Datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: Stop Datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              <priorityCode code="63161005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Principal" />
+              <value code="293113005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Influenza surface antigen vaccine adverse reaction (disorder)" sdtc:valueSet="2.16.840.1.113883.3.526.3.1257" xsi:type="CD" />
+
+              <!-- Status -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem Status (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.6" />
+                  <!-- Problem Status, Active template -->
+                  <templateId root="2.16.840.1.113883.10.20.24.3.94" />
+                  <id root="bb0df042-77ee-4ee2-bc85-24adffdef4cc" />
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+                  <statusCode code="completed" />
+                  <value code="55561003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="active" xsi:type="CD" />
+                </observation>
+
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99309" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1012" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99245" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1008" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="G0438" codeSystem="2.16.840.1.113883.6.25" codeSystemName="HCPCS" displayName="Annual Wellness Visit" sdtc:valueSet="2.16.840.1.113883.3.526.3.1240" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99324" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Care Services in Long-Term Residential Facility" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1014" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99315" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Discharge Services - Nursing Facility" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1013" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Office Visit" sdtc:valueSet="2.16.840.1.113883.3.526.3.1252" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99343" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Home Healthcare Services" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1016" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99304" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Nursing Facility Visit" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1012" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Office Visit" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1001" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99241" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Outpatient Consultation" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1008" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99391" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Preventive Care - Established Office Visit, 0 to 17" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1024" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99381" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Preventive Care - Initial Office Visit, 0 to 17" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1022" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99395" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Preventive Care Services - Established Office Visit, 18 and Up" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1025" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99411" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Preventive Care Services - Group Counseling" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1027" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99401" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Preventive Care Services-Individual Counseling" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1026" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99385" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Preventive Care Services-Initial Office Visit, 18 and Up" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1023" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99420" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Preventive Care Services - Other" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1030" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+              
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.24.3.2" />
+              <id root="F3D6FD73-B2C0-4274-BFD2-A485957734DB" />
+              <code code="315640000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="influenza vaccination declined (situation)" sdtc:valueSet="2.16.840.1.113883.3.526.3.1255" />
+              <text> Communication, From patient to provider: E-mail received from patient </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20110101" />
+                <!-- <high value="20111231" /> -->
+              </effectiveTime>
+
+              <participant typeCode="AUT">
+                <participantRole classCode="PAT">
+                  <code code="116154003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Patient" />
+                </participantRole>
+              </participant>
+
+              <participant typeCode="IRCP">
+                <participantRole classCode="ASSIGNED">
+                  <code code="158965000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medical Practitioner" />
+                </participantRole>
+              </participant>
+
+            </act>
+
+
+          </entry>
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- consolidation CDA Allergy observation template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.7" />
+              <!--  Medication Allergy -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.44" />
+              <id root="4adc1020-7b14-11db-9fe1-0800200c9a66" />
+              <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode" displayName="Assertion" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20110215" />
+              </effectiveTime>
+              <value code="416098002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Drug allergy" xsi:type="CD" />
+              <participant typeCode="CSM">
+                <participantRole classCode="MANU">
+                  <playingEntity classCode="MMAT">
+                    <code code="140" codeSystem="2.16.840.1.113883.6.59" codeSystemName="CVX" displayName="Influenza, seasonal, injectable, preservative free" sdtc:valueSet="2.16.840.1.113883.3.526.3.1254" />
+                    <name>Penicillin</name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              
+              <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Severity Observation -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+                  <code code="SEV" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD" code="371924009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Moderate to severe (qualifier value)" sdtc:valueSet="2.16.840.1.113883.3.88.12.3221.6.8"/>
+                </observation>
+              </entryRelationship>
+              
+            </observation>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <!-- Medication, Administered template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.42" />
+              <id root="2c79402e-5cc6-4688-8eb8-7b872d894228" />
+              <code code="416118004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Administration" />
+              <statusCode code="completed" />
+              <effectiveTime value="20110305" />
+              <entryRelationship typeCode="COMP">
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                  <!-- Medication Activity (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+                  <id root="c0ea7bf3-50e7-4e7a-83a3-e5a9ccbb8541" />
+                  <text>Medication active: 0.09 MG/ACTUAT inhalant solution, 2 puffs QID PRN wheezing</text>
+                  <statusCode code="completed" />
+                  <effectiveTime xsi:type="IVL_TS">
+                    <!-- Attribute: start datetime -->
+                    <low value="20110301" />
+                    <!-- Attribute: stop datetime -->
+                    <high value="20120301" />
+                  </effectiveTime>
+                  <!-- Attribute: frequency -->
+                  <effectiveTime institutionSpecified="true" operator="A" xsi:type="PIVL_TS">
+                    <period unit="h" value="6" />
+                  </effectiveTime>
+                  <!-- Attribute: refill -->
+                  <repeatNumber value="2" />
+                  <!-- Attribute: dose -->
+                  <doseQuantity value="1" />
+                  <rateQuantity unit="ml/min" value="90" />
+                  <maxDoseQuantity nullFlavor="UNK">
+                    <numerator nullFlavor="UNK" />
+                    <denominator nullFlavor="UNK" />
+                  </maxDoseQuantity>
+                  <consumable>
+                    <manufacturedProduct classCode="MANU">
+                      <!-- Medication Information (consolidation) template -->
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23" />
+                      <id root="37bfe02a-3e97-4bd6-9197-bbd0ed0de79e" />
+                      <manufacturedMaterial>
+                        <code code="140" codeSystem="2.16.840.1.113883.12.292" codeSystemName="CVX" displayName="Influenza, seasonal, injectable, preservative free" sdtc:valueSet="2.16.840.1.113883.3.526.3.1254">
+                          <!-- Would be actual    valueSetOID -->
+                          <originalText>
+                            <reference value="#Med1" />
+                          </originalText>
+                        </code>
+                      </manufacturedMaterial>
+                      <manufacturerOrganization>
+                        <name>Medication Factory Inc.</name>
+                      </manufacturerOrganization>
+                    </manufacturedProduct>
+                  </consumable>
+                </substanceAdministration>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <!--  Problem observation template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+              <!-- Diagnosis, active template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.11" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="282291009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="diagnosis" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <!-- Attribute: Start Datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: Stop Datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              <priorityCode code="63161005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Principal" />
+              <value code="294648008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Influenza split virion vaccine allergy (disorder)" sdtc:valueSet="2.16.840.1.113883.3.526.3.1256" xsi:type="CD" />
+
+              <!-- Status -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem Status (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.6" />
+                  <!-- Problem Status, Active template -->
+                  <templateId root="2.16.840.1.113883.10.20.24.3.94" />
+                  <id root="bb0df042-77ee-4ee2-bc85-24adffdef4cc" />
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+                  <statusCode code="completed" />
+                  <value code="55561003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="active" xsi:type="CD" />
+                </observation>
+
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99316" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1013" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99205" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1001" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.24.3.55" />
+              <id root="4ddf1cc3-e325-472e-ad76-b2c66a5ee164" />
+              <code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment source" />
+              <statusCode code="completed" />
+              <value code="1" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="Source of Payment Typology" displayName="Medicare" sdtc:valueSet="2.16.840.1.114222.4.11.3591" xsi:type="CD" />
+            </observation>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99342" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1016" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99384" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.11.1110" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99386" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1023" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99394" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1024" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99412" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1027" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99396" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1025" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="439708006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="home visit (procedure)" sdtc:valueSet="2.16.840.1.113883.3.526.3.1012" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99327" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1014" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99401" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1026" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99429" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1030" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!--  Encounter activities template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- Encounter performed template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.23" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99344" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="NA" sdtc:valueSet="2.16.840.1.113883.3.464.1003.101.12.1016" />
+              <text>Encounter, Performed: Prenatal initial visit</text>
+              <statusCode code="completed" />
+
+              <!-- Length of Stay -->
+              <effectiveTime>
+                <!-- Attribute: admission datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: discharge datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </encounter>
+          </entry>
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <!--  Problem observation template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+              <!-- Diagnosis, active template -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.11" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="282291009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="diagnosis" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <!-- Attribute: Start Datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: Stop Datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              <priorityCode code="63161005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Principal" />
+              <value code="213020009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Egg protein allergy (disorder)" sdtc:valueSet="2.16.840.1.113883.3.526.3.1253" xsi:type="CD" />
+
+              <!-- Status -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem Status (consolidation) template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.6" />
+                  <!-- Problem Status, Active template -->
+                  <templateId root="2.16.840.1.113883.10.20.24.3.94" />
+                  <id root="bb0df042-77ee-4ee2-bc85-24adffdef4cc" />
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="status" />
+                  <statusCode code="completed" />
+                  <value code="55561003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="active" xsi:type="CD" />
+                </observation>
+
+              </entryRelationship>
+            </observation>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.24.3.2" />
+              <id root="F3D6FD73-B2C0-4274-BFD2-A485957734DB" />
+              <code code="416928007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Has influenza vaccination at work (finding)" sdtc:valueSet="2.16.840.1.113883.3.526.3.1185" />
+              <text> Communication, From patient to provider: E-mail received from patient </text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20110101" />
+                <!-- <high value="20111231" /> -->
+              </effectiveTime>
+
+              <participant typeCode="AUT">
+                <participantRole classCode="PAT">
+                  <code code="116154003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Patient" />
+                </participantRole>
+              </participant>
+
+              <participant typeCode="IRCP">
+                <participantRole classCode="ASSIGNED">
+                  <code code="158965000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medical Practitioner" />
+                </participantRole>
+              </participant>
+
+            </act>
+
+
+          </entry>
+          <entry typeCode="DRIV">
+            <procedure classCode="PROC" moodCode="EVN">
+              <!-- Consolidated Procedure Activity Procedure TemplateId 
+      (Implied Template) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure, Performed TemplateId -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.64" />
+              <id root="d68b7e32-7810-4f5b-9cc2-acd54b0fd85d" />
+              <code code="86198006" displayName="Influenza vaccination (procedure)" codeSystem="2.16.840.1.113883.6.96" sdtc:valueSet="2.16.840.1.113883.3.526.3.402" />
+              <text>Procedure, Performed: Heart Transplant And Ventricular-Assist-Device Procedure (ordinality:
+                'Principal')</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <!-- Attribute: Start Datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: End Datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+
+            </procedure>
+          </entry>
+          <entry typeCode="DRIV">
+            <procedure classCode="PROC" moodCode="EVN">
+              <!-- Consolidated Procedure Activity Procedure TemplateId 
+      (Implied Template) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure, Performed TemplateId -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.64" />
+              <id root="d68b7e32-7810-4f5b-9cc2-acd54b0fd85d" />
+              <code code="90951" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Hemodialysis" sdtc:valueSet="2.16.840.1.113883.3.526.3.1083" />
+              <text>Procedure, Performed: Heart Transplant And Ventricular-Assist-Device Procedure (ordinality:
+                'Principal')</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <!-- Attribute: Start Datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: End Datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </procedure>
+          </entry>
+          <entry typeCode="DRIV">
+            <procedure classCode="PROC" moodCode="EVN">
+              <!-- Consolidated Procedure Activity Procedure TemplateId 
+      (Implied Template) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <!-- Procedure, Performed TemplateId -->
+              <templateId root="2.16.840.1.113883.10.20.24.3.64" />
+              <id root="d68b7e32-7810-4f5b-9cc2-acd54b0fd85d" />
+              <code code="90945" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT" displayName="Peritoneal Dialysis" sdtc:valueSet="2.16.840.1.113883.3.526.3.1084" />
+              <text>Procedure, Performed: Heart Transplant And Ventricular-Assist-Device Procedure (ordinality:
+                'Principal')</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <!-- Attribute: Start Datetime -->
+                <low value="20120329090000+0500" />
+                <!-- Attribute: End Datetime -->
+                <high value="20120329103000+0500" />
+              </effectiveTime>
+              
+            </procedure>
+          </entry>
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- consolidation CDA Allergy Observation template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.7" />
+              <templateId root="2.16.840.1.113883.10.20.24.3.46" />
+              <id root="4adc1020-7b14-11db-9fe1-0800200c9a66" />
+              <code code="ASSERTION" displayName="Assertion" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20110215" />
+              </effectiveTime>
+              <value xsi:type="CD" code="59037007" displayName="Drug intolerance" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+              
+              <participant typeCode="CSM">
+                <participantRole classCode="MANU">
+                  <playingEntity classCode="MMAT">
+                    <code code="111" codeSystem="2.16.840.1.113883.6.59" codeSystemName="CVX" displayName="Influenza Vaccine" sdtc:valueSet="2.16.840.1.113883.3.526.3.1254" />
+                    <name>Penicillin</name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              
+              <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Severity Observation -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+                  <code code="SEV" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD" code="371924009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Moderate to severe (qualifier value)" sdtc:valueSet="2.16.840.1.113883.3.88.12.3221.6.8"/>
+                </observation>
+              </entryRelationship>
+              
+            </observation>
+            
+          </entry> 
+         </section>
+      </component>
+    </structuredBody>
+  </component>
+
+</ClinicalDocument>

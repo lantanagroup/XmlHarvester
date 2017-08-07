@@ -324,7 +324,7 @@
                   <!-- SHOULD: setId is the eMeasure version neutral id  -->
                   <setId root="42bf391f-38a3-4c0f-9ece-dcd47e9609d9" />
                   <!-- This is the sequential eMeasure Version number -->
-                  <versionNumber value="3" />
+                  <versionNumber value="5" />
                 </externalDocument>
               </reference>
             </organizer>

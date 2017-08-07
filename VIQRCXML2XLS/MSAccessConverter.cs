@@ -15,19 +15,19 @@ namespace VIQRCXML2XLS
     public class MSAccessConverter
     {
         private const string DatabaseFileName = "output.mdb";
-        public const string AccessConfigFileName = "AccessConfig.xml";
+        public const string AccessConfigFileName = "MappingConfig.xml";
 
         private TextBox logText;
         private string inputDirectory;
         private string outputDirectory;
-        private AccessConfig accessConfig;
+        private MappingConfig accessConfig;
 
         public MSAccessConverter(string inputDirectory, string outputDirectory, TextBox logText)
         {
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
             this.logText = logText;
-            this.accessConfig = AccessConfig.LoadFromFile(GetConfigFileName());
+            this.accessConfig = MappingConfig.LoadFromFile(GetConfigFileName());
         }
 
         private string GetConnectionString(bool delete = false)
@@ -41,7 +41,7 @@ namespace VIQRCXML2XLS
             return connectionString;
         }
 
-        private ADOX.Table CreateTable(ADOX.CatalogClass cat, ADOX.Table parentTable, string tableName, List<AccessColumn> columns)
+        private ADOX.Table CreateTable(ADOX.CatalogClass cat, ADOX.Table parentTable, string tableName, List<MappingColumn> columns)
         {
             var newTable = new ADOX.Table();
             newTable.Name = tableName;
@@ -66,6 +66,10 @@ namespace VIQRCXML2XLS
                 var newCol = new ADOX.Column();
                 newCol.Name = groupColumnConfig.Name;
                 newCol.Type = DataTypeEnum.adVarWChar;
+
+                if (groupColumnConfig.IsNarrative)
+                    newCol.Type = DataTypeEnum.adLongVarWChar;
+
                 newCol.ParentCatalog = cat;
                 newCol.Attributes = ColumnAttributesEnum.adColNullable;
                 newTable.Columns.Append(newCol);
@@ -76,7 +80,7 @@ namespace VIQRCXML2XLS
             return newTable;
         }
 
-        private ADOX.Table CreateGroupTable(ADOX.CatalogClass cat, ADOX.Table parentTable, AccessGroup group)
+        private ADOX.Table CreateGroupTable(ADOX.CatalogClass cat, ADOX.Table parentTable, MappingGroup group)
         {
             var newTable = this.CreateTable(cat, parentTable, group.TableName, group.Column);
 
@@ -105,7 +109,7 @@ namespace VIQRCXML2XLS
         private int InsertData(OleDbConnection conn, string tableName, Dictionary<string, object> columns)
         {
             var columnsNames = columns.Keys;
-            string insertQuery = "INSERT INTO " + tableName + "(" + string.Join(", ", columnsNames) + ") VALUES (";
+            string insertQuery = "INSERT INTO [" + tableName + "] ([" + string.Join("], [", columnsNames) + "]) VALUES (";
 
             List<string> values = new List<string>();
 
@@ -114,54 +118,85 @@ namespace VIQRCXML2XLS
                 if (value == null)
                     values.Add("null");
                 else if (value.GetType() == typeof(string))
-                    values.Add("'" + value.ToString() + "'");
+                    values.Add("'" + value.ToString().Replace("'", "''") + "'");
                 else
                     values.Add(value.ToString());
             }
             
-            insertQuery += string.Join(", ", values) + " )";
+            insertQuery += string.Join(", ", values) + ")";
 
-            Console.WriteLine(insertQuery);
+            try
+            {
+                OleDbCommand insertCommand = new OleDbCommand();
+                insertCommand.Connection = conn;
+                insertCommand.CommandText = insertQuery;
+                insertCommand.ExecuteNonQuery();
 
-            OleDbCommand insertCommand = new OleDbCommand();
-            insertCommand.Connection = conn;
-            insertCommand.CommandText = insertQuery;
-            insertCommand.ExecuteNonQuery();
-            
-            OleDbCommand getIdCommand = new OleDbCommand();
-            getIdCommand.Connection = conn;
-            getIdCommand.CommandText = "SELECT @@Identity";
-            int res = (int) getIdCommand.ExecuteScalar();
-            return res;
+                OleDbCommand getIdCommand = new OleDbCommand();
+                getIdCommand.Connection = conn;
+                getIdCommand.CommandText = "SELECT @@Identity";
+                int res = (int)getIdCommand.ExecuteScalar();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                this.logText.Text += "Error inserting data into database: " + ex.Message + "\r\n";
+                return -1;
+            }
         }
 
-        private string GetValue(XmlNodeList nodes)
+        private string GetValue(XmlNodeList nodes, bool isNarrative)
         {
+            if (nodes == null)
+                return string.Empty;
+
             string cellValue = string.Empty;
 
             for (var i = 0; i < nodes.Count; i++)
             {
-                string nodeValue = nodes[i].Value;
+                string nodeValue = string.Empty;
 
-                if (string.IsNullOrEmpty(nodeValue))
-                    nodeValue = nodes[i].InnerText;
+                if (isNarrative)
+                {
+                    var allNodes = nodes[i].SelectNodes("//*/text()");
 
-                if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["value"] != null)
-                    nodeValue = nodes[i].Attributes["value"].Value;
+                    foreach (XmlNode nextNode in allNodes)
+                    {
+                        if (!string.IsNullOrEmpty(nodeValue))
+                            nodeValue += " ";
+                        nodeValue += nextNode.Value;
+                    }
+                }
+                else
+                {
+                    nodeValue = nodes[i].Value;
 
-                if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["displayName"] != null)
-                    nodeValue = nodes[i].Attributes["displayName"].Value;
+                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["value"] != null)
+                        nodeValue = nodes[i].Attributes["value"].Value;
 
-                if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["code"] != null)
-                    nodeValue = nodes[i].Attributes["code"].Value;
+                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["displayName"] != null)
+                        nodeValue = nodes[i].Attributes["displayName"].Value;
 
-                cellValue += nodeValue;
+                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["code"] != null)
+                        nodeValue = nodes[i].Attributes["code"].Value;
+
+                    if (string.IsNullOrEmpty(nodeValue))
+                        nodeValue = nodes[i].InnerText;
+                }
+
+                if (!string.IsNullOrEmpty(nodeValue))
+                {
+                    if (i > 0)
+                        cellValue += "\r\n";
+
+                    cellValue += nodeValue;
+                }
             }
 
             return cellValue;
         }
 
-        private void ProcessGroup(OleDbConnection conn, AccessGroup groupConfig, XmlNode parentNode, XmlNamespaceManager nsManager, int parentId, string parentName)
+        private void ProcessGroup(OleDbConnection conn, MappingGroup groupConfig, XmlNode parentNode, XmlNamespaceManager nsManager, int parentId, string parentName)
         {
             var groupNodes = parentNode.SelectNodes(groupConfig.Context, nsManager);
 
@@ -177,30 +212,11 @@ namespace VIQRCXML2XLS
 
                 groupColumnData.Add(parentName + "Id", parentId);
 
-                foreach (var columnConfig in groupConfig.Column)
+                foreach (var colConfig in groupConfig.Column)
                 {
-                    XmlNodeList nodes = null;
-                    string xpath = columnConfig.Value;
-
-                    try
-                    {
-                        nodes = !string.IsNullOrEmpty(xpath) ? groupNode.SelectNodes(xpath, nsManager) : null;
-                    }
-                    catch (Exception ex)
-                    {
-                        this.logText.Text += "XPATH/Configuration error for column \"" + columnConfig.Name + "\": " + ex.Message + "\r\n";
-                        continue;
-                    }
-
-                    if (nodes == null || nodes.Count == 0)
-                    {
-                        if (!string.IsNullOrEmpty(xpath))
-                            this.logText.Text += "No data found for XPATH \"" + xpath + "\r\n";
-                        continue;
-                    }
-
-                    string cellValue = this.GetValue(nodes);
-                    groupColumnData.Add(columnConfig.Name, cellValue);
+                    string xpath = colConfig.Value;
+                    string cellValue = this.GetValue(xpath, groupNode, nsManager, colConfig.IsNarrative);
+                    groupColumnData.Add(colConfig.Name, cellValue);
                 }
 
                 int nextId = this.InsertData(conn, groupConfig.TableName, groupColumnData);
@@ -210,6 +226,31 @@ namespace VIQRCXML2XLS
                     this.ProcessGroup(conn, childGroup, groupNode, nsManager, nextId, groupConfig.TableName);
                 }
             }
+        }
+
+        private string GetValue(string xpath, XmlNode parent, XmlNamespaceManager nsManager, bool isNarrative)
+        {
+            try
+            {
+                XmlNodeList nodes = !string.IsNullOrEmpty(xpath) ? parent.SelectNodes(xpath, nsManager) : null;
+                return GetValue(nodes, isNarrative);
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    var eval = parent.CreateNavigator().Evaluate(xpath, nsManager);
+
+                    if (eval != null)
+                        return eval.ToString();
+                }
+                catch (Exception exx)
+                {
+                    this.logText.Text += "XPATH/Configuration error \"" + xpath + "\": " + exx.Message + "\r\n";
+                }
+            }
+
+            return null;
         }
 
         public void Convert()
@@ -236,33 +277,17 @@ namespace VIQRCXML2XLS
                 Dictionary<string, object> headerColumnData = new Dictionary<string, object>();
 
                 // Read the header columns
-                foreach (var headerColConfig in this.accessConfig.Column)
+                foreach (var colConfig in this.accessConfig.Column)
                 {
-                    XmlNodeList nodes = null;
-                    string xpath = headerColConfig.Value;
-
-                    try
-                    {
-                        nodes = !string.IsNullOrEmpty(xpath) ? xmlDoc.SelectNodes(xpath, nsManager) : null;
-                    }
-                    catch (Exception ex)
-                    {
-                        this.logText.Text += "XPATH/Configuration error for column \"" + headerColConfig.Name + "\": " + ex.Message + "\r\n";
-                        continue;
-                    }
-
-                    if (nodes == null || nodes.Count == 0)
-                    {
-                        if (!string.IsNullOrEmpty(headerColConfig.Value))
-                            this.logText.Text += "No data found for XPATH \"" + headerColConfig.Value + "\r\n";
-                        continue;
-                    }
-
-                    string cellValue = this.GetValue(nodes);
-                    headerColumnData.Add(headerColConfig.Name, cellValue);
+                    string xpath = colConfig.Value;
+                    string cellValue = this.GetValue(xpath, xmlDoc.DocumentElement, nsManager, colConfig.IsNarrative);
+                    headerColumnData.Add(colConfig.Name, cellValue);
                 }
 
                 recordId = this.InsertData(dbConnection, this.accessConfig.TableName, headerColumnData);
+
+                if (recordId < 0)
+                    continue;
 
                 foreach (var groupConfig in this.accessConfig.Group)
                 {

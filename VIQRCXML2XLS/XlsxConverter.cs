@@ -17,16 +17,16 @@ namespace VIQRCXML2XLS
 {
     public class XlsxConverter
     {
-        private XlsxConfig xlsxConfig;
+        private MappingConfig xlsxConfig;
         private string outputDirectory;
         private string inputDirectory;
         private TextBox logText;
 
-        public const string XlsxConfigFileName = "XlsxConfig.xml";
+        public const string XlsxConfigFileName = "MappingConfig.xml";
 
         public XlsxConverter(string inputDirectory, string outputDirectory, TextBox logText)
         {
-            this.xlsxConfig = XlsxConfig.LoadFromFile(GetConfigFileName());
+            this.xlsxConfig = MappingConfig.LoadFromFile(GetConfigFileName());
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
             this.logText = logText;
@@ -85,47 +85,111 @@ namespace VIQRCXML2XLS
             return stylesheet;
         }
 
+        private string GetValue(XmlNodeList nodes, bool isNarrative)
+        {
+            if (nodes == null)
+                return string.Empty;
+
+            string cellValue = string.Empty;
+
+            for (var i = 0; i < nodes.Count; i++)
+            {
+                string nodeValue = string.Empty;
+
+                if (isNarrative)
+                {
+                    var allNodes = nodes[i].SelectNodes("//*/text()");
+
+                    foreach (XmlNode nextNode in allNodes)
+                    {
+                        if (!string.IsNullOrEmpty(nodeValue))
+                            nodeValue += " ";
+                        nodeValue += nextNode.Value;
+                    }
+                }
+                else
+                {
+                    nodeValue = nodes[i].Value;
+
+                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["value"] != null)
+                        nodeValue = nodes[i].Attributes["value"].Value;
+
+                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["displayName"] != null)
+                        nodeValue = nodes[i].Attributes["displayName"].Value;
+
+                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["code"] != null)
+                        nodeValue = nodes[i].Attributes["code"].Value;
+
+                    if (string.IsNullOrEmpty(nodeValue))
+                        nodeValue = nodes[i].InnerText;
+                }
+
+                if (!string.IsNullOrEmpty(nodeValue))
+                {
+                    if (i > 0)
+                        cellValue += "\r\n";
+
+                    cellValue += nodeValue;
+                }
+            }
+
+            return cellValue;
+        }
+
+        private string GetValue(string xpath, XmlNode parent, XmlNamespaceManager nsManager, bool isNarrative)
+        {
+            try
+            {
+                XmlNodeList nodes = !string.IsNullOrEmpty(xpath) ? parent.SelectNodes(xpath, nsManager) : null;
+                return GetValue(nodes, isNarrative);
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    var eval = parent.CreateNavigator().Evaluate(xpath, nsManager);
+
+                    if (eval != null)
+                        return eval.ToString();
+                } 
+                catch (Exception exx)
+                {
+                    this.logText.Text += "XPATH/Configuration error \"" + xpath + "\": " + exx.Message + "\r\n";
+                }
+            }
+
+            return null;
+        }
+
         public void Convert()
         {
             string fileName = DateTime.Now.ToShortDateString().Replace("/", "-") + " " + DateTime.Now.ToShortTimeString().Replace(":", "-") + ".xlsx";
             string filePath = System.IO.Path.Combine(this.outputDirectory, fileName);
 
             string[] xmlFiles = Directory.GetFiles(this.inputDirectory, "*.xml");
+            ExcelFormat excelFormat = new ExcelFormat();
 
             try
             {
 
-                using (SpreadsheetDocument spreadSheet = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook))
+                using (SpreadsheetDocument spreadsheet = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook))
                 {
                     // create the workbook
-                    spreadSheet.AddWorkbookPart();
-                    spreadSheet.WorkbookPart.Workbook = new Workbook();     // create the worksheet
+                    spreadsheet.AddWorkbookPart();
+                    spreadsheet.WorkbookPart.Workbook = new Workbook();     // create the worksheet
 
-                    AddStyleSheet(spreadSheet);
+                    AddStyleSheet(spreadsheet);
 
-                    spreadSheet.WorkbookPart.AddNewPart<WorksheetPart>();
-                    spreadSheet.WorkbookPart.WorksheetParts.First().Worksheet = new Worksheet();
+                    spreadsheet.WorkbookPart.AddNewPart<WorksheetPart>();
+                    spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet = new Worksheet();
 
                     // create sheet data
-                    spreadSheet.WorkbookPart.WorksheetParts.First().Worksheet.AppendChild(new SheetData());
-
-                    var headerRow = new Row();
-                    spreadSheet.WorkbookPart.WorksheetParts.First().Worksheet.First().AppendChild(headerRow);
-
-                    foreach (var columnConfig in this.xlsxConfig.Column)
-                    {
-                        headerRow.AppendChild(
-                            new Cell()
-                            {
-                                DataType = CellValues.String,
-                                CellValue = new CellValue(columnConfig.Header),
-                                StyleIndex = 1
-                            });
-                    }
+                    spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.AppendChild(new SheetData());
 
                     foreach (var xmlFile in xmlFiles)
                     {
                         this.logText.Text += "\r\nReading XML file: " + xmlFile + "\r\n";
+                        excelFormat.AddRow();
 
                         XmlDocument xmlDoc = new XmlDocument();
                         xmlDoc.Load(xmlFile);
@@ -134,100 +198,56 @@ namespace VIQRCXML2XLS
                         nsManager.AddNamespace("cda", "urn:hl7-org:v3");
                         nsManager.AddNamespace("sdtc", "urn:hl7-org:sdtc");
 
-                        var xmlRow = new Row();
-                        spreadSheet.WorkbookPart.WorksheetParts.First().Worksheet.First().AppendChild(xmlRow);
-
                         foreach (var columnConfig in this.xlsxConfig.Column)
                         {
-                            XmlNodeList nodes = null;
                             string xpath = columnConfig.Value;
+                            string cellValue = GetValue(xpath, xmlDoc.DocumentElement, nsManager, columnConfig.IsNarrative);
+                            excelFormat.AddData(null, columnConfig, cellValue, cellValue.IndexOf("\r\n") >= 0);
+                        }
+
+                        foreach (var groupConfig in this.xlsxConfig.Group)
+                        {
+                            string groupXpath = groupConfig.Context;
 
                             try
                             {
-                                nodes = !string.IsNullOrEmpty(xpath) ? xmlDoc.SelectNodes(xpath, nsManager) : null;
+                                XmlNodeList groupNodes = xmlDoc.SelectNodes(groupXpath, nsManager);
+
+                                foreach (XmlNode groupNode in groupNodes)
+                                {
+                                    foreach (var columnConfig in groupConfig.Column)
+                                    {
+                                        string xpath = columnConfig.Value;
+                                        string cellValue = GetValue(xpath, groupNode, nsManager, columnConfig.IsNarrative);
+                                        excelFormat.AddData(groupConfig, columnConfig, cellValue, cellValue.IndexOf("\r\n") >= 0);
+                                    }
+                                }
                             }
                             catch (Exception ex)
                             {
-                                if (!columnConfig.ErrorShown)
-                                {
-                                    this.logText.Text += "XPATH/Configuration error for column \"" + columnConfig.Header + "\": " + ex.Message + "\r\n";
-                                    columnConfig.ErrorShown = true;
-                                }
-                            }
-
-                            if (nodes == null || nodes.Count == 0)
-                            {
-                                if (!string.IsNullOrEmpty(xpath))
-                                    this.logText.Text += "No data found for XPATH \"" + xpath + "\r\n";
-
-                                xmlRow.AppendChild(
-                                    new Cell()
-                                    {
-                                        DataType = CellValues.String,
-                                        CellValue = new CellValue(string.Empty)
-                                    });
-                                continue;
-                            }
-
-                            string cellValue = string.Empty;
-                            bool boldCell = false;
-
-                            for (var i = 0; i < nodes.Count; i++)
-                            {
-                                if (i > 0)
-                                {
-                                    cellValue += "\r\n\r\n";
-                                    boldCell = true;
-                                }
-
-                                string nodeValue = nodes[i].Value;
-
-                                if (string.IsNullOrEmpty(nodeValue))
-                                    nodeValue = nodes[i].InnerText;
-
-                                if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["value"] != null)
-                                    nodeValue = nodes[i].Attributes["value"].Value;
-
-                                if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["displayName"] != null)
-                                    nodeValue = nodes[i].Attributes["displayName"].Value;
-
-                                if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["code"] != null)
-                                    nodeValue = nodes[i].Attributes["code"].Value;
-
-                                cellValue += nodeValue;
-                            }
-
-                            Cell cell = new Cell()
-                            {
-                                DataType = CellValues.String,
-                                CellValue = new CellValue(cellValue)
-                            };
-                            xmlRow.AppendChild(cell);
-
-                            if (boldCell)
-                            {
-                                this.logText.Text += "Multiple values found for XPath \"" + xpath + "\"\r\n";
-                                cell.StyleIndex = 1;
+                                this.logText.Text += "Error executing group xpath for " + groupConfig.TableName + ": " + ex.Message + "\r\n";
                             }
                         }
                     }
 
+                    excelFormat.PopulateSpreadsheet(this.xlsxConfig, spreadsheet);
+
                     // save worksheet
-                    spreadSheet.WorkbookPart.WorksheetParts.First().Worksheet.Save();
+                    spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.Save();
 
                     // create the worksheet to workbook relation
-                    spreadSheet.WorkbookPart.Workbook.AppendChild(new Sheets());
-                    spreadSheet.WorkbookPart.Workbook.GetFirstChild<Sheets>().AppendChild(new Sheet()
+                    spreadsheet.WorkbookPart.Workbook.AppendChild(new Sheets());
+                    spreadsheet.WorkbookPart.Workbook.GetFirstChild<Sheets>().AppendChild(new Sheet()
                     {
-                        Id = spreadSheet.WorkbookPart.GetIdOfPart(spreadSheet.WorkbookPart.WorksheetParts.First()),
+                        Id = spreadsheet.WorkbookPart.GetIdOfPart(spreadsheet.WorkbookPart.WorksheetParts.First()),
                         SheetId = 1,
                         Name = "Summary"
                     });
 
-                    spreadSheet.WorkbookPart.Workbook.Save();
+                    spreadsheet.WorkbookPart.Workbook.Save();
 
                     OpenXmlValidator validator = new OpenXmlValidator();
-                    var validationResults = validator.Validate(spreadSheet);
+                    var validationResults = validator.Validate(spreadsheet);
 
                     if (validationResults.Count() > 0)
                     {

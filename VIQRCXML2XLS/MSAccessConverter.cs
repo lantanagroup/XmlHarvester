@@ -61,8 +61,21 @@ namespace VIQRCXML2XLS
                 newTable.Keys.Append(tableName + "FKey", KeyTypeEnum.adKeyForeign, parentTable.Name + "Id", parentTable.Name, "id");
             }
 
+            List<string> columnNames = new List<string>();
+
             foreach (var groupColumnConfig in columns)
             {
+                if (columnNames.Contains(groupColumnConfig.Name))
+                    this.logText.Text += string.Format("Column {0} is a duplicated (occurs more than once)\r\n", groupColumnConfig.Name);
+                else
+                    columnNames.Add(groupColumnConfig.Name);
+
+                if (groupColumnConfig.Name.ToLower() == "id")
+                    this.logText.Text += "Column name \"id\" in table " + tableName + " is reserved for used. Please rename the column in the config.\r\n";
+
+                if (parentTable != null && groupColumnConfig.Name.ToLower() == parentTable.Name.ToLower() + "id")
+                    this.logText.Text += "Column name \"" + parentTable.Name + "Id\" is reserved for use. Please rename the column in the config.\r\n";
+
                 var newCol = new ADOX.Column();
                 newCol.Name = groupColumnConfig.Name;
                 newCol.Type = DataTypeEnum.adVarWChar;
@@ -102,7 +115,14 @@ namespace VIQRCXML2XLS
 
             foreach (var groupConfig in this.accessConfig.Group)
             {
-                this.CreateGroupTable(cat, recordTable, groupConfig);
+                try
+                {
+                    this.CreateGroupTable(cat, recordTable, groupConfig);
+                }
+                catch (Exception ex)
+                {
+                    this.logText.Text += ex.Message + "\r\n";
+                }
             }
         }
 

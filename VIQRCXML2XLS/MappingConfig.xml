@@ -81,8 +81,6 @@
   <column name="ReportParamCodeSystem">/cda:ClinicalDocument/cda:component/cda:structureBody/cda:component/cda:section/cda:code/@codeSystem</column>
   <column name="ReportParamTitle">/cda:ClinicalDocument/cda:component/cda:structureBody/cda:component/cda:section/cda:title</column>
   <column name="ReportParamText">/cda:ClinicalDocument/cda:component/cda:structureBody/cda:component/cda:section/cda:text</column>
-  <column name="ReportParamActClass">/cda:ClinicalDocument/cda:component/cda:structureBody/cda:component/cda:section/cda:entry/cda:act/@classCode</column>
-  <column name="ReportParamActMood">/cda:ClinicalDocument/cda:component/cda:structureBody/cda:component/cda:section/cda:entry/cda:act/@moodCode</column>
   <column name="ReportParamActTempId">/cda:ClinicalDocument/cda:component/cda:structureBody/cda:component/cda:section/cda:entry/cda:act/cda:templateId/@root</column>
   <column name="ReportParamActTempIdExtension">/cda:ClinicalDocument/cda:component/cda:structureBody/cda:component/cda:section/cda:entry/cda:act/cda:templateId/@extension</column>
   <column name="ReportParamActId">/cda:ClinicalDocument/cda:component/cda:structureBody/cda:component/cda:section/cda:entry/cda:act/id</column>
@@ -122,25 +120,24 @@
   <column name="ProblemObsEndDateTime">/cda:ClinicalDocument/cda:component/cda:structureBody/cda:component/cda:section/cda:entry/cda:act/cda:entryRelationship/cda:observation/cda:effectiveTime/cda:high/@value</column>
   
   <!--  Author and Authoring Device Details-->
-  <group tableName="Author" context="/cda:ClinicalDocument/cda:author">
+  <group tableName="Author" headingPrefix="Author" context="/cda:ClinicalDocument/cda:author">
      <column name="time">cda:time</column>
-     <column name="authorId">cda:assignedAuthor/cda:id</column>
-     <column name="author">cda:assignedAuthor/cda:id</column>
-     <column name="authoringPersonGiven">cda:assignedAuthor/cda:assignedPerson/cda:name/cda:given</column>
-     <column name="authoringPersonFamily">cda:assignedAuthor/cda:assignedPerson/cda:name/cda:family</column>
-     <column name="authorStreet">cda:assignedAuthor/cda:addr/cda:streetAddressLine</column>
-     <column name="authorCity">cda:assignedAuthor/cda:addr/cda:city</column>
-     <column name="authorState">cda:assignedAuthor/cda:addr/cda:state</column>
-     <column name="authorPostalCode">cda:assignedAuthor/cda:addr/cda:postalCode</column>
-     <column name="authorCountry">cda:assignedAuthor/cda:addr/cda:country</column>
-     <column name="authorTelecomType">cda:assignedAuthor/cda:telecom/@use</column>
-     <column name="authorTelecomNumber">cda:assignedAuthor/cda:telecom/@value</column>
-     <column name="authoringDeviceName">cda:assignedAuthor/cda:assignedAuthoringDevice/cda:manufacturerModelName</column>
-     <column name="authoringDeviceSoftware">cda:assignedAuthor/cda:assignedAuthoringDevice/cda:softwareName</column>
+     <column name="IdRoot">cda:assignedAuthor/cda:id</column>
+     <column name="GivenName">cda:assignedAuthor/cda:assignedPerson/cda:name/cda:given</column>
+     <column name="FamilyName">cda:assignedAuthor/cda:assignedPerson/cda:name/cda:family</column>
+     <column name="StreetAddress">cda:assignedAuthor/cda:addr/cda:streetAddressLine</column>
+     <column name="City">cda:assignedAuthor/cda:addr/cda:city</column>
+     <column name="State">cda:assignedAuthor/cda:addr/cda:state</column>
+     <column name="PostalCode">cda:assignedAuthor/cda:addr/cda:postalCode</column>
+     <column name="Country">cda:assignedAuthor/cda:addr/cda:country</column>
+     <column name="TelecomType">cda:assignedAuthor/cda:telecom/@use</column>
+     <column name="TelecomNumber">cda:assignedAuthor/cda:telecom/@value</column>
+     <column name="DeviceName">cda:assignedAuthor/cda:assignedAuthoringDevice/cda:manufacturerModelName</column>
+     <column name="DeviceSoftware">cda:assignedAuthor/cda:assignedAuthoringDevice/cda:softwareName</column>
   </group>
   
   <!-- Individual Measure Details-->
-  <group tableName="measureReference" headingPrefix="Measure Reference" context="//cda:organizer[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.98']">
+  <group tableName="measureReference" headingPrefix="Measure Details" context="//cda:organizer[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.98']">
     <column name="title">cda:reference/cda:externalDocument/cda:text</column>
     <column name="statusCode">cda:statusCode</column>
     <column name="version">cda:reference/cda:externalDocument/cda:versionNumber</column>
@@ -154,7 +151,7 @@
   <group tableName="medicationAdministration" headingPrefix="Med Admin" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.42']">
      <column name="TemplateId" heading="Template ID">cda:templateId/@root</column>
      <column name="TemplateIdExtension">cda:templateId/@extension</column>
-     <column name="Id">cda:id/@root</column>
+     <column name="IdRoot">cda:id/@root</column>
      <column name="Code" heading="Code">cda:code/@code</column>
      <column name="CodeSystem">cda:code/@codeSystem</column>
      <column name="CodeSystemName">cda:code/@codeSystemName</column>
@@ -163,92 +160,92 @@
      <column name="StartDate">cda:effectiveTime/cda:low/@value</column>
      <column name="EndDate">cda:effectiveTime/cda:high/@value</column>  
      <!-- Substance Administration Template Id 2.16.840.1.113883.10.20.22.4.16 -->
-     <column name="MedicationTemplateId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:templateId/@root</column>
-     <column name="MedicationTempIdExtension">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:templateId/@extension</column>
-     <column name="MedicationId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:id/@root</column>
-     <column name="MedicationStatusCode">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:statusCode/@code</column>
-     <column name="MedicationStartDateTime">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:effectiveTime/cda:low/@value</column>
-     <column name="MedicationEndDateTime">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:effectiveTime/cda:high/@value</column>
-     <column name="MedicationDoseQuantity">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:doseQuantity</column>
+    <column name="SubstanceAdminTemplateId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:templateId/@root</column>
+    <column name="SubstanceAdminTempIdExtension">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:templateId/@extension</column>
+    <column name="SubstanceAdminId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:id/@root</column>
+    <column name="SubstanceAdminStatusCode">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:statusCode/@code</column>
+    <column name="SubstanceAdminStartDateTime">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:effectiveTime/cda:low/@value</column>
+    <column name="SubstanceAdminEndDateTime">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:effectiveTime/cda:high/@value</column>
+    <column name="SubstanceAdminDoseQuantity">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:doseQuantity</column>
     <!-- Manufactured Product Template Id 2.16.840.1.113883.10.20.22.4.23 -->
-     <column name="MedicationInfoTempId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:templateId/@root</column>
-     <column name="MedicationInfoTempIdExtension">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:templateId/@extension</column>
-     <column name="MedicationInfoCode">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@code</column>
-     <column name="MedicationInfoCodeSystem">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@codesystem</column>
-     <column name="MedicationInfoCodeSystemName">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@codesystemName</column>
-     <column name="MedicationInfoDisplayName">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@displayName</column>
-     <column name="MedicationInfoValueSet">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@sdtc:valueSet</column>
+     <column name="MedicationTempId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:templateId/@root</column>
+     <column name="MedicationTempIdExtension">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:templateId/@extension</column>
+     <column name="MedicationCode">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@code</column>
+     <column name="MedicationCodeSystem">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@codesystem</column>
+     <column name="MedicationCodeSystemName">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@codesystemName</column>
+     <column name="MedicationDisplayName">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@displayName</column>
+     <column name="MedicationValueSet">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@sdtc:valueSet</column>
   </group>
   
   <!-- Discharge Medications Template Id 2.16.840.1.113883.10.20.24.3.105 -->
-  <group tableName="dischargeMedications" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.105']">
-    <column name="DischMedAdminTemplateId">cda:templateId/@root</column>
-    <column name="DischMedAdminTemplateIdExtension">cda:templateId/@extension</column>
-    <column name="DischMedAdminId">cda:id/@root</column>
-    <column name="DischMedAdminCode">cda:code/@code</column>
-    <column name="DischMedAdminCodeSystem">cda:code/@codeSystem</column>
-    <column name="DischMedAdminCodeSystemName">cda:code/@codeSystemName</column>
-    <column name="DischMedAdminCodeDisplay">cda:code/@displayName</column>
-    <column name="DischMedAdminStatusCode">cda:statusCode/@code</column>
-    <column name="DischMedAdminStartDate">cda:effectiveTime/cda:low/@value</column>
-    <column name="DischMedAdminEndDate">cda:effectiveTime/cda:high/@value</column>
+  <group tableName="dischargeMedications" headingPrefix="Discharge Medications" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.105']">
+    <column name="TemplateId">cda:templateId/@root</column>
+    <column name="TemplateIdExtension">cda:templateId/@extension</column>
+    <column name="IdRoot">cda:id/@root</column>
+    <column name="Code">cda:code/@code</column>
+    <column name="CodeSystem">cda:code/@codeSystem</column>
+    <column name="CodeSystemName">cda:code/@codeSystemName</column>
+    <column name="CodeDisplay">cda:code/@displayName</column>
+    <column name="StatusCode">cda:statusCode/@code</column>
+    <column name="StartDate">cda:effectiveTime/cda:low/@value</column>
+    <column name="EndDate">cda:effectiveTime/cda:high/@value</column>
     <!-- Substance Administration Template Id 2.16.840.1.113883.10.20.22.4.16 -->
-    <column name="MedicationTemplateId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:templateId/@root</column>
-    <column name="MedicationTempIdExtension">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:templateId/@extension</column>
-    <column name="MedicationId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:id/@root</column>
-    <column name="MedicationStatusCode">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:statusCode/@code</column>
-    <column name="MedicationStartDateTime">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:effectiveTime/cda:low/@value</column>
-    <column name="MedicationEndDateTime">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:effectiveTime/cda:high/@value</column>
-    <column name="MedicationDoseQuantity">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:doseQuantity</column>
+    <column name="SubstanceAdminTemplateId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:templateId/@root</column>
+    <column name="SubstanceAdminTempIdExtension">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:templateId/@extension</column>
+    <column name="SubstanceAdminId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:id/@root</column>
+    <column name="SubstanceAdminStatusCode">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:statusCode/@code</column>
+    <column name="SubstanceAdminStartDateTime">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:effectiveTime/cda:low/@value</column>
+    <column name="SubstanceAdminEndDateTime">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:effectiveTime/cda:high/@value</column>
+    <column name="SubstanceAdminDoseQuantity">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:doseQuantity</column>
     <!-- Manufactured Product Template Id 2.16.840.1.113883.10.20.22.4.23 -->
-    <column name="MedicationInfoTempId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:templateId/@root</column>
-    <column name="MedicationInfoTempIdExtension">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:templateId/@extension</column>
-    <column name="MedicationInfoCode">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@code</column>
-    <column name="MedicationInfoCodeSystem">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@codesystem</column>
-    <column name="MedicationInfoCodeSystemName">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@codesystemName</column>
-    <column name="MedicationInfoDisplayName">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@displayName</column>
-    <column name="MedicationInfoValueSet">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@sdtc:valueSet</column>
+    <column name="MedicationTempId">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:templateId/@root</column>
+    <column name="MedicationTempIdExtension">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:templateId/@extension</column>
+    <column name="MedicationCode">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@code</column>
+    <column name="MedicationCodeSystem">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@codesystem</column>
+    <column name="MedicationCodeSystemName">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@codesystemName</column>
+    <column name="MedicationDisplayName">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@displayName</column>
+    <column name="MedicationValueSet">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']/cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:manfacturedMaterial/cda:code/@sdtc:valueSet</column>
   </group>
   
   <!-- Payment Source Template Id 2.16.840.1.113883.10.20.24.3.55 -->
-  <group tableName="paymentSources" context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.55']">  
-    <column name="PaymentSourceTemplateId">cda:templateId/@root</column>
-    <column name="PaymentSourceTemplateIdExtension">cda:templateId/@extension</column>
-    <column name="PaymentSourceId">cda:id/@root</column>
-    <column name="PaymentSourceCode">cda:code/@code</column>
-    <column name="PaymentSourceCodeSystem">cda:code/@codeSystem</column>
-    <column name="PaymentSourceDisplay">cda:code/@displayName</column>
-    <column name="PaymentSourceStatusCode">cda:statusCode/@code</column>
-    <column name="PaymentSourceStartDateTime">cda:effectiveTime/cda:low/@value</column>
-    <column name="PaymentSourceEndDateTime">cda:effectiveTime/cda:high/@value</column>
-    <column name="PaymentSourceValueCode">cda:value/@code</column>
-    <column name="PaymentSourceValueCodeSystem">cda:value/@codeSystem</column>
-    <column name="PaymentSourceValueCodeSystemName">cda:value/@codeSystemName</column>
-    <column name="PaymentSourceValueDisplay">cda:value/@displayName</column>
-    <column name="PaymentSourceValueValueSet">cda:value/@sdtc:valueSet</column>
+  <group tableName="paymentSources" headingPrefix="Payment Source" context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.55']">  
+    <column name="TemplateId">cda:templateId/@root</column>
+    <column name="TemplateIdExtension">cda:templateId/@extension</column>
+    <column name="IdRoot">cda:id/@root</column>
+    <column name="Code">cda:code/@code</column>
+    <column name="CodeSystem">cda:code/@codeSystem</column>
+    <column name="Display">cda:code/@displayName</column>
+    <column name="StatusCode">cda:statusCode/@code</column>
+    <column name="StartDateTime">cda:effectiveTime/cda:low/@value</column>
+    <column name="EndDateTime">cda:effectiveTime/cda:high/@value</column>
+    <column name="ValueCode">cda:value/@code</column>
+    <column name="ValueCodeSystem">cda:value/@codeSystem</column>
+    <column name="ValueCodeSystemName">cda:value/@codeSystemName</column>
+    <column name="ValueDisplay">cda:value/@displayName</column>
+    <column name="ValueValueSet">cda:value/@sdtc:valueSet</column>
   </group>  
   
   <!-- Procedure Performed Id's 2.16.840.1.113883.10.20.22.4.14 and 2.16.840.1.113883.10.20.24.3.64 -->
-  <group tableName="procedurePerformed" context="//cda:procedure[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.14']">  
-    <column name="ProcedureTemplateId">cda:templateId/@root</column>
-    <column name="ProcedureTemplateIdExtension">cda:templateId/@extension</column>
-    <column name="ProcedureId">cda:id/@root</column>
-    <column name="ProcedureCode">cda:code/@code</column>
-    <column name="ProcedureCodeSystem">cda:code/@codeSystem</column>
-    <column name="ProcedureDisplay">cda:code/@displayName</column>
-    <column name="ProcedureStatusCode">cda:statusCode/@code</column>
-    <column name="ProcedureStartDateTime">cda:effectiveTime/cda:low/@value</column>
-    <column name="ProcedureEndDateTime">cda:effectiveTime/cda:high/@value</column>
+  <group tableName="procedurePerformed" headingPrefix="Procedure Performed" context="//cda:procedure[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.14']">  
+    <column name="TemplateId">cda:templateId/@root</column>
+    <column name="TemplateIdExtension">cda:templateId/@extension</column>
+    <column name="IdRoot">cda:id/@root</column>
+    <column name="Code">cda:code/@code</column>
+    <column name="CodeSystem">cda:code/@codeSystem</column>
+    <column name="Display">cda:code/@displayName</column>
+    <column name="StatusCode">cda:statusCode/@code</column>
+    <column name="StartDateTime">cda:effectiveTime/cda:low/@value</column>
+    <column name="EndDateTime">cda:effectiveTime/cda:high/@value</column>
   </group>  
   
   <!-- Encounter Performed Id 2.16.840.1.113883.10.20.24.3.133 -->
-  <group tableName="encounterPerformed" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.133']">
-    <column name="EncounterTemplateId">cda:templateId/@root</column>
-    <column name="EncounterId">cda:Id/@root</column>
-    <column name="EncounterCode">cda:code/@code</column>
-    <column name="EncounterCodeSystem">cda:code/@codeSystem</column>
-    <column name="EncounterCodeSystemName">cda:code/@codeSystemName</column>
-    <column name="EncounterCodeDisplayName">cda:code/@displayName</column>
+  <group tableName="encounterPerformed" headingPrefix="Encounter Performed" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.133']">
+    <column name="TemplateId">cda:templateId/@root</column>
+    <column name="IdRoot">cda:Id/@root</column>
+    <column name="Code">cda:code/@code</column>
+    <column name="CodeSystem">cda:code/@codeSystem</column>
+    <column name="CodeSystemName">cda:code/@codeSystemName</column>
+    <column name="CodeDisplayName">cda:code/@displayName</column>
     <!-- Encounter Activities Id 2.16.840.1.113883.10.20.22.4.49 --> 
     <column name="EncActivityTemplateId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:templateId/@root</column>
     <column name="EncActivityTempIdExtension">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:templateId/@extension</column>
@@ -273,13 +270,13 @@
   </group>
   
   <!-- Encounter Order Act Id 2.16.840.1.113883.10.20.24.3.132-->
-  <group tableName="encounterOrder" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.132']">
-    <column name="EncOrderTemplateId">cda:templateId/@root</column>
-    <column name="EncOrderId">cda:Id/@root</column>
-    <column name="EncOrderCode">cda:code/@code</column>
-    <column name="EncOrderCodeDisplayName">cda:code/@displayName</column>
-    <column name="EncOrderCodeSystem">cda:code/@codeSystem</column>
-    <column name="EncOrderCodeSystemName">cda:code/@codeSystemName</column>
+  <group tableName="encounterOrder" headingPrefix="Encounter Ordered" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.132']">
+    <column name="TemplateId">cda:templateId/@root</column>
+    <column name="IdRoot">cda:Id/@root</column>
+    <column name="Code">cda:code/@code</column>
+    <column name="CodeDisplayName">cda:code/@displayName</column>
+    <column name="CodeSystem">cda:code/@codeSystem</column>
+    <column name="CodeSystemName">cda:code/@codeSystemName</column>
     <!-- Planned Encounter Id 2.16.840.1.113883.10.20.22.4.40 --> 
     <column name="EncPlannedTemplateId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:templateId/@root</column>
     <column name="EncPlannedTempIdExtension">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:templateId/@extension</column>
@@ -289,7 +286,7 @@
     <column name="EncPlannedCodeSystemName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:code/@codeSystemName</column>
     <column name="EncPlannedCodeDisplayName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:code/@displayName</column>
     <column name="EncPlannedCodeValueSet">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:code/@sdtc:valueSet</column>
-    <column name="EncPlannedText">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:rwzr</column>
+    <column name="EncPlannedText">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:text</column>
     <column name="EncPlannedStatusCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:statusCode/@code</column>
     <column name="EncPlannedStartDate">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:effectiveTime/cda:low/@value</column>
     <column name="EncPlannedEndDate">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:effectiveTime/cda:high/@value</column>

@@ -578,7 +578,7 @@ namespace VIQRCXML2XLS
             }
         }
 
-        [System.Xml.Serialization.XmlElementAttribute("group", ElementName = "group1")]
+        [System.Xml.Serialization.XmlElementAttribute("group", ElementName = "group")]
         public List<MappingGroup> Group
         {
             get

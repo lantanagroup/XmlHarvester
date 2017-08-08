@@ -14,9 +14,12 @@ namespace VIQRCXML2XLS
         private ExcelRow currentRow = null;
         private List<ExcelHeading> headings = new List<ExcelHeading>();
 
-        public void AddRow()
+        public void AddRow(string fileName)
         {
-            this.currentRow = new ExcelRow();
+            this.currentRow = new ExcelRow()
+            {
+                FileName = fileName
+            };
             this.rows.Add(this.currentRow);
         }
 
@@ -50,12 +53,24 @@ namespace VIQRCXML2XLS
             var excelHeadingRow = new Row();
             spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.First().AppendChild(excelHeadingRow);
 
+            excelHeadingRow.AppendChild(new Cell()
+            {
+                DataType = CellValues.String,
+                CellValue = new CellValue("File Name"),
+                StyleIndex = 1
+            });
+
             foreach (var heading in this.headings)
             {
                 string headingText = string.Format("{0} {1}", heading.Column.GetHeading(), heading.DataIndex+1);
 
-                if (heading.Group != null && !string.IsNullOrEmpty(heading.Group.ColumnPrefix))
-                    headingText = string.Format("{0} {1} {2}", heading.Group.ColumnPrefix, heading.DataIndex + 1, heading.Column.GetHeading());
+                if (heading.Group != null)
+                {
+                    if (string.IsNullOrEmpty(heading.Group.ColumnPrefix))
+                        headingText = string.Format("{0} {1} {2}", heading.Group.TableName, heading.DataIndex + 1, heading.Column.GetHeading());
+                    else
+                        headingText = string.Format("{0} {1} {2}", heading.Group.ColumnPrefix, heading.DataIndex + 1, heading.Column.GetHeading());
+                }
 
                 Cell cell = new Cell()
                 {
@@ -76,12 +91,27 @@ namespace VIQRCXML2XLS
                 var excelDataRow = new Row();
                 spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.First().AppendChild(excelDataRow);
 
+                Cell fileNameCell = new Cell()
+                {
+                    DataType = CellValues.String,
+                    CellValue = new CellValue(row.FileName)
+                };
+
+                excelDataRow.AppendChild(fileNameCell);
+
                 foreach (var heading in this.headings)
                 {
                     var datas = row.Data.Where(y => y.Column == heading.Column).ToArray();
 
-                    if (datas.Length-1 < heading.DataIndex)
+                    if (datas.Length - 1 < heading.DataIndex)
+                    {
+                        excelDataRow.AppendChild(new Cell()
+                        {
+                            DataType = CellValues.String,
+                            CellValue = new CellValue(string.Empty)
+                        });
                         continue;
+                    }
 
                     var data = datas[heading.DataIndex];
 
@@ -114,6 +144,7 @@ namespace VIQRCXML2XLS
             }
 
             public List<ExcelData> Data { get; set; }
+            public string FileName { get; set; }
         }
 
         public class ExcelData

@@ -188,8 +188,10 @@ namespace VIQRCXML2XLS
 
                     foreach (var xmlFile in xmlFiles)
                     {
+                        FileInfo fileInfo = new FileInfo(xmlFile);
+
                         this.logText.Text += "\r\nReading XML file: " + xmlFile + "\r\n";
-                        excelFormat.AddRow();
+                        excelFormat.AddRow(fileInfo.Name);
 
                         XmlDocument xmlDoc = new XmlDocument();
                         xmlDoc.Load(xmlFile);

@@ -21,7 +21,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 
-namespace VIQRCXML2XLS
+namespace XmlDocumentConverter
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

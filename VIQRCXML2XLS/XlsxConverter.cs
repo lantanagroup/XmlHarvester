@@ -13,7 +13,7 @@ using System.Windows.Controls;
 using DocumentFormat.OpenXml.Validation;
 using System.Windows;
 
-namespace VIQRCXML2XLS
+namespace XmlDocumentConverter
 {
     public class XlsxConverter
     {

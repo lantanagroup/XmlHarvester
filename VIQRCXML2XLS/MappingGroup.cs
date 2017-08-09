@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VIQRCXML2XLS
+namespace XmlDocumentConverter
 {
     public partial class MappingGroup
     {

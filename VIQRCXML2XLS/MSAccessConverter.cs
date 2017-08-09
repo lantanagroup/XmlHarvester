@@ -10,8 +10,8 @@ using System.Windows.Controls;
 using System.Xml;
 using System.Data.OleDb;
 
-namespace VIQRCXML2XLS
-{
+namespace XmlDocumentConverter
+{b
     public class MSAccessConverter
     {
         private const string DatabaseFileName = "output.mdb";

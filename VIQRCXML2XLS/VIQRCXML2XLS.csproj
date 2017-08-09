@@ -61,7 +61,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ExcelFormat.cs" />
+    <Compile Include="MappingConfig.cs">
+      <DependentUpon>MappingConfig.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MappingConfig.Designer.cs" />
+    <Compile Include="MappingGroup.cs" />
     <Compile Include="MSAccessConverter.cs" />
     <Compile Include="MappingColumn.cs" />
     <Compile Include="XlsxConverter.cs" />

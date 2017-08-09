@@ -27,7 +27,7 @@ namespace VIQRCXML2XLS
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
             this.logText = logText;
-            this.accessConfig = MappingConfig.LoadFromFile(GetConfigFileName());
+            this.accessConfig = MappingConfig.LoadFromFileWithParents(GetConfigFileName());
         }
 
         private string GetConnectionString(bool delete = false)
@@ -54,6 +54,15 @@ namespace VIQRCXML2XLS
             newTable.Columns.Append(idCol);
 
             newTable.Keys.Append(tableName + "PK", KeyTypeEnum.adKeyPrimary, "id");
+
+            if (tableName == this.accessConfig.TableName)
+            {
+                var fileNameCol = new ADOX.Column();
+                fileNameCol.Name = "fileName";
+                fileNameCol.Type = DataTypeEnum.adVarWChar;
+                fileNameCol.ParentCatalog = cat;
+                newTable.Columns.Append(fileNameCol);
+            }
 
             if (parentTable != null)
             {
@@ -111,7 +120,7 @@ namespace VIQRCXML2XLS
 
             cat.Create(this.GetConnectionString(true));
 
-            var recordTable = this.CreateTable(cat, null, "record", this.accessConfig.Column);
+            var recordTable = this.CreateTable(cat, null, this.accessConfig.TableName, this.accessConfig.Column);
 
             foreach (var groupConfig in this.accessConfig.Group)
             {
@@ -178,7 +187,7 @@ namespace VIQRCXML2XLS
 
                 if (isNarrative)
                 {
-                    var allNodes = nodes[i].SelectNodes("//*/text()");
+                    var allNodes = nodes[i].SelectNodes(".//*/text()");
 
                     foreach (XmlNode nextNode in allNodes)
                     {
@@ -284,7 +293,9 @@ namespace VIQRCXML2XLS
 
             foreach (var xmlFile in xmlFiles)
             {
-                this.logText.Text += "\r\nReading XML file: " + xmlFile + "\r\n";
+                FileInfo fileInfo = new FileInfo(xmlFile);
+
+                this.logText.Text += "\r\nReading XML file: " + fileInfo.Name + "\r\n";
 
                 int recordId;
                 XmlDocument xmlDoc = new XmlDocument();
@@ -295,6 +306,7 @@ namespace VIQRCXML2XLS
                 nsManager.AddNamespace("sdtc", "urn:hl7-org:sdtc");
 
                 Dictionary<string, object> headerColumnData = new Dictionary<string, object>();
+                headerColumnData["fileName"] = fileInfo.Name;
 
                 // Read the header columns
                 foreach (var colConfig in this.accessConfig.Column)

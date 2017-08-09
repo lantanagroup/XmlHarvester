@@ -26,7 +26,7 @@ namespace VIQRCXML2XLS
 
         public XlsxConverter(string inputDirectory, string outputDirectory, TextBox logText)
         {
-            this.xlsxConfig = MappingConfig.LoadFromFile(GetConfigFileName());
+            this.xlsxConfig = MappingConfig.LoadFromFileWithParents(GetConfigFileName());
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
             this.logText = logText;
@@ -98,7 +98,7 @@ namespace VIQRCXML2XLS
 
                 if (isNarrative)
                 {
-                    var allNodes = nodes[i].SelectNodes("//*/text()");
+                    var allNodes = nodes[i].SelectNodes(".//*/text()");
 
                     foreach (XmlNode nextNode in allNodes)
                     {
@@ -161,6 +161,35 @@ namespace VIQRCXML2XLS
             return null;
         }
 
+        private void ProcessGroup(MappingGroup groupConfig, ExcelFormat excelFormat, XmlNode node, XmlNamespaceManager nsManager)
+        {
+            string groupXpath = groupConfig.Context;
+
+            try
+            {
+                XmlNodeList groupNodes = node.SelectNodes(groupXpath, nsManager);
+
+                foreach (XmlNode groupNode in groupNodes)
+                {
+                    foreach (var columnConfig in groupConfig.Column)
+                    {
+                        string xpath = columnConfig.Value;
+                        string cellValue = GetValue(xpath, groupNode, nsManager, columnConfig.IsNarrative);
+                        excelFormat.AddData(groupConfig, columnConfig, cellValue, cellValue.IndexOf("\r\n") >= 0);
+                    }
+
+                    foreach (MappingGroup childGroupConfig in groupConfig.Group)
+                    {
+                        this.ProcessGroup(childGroupConfig, excelFormat, groupNode, nsManager);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.logText.Text += "Error executing group xpath for " + groupConfig.TableName + ": " + ex.Message + "\r\n";
+            }
+        }
+
         public void Convert()
         {
             string fileName = DateTime.Now.ToShortDateString().Replace("/", "-") + " " + DateTime.Now.ToShortTimeString().Replace(":", "-") + ".xlsx";
@@ -209,26 +238,7 @@ namespace VIQRCXML2XLS
 
                         foreach (var groupConfig in this.xlsxConfig.Group)
                         {
-                            string groupXpath = groupConfig.Context;
-
-                            try
-                            {
-                                XmlNodeList groupNodes = xmlDoc.SelectNodes(groupXpath, nsManager);
-
-                                foreach (XmlNode groupNode in groupNodes)
-                                {
-                                    foreach (var columnConfig in groupConfig.Column)
-                                    {
-                                        string xpath = columnConfig.Value;
-                                        string cellValue = GetValue(xpath, groupNode, nsManager, columnConfig.IsNarrative);
-                                        excelFormat.AddData(groupConfig, columnConfig, cellValue, cellValue.IndexOf("\r\n") >= 0);
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                this.logText.Text += "Error executing group xpath for " + groupConfig.TableName + ": " + ex.Message + "\r\n";
-                            }
+                            this.ProcessGroup(groupConfig, excelFormat, xmlDoc.DocumentElement, nsManager);
                         }
                     }
 

@@ -48,7 +48,7 @@ namespace VIQRCXML2XLS
             }
         }
 
-        private void PopulateHeaders(MappingConfig config, SpreadsheetDocument spreadsheet)
+        private void PopulateHeaders(MappingConfig config, SpreadsheetDocument spreadsheet, IEnumerable<ExcelHeading> orderedHeadings)
         {
             var excelHeadingRow = new Row();
             spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.First().AppendChild(excelHeadingRow);
@@ -60,16 +60,19 @@ namespace VIQRCXML2XLS
                 StyleIndex = 1
             });
 
-            foreach (var heading in this.headings)
+            foreach (var heading in orderedHeadings)
             {
-                string headingText = string.Format("{0} {1}", heading.Column.GetHeading(), heading.DataIndex+1);
+                string headingText = heading.Column.GetHeading();
+                int columnCount = this.headings.Count(y => y.Column == heading.Column);
 
                 if (heading.Group != null)
                 {
+                    string columnCountText = columnCount > 1 ? " " + (heading.DataIndex+1).ToString() : string.Empty;
+
                     if (string.IsNullOrEmpty(heading.Group.ColumnPrefix))
-                        headingText = string.Format("{0} {1} {2}", heading.Group.TableName, heading.DataIndex + 1, heading.Column.GetHeading());
+                        headingText = string.Format("{0}{1} {2}", heading.Group.TableName, columnCountText, heading.Column.GetHeading());
                     else
-                        headingText = string.Format("{0} {1} {2}", heading.Group.ColumnPrefix, heading.DataIndex + 1, heading.Column.GetHeading());
+                        headingText = string.Format("{0}{1} {2}", heading.Group.ColumnPrefix, columnCountText, heading.Column.GetHeading());
                 }
 
                 Cell cell = new Cell()
@@ -84,7 +87,40 @@ namespace VIQRCXML2XLS
 
         public void PopulateSpreadsheet(MappingConfig config, SpreadsheetDocument spreadsheet)
         {
-            this.PopulateHeaders(config, spreadsheet);
+            var orderedHeadings = new List<ExcelHeading>(this.headings);
+
+            orderedHeadings.Sort((objX, objY) =>
+            {
+                if (objX.Group == null && objY.Group == null)
+                {
+                    int objXIndex = config.Column.IndexOf(objX.Column);
+                    int objYIndex = config.Column.IndexOf(objY.Column);
+
+                    return objXIndex.CompareTo(objYIndex);
+                }
+                else if (objX.Group == objY.Group)
+                {
+                    if (objX.DataIndex == objY.DataIndex)
+                    {
+                        int objXIndex = objX.Group.Column.IndexOf(objX.Column);
+                        int objYIndex = objX.Group.Column.IndexOf(objY.Column);
+
+                        return objXIndex.CompareTo(objYIndex);
+                    }
+
+                    return objX.DataIndex.CompareTo(objY.DataIndex);
+                }
+
+                var parentsX = objX.Group == null || objX.Group.Parent == null ? config.Group : objX.Group.Parent.Group;
+                var parentsY = objY.Group == null || objY.Group.Parent == null ? config.Group : objY.Group.Parent.Group;
+
+                int groupXIndex = parentsX.IndexOf(objX.Group);
+                int groupYIndex = parentsY.IndexOf(objY.Group);
+
+                return groupXIndex.CompareTo(groupYIndex);
+            });
+
+            this.PopulateHeaders(config, spreadsheet, orderedHeadings);
 
             foreach (var row in this.rows)
             {
@@ -99,7 +135,7 @@ namespace VIQRCXML2XLS
 
                 excelDataRow.AppendChild(fileNameCell);
 
-                foreach (var heading in this.headings)
+                foreach (var heading in orderedHeadings)
                 {
                     var datas = row.Data.Where(y => y.Column == heading.Column).ToArray();
 

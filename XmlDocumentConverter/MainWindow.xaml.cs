@@ -32,11 +32,11 @@ namespace XmlDocumentConverter
         {
             InitializeComponent();
 
-            if (Directory.Exists("C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\VIQRCXML2XLS\\Samples\\input"))
-                this.inputDirectoryText.Text = "C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\VIQRCXML2XLS\\Samples\\input";
+            if (Directory.Exists("C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\XmlDocumentConverter\\Samples\\input"))
+                this.inputDirectoryText.Text = "C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\XmlDocumentConverter\\Samples\\input";
 
-            if (Directory.Exists("C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\VIQRCXML2XLS\\Samples\\output"))
-                this.outputDirectoryText.Text = "C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\VIQRCXML2XLS\\Samples\\output";
+            if (Directory.Exists("C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\XmlDocumentConverter\\Samples\\output"))
+                this.outputDirectoryText.Text = "C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\XmlDocumentConverter\\Samples\\output";
 
             this.EnableConvertButton();
         }

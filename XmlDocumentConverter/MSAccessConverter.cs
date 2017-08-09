@@ -11,7 +11,7 @@ using System.Xml;
 using System.Data.OleDb;
 
 namespace XmlDocumentConverter
-{b
+{
     public class MSAccessConverter
     {
         private const string DatabaseFileName = "output.mdb";

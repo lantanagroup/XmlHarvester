@@ -104,14 +104,18 @@
     <column name="Text" isNarrative="true">cda:text</column>
     <!-- Individual Measure Details Template ID 2.16.840.1.113883.10.20.24.3.98 -->
     <group tableName="measureDetails" columnPrefix="Measure Details" context="//cda:entry/cda:organizer[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.98']">
+     <column name="TemplateId" heading="Template ID">cda:templateId/@root</column>
      <column name="idRoot" heading="Id Root">cda:id/@root</column>
      <column name="statusCode" heading="Status Code">cda:statusCode</column>
-     <column name="text" heading="Text" isNarrative="true">cda:reference/cda:externalDocument/cda:text</column>
-      <column name="version" heading="Version">cda:reference/cda:externalDocument/cda:versionNumber</column>
+     <column name="text" heading="Text">cda:reference/cda:externalDocument/cda:text</column>
+     <column name="version" heading="Version">cda:reference/cda:externalDocument/cda:versionNumber</column>
      <column name="setIdRoot" heading="Set ID Root">cda:reference/cda:externalDocument/cda:setId/@root</column>
-     <column name="neutralIdentifier" heading="Neutral Identifier">cda:reference/cda:externalDocument/cda:id[@root ='2.16.840.1.113883.4.738']/@extension</column>
-     <column name="nqfEMeasureNumber" heading="NQF EMeasure Number">cda:reference/cda:externalDocument/cda:id[@root ='2.16.840.1.113883.3.560.1']/@extension</column>
-     <column name="matNumber" heading="MAT Number">cda:reference/cda:externalDocument/cda:id[@root ='2.16.840.1.113883.3.560.101.2']/@extension</column>
+     <column name="neutralIdentifierRoot" heading="Neutral Identifier Root">cda:reference/cda:externalDocument/cda:id[@root ='2.16.840.1.113883.4.738']/@root</column>
+     <column name="neutralIdentifierExt" heading="Neutral Identifier Ext">cda:reference/cda:externalDocument/cda:id[@root ='2.16.840.1.113883.4.738']/@extension</column>
+     <column name="nqfEMeasureNumberRoot" heading="NQF EMeasure Number Root">cda:reference/cda:externalDocument/cda:id[@root ='2.16.840.1.113883.3.560.1']/@root</column>
+     <column name="nqfEMeasureNumberExt" heading="NQF EMeasure Number Ext">cda:reference/cda:externalDocument/cda:id[@root ='2.16.840.1.113883.3.560.1']/@extension</column>
+     <column name="matNumberRoot" heading="MAT Number">cda:reference/cda:externalDocument/cda:id[@root ='2.16.840.1.113883.3.560.101.2']/@root</column>
+     <column name="matNumberExt" heading="MAT Number">cda:reference/cda:externalDocument/cda:id[@root ='2.16.840.1.113883.3.560.101.2']/@extension</column>
     </group>
   </group>
   

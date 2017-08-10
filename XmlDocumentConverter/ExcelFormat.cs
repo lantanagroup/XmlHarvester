@@ -39,12 +39,35 @@ namespace XmlDocumentConverter
 
             if (headingCount < dataCount)
             {
-                this.headings.Add(new ExcelHeading()
+                int insertIndex = -1;
+
+                if (group != null)
+                {
+                    var lastHeading = this.headings.LastOrDefault(y => y.Group == group);
+
+                    if (lastHeading != null)
+                        insertIndex = this.headings.LastIndexOf(lastHeading);
+
+                    if (insertIndex < 0 && group.Parent != null)
+                    {
+                        lastHeading = this.headings.LastOrDefault(y => y.Group == group.Parent);
+
+                        if (lastHeading != null)
+                            insertIndex = this.headings.LastIndexOf(lastHeading);
+                    }
+                }
+
+                ExcelHeading newHeading = new ExcelHeading()
                 {
                     Group = group,
                     Column = column,
                     DataIndex = headingCount
-                });
+                };
+
+                if (insertIndex >= 0)
+                    this.headings.Insert(insertIndex + 1, newHeading);
+                else
+                    this.headings.Add(newHeading);
             }
         }
 
@@ -89,6 +112,7 @@ namespace XmlDocumentConverter
         {
             var orderedHeadings = new List<ExcelHeading>(this.headings);
 
+            /*
             orderedHeadings.Sort((objX, objY) =>
             {
                 if (objX.Group == null && objY.Group == null)
@@ -119,6 +143,7 @@ namespace XmlDocumentConverter
 
                 return groupXIndex.CompareTo(groupYIndex);
             });
+            */
 
             this.PopulateHeaders(config, spreadsheet, orderedHeadings);
 

@@ -22,11 +22,9 @@ namespace XmlDocumentConverter
         private string inputDirectory;
         private TextBox logText;
 
-        public const string XlsxConfigFileName = "MappingConfig.xml";
-
         public XlsxConverter(string inputDirectory, string outputDirectory, TextBox logText)
         {
-            this.xlsxConfig = MappingConfig.LoadFromFileWithParents(GetConfigFileName());
+            this.xlsxConfig = MappingConfig.LoadFromFileWithParents(MappingConfig.GetConfigFileName());
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
             this.logText = logText;
@@ -276,13 +274,6 @@ namespace XmlDocumentConverter
             {
                 System.Windows.MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        public static string GetConfigFileName()
-        {
-            FileInfo assemblyFileInfo = new FileInfo(Assembly.GetExecutingAssembly().Location);
-            string fileLocation = System.IO.Path.Combine(assemblyFileInfo.DirectoryName, XlsxConfigFileName);
-            return fileLocation;
         }
     }
 }

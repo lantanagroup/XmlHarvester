@@ -84,9 +84,9 @@ namespace XmlDocumentConverter
             }
         }
 
-        private void EditXlsxConfig_Click(object sender, RoutedEventArgs e)
+        private void EditConfig_Click(object sender, RoutedEventArgs e)
         {
-            string fileLocation = XlsxConverter.GetConfigFileName();
+            string fileLocation = MappingConfig.GetConfigFileName();
             FileInfo fileLocationInfo = new FileInfo(fileLocation);
             var process = System.Diagnostics.Process.Start(fileLocation);
 
@@ -95,28 +95,12 @@ namespace XmlDocumentConverter
             watcher.NotifyFilter = NotifyFilters.LastWrite;
             watcher.Filter = fileLocationInfo.Name;
 
-            watcher.Changed += XlsxConfigWatcher_Changed;
+            watcher.Changed += ConfigWatcher_Changed;
 
             watcher.EnableRaisingEvents = true;
         }
 
-        private void EditAccessConfig_Click(object sender, RoutedEventArgs e)
-        {
-            string fileLocation = MSAccessConverter.GetConfigFileName();
-            FileInfo fileLocationInfo = new FileInfo(fileLocation);
-            var process = System.Diagnostics.Process.Start(fileLocation);
-
-            FileSystemWatcher watcher = new FileSystemWatcher();
-            watcher.Path = fileLocationInfo.DirectoryName;
-            watcher.NotifyFilter = NotifyFilters.LastWrite;
-            watcher.Filter = fileLocationInfo.Name;
-
-            watcher.Changed += AccessConfigWatcher_Changed;
-
-            watcher.EnableRaisingEvents = true;
-        }
-
-        private void AccessConfigWatcher_Changed(object sender, FileSystemEventArgs e)
+        private void ConfigWatcher_Changed(object sender, FileSystemEventArgs e)
         {
             try
             {
@@ -124,32 +108,7 @@ namespace XmlDocumentConverter
 
                 if (fileInfo.Directory.Parent != null && fileInfo.Directory.Parent.Name == "bin" && fileInfo.Directory.Parent.Parent != null)
                 {
-                    string newDestination = System.IO.Path.Combine(fileInfo.Directory.Parent.Parent.FullName, MSAccessConverter.AccessConfigFileName);
-
-                    if (File.Exists(newDestination))
-                    {
-                        using (StreamReader sr = new StreamReader(new FileStream(e.FullPath, FileMode.Open, FileAccess.Read)))
-                        {
-                            File.WriteAllText(newDestination, sr.ReadToEnd());
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                // Ignore
-            }
-        }
-
-        private void XlsxConfigWatcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            try
-            {
-                FileInfo fileInfo = new FileInfo(e.FullPath);
-
-                if (fileInfo.Directory.Parent != null && fileInfo.Directory.Parent.Name == "bin" && fileInfo.Directory.Parent.Parent != null)
-                {
-                    string newDestination = System.IO.Path.Combine(fileInfo.Directory.Parent.Parent.FullName, XlsxConverter.XlsxConfigFileName);
+                    string newDestination = System.IO.Path.Combine(fileInfo.Directory.Parent.Parent.FullName, MappingConfig.ConfigFileName);
 
                     if (File.Exists(newDestination))
                     {

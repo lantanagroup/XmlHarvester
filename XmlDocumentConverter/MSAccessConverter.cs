@@ -15,7 +15,6 @@ namespace XmlDocumentConverter
     public class MSAccessConverter
     {
         private const string DatabaseFileName = "output.mdb";
-        public const string AccessConfigFileName = "MappingConfig.xml";
 
         private TextBox logText;
         private string inputDirectory;
@@ -27,7 +26,7 @@ namespace XmlDocumentConverter
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
             this.logText = logText;
-            this.accessConfig = MappingConfig.LoadFromFileWithParents(GetConfigFileName());
+            this.accessConfig = MappingConfig.LoadFromFileWithParents(MappingConfig.GetConfigFileName());
         }
 
         private string GetConnectionString(bool delete = false)
@@ -328,13 +327,6 @@ namespace XmlDocumentConverter
             }
 
             dbConnection.Close();
-        }
-
-        public static string GetConfigFileName()
-        {
-            FileInfo assemblyFileInfo = new FileInfo(Assembly.GetExecutingAssembly().Location);
-            string fileLocation = System.IO.Path.Combine(assemblyFileInfo.DirectoryName, AccessConfigFileName);
-            return fileLocation;
         }
     }
 }

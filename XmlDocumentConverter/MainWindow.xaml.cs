@@ -84,7 +84,7 @@ namespace XmlDocumentConverter
             }
         }
 
-        private void EditConfig_Click(object sender, RoutedEventArgs e)
+        private void EditExternalConfig_Click(object sender, RoutedEventArgs e)
         {
             string fileLocation = MappingConfig.GetConfigFileName();
             FileInfo fileLocationInfo = new FileInfo(fileLocation);
@@ -98,6 +98,12 @@ namespace XmlDocumentConverter
             watcher.Changed += ConfigWatcher_Changed;
 
             watcher.EnableRaisingEvents = true;
+        }
+
+        private void EditInternalConfig_Click(object sender, RoutedEventArgs e)
+        {
+            EditConfigWindow editConfigWindow = new EditConfigWindow();
+            editConfigWindow.Show();
         }
 
         private void ConfigWatcher_Changed(object sender, FileSystemEventArgs e)

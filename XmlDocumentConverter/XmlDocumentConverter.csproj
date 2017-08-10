@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditConfigWindow.xaml.cs">
+      <DependentUpon>EditConfigWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ExcelFormat.cs" />
     <Compile Include="MappingConfig.Designer.cs" />
     <Compile Include="MappingConfigPartial.cs" />
@@ -67,6 +70,10 @@
     <Compile Include="MSAccessConverter.cs" />
     <Compile Include="MappingColumn.cs" />
     <Compile Include="XlsxConverter.cs" />
+    <Page Include="EditConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

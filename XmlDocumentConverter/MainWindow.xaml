@@ -11,7 +11,8 @@
             <ToolBar>
                 <Button x:Name="convertXlsxButton" Content="Convert XLSX" Click="ConvertXlsx_Click" IsEnabled="false" />
                 <Button x:Name="convertAccessButton" Content="Convert MS Access" Click="ConvertAccess_Click" IsEnabled="false" />
-                <Button x:Name="editConfigButton" Content="Edit Config" Click="EditConfig_Click" />
+                <Button x:Name="editExternalConfigButton" Content="Edit Config (External)" Click="EditExternalConfig_Click" />
+                <!--Button x:Name="editInternalConfigButton" Content="Edit Config" Click="EditInternalConfig_Click" /-->
             </ToolBar>
         </ToolBarTray>
         <Grid>

@@ -1,0 +1,44 @@
+﻿<Window x:Class="XmlDocumentConverter.EditConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XmlDocumentConverter"
+        mc:Ignorable="d"
+        Title="Edit Config" Height="300" Width="464.273">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="125" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TreeView Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" x:Name="treeView" SelectedItemChanged="treeView_SelectedItemChanged" />
+        
+        <Label Grid.Row="0" Grid.Column="1" Content="Table Name" />
+        <TextBox Grid.Row="0" Grid.Column="2" x:Name="tableNameText" Text="{Binding Path=TableName}" />
+
+        <Label Grid.Row="1" Grid.Column="1" Content="Prefix" />
+        <TextBox Grid.Row="1" Grid.Column="2" x:Name="prefixText" Text="{Binding Path=ColumnPrefix}" />
+
+        <Label Grid.Row="2" Grid.Column="1" Content="Column Name" />
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name="columnNameText" Text="{Binding Path=Name}" />
+
+        <Label Grid.Row="3" Grid.Column="1" Content="Heading Name" />
+        <TextBox Grid.Row="3" Grid.Column="2" x:Name="headingNameText" Text="{Binding Path=Heading}" />
+        
+        <Label Grid.Row="4" Grid.Column="1" Content="XPATH" />
+        <TextBox Grid.Row="4" Grid.Column="2" x:Name="xpathText" TextChanged="xpathText_TextChanged" DataContextChanged="xpathText_DataContextChanged" />
+        
+        <Label Grid.Row="5" Grid.Column="1" Content="Results" />
+        <TextBox Grid.Row="5" Grid.Column="2" x:Name="resultsText" IsReadOnly="True" />
+    </Grid>
+</Window>

@@ -224,8 +224,11 @@ namespace XmlDocumentConverter
                         xmlDoc.Load(xmlFile);
 
                         XmlNamespaceManager nsManager = new XmlNamespaceManager(xmlDoc.NameTable);
-                        nsManager.AddNamespace("cda", "urn:hl7-org:v3");
-                        nsManager.AddNamespace("sdtc", "urn:hl7-org:sdtc");
+                        
+                        foreach (var configNamespace in this.xlsxConfig.Namespace)
+                        {
+                            nsManager.AddNamespace(configNamespace.Prefix, configNamespace.Uri);
+                        }
 
                         foreach (var columnConfig in this.xlsxConfig.Column)
                         {

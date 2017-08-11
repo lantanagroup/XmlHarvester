@@ -19,7 +19,7 @@ namespace XmlDocumentConverter
     using System.Collections.Generic;
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -27,6 +27,8 @@ namespace XmlDocumentConverter
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false, ElementName = "config")]
     public partial class MappingConfig
     {
+
+        private List<MappingNamespace> _namespace;
 
         private List<MappingColumn> _column;
 
@@ -40,6 +42,20 @@ namespace XmlDocumentConverter
         {
             this._group = new List<MappingGroup>();
             this._column = new List<MappingColumn>();
+            this._namespace = new List<MappingNamespace>();
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute("namespace", ElementName = "namespace")]
+        public List<MappingNamespace> Namespace
+        {
+            get
+            {
+                return this._namespace;
+            }
+            set
+            {
+                this._namespace = value;
+            }
         }
 
         [System.Xml.Serialization.XmlElementAttribute("column", ElementName = "column")]
@@ -274,7 +290,241 @@ namespace XmlDocumentConverter
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, TypeName = "namespace")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false, ElementName = "namespace")]
+    public partial class MappingNamespace
+    {
+
+        private string _prefix;
+
+        private string _uri;
+
+        private static XmlSerializer serializer;
+
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "prefix")]
+        public string Prefix
+        {
+            get
+            {
+                return this._prefix;
+            }
+            set
+            {
+                this._prefix = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "uri")]
+        public string Uri
+        {
+            get
+            {
+                return this._uri;
+            }
+            set
+            {
+                this._uri = value;
+            }
+        }
+
+        private static XmlSerializer Serializer
+        {
+            get
+            {
+                if ((serializer == null))
+                {
+                    serializer = new XmlSerializerFactory().CreateSerializer(typeof(MappingNamespace));
+                }
+                return serializer;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serializes current MappingNamespace object into an XML string
+        /// </summary>
+        /// <returns>string XML value</returns>
+        public virtual string Serialize()
+        {
+            System.IO.StreamReader streamReader = null;
+            System.IO.MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new System.IO.MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                Serializer.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                streamReader = new System.IO.StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes workflow markup into an MappingNamespace object
+        /// </summary>
+        /// <param name="input">string workflow markup to deserialize</param>
+        /// <param name="obj">Output MappingNamespace object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string input, out MappingNamespace obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(MappingNamespace);
+            try
+            {
+                obj = Deserialize(input);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string input, out MappingNamespace obj)
+        {
+            System.Exception exception = null;
+            return Deserialize(input, out obj, out exception);
+        }
+
+        public static MappingNamespace Deserialize(string input)
+        {
+            System.IO.StringReader stringReader = null;
+            try
+            {
+                stringReader = new System.IO.StringReader(input);
+                return ((MappingNamespace)(Serializer.Deserialize(XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        public static MappingNamespace Deserialize(System.IO.Stream s)
+        {
+            return ((MappingNamespace)(Serializer.Deserialize(s)));
+        }
+        #endregion
+
+        /// <summary>
+        /// Serializes current MappingNamespace object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, out System.Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            System.IO.StreamWriter streamWriter = null;
+            try
+            {
+                string xmlString = Serialize();
+                System.IO.FileInfo xmlFile = new System.IO.FileInfo(fileName);
+                streamWriter = xmlFile.CreateText();
+                streamWriter.WriteLine(xmlString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an MappingNamespace object
+        /// </summary>
+        /// <param name="fileName">string xml file to load and deserialize</param>
+        /// <param name="obj">Output MappingNamespace object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this Serializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, out MappingNamespace obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(MappingNamespace);
+            try
+            {
+                obj = LoadFromFile(fileName);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out MappingNamespace obj)
+        {
+            System.Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static MappingNamespace LoadFromFile(string fileName)
+        {
+            System.IO.FileStream file = null;
+            System.IO.StreamReader sr = null;
+            try
+            {
+                file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new System.IO.StreamReader(file);
+                string xmlString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(xmlString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -285,15 +535,15 @@ namespace XmlDocumentConverter
 
         private string _name;
 
-        private string _heading;
-
         private bool _isNarrative;
+
+        private string _heading;
 
         private string _value;
 
         private static XmlSerializer serializer;
 
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName", AttributeName = "name")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "name")]
         public string Name
         {
             get
@@ -303,19 +553,6 @@ namespace XmlDocumentConverter
             set
             {
                 this._name = value;
-            }
-        }
-
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "heading")]
-        public string Heading
-        {
-            get
-            {
-                return this._heading;
-            }
-            set
-            {
-                this._heading = value;
             }
         }
 
@@ -329,6 +566,19 @@ namespace XmlDocumentConverter
             set
             {
                 this._isNarrative = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "heading")]
+        public string Heading
+        {
+            get
+            {
+                return this._heading;
+            }
+            set
+            {
+                this._heading = value;
             }
         }
 
@@ -538,7 +788,7 @@ namespace XmlDocumentConverter
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2102.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -551,11 +801,11 @@ namespace XmlDocumentConverter
 
         private List<MappingGroup> _group1;
 
-        private string _context;
-
         private string _tableName;
 
         private string _columnPrefix;
+
+        private string _context;
 
         private static XmlSerializer serializer;
 
@@ -591,20 +841,7 @@ namespace XmlDocumentConverter
             }
         }
 
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "context")]
-        public string Context
-        {
-            get
-            {
-                return this._context;
-            }
-            set
-            {
-                this._context = value;
-            }
-        }
-
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName", AttributeName = "tableName")]
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "tableName")]
         public string TableName
         {
             get
@@ -627,6 +864,19 @@ namespace XmlDocumentConverter
             set
             {
                 this._columnPrefix = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "context")]
+        public string Context
+        {
+            get
+            {
+                return this._context;
+            }
+            set
+            {
+                this._context = value;
             }
         }
 

@@ -1,60 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="config">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" name="column">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:string">
-                <xs:attribute name="name" type="xs:string" use="required" />
-                <xs:attribute name="heading" type="xs:string" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element maxOccurs="unbounded" name="group">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="column">
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:string">
-                      <xs:attribute name="name" type="xs:string" use="required" />
-                      <xs:attribute name="isNarrative" type="xs:boolean" use="optional" />
-                      <xs:attribute name="heading" type="xs:string" use="optional" />
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-              <xs:element minOccurs="0" name="group">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="column">
-                      <xs:complexType>
-                        <xs:simpleContent>
-                          <xs:extension base="xs:string">
-                            <xs:attribute name="name" type="xs:string" use="required" />
-                            <xs:attribute name="heading" type="xs:string" use="required" />
-                            <xs:attribute name="isNarrative" type="xs:boolean" use="optional" />
-                          </xs:extension>
-                        </xs:simpleContent>
-                      </xs:complexType>
-                    </xs:element>
-                  </xs:sequence>
-                  <xs:attribute name="tableName" type="xs:string" use="required" />
-                  <xs:attribute name="columnPrefix" type="xs:string" use="required" />
-                  <xs:attribute name="context" type="xs:string" use="required" />
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-            <xs:attribute name="tableName" type="xs:string" use="required" />
-            <xs:attribute name="columnPrefix" type="xs:string" use="required" />
-            <xs:attribute name="context" type="xs:string" use="required" />
-          </xs:complexType>
-        </xs:element>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="namespace"/>
+        <xs:element maxOccurs="unbounded" ref="column"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="group"/>
       </xs:sequence>
-      <xs:attribute name="tableName" type="xs:string" use="required" />
+      <xs:attribute name="tableName" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="group">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="column"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="group"/>
+      </xs:sequence>
+      <xs:attribute name="tableName" type="xs:string" use="required"/>
+      <xs:attribute name="columnPrefix" type="xs:string" use="required"/>
+      <xs:attribute name="context" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="column">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="name" type="xs:string" use="required"/>
+          <xs:attribute name="isNarrative" type="xs:boolean" use="optional"/>
+          <xs:attribute name="heading" type="xs:string" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="namespace">
+    <xs:complexType>
+      <xs:attribute name="prefix" use="required"/>
+      <xs:attribute name="uri" use="required"/>
     </xs:complexType>
   </xs:element>
 </xs:schema>

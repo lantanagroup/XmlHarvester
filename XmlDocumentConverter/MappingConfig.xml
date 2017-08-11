@@ -356,7 +356,7 @@
     <column name="ParticipantCodeSystemName">cda:participant/cda:participantRole/cda:playingDevice/cda:code/@codeSystemName</column>   
     <!-- Device Reason  --> 
     <column name="ReasonTemplateId">cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.88']/cda:templateId/@root</column>
-    <column name="ReasonTempIdExtension">cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.88']]/cda:templateId/@extension</column>
+    <column name="ReasonTempIdExtension">cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.88']/cda:templateId/@extension</column>
     <column name="ReasonId">cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.88']/cda:id/@root</column>
     <column name="ReasonCode">cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.88']/cda:code/@code</column>
     <column name="ReasonCodeDisplayName">cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.88']/cda:code/@displayName</column>

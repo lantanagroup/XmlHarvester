@@ -31,12 +31,13 @@ namespace XmlDocumentConverter
 
         private string GetConnectionString(bool delete = false)
         {
-            string fileLocation = System.IO.Path.Combine(this.outputDirectory, DatabaseFileName);
+            string fileName = MappingConfig.GetOutputFileNameWithoutExtension() + ".mdb";
+            string filePath = System.IO.Path.Combine(this.outputDirectory, fileName);
 
-            if (delete && File.Exists(fileLocation))
-                File.Delete(fileLocation);
+            if (delete && File.Exists(filePath))
+                File.Delete(filePath);
 
-            string connectionString = string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Jet OLEDB:Engine Type=5", fileLocation);
+            string connectionString = string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Jet OLEDB:Engine Type=5", filePath);
             return connectionString;
         }
 
@@ -230,7 +231,7 @@ namespace XmlDocumentConverter
 
             if (groupNodes.Count == 0)
             {
-                this.logText.Text += "No data found for group XPATH \"" + groupConfig.Context + "\r\n";
+                this.logText.Text += string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context);
                 return;
             }
 

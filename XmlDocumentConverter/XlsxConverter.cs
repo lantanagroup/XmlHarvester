@@ -167,6 +167,12 @@ namespace XmlDocumentConverter
             {
                 XmlNodeList groupNodes = node.SelectNodes(groupXpath, nsManager);
 
+                if (groupNodes.Count == 0)
+                {
+                    this.logText.Text += string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context);
+                    return;
+                }
+
                 foreach (XmlNode groupNode in groupNodes)
                 {
                     foreach (var columnConfig in groupConfig.Column)
@@ -190,7 +196,7 @@ namespace XmlDocumentConverter
 
         public void Convert()
         {
-            string fileName = DateTime.Now.ToShortDateString().Replace("/", "-") + " " + DateTime.Now.ToShortTimeString().Replace(":", "-") + ".xlsx";
+            string fileName = MappingConfig.GetOutputFileNameWithoutExtension() + ".xlsx";
             string filePath = System.IO.Path.Combine(this.outputDirectory, fileName);
 
             string[] xmlFiles = Directory.GetFiles(this.inputDirectory, "*.xml");

@@ -34,5 +34,10 @@ namespace XmlDocumentConverter
             AssociateParents(obj.Group);
             return obj;
         }
+
+        public static string GetOutputFileNameWithoutExtension()
+        {
+            return DateTime.Now.ToString("yyyy-MM-dd hhmm tt");
+        }
     }
 }

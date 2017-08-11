@@ -289,6 +289,70 @@ narrative block may not consistently agree with the entries.  The narrative bloc
               <value code="1" codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="Source of Payment Typology" displayName="Medicare" sdtc:valueSet="2.16.840.1.114222.4.11.3591" xsi:type="CD" />
             </observation>
           </entry>
+	<!-- 	Device Order Entry -->		
+	   <entry typeCode="DRIV">
+	    <act classCode="ACT" moodCode="RQO" negationInd="true">
+		<id root="A62DDEC0-668E-48CA-BA05-24D4FCCC57A0"/>
+		<code code="SPLY" codeSystem="2.16.840.1.113883.5.6" displayName="Supply" codeSystemName="ActClass"/>
+		<entryRelationship typeCode="SUBJ">
+		    <supply classCode="SPLY" moodCode="RQO">
+			<templateId root="2.16.840.1.113883.10.20.22.4.43" extension="2014-06-09"/>
+			<templateId root="2.16.840.1.113883.10.20.24.3.9" extension="2016-02-01"/>
+			<id root="A62DDEC0-668E-48CA-BA05-24D4FCCC57A0"/>
+			<statusCode code="active"/>
+			<effectiveTime xsi:type="IVL_TS">
+			    <low value="20170509170900"/>
+			    <high value="20170509170900"/>
+			</effectiveTime>
+			<author>
+			    <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+			    <time xsi:type="IVL_TS">
+				<low value="20170509170900"/>
+				<high nullFlavor="UNK"/>
+			    </time>
+			    <assignedAuthor>
+				<id nullFlavor="UNK"/>
+			    </assignedAuthor>
+			</author>
+			<participant typeCode="DEV">
+			    <participantRole classCode="MANU">
+				<playingDevice classCode="DEV">
+				    <code code="348681001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" displayName="stocking" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.256"/>
+				</playingDevice>
+			    </participantRole>
+			</participant>
+			<entryRelationship typeCode="RSON">
+			    <observation classCode="OBS" moodCode="EVN">
+				<templateId root="2.16.840.1.113883.10.20.24.3.88" extension="2014-12-01"/>
+				<id root="31893235-ED50-4DBE-ACA7-98B71B0E292C"/>
+				<code code="77301-0" codeSystem="2.16.840.1.113883.6.1" displayName="Reason care action performed or not" codeSystemName="LOINC"/>
+				<statusCode code="completed"/>
+				<effectiveTime>
+				    <low value="20170501170900"/>
+				    <high value="20170501170900"/>
+				</effectiveTime>
+				<value xsi:type="CD" code="443390004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMEDCT" displayName="Refused (qualifier value)" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.93"/>
+			    </observation>
+			</entryRelationship>
+		    </supply>
+		</entryRelationship>
+	    </act>
+	</entry>
+	<!-- 	Lab Test Performed Entry -->	
+	<entry typeCode="DRIV">
+	    <observation classCode="OBS" moodCode="EVN">
+		<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"/>
+		<templateId root="2.16.840.1.113883.10.20.24.3.38" extension="2016-02-01"/>
+		<id root="EE9791E4-4091-4D01-95DB-4A7768D430FB"/>
+		<code code="34714-6" displayName="INR in Serum" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" sdtc:valueSet="2.16.840.1.113883.3.117.1.7.1.213"/>
+		<statusCode code="completed"/>
+		<effectiveTime>
+		    <low value="20170501220200"/>
+		    <high value="20170501220200"/>
+		</effectiveTime>
+		<value xsi:type="PQ" value="1.25" unit="1"/>
+	    </observation>
+	</entry>
           <entry typeCode="DRIV">
             <observation classCode="OBS" moodCode="EVN">
               <!--  Problem observation template -->

@@ -23,17 +23,18 @@ namespace XmlDocumentConverter
         private string TestFileName = "C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\XmlDocumentConverter\\Samples\\Input\\CMS2v3_CatI_QrdaSample.xml";
         private XmlDocument xmlDoc;
         private XmlNamespaceManager nsManager;
+        private MappingConfig config;
 
         public EditConfigWindow()
         {
             InitializeComponent();
 
-            MappingConfig config = MappingConfig.LoadFromFileWithParents(MappingConfig.GetConfigFileName());
+            this.config = MappingConfig.LoadFromFileWithParents(MappingConfig.GetConfigFileName());
 
-            foreach (var column in config.Column)
+            foreach (var column in this.config.Column)
                 LoadColumn(column);
 
-            foreach (var group in config.Group)
+            foreach (var group in this.config.Group)
                 LoadGroup(group);
 
             this.xmlDoc = new XmlDocument();
@@ -119,6 +120,19 @@ namespace XmlDocumentConverter
         private void xpathText_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             this.LoadResults();
+
+            TreeViewItem item = this.treeView.SelectedItem as TreeViewItem;
+            MappingGroup group = item.Tag as MappingGroup;
+            MappingColumn column = item.Tag as MappingColumn;
+            
+            this.removeButton.IsEnabled =
+                this.moveUpButton.IsEnabled =
+                this.moveDownButton.IsEnabled = false;
+
+            if (group != null)
+            {
+                ItemCollection list = item.Parent is TreeViewItem ? ((TreeViewItem)item.Parent).Items : ((TreeView)item.Parent).Items;
+            }
         }
 
         private void LoadResults()
@@ -153,12 +167,16 @@ namespace XmlDocumentConverter
 
                 foreach (var context in contexts)
                 {
-                    var selectedNodes = context.SelectNodes(column.Value, this.nsManager);
-
-                    foreach (XmlNode selectedNode in selectedNodes)
+                    try
                     {
-                        results += selectedNode.InnerXml + "\r\n\r\n";
+                        var selectedNodes = context.SelectNodes(column.Value, this.nsManager);
+
+                        foreach (XmlNode selectedNode in selectedNodes)
+                        {
+                            results += selectedNode.InnerXml + "\r\n\r\n";
+                        }
                     }
+                    catch { }
                 }
 
                 this.resultsText.Text = results;
@@ -181,13 +199,17 @@ namespace XmlDocumentConverter
             {
                 if (parentContexts == null)
                 {
-                    var selectedNodes = this.xmlDoc.SelectNodes(next.Context, this.nsManager);
-                    parentContexts = new List<XmlNode>();
-                    
-                    foreach (XmlNode selectedNode in selectedNodes)
+                    try
                     {
-                        parentContexts.Add(selectedNode);
+                        var selectedNodes = this.xmlDoc.SelectNodes(next.Context, this.nsManager);
+                        parentContexts = new List<XmlNode>();
+
+                        foreach (XmlNode selectedNode in selectedNodes)
+                        {
+                            parentContexts.Add(selectedNode);
+                        }
                     }
+                    catch { }
                 }
                 else
                 {
@@ -195,19 +217,126 @@ namespace XmlDocumentConverter
 
                     foreach (var parentContext in parentContexts)
                     {
-                        var selectedNodes = parentContext.SelectNodes(next.Context, this.nsManager);
-
-                        foreach (XmlNode selectedNode in selectedNodes)
+                        try
                         {
-                            newParentContexts.Add(selectedNode);
+                            var selectedNodes = parentContext.SelectNodes(next.Context, this.nsManager);
+
+                            foreach (XmlNode selectedNode in selectedNodes)
+                            {
+                                newParentContexts.Add(selectedNode);
+                            }
                         }
+                        catch { }
                     }
 
                     parentContexts = newParentContexts;
                 }
             }
 
+            if (parentContexts == null)
+                return new List<XmlNode>();
+
             return parentContexts;
+        }
+
+        private void addGroupButton_Click(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = this.treeView.SelectedItem as TreeViewItem;
+            ItemCollection treeList = null;
+            List<MappingGroup> groupList = null;
+
+            if (item == null || (item.Tag is MappingColumn && item.Parent is TreeView))
+            {
+                treeList = this.treeView.Items;
+                groupList = this.config.Group;
+            }
+            else if (item.Tag is MappingGroup)
+            {
+                treeList = item.Items;
+                groupList = ((MappingGroup)item.Tag).Group;
+            }
+            else if (item.Tag is MappingColumn && item.Parent is TreeViewItem && ((TreeViewItem)item.Parent).Tag is MappingGroup)
+            {
+                treeList = ((TreeViewItem)item.Parent).Items;
+                groupList = ((MappingGroup)(((TreeViewItem)item.Parent).Tag)).Group;
+            }
+
+            MappingGroup newGroup = new MappingGroup();
+            newGroup.TableName = "NewGroup";
+            newGroup.Context = "./";
+            groupList.Add(newGroup);
+
+            TreeViewItem newGroupItem = new TreeViewItem();
+            newGroupItem.Tag = newGroup;
+            newGroupItem.Header = "NewGroup";
+
+            treeList.Add(newGroupItem);
+            newGroupItem.IsSelected = true;
+        }
+
+        private void addColumn_Click(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = this.treeView.SelectedItem as TreeViewItem;
+            ItemCollection treeList = null;
+            List<MappingColumn> columnList = null;
+
+            if (item == null)
+            {
+                treeList = this.treeView.Items;
+                columnList = this.config.Column;
+            }
+            else if (item.Tag is MappingGroup)
+            {
+                treeList = item.Items;
+                columnList = ((MappingGroup)item.Tag).Column;
+            }
+            else if (item.Tag is MappingColumn)
+            {
+                treeList = ((TreeViewItem)item.Parent).Items;
+                columnList = item.Parent is TreeView ? this.config.Column : ((MappingGroup)((TreeViewItem)item.Parent).Tag).Column;
+            }
+
+            MappingColumn newColumn = new MappingColumn();
+            newColumn.Name = "newColumn";
+            newColumn.Value = "./";
+            columnList.Add(newColumn);
+
+            TreeViewItem newColumnItem = new TreeViewItem();
+            newColumnItem.Header = "newColumn";
+            newColumnItem.Tag = newColumn;
+
+            TreeViewItem firstGroup = null;
+
+            foreach (TreeViewItem nextItem in treeList)
+            {
+                if (nextItem.Tag is MappingGroup)
+                {
+                    firstGroup = nextItem;
+                    break;
+                }
+            }
+
+            if (firstGroup != null)
+                treeList.Insert(treeList.IndexOf(firstGroup), newColumnItem);
+            else
+                treeList.Add(newColumnItem);
+
+            newColumnItem.IsSelected = true;
+        }
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void moveUpButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void moveDownButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

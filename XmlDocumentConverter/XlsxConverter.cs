@@ -156,7 +156,7 @@ namespace XmlDocumentConverter
                 }
             }
 
-            return null;
+            return string.Empty;
         }
 
         private void ProcessGroup(MappingGroup groupConfig, ExcelFormat excelFormat, XmlNode node, XmlNamespaceManager nsManager)

@@ -1,6 +1,14 @@
 # XmlDocumentConverter
 Converts multiple XML documents into a MDB (Microsoft Access) database whose structure is defined by config.
 
+## Features
+
+* Convert XML to MDB
+* Convert XML to XLSX
+* Specify structure of MDB and XLSX via config
+* Use XPATH to define where data comes from in source XML documents
+* User interface to specify source and destination directories, and review logs
+
 ## Config
 
 The structure of the MS Access DB and where the data for each table/column comes from in the XML files is defined in a `MappingConfig.xml` file.

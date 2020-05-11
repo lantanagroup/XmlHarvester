@@ -22,9 +22,9 @@ namespace XmlDocumentConverter
         private string inputDirectory;
         private TextBox logText;
 
-        public XlsxConverter(string inputDirectory, string outputDirectory, TextBox logText)
+        public XlsxConverter(string configFileName, string inputDirectory, string outputDirectory, TextBox logText)
         {
-            this.xlsxConfig = MappingConfig.LoadFromFileWithParents(MappingConfig.GetConfigFileName());
+            this.xlsxConfig = MappingConfig.LoadFromFileWithParents(configFileName);
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
             this.logText = logText;
@@ -141,7 +141,7 @@ namespace XmlDocumentConverter
                 XmlNodeList nodes = !string.IsNullOrEmpty(xpath) ? parent.SelectNodes(xpath, nsManager) : null;
                 return GetValue(nodes, isNarrative);
             }
-            catch (Exception ex)
+            catch
             {
                 try
                 {

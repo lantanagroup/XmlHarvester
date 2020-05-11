@@ -25,11 +25,11 @@ namespace XmlDocumentConverter
         private XmlNamespaceManager nsManager;
         private MappingConfig config;
 
-        public EditConfigWindow()
+        public EditConfigWindow(string configFileName)
         {
             InitializeComponent();
 
-            this.config = MappingConfig.LoadFromFileWithParents(MappingConfig.GetConfigFileName());
+            this.config = MappingConfig.LoadFromFileWithParents(configFileName);
 
             foreach (var column in this.config.Column)
                 LoadColumn(column);

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XmlDocumentConverter"
         mc:Ignorable="d"
-        Title="VIQRC XML to XLSX" Height="350" Width="525">
+        Title="XML Document Converter" Height="350" Width="525">
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
@@ -25,15 +25,20 @@
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Label x:Name="label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="What directory contains the input files?" Margin="5,2"/>
-            <TextBox x:Name="inputDirectoryText" Grid.Row="1" Grid.Column="0" IsReadOnly="true" Margin="5,2" />
-            <Button x:Name="inputDirectoryButton" Grid.Row="1" Grid.Column="1" Content="Select" Margin="5,2" Click="inputDirectoryButton_Click" />
-            <Label x:Name="label_Copy" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="What directory should the converted files be saved to?" Margin="5,2"/>
-            <TextBox x:Name="outputDirectoryText" Grid.Row="3" Grid.Column="0" IsReadOnly="true" Margin="5,2"/>
-            <Button x:Name="outputDirectoryButton" Grid.Row="3" Grid.Column="1" Content="Select" Margin="5,2" Click="outputDirectoryButton_Click" />
-            <TextBox x:Name="logText" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            <Label x:Name="mappingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="What config should be used?" Margin="5,2"/>
+            <TextBox x:Name="mappingFileText" Grid.Row="1" Grid.Column="0" IsReadOnly="true" Margin="5,2" />
+            <Button x:Name="mappingFileButton" Grid.Row="1" Grid.Column="1" Content="Select" Margin="5,2" Click="mappingFileButton_Click" />
+            <Label x:Name="inputDirectoryLabel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="What directory contains the input files?" Margin="5,2"/>
+            <TextBox x:Name="inputDirectoryText" Grid.Row="3" Grid.Column="0" IsReadOnly="true" Margin="5,2" />
+            <Button x:Name="inputDirectoryButton" Grid.Row="3" Grid.Column="1" Content="Select" Margin="5,2" Click="inputDirectoryButton_Click" />
+            <Label x:Name="outputDirectoryLabel" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="What directory should the converted files be saved to?" Margin="5,2"/>
+            <TextBox x:Name="outputDirectoryText" Grid.Row="5" Grid.Column="0" IsReadOnly="true" Margin="5,2"/>
+            <Button x:Name="outputDirectoryButton" Grid.Row="5" Grid.Column="1" Content="Select" Margin="5,2" Click="outputDirectoryButton_Click" />
+            <TextBox x:Name="logText" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" />
         </Grid>
     </DockPanel>
 </Window>

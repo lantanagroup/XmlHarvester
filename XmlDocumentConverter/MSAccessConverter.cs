@@ -21,12 +21,12 @@ namespace XmlDocumentConverter
         private string outputDirectory;
         private MappingConfig accessConfig;
 
-        public MSAccessConverter(string inputDirectory, string outputDirectory, TextBox logText)
+        public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory, TextBox logText)
         {
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
             this.logText = logText;
-            this.accessConfig = MappingConfig.LoadFromFileWithParents(MappingConfig.GetConfigFileName());
+            this.accessConfig = MappingConfig.LoadFromFileWithParents(configFileName);
         }
 
         private string GetConnectionString(bool delete = false)
@@ -264,7 +264,7 @@ namespace XmlDocumentConverter
                 XmlNodeList nodes = !string.IsNullOrEmpty(xpath) ? parent.SelectNodes(xpath, nsManager) : null;
                 return GetValue(nodes, isNarrative);
             }
-            catch (Exception ex)
+            catch
             {
                 try
                 {

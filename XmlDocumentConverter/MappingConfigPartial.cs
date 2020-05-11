@@ -10,15 +10,6 @@ namespace XmlDocumentConverter
 {
     public partial class MappingConfig
     {
-        public const string ConfigFileName = "MappingConfig.xml";
-
-        public static string GetConfigFileName()
-        {
-            FileInfo assemblyFileInfo = new FileInfo(Assembly.GetExecutingAssembly().Location);
-            string fileLocation = System.IO.Path.Combine(assemblyFileInfo.DirectoryName, ConfigFileName);
-            return fileLocation;
-        }
-
         private static void AssociateParents(IEnumerable<MappingGroup> groups, MappingGroup parent = null)
         {
             foreach (MappingGroup next in groups)

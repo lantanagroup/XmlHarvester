@@ -1,25 +1,9 @@
-﻿using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.Validation;
+﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace XmlDocumentConverter
 {
@@ -28,25 +12,53 @@ namespace XmlDocumentConverter
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const string REG_SOFTWARE_KEY = @"HKEY_CURRENT_USER\SOFTWARE\XmlDocumentConverter";
+        private const string REG_MAPPING_FILE_NAME = "mappingFile";
+        private const string REG_INPUT_DIR_NAME = "inputDirectory";
+        private const string REG_OUPUT_DIR_NAME = "outputDirectory";
+
         public MainWindow()
         {
             InitializeComponent();
 
-            if (Directory.Exists("C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\XmlDocumentConverter\\Samples\\input"))
-                this.inputDirectoryText.Text = "C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\XmlDocumentConverter\\Samples\\input";
-
-            if (Directory.Exists("C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\XmlDocumentConverter\\Samples\\output"))
-                this.outputDirectoryText.Text = "C:\\Users\\sean.mcilvenna\\Code\\VIQRCXML2XLS\\XmlDocumentConverter\\Samples\\output";
+            this.mappingFileText.Text = (string) Registry.GetValue(REG_SOFTWARE_KEY, REG_MAPPING_FILE_NAME, "");
+            this.inputDirectoryText.Text = (string) Registry.GetValue(REG_SOFTWARE_KEY, REG_INPUT_DIR_NAME, "");
+            this.outputDirectoryText.Text = (string) Registry.GetValue(REG_SOFTWARE_KEY, REG_OUPUT_DIR_NAME, "");
 
             this.EnableConvertButton();
         }
 
         private void EnableConvertButton()
         {
-            bool enabled = !string.IsNullOrEmpty(this.inputDirectoryText.Text) && !string.IsNullOrEmpty(this.outputDirectoryText.Text);
+            bool enabled = !string.IsNullOrEmpty(this.mappingFileText.Text) && !string.IsNullOrEmpty(this.inputDirectoryText.Text) && !string.IsNullOrEmpty(this.outputDirectoryText.Text);
 
             this.convertXlsxButton.IsEnabled =
                 this.convertAccessButton.IsEnabled = enabled;
+        }
+
+        #region File/Folder Selection Events
+
+        private void mappingFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "XML Files|*.xml";
+
+                dialog.InitialDirectory = Directory.GetCurrentDirectory();
+
+                if (!string.IsNullOrEmpty(this.mappingFileText.Text))
+                    dialog.FileName = this.mappingFileText.Text;
+
+                DialogResult result = dialog.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.mappingFileText.Text = dialog.FileName;
+                    Registry.SetValue(REG_SOFTWARE_KEY, REG_MAPPING_FILE_NAME, this.mappingFileText.Text);
+
+                    this.EnableConvertButton();
+                }
+            }
         }
 
         private void inputDirectoryButton_Click(object sender, RoutedEventArgs e)
@@ -55,13 +67,16 @@ namespace XmlDocumentConverter
             {
                 if (!string.IsNullOrEmpty(this.inputDirectoryText.Text))
                     dialog.SelectedPath = this.inputDirectoryText.Text;
+                else
+                    dialog.SelectedPath = Directory.GetCurrentDirectory();
 
                 DialogResult result = dialog.ShowDialog();
 
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
                     this.inputDirectoryText.Text = dialog.SelectedPath;
-                    this.outputDirectoryText.Text = dialog.SelectedPath;
+                    Registry.SetValue(REG_SOFTWARE_KEY, REG_INPUT_DIR_NAME, this.inputDirectoryText.Text);
+
                     this.EnableConvertButton();
                 }
             }
@@ -73,62 +88,31 @@ namespace XmlDocumentConverter
             {
                 if (!string.IsNullOrEmpty(this.outputDirectoryText.Text))
                     dialog.SelectedPath = this.outputDirectoryText.Text;
+                else
+                    dialog.SelectedPath = Directory.GetCurrentDirectory();
 
                 DialogResult result = dialog.ShowDialog();
 
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
                     this.outputDirectoryText.Text = dialog.SelectedPath;
+                    Registry.SetValue(REG_SOFTWARE_KEY, REG_OUPUT_DIR_NAME, this.outputDirectoryText.Text);
                     this.EnableConvertButton();
                 }
             }
         }
 
+        #endregion
+
         private void EditExternalConfig_Click(object sender, RoutedEventArgs e)
         {
-            string fileLocation = MappingConfig.GetConfigFileName();
-            FileInfo fileLocationInfo = new FileInfo(fileLocation);
-            var process = System.Diagnostics.Process.Start(fileLocation);
-
-            FileSystemWatcher watcher = new FileSystemWatcher();
-            watcher.Path = fileLocationInfo.DirectoryName;
-            watcher.NotifyFilter = NotifyFilters.LastWrite;
-            watcher.Filter = fileLocationInfo.Name;
-
-            watcher.Changed += ConfigWatcher_Changed;
-
-            watcher.EnableRaisingEvents = true;
+            System.Diagnostics.Process.Start(this.mappingFileText.Text);
         }
 
         private void EditInternalConfig_Click(object sender, RoutedEventArgs e)
         {
-            EditConfigWindow editConfigWindow = new EditConfigWindow();
+            EditConfigWindow editConfigWindow = new EditConfigWindow(this.mappingFileText.Text);
             editConfigWindow.Show();
-        }
-
-        private void ConfigWatcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            try
-            {
-                FileInfo fileInfo = new FileInfo(e.FullPath);
-
-                if (fileInfo.Directory.Parent != null && fileInfo.Directory.Parent.Name == "bin" && fileInfo.Directory.Parent.Parent != null)
-                {
-                    string newDestination = System.IO.Path.Combine(fileInfo.Directory.Parent.Parent.FullName, MappingConfig.ConfigFileName);
-
-                    if (File.Exists(newDestination))
-                    {
-                        using (StreamReader sr = new StreamReader(new FileStream(e.FullPath, FileMode.Open, FileAccess.Read)))
-                        {
-                            File.WriteAllText(newDestination, sr.ReadToEnd());
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                // Ignore
-            }
         }
 
         private void ConvertXlsx_Click(object sender, RoutedEventArgs e)
@@ -136,7 +120,7 @@ namespace XmlDocumentConverter
             try
             {
                 this.logText.Text = "";
-                XlsxConverter xlsxConverter = new XlsxConverter(this.inputDirectoryText.Text, this.outputDirectoryText.Text, this.logText);
+                XlsxConverter xlsxConverter = new XlsxConverter(this.mappingFileText.Text, this.inputDirectoryText.Text, this.outputDirectoryText.Text, this.logText);
                 xlsxConverter.Convert();
             }
             catch (Exception ex)
@@ -152,7 +136,7 @@ namespace XmlDocumentConverter
             try
             {
                 this.logText.Text = "";
-                MSAccessConverter accessConverter = new MSAccessConverter(this.inputDirectoryText.Text, this.outputDirectoryText.Text, this.logText);
+                MSAccessConverter accessConverter = new MSAccessConverter(this.mappingFileText.Text, this.inputDirectoryText.Text, this.outputDirectoryText.Text, this.logText);
                 accessConverter.Convert();
             }
             catch (Exception ex)

@@ -38,3 +38,14 @@ Example:
 | config.group | A table that is related to the document table. Data within this table is based on the data specified within the `context` attribute. |
 | config.group.group | Nested tables, related to the parent table. |
 
+## Command Line Interface
+
+A CLI is available to run the tool from the command line (or automatically from another process).
+
+`XmlDocConverterCli.exe --help` for more information.
+
+| Parameter | Description |
+| -f, --format | (Default: MDB) The output format to produce (MDB or XLSX). |
+|  -c, --config | Required. The location of the mapping config XML file. |
+| -i, --input | Required. The directory that contains the input XML files. |
+| -o, --output | Required. The directory where output (XLSX and MDB) files should go. |

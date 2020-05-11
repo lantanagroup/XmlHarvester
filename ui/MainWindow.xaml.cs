@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Forms;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
-namespace XmlDocumentConverter
+namespace LantanaGroup.XmlDocumentConverter
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -120,7 +120,13 @@ namespace XmlDocumentConverter
             try
             {
                 this.logText.Text = "";
-                XlsxConverter xlsxConverter = new XlsxConverter(this.mappingFileText.Text, this.inputDirectoryText.Text, this.outputDirectoryText.Text, this.logText);
+                XlsxConverter xlsxConverter = new XlsxConverter(this.mappingFileText.Text, this.inputDirectoryText.Text, this.outputDirectoryText.Text);
+
+                xlsxConverter.LogEvent += delegate (string logText)
+                {
+                    this.logText.Text += logText;
+                };
+
                 xlsxConverter.Convert();
             }
             catch (Exception ex)
@@ -136,7 +142,13 @@ namespace XmlDocumentConverter
             try
             {
                 this.logText.Text = "";
-                MSAccessConverter accessConverter = new MSAccessConverter(this.mappingFileText.Text, this.inputDirectoryText.Text, this.outputDirectoryText.Text, this.logText);
+                MSAccessConverter accessConverter = new MSAccessConverter(this.mappingFileText.Text, this.inputDirectoryText.Text, this.outputDirectoryText.Text);
+
+                accessConverter.LogEvent += delegate (string logText)
+                {
+                    this.logText.Text += logText;
+                };
+
                 accessConverter.Convert();
             }
             catch (Exception ex)

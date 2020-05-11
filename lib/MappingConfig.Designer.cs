@@ -5,7 +5,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #pragma warning disable
-namespace XmlDocumentConverter
+namespace LantanaGroup.XmlDocumentConverter
 {
     using System;
     using System.Diagnostics;

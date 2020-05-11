@@ -1,33 +1,28 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Validation;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
-using System.Windows.Controls;
-using DocumentFormat.OpenXml.Validation;
-using System.Windows;
 
-namespace XmlDocumentConverter
+namespace LantanaGroup.XmlDocumentConverter
 {
     public class XlsxConverter
     {
+        public delegate void LogEventHandler(string logText);
+        public event LogEventHandler LogEvent;
+
         private MappingConfig xlsxConfig;
         private string outputDirectory;
         private string inputDirectory;
-        private TextBox logText;
 
-        public XlsxConverter(string configFileName, string inputDirectory, string outputDirectory, TextBox logText)
+        public XlsxConverter(string configFileName, string inputDirectory, string outputDirectory)
         {
             this.xlsxConfig = MappingConfig.LoadFromFileWithParents(configFileName);
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
-            this.logText = logText;
         }
 
         private WorkbookStylesPart AddStyleSheet(SpreadsheetDocument spreadsheet)
@@ -152,7 +147,7 @@ namespace XmlDocumentConverter
                 } 
                 catch (Exception exx)
                 {
-                    this.logText.Text += "XPATH/Configuration error \"" + xpath + "\": " + exx.Message + "\r\n";
+                    this.LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + exx.Message + "\r\n");
                 }
             }
 
@@ -169,7 +164,7 @@ namespace XmlDocumentConverter
 
                 if (groupNodes.Count == 0)
                 {
-                    this.logText.Text += string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context);
+                    this.LogEvent?.Invoke(string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context));
                     return;
                 }
 
@@ -190,7 +185,7 @@ namespace XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.logText.Text += "Error executing group xpath for " + groupConfig.TableName + ": " + ex.Message + "\r\n";
+                this.LogEvent?.Invoke("Error executing group xpath for " + groupConfig.TableName + ": " + ex.Message + "\r\n");
             }
         }
 
@@ -223,7 +218,7 @@ namespace XmlDocumentConverter
                     {
                         FileInfo fileInfo = new FileInfo(xmlFile);
 
-                        this.logText.Text += "\r\nReading XML file: " + xmlFile + "\r\n";
+                        this.LogEvent?.Invoke("\r\nReading XML file: " + xmlFile + "\r\n");
                         excelFormat.AddRow(fileInfo.Name);
 
                         XmlDocument xmlDoc = new XmlDocument();
@@ -270,18 +265,18 @@ namespace XmlDocumentConverter
 
                     if (validationResults.Count() > 0)
                     {
-                        this.logText.Text += "\r\n\r\nExcel validation errors:";
+                        this.LogEvent?.Invoke("\r\n\r\nExcel validation errors:");
 
                         foreach (var validationError in validationResults)
                         {
-                            this.logText.Text += "\r\n" + validationError.Description;
+                            this.LogEvent?.Invoke("\r\n" + validationError.Description);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.LogEvent?.Invoke("ERROR: " + ex.Message);
             }
         }
     }

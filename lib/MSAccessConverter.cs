@@ -1,31 +1,27 @@
-﻿using System;
+﻿using ADOX;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ADOX;
-using System.IO;
-using System.Reflection;
-using System.Windows.Controls;
-using System.Xml;
 using System.Data.OleDb;
+using System.IO;
+using System.Xml;
 
-namespace XmlDocumentConverter
+namespace LantanaGroup.XmlDocumentConverter
 {
     public class MSAccessConverter
     {
         private const string DatabaseFileName = "output.mdb";
 
-        private TextBox logText;
+        public delegate void LogEventHandler(string logText);
+        public event LogEventHandler LogEvent;
+
         private string inputDirectory;
         private string outputDirectory;
         private MappingConfig accessConfig;
 
-        public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory, TextBox logText)
+        public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory)
         {
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
-            this.logText = logText;
             this.accessConfig = MappingConfig.LoadFromFileWithParents(configFileName);
         }
 
@@ -75,15 +71,15 @@ namespace XmlDocumentConverter
             foreach (var groupColumnConfig in columns)
             {
                 if (columnNames.Contains(groupColumnConfig.Name))
-                    this.logText.Text += string.Format("Column {0} is a duplicated (occurs more than once)\r\n", groupColumnConfig.Name);
+                    this.LogEvent?.Invoke(string.Format("Column {0} is a duplicated (occurs more than once)\r\n", groupColumnConfig.Name));
                 else
                     columnNames.Add(groupColumnConfig.Name);
 
                 if (groupColumnConfig.Name.ToLower() == "id")
-                    this.logText.Text += "Column name \"id\" in table " + tableName + " is reserved for used. Please rename the column in the config.\r\n";
+                    this.LogEvent?.Invoke("Column name \"id\" in table " + tableName + " is reserved for used. Please rename the column in the config.\r\n");
 
                 if (parentTable != null && groupColumnConfig.Name.ToLower() == parentTable.Name.ToLower() + "id")
-                    this.logText.Text += "Column name \"" + parentTable.Name + "Id\" is reserved for use. Please rename the column in the config.\r\n";
+                    this.LogEvent?.Invoke("Column name \"" + parentTable.Name + "Id\" is reserved for use. Please rename the column in the config.\r\n");
 
                 var newCol = new ADOX.Column();
                 newCol.Name = groupColumnConfig.Name;
@@ -130,7 +126,7 @@ namespace XmlDocumentConverter
                 }
                 catch (Exception ex)
                 {
-                    this.logText.Text += ex.Message + "\r\n";
+                    this.LogEvent?.Invoke(ex.Message + "\r\n");
                 }
             }
         }
@@ -169,7 +165,7 @@ namespace XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.logText.Text += "Error inserting data into database: " + ex.Message + "\r\n";
+                this.LogEvent?.Invoke("Error inserting data into database: " + ex.Message + "\r\n");
                 return -1;
             }
         }
@@ -231,7 +227,7 @@ namespace XmlDocumentConverter
 
             if (groupNodes.Count == 0)
             {
-                this.logText.Text += string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context);
+                this.LogEvent?.Invoke(string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context));
                 return;
             }
 
@@ -275,7 +271,7 @@ namespace XmlDocumentConverter
                 }
                 catch (Exception exx)
                 {
-                    this.logText.Text += "XPATH/Configuration error \"" + xpath + "\": " + exx.Message + "\r\n";
+                    this.LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + exx.Message + "\r\n");
                 }
             }
 
@@ -295,7 +291,7 @@ namespace XmlDocumentConverter
             {
                 FileInfo fileInfo = new FileInfo(xmlFile);
 
-                this.logText.Text += "\r\nReading XML file: " + fileInfo.Name + "\r\n";
+                this.LogEvent?.Invoke("\r\nReading XML file: " + fileInfo.Name + "\r\n");
 
                 int recordId;
                 XmlDocument xmlDoc = new XmlDocument();

@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XmlDocumentConverter
+namespace LantanaGroup.XmlDocumentConverter
 {
     public partial class MappingConfig
     {

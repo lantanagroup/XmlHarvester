@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
 
-namespace XmlDocumentConverter
+namespace LantanaGroup.XmlDocumentConverter
 {
     /// <summary>
     /// Interaction logic for EditConfigWindow.xaml

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XmlDocumentConverter
+namespace LantanaGroup.XmlDocumentConverter
 {
     public partial class MappingGroup
     {
-        internal MappingGroup Parent { get; set; }
+        public MappingGroup Parent { get; set; }
     }
 }

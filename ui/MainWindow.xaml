@@ -3,21 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:XmlDocumentConverter"
+        xmlns:local="clr-namespace:LantanaGroup.XmlDocumentConverter.UI"
         mc:Ignorable="d"
-        Title="XML Document Converter" Height="350" Width="525">
+        Title="XML Document Converter" Height="493.428" Width="679.253">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="b2v" />
+        <local:BoolToGridRowHeightConverter x:Key="b2g" />
+    </Window.Resources>
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <Button x:Name="convertXlsxButton" Content="Convert XLSX" Click="ConvertXlsx_Click" IsEnabled="false" />
-                <Button x:Name="convertAccessButton" Content="Convert MS Access" Click="ConvertAccess_Click" IsEnabled="false" />
-                <Button x:Name="editExternalConfigButton" Content="Edit Config (External)" Click="EditExternalConfig_Click" />
+                <ToggleButton x:Name="XlsxButton" Content="XLSX" Click="ToggleOutputFormat_Click" />
+                <ToggleButton x:Name="MSAccessButton" Content="MS Access" Click="ToggleOutputFormat_Click" />
+                <ToggleButton x:Name="DB2Button" Content="DB2" Click="ToggleOutputFormat_Click" />
+                <Separator />
+                <Button x:Name="ConvertButton" Content="Convert" IsEnabled="False" Click="ConvertButton_Click" />
+                <Separator />
+                <Button x:Name="EditExternalConfigButton" Content="Edit Config (External)" Click="EditExternalConfig_Click" />
                 <!--Button x:Name="editInternalConfigButton" Content="Edit Config" Click="EditInternalConfig_Click" /-->
             </ToolBar>
         </ToolBarTray>
-        <Grid>
+        <Grid x:Name="SettingsGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="300" Width="*" />
+                <ColumnDefinition MinWidth="300" Width="38*" />
+                <ColumnDefinition Width="262*"/>
+                <ColumnDefinition Width="67*"/>
                 <ColumnDefinition Width="150" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -25,20 +35,19 @@
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
+                <RowDefinition Height="60" x:Name="SettingsRow" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Label x:Name="mappingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="What config should be used?" Margin="5,2"/>
-            <TextBox x:Name="mappingFileText" Grid.Row="1" Grid.Column="0" IsReadOnly="true" Margin="5,2" />
-            <Button x:Name="mappingFileButton" Grid.Row="1" Grid.Column="1" Content="Select" Margin="5,2" Click="mappingFileButton_Click" />
-            <Label x:Name="inputDirectoryLabel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="What directory contains the input files?" Margin="5,2"/>
-            <TextBox x:Name="inputDirectoryText" Grid.Row="3" Grid.Column="0" IsReadOnly="true" Margin="5,2" />
-            <Button x:Name="inputDirectoryButton" Grid.Row="3" Grid.Column="1" Content="Select" Margin="5,2" Click="inputDirectoryButton_Click" />
-            <Label x:Name="outputDirectoryLabel" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="What directory should the converted files be saved to?" Margin="5,2"/>
-            <TextBox x:Name="outputDirectoryText" Grid.Row="5" Grid.Column="0" IsReadOnly="true" Margin="5,2"/>
-            <Button x:Name="outputDirectoryButton" Grid.Row="5" Grid.Column="1" Content="Select" Margin="5,2" Click="outputDirectoryButton_Click" />
-            <TextBox x:Name="logText" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            <Label x:Name="MappingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Content="What config should be used?" Margin="5,2"/>
+            <TextBox x:Name="MappingFileText" Grid.Row="1" Grid.Column="0" IsReadOnly="true" Margin="5,2" Grid.ColumnSpan="3" />
+            <Button x:Name="MappingFileButton" Grid.Row="1" Grid.Column="3" Content="Select" Margin="5,2" Click="MappingFileButton_Click" />
+            <Label x:Name="InputDirectoryLabel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="What directory contains the input files?" Margin="5,2"/>
+            <TextBox x:Name="InputDirectoryText" Grid.Row="3" Grid.Column="0" IsReadOnly="true" Margin="5,2" Grid.ColumnSpan="3" />
+            <Button x:Name="InputDirectoryButton" Grid.Row="3" Grid.Column="3" Content="Select" Margin="5,2" Click="InputDirectoryButton_Click" />
+            <local:XlsxSettingsPanel x:Name="XlsxSettings" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5" Visibility="{Binding ElementName=XlsxButton, Path=IsChecked, Converter={StaticResource b2v}}" />
+            <local:MdbSettingsPanel x:Name="MdbSettings" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5" Visibility="{Binding ElementName=MSAccessButton, Path=IsChecked, Converter={StaticResource b2v}}" />
+            <local:DB2SettingsPanel x:Name="Db2Settings" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5" Visibility="{Binding ElementName=DB2Button, Path=IsChecked, Converter={StaticResource b2v}}" SettingsChanged="EnableConvertButton" />
+            <TextBox x:Name="LogText" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="#FFEEEEEE" />
         </Grid>
     </DockPanel>
 </Window>

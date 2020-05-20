@@ -13,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>embedded</DebugType>
@@ -52,6 +55,7 @@
     <Compile Include="MappingConfig.Designer.cs" />
     <Compile Include="MappingConfigPartial.cs" />
     <Compile Include="MappingGroup.cs" />
+    <Compile Include="DB2Converter.cs" />
     <Compile Include="MSAccessConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XlsxConverter.cs" />

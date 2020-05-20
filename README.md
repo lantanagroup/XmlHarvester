@@ -49,3 +49,35 @@ A CLI is available to run the tool from the command line (or automatically from 
 |  -c, --config | Required. The location of the mapping config XML file. |
 | -i, --input | Required. The directory that contains the input XML files. |
 | -o, --output | Required. The directory where output (XLSX and MDB) files should go. |
+
+
+## DB2 Conversion
+
+### Example db2dsdriver.cfg
+
+```
+<configuration>
+     <!-- Multi-line comments are not supported -->
+   <dsncollection>
+      <dsn alias="dock" name="docker" description="alias1_description" host="localhost" port="50000"/>
+   </dsncollection>
+   <databases>
+      <database name="xdc" host="localhost" port="50000">
+         <parameter name="CurrentSchema" value="xdc"/>
+         <wlb>
+            <parameter name="enableWLB" value="true"/>
+            <parameter name="maxTransports" value="50"/>
+         </wlb>
+         <acr>
+            <parameter name="enableACR" value="true"/>
+         </acr>
+         <specialregisters>
+            <parameter name="CURRENT DEGREE" value="'ANY'"/>
+         </specialregisters>
+         <sessionglobalvariables>
+            <parameter name="global_var1" value="abc"/>
+         </sessionglobalvariables>
+      </database>
+   </databases>
+</configuration>
+```

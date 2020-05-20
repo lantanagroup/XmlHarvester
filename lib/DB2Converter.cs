@@ -4,139 +4,42 @@ using System.Collections.Generic;
 using System.Data.OleDb;
 using System.IO;
 using System.Xml;
+using System.Data.Common;
+using System.Linq;
+using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.InkML;
+using DocumentFormat.OpenXml.Math;
 
 namespace LantanaGroup.XmlDocumentConverter
 {
-    public class MSAccessConverter
+    public class DB2Converter
     {
-        private const string DatabaseFileName = "output.mdb";
-
         public delegate void LogEventHandler(string logText);
         public event LogEventHandler LogEvent;
         public delegate void ConversionCompleteEventHandler();
         public event ConversionCompleteEventHandler ConversionComplete;
 
         private string inputDirectory;
+        private string database;
+        private string username;
+        private string password;
         private string outputDirectory;
         private MappingConfig accessConfig;
 
-        public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory)
+        public DB2Converter(string configFileName, string inputDirectory, string database, string username, string password, string outputDirectory)
         {
             this.inputDirectory = inputDirectory;
+            this.database = database;
+            this.username = username;
+            this.password = password;
             this.outputDirectory = outputDirectory;
             this.accessConfig = MappingConfig.LoadFromFileWithParents(configFileName);
         }
 
-        private string GetConnectionString(bool delete = false)
-        {
-            string fileName = MappingConfig.GetOutputFileNameWithoutExtension() + ".mdb";
-            string filePath = System.IO.Path.Combine(this.outputDirectory, fileName);
-
-            if (delete && File.Exists(filePath))
-                File.Delete(filePath);
-
-            string connectionString = string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Jet OLEDB:Engine Type=5", filePath);
-            return connectionString;
-        }
-
-        private ADOX.Table CreateTable(ADOX.CatalogClass cat, ADOX.Table parentTable, string tableName, List<MappingColumn> columns)
-        {
-            var newTable = new ADOX.Table();
-            newTable.Name = tableName;
-
-            var idCol = new ADOX.Column();
-            idCol.Name = "id";
-            idCol.Type = DataTypeEnum.adInteger;
-            idCol.ParentCatalog = cat;
-            idCol.Properties["AutoIncrement"].Value = true;
-            newTable.Columns.Append(idCol);
-
-            newTable.Keys.Append(tableName + "PK", KeyTypeEnum.adKeyPrimary, "id");
-
-            if (tableName == this.accessConfig.TableName)
-            {
-                var fileNameCol = new ADOX.Column();
-                fileNameCol.Name = "fileName";
-                fileNameCol.Type = DataTypeEnum.adVarWChar;
-                fileNameCol.ParentCatalog = cat;
-                newTable.Columns.Append(fileNameCol);
-            }
-
-            if (parentTable != null)
-            {
-                newTable.Columns.Append(parentTable.Name + "Id", DataTypeEnum.adInteger);
-                newTable.Keys.Append(tableName + "FKey", KeyTypeEnum.adKeyForeign, parentTable.Name + "Id", parentTable.Name, "id");
-            }
-
-            List<string> columnNames = new List<string>();
-
-            foreach (var groupColumnConfig in columns)
-            {
-                if (columnNames.Contains(groupColumnConfig.Name))
-                    this.LogEvent?.Invoke(string.Format("Column {0} is a duplicated (occurs more than once)\r\n", groupColumnConfig.Name));
-                else
-                    columnNames.Add(groupColumnConfig.Name);
-
-                if (groupColumnConfig.Name.ToLower() == "id")
-                    this.LogEvent?.Invoke("Column name \"id\" in table " + tableName + " is reserved for used. Please rename the column in the config.\r\n");
-
-                if (parentTable != null && groupColumnConfig.Name.ToLower() == parentTable.Name.ToLower() + "id")
-                    this.LogEvent?.Invoke("Column name \"" + parentTable.Name + "Id\" is reserved for use. Please rename the column in the config.\r\n");
-
-                var newCol = new ADOX.Column();
-                newCol.Name = groupColumnConfig.Name;
-                newCol.Type = DataTypeEnum.adVarWChar;
-
-                if (groupColumnConfig.IsNarrative)
-                    newCol.Type = DataTypeEnum.adLongVarWChar;
-
-                newCol.ParentCatalog = cat;
-                newCol.Attributes = ColumnAttributesEnum.adColNullable;
-                newTable.Columns.Append(newCol);
-            }
-
-            cat.Tables.Append(newTable);
-
-            return newTable;
-        }
-
-        private ADOX.Table CreateGroupTable(ADOX.CatalogClass cat, ADOX.Table parentTable, MappingGroup group)
-        {
-            var newTable = this.CreateTable(cat, parentTable, group.TableName, group.Column);
-
-            foreach (var childGroup in group.Group)
-            {
-                this.CreateGroupTable(cat, newTable, childGroup);
-            }
-
-            return newTable;
-        }
-
-        private void CreateDatabase()
-        {
-            ADOX.CatalogClass cat = new ADOX.CatalogClass();
-
-            cat.Create(this.GetConnectionString(true));
-
-            var recordTable = this.CreateTable(cat, null, this.accessConfig.TableName, this.accessConfig.Column);
-
-            foreach (var groupConfig in this.accessConfig.Group)
-            {
-                try
-                {
-                    this.CreateGroupTable(cat, recordTable, groupConfig);
-                }
-                catch (Exception ex)
-                {
-                    this.LogEvent?.Invoke(ex.Message + "\r\n");
-                }
-            }
-        }
-
-        private int InsertData(OleDbConnection conn, string tableName, Dictionary<string, object> columns)
+        private int InsertData(DbConnection conn, string tableName, Dictionary<string, object> columns)
         {
             var columnsNames = columns.Keys;
-            string insertQuery = "INSERT INTO [" + tableName + "] ([" + string.Join("], [", columnsNames) + "]) VALUES (";
+            string insertQuery = "INSERT INTO " + tableName.ToUpper() + " (" + string.Join(", ", columnsNames) + ") VALUES (";
 
             List<string> values = new List<string>();
 
@@ -149,20 +52,19 @@ namespace LantanaGroup.XmlDocumentConverter
                 else
                     values.Add(value.ToString());
             }
-            
+
             insertQuery += string.Join(", ", values) + ")";
 
             try
             {
-                OleDbCommand insertCommand = new OleDbCommand();
-                insertCommand.Connection = conn;
+                DbCommand insertCommand = conn.CreateCommand();
                 insertCommand.CommandText = insertQuery;
                 insertCommand.ExecuteNonQuery();
 
-                OleDbCommand getIdCommand = new OleDbCommand();
-                getIdCommand.Connection = conn;
-                getIdCommand.CommandText = "SELECT @@Identity";
-                int res = (int)getIdCommand.ExecuteScalar();
+                DbCommand getIdCommand = conn.CreateCommand();
+                getIdCommand.CommandText = string.Format("SELECT SYSIBM.IDENTITY_VAL_LOCAL() AS ID FROM {0}", tableName.ToUpper());
+                decimal ret = (decimal) getIdCommand.ExecuteScalar();
+                int res = Decimal.ToInt32(ret);
                 return res;
             }
             catch (Exception ex)
@@ -223,7 +125,7 @@ namespace LantanaGroup.XmlDocumentConverter
             return cellValue;
         }
 
-        private void ProcessGroup(OleDbConnection conn, MappingGroup groupConfig, XmlNode parentNode, XmlNamespaceManager nsManager, int parentId, string parentName)
+        private void ProcessGroup(DbConnection conn, MappingGroup groupConfig, XmlNode parentNode, XmlNamespaceManager nsManager, int parentId, string parentName)
         {
             var groupNodes = parentNode.SelectNodes(groupConfig.Context, nsManager);
 
@@ -280,24 +182,118 @@ namespace LantanaGroup.XmlDocumentConverter
             return null;
         }
 
+        #region Schema Creation
+
+        private void EnsureTable(DbConnection conn, string tableName, List<MappingColumn> columns, string parentTableName = null)
+        {
+            DbCommand existsCmd = conn.CreateCommand();
+            existsCmd.CommandText = string.Format("SELECT COUNT(0) AS TOTAL FROM SYSIBM.SYSTABLES WHERE NAME = '{0}'", tableName.ToUpper());
+
+            int existsResults = (int) existsCmd.ExecuteScalar();
+
+            this.LogEvent?.Invoke("Validating table " + tableName.ToUpper());
+
+            // Check the definition of the table compared to what's defined in config
+            if (existsResults == 1)
+            {
+                DbCommand definitionCmd = conn.CreateCommand();
+                definitionCmd.CommandText = string.Format("SELECT NAME, COLTYPE, LENGTH FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '{0}'", tableName.ToUpper());
+
+                DbDataReader reader = definitionCmd.ExecuteReader();
+                List<MappingColumn> actualCols = new List<MappingColumn>();
+                List<MappingColumn> expectedCols = new List<MappingColumn>(columns);
+                expectedCols.Add(new MappingColumn() { Name = "ID" });
+
+                if (!string.IsNullOrEmpty(parentTableName))
+                    expectedCols.Add(new MappingColumn() { Name = parentTableName.ToUpper() + "ID" });
+
+                while (reader.Read())
+                {
+                    string colName = reader.GetString(0);
+                    string colType = reader.GetString(1);
+                    short colLength = reader.GetInt16(2);
+
+                    actualCols.Add(new MappingColumn() {
+                        Name = colName,
+                        IsNarrative = colType.Trim() == "LONGVAR"
+                    });
+                }
+
+                expectedCols.ForEach(delegate (MappingColumn expected)
+                {
+                    if (actualCols.Find(actual => actual.Name == expected.Name.ToUpper() && actual.IsNarrative == expected.IsNarrative) == null)
+                        throw new Exception(string.Format("Could not find correct definition of column {0} in table {1}", expected.Name.ToUpper(), tableName));
+                });
+            }
+            else if (existsResults == 0)
+            {
+                string columnDefinitions = string.Empty;
+                string foreignKeyCol = string.Empty;
+
+                if (!string.IsNullOrEmpty(parentTableName))
+                    foreignKeyCol = string.Format("{0}ID INTEGER NOT NULL, ", parentTableName.ToUpper());
+
+                foreach (var col in columns.OrderBy(y => y.Name))
+                {
+                    string dataType = col.IsNarrative ? "LONG VARCHAR" : "VARCHAR(255)";
+                    columnDefinitions += string.Format("{0} {1}, ", col.Name.ToUpper(), dataType);
+                }
+
+                DbCommand createCmd = conn.CreateCommand();
+                createCmd.CommandText = string.Format("CREATE TABLE {0} (ID INTEGER GENERATED ALWAYS AS IDENTITY NOT NULL, {1}{2}PRIMARY KEY (ID))", tableName.ToUpper(), foreignKeyCol, columnDefinitions);
+
+                createCmd.ExecuteNonQuery();
+            }
+        }
+
+        private void EnsureGroup(DbConnection conn, MappingGroup group, string parentTableName)
+        {
+            this.EnsureTable(conn, group.TableName, group.Column, parentTableName);
+
+            group.Group.ForEach(delegate (MappingGroup nextGroup)
+            {
+                this.EnsureGroup(conn, nextGroup, group.TableName);
+            });
+        }
+
+        private void ValidateSchema(DbConnection conn)
+        {
+            List<MappingColumn> columns = new List<MappingColumn>(this.accessConfig.Column);
+            columns.Insert(0, new MappingColumn()
+            {
+                Name = "FILENAME"
+            });
+
+            this.EnsureTable(conn, this.accessConfig.TableName, columns);
+
+            this.accessConfig.Group.ForEach(delegate (MappingGroup nextGroup)
+            {
+                this.EnsureGroup(conn, nextGroup, this.accessConfig.TableName);
+            });
+        }
+
+        #endregion
+
         public void Convert()
         {
+            DbProviderFactory factory = DbProviderFactories.GetFactory("IBM.Data.DB2");
+            DbConnection conn = factory.CreateConnection();
+            conn.ConnectionString = string.Format("Database={0};UID={1};PWD={2}", this.database, this.username, this.password);
+            conn.Open();
+
             try
             {
-                this.CreateDatabase();
+                this.ValidateSchema(conn);
             }
             catch (Exception ex)
             {
-                this.LogEvent?.Invoke(string.Format("Failed to create database and cannot proceed due to: " + ex.Message));
+                this.LogEvent?.Invoke(string.Format("Failed to validate database and cannot proceed due to: " + ex.Message));
                 this.ConversionComplete?.Invoke();
                 return;
             }
 
             try
             {
-                OleDbConnection dbConnection = new OleDbConnection(this.GetConnectionString());
-                dbConnection.Open();
-
                 string[] xmlFiles = Directory.GetFiles(this.inputDirectory, "*.xml");
 
                 foreach (var xmlFile in xmlFiles)
@@ -318,29 +314,29 @@ namespace LantanaGroup.XmlDocumentConverter
                     }
 
                     Dictionary<string, object> headerColumnData = new Dictionary<string, object>();
-                    headerColumnData["fileName"] = fileInfo.Name;
+                    headerColumnData["FILENAME"] = fileInfo.Name;
 
                     // Read the header columns
                     foreach (var colConfig in this.accessConfig.Column)
                     {
                         string xpath = colConfig.Value;
                         string cellValue = this.GetValue(xpath, xmlDoc.DocumentElement, nsManager, colConfig.IsNarrative);
-                        headerColumnData.Add(colConfig.Name, cellValue);
+                        headerColumnData.Add(colConfig.Name.ToUpper(), cellValue);
                     }
 
-                    recordId = this.InsertData(dbConnection, this.accessConfig.TableName, headerColumnData);
+                    recordId = this.InsertData(conn, this.accessConfig.TableName, headerColumnData);
 
                     if (recordId < 0)
                         continue;
 
                     foreach (var groupConfig in this.accessConfig.Group)
                     {
-                        this.ProcessGroup(dbConnection, groupConfig, xmlDoc, nsManager, recordId, this.accessConfig.TableName);
+                        this.ProcessGroup(conn, groupConfig, xmlDoc, nsManager, recordId, this.accessConfig.TableName);
                     }
                 }
 
-                dbConnection.Close();
-            } 
+                conn.Close();
+            }
             catch (Exception ex)
             {
                 this.LogEvent?.Invoke("Failed to process data due to: " + ex.Message);

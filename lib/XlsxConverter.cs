@@ -13,6 +13,8 @@ namespace LantanaGroup.XmlDocumentConverter
     {
         public delegate void LogEventHandler(string logText);
         public event LogEventHandler LogEvent;
+        public delegate void ConversionCompleteEventHandler();
+        public event ConversionCompleteEventHandler ConversionComplete;
 
         private MappingConfig xlsxConfig;
         private string outputDirectory;
@@ -191,14 +193,13 @@ namespace LantanaGroup.XmlDocumentConverter
 
         public void Convert()
         {
-            string fileName = MappingConfig.GetOutputFileNameWithoutExtension() + ".xlsx";
-            string filePath = System.IO.Path.Combine(this.outputDirectory, fileName);
-
-            string[] xmlFiles = Directory.GetFiles(this.inputDirectory, "*.xml");
-            ExcelFormat excelFormat = new ExcelFormat();
-
             try
             {
+                string fileName = MappingConfig.GetOutputFileNameWithoutExtension() + ".xlsx";
+                string filePath = System.IO.Path.Combine(this.outputDirectory, fileName);
+
+                string[] xmlFiles = Directory.GetFiles(this.inputDirectory, "*.xml");
+                ExcelFormat excelFormat = new ExcelFormat();
 
                 using (SpreadsheetDocument spreadsheet = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook))
                 {
@@ -276,7 +277,11 @@ namespace LantanaGroup.XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.LogEvent?.Invoke("ERROR: " + ex.Message);
+                this.LogEvent?.Invoke("Failed to process data and produce excel file due to: " + ex.Message);
+            }
+            finally
+            {
+                this.ConversionComplete?.Invoke();
             }
         }
     }

@@ -19,13 +19,13 @@
 	<column name="confidentialityCodeSystemName">/cda:ClinicalDocument/cda:confidentialityCode/@codeSystemName</column>
 
 	<!--  Patient Details-->
-	<column name="patientId">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:id/@root</column>
-	<column name="patientIdExtsion">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:id/@extension</column>
+	<column name="patientIdSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:id/@root</column>
+	<column name="patientSSN">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole[cda:id/@root='2.16.840.1.113883.4.1']/cda:id/@extension</column>
 	<column name="patientNameGiven">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name/cda:given</column>
 	<column name="patientNameFamily">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name/cda:family</column>
 	<column name="dob">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:birthTime</column>
-	<column name="Gender">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:administrativeGenderCode/@code</column>
-	<column name="GenderCodeSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:administrativeGenderCode/@codeSystem</column>
+	<column name="AdminGender">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:administrativeGenderCode/@code</column>
+	<column name="AdminGenderCodeSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:administrativeGenderCode/@codeSystem</column>
 	<column name="maritalStatusCode">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:maritalStatusCode/@code</column>
 	<column name="maritalStatusDisplay">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:maritalStatusCode/@displayName</column>
 	<column name="maritalStatusCodeSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:maritalStatusCode/@codeSystem</column>
@@ -37,7 +37,9 @@
 	<column name="patientAddrCity">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:addr/cda:city</column>
 	<column name="patientAddrState">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:addr/cda:state</column>
 	<column name="patientAddrZip">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:addr/cda:postalCode</column>
-	<column name="patientPhone">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:telecom/@value</column>
+	<column name="patientHomePhone">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole[cda:telecom/@use='HP']/cda:telecom/@value</column>
+	<column name="patientMobilePhone">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole[cda:telecom/@use='MC']/cda:telecom/@value</column>
+	<column name="patientEmergencyContact">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole[cda:telecom/@use='EC']/cda:telecom/@value</column>
 
 	<!--  Custodian Details-->
 	<column name="custodianId">/cda:ClinicalDocument/cda:custodian/cda:assignedCustodian/cda:representedCustodianOrganization/cda:id/@root</column>
@@ -467,7 +469,8 @@
 		<column name="TemplateId">cda:templateId/@root</column>
 		<column name="StatusCode">cda:statusCode/@code</column>
 		<column name="effectiveTime">cda:effectiveTime/@value</column>
-		
+	</group>
+
 
 
 	<!-- Problem Observation -->

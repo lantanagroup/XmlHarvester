@@ -150,7 +150,7 @@ namespace LantanaGroup.XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.LogText.Text += "Error converting: " + ex.Message;
+                this.LogText.Text += "ERROR: " + ex.Message;
             }
         }
 
@@ -184,7 +184,7 @@ namespace LantanaGroup.XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.LogText.Text += "Error converting: " + ex.Message;
+                this.LogText.Text += "ERROR: " + ex.Message;
             }
         }
 
@@ -218,7 +218,7 @@ namespace LantanaGroup.XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.LogText.Text += "Error converting: " + ex.Message;
+                this.LogText.Text += "ERROR: " + ex.Message;
             }
         }
 

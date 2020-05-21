@@ -21,9 +21,16 @@ namespace LantanaGroup.XmlDocumentConverter
         }
         public static MappingConfig LoadFromFileWithParents(string fileName)
         {
-            MappingConfig obj = LoadFromFile(fileName);
-            AssociateParents(obj.Group);
-            return obj;
+            try
+            {
+                MappingConfig obj = LoadFromFile(fileName);
+                AssociateParents(obj.Group);
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error loading config file: " + ex.Message, ex);
+            }
         }
 
         public static string GetOutputFileNameWithoutExtension()

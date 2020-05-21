@@ -238,24 +238,15 @@
 		<column name="ValueUnit">cda:value/@unit</column>
 	</group>  
 
-	<!-- Encounter Performed Id 2.16.840.1.113883.10.20.24.3.133 -->
-	<group tableName="encounterPerformed" columnPrefix="Encounter Performed" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.133']">
-		<column name="TemplateId">cda:templateId/@root</column>
-		<column name="IdRoot">cda:id/@root</column>
-		<column name="Code">cda:code/@code</column>
-		<column name="CodeSystem">cda:code/@codeSystem</column>
-		<column name="CodeSystemName">cda:code/@codeSystemName</column>
-		<column name="CodeDisplayName">cda:code/@displayName</column>
-		<!-- Encounter Activity Id 2.16.840.1.113883.10.20.22.4.49 --> 
-		<column name="ActivityTemplateId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:templateId/@root</column>
-		<column name="ActivityTempIdExtension">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:templateId/@extension</column>
-		<column name="ActivityId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:id/@root</column>
-		<column name="ActivityIdExtension">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:id/@extension</column>
-		<column name="ActivityCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:code/@code</column>
-		<column name="ActivityCodeSystem">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:code/@codeSystem</column>
-		<column name="ActivityCodeSystemName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:code/@codeSystemName</column>
-		<column name="ActivityCodeDisplayName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:code/@displayName</column>
-		<column name="ActivityCodeValueSet">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:code/@sdtc:valueSet</column>
+	<!-- Encounter Performed Id 2.16.840.1.113883.10.20.22.4.49 -->
+	<group tableName="encounterActivity" columnPrefix="Encounter Activity" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']">
+		<column name="ActivityTemplateId">cda:templateId/@root</column>
+		<column name="ActivityTempIdExtension">cda:templateId/@extension</column>
+		<column name="ActivityId">cda:id/@root</column>
+		<column name="ActivityCode">cda:code/@code</column>
+		<column name="ActivityCodeSystem">cda:code/@codeSystem</column>
+		<column name="ActivityCodeSystemName">cda:code/@codeSystemName</column>
+		<column name="ActivityCodeDisplayName">cda:code/@displayName</column>
 		<column name="ActivityStatusCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:statusCode/@code</column>
 		<column name="ActivityStartDate">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:effectiveTime/cda:low/@value</column>
 		<column name="ActivityEndDate">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:effectiveTime/cda:high/@value</column>
@@ -457,10 +448,27 @@
 
 
 	<!-- Planned Observation id 2.16.840.1.113883.10.20.22.4.44 -->
-
+	<group tableName="PlannedObs" columnPrefix="Planned Observation" context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.44']">
+		<column name="mood">@moodCode</column>
+		<column name="TemplateId">cda:templateId/@root</column>
+		<column name="effectiveTime">cda:effectiveTime/@value</column>
+		<column name="Value">cda:value@value</column>
+		<column name="MethodCode">cda:methodCode/@code</column>
+		<column name="MethodCodeSystem">cda:methodCode/@codeSystem</column>
+		<column name="TargetSiteCode">cda:targetSiteCode/@code</column>
+		<column name="TargetSiteCodeSystem">cda:targetSiteCode/@codeSystem</column>
+		<!-- TODO: performer, authorParticipation, etc. -->
+	</group>
 	<!-- eICR Trigger Code Lab Test Order -->
 
+
 	<!-- Problem Concern Act -->
+	<group tableName="PblmConcAct" columnPrefix="Problem Concern Act" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.3']">
+		<column name="TemplateId">cda:templateId/@root</column>
+		<column name="StatusCode">cda:statusCode/@code</column>
+		<column name="effectiveTime">cda:effectiveTime/@value</column>
+		
+
 
 	<!-- Problem Observation -->
 

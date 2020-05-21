@@ -101,7 +101,7 @@
 
 	<!-- encompassingEncounter -->
 	<group tableName="encompassingEncounter" columnPrefix="encompassingEncounter" context="/cda:ClinicalDocument/cda:componentOf/cda:encompassingEncounter">
-		<column name="id">cda:id</column>
+		<column name="EncounterId">cda:id</column>
 		<column name="CodeCode">cda:code/@code</column>
 		<column name="CodeSystem">cda:code/@codeSystem</column>
 		<column name="CodeSystemName">cda:code/@codeSystemName</column>
@@ -452,7 +452,7 @@
 		<column name="mood">@moodCode</column>
 		<column name="TemplateId">cda:templateId/@root</column>
 		<column name="effectiveTime">cda:effectiveTime/@value</column>
-		<column name="Value">cda:value@value</column>
+		<column name="Value">cda:value/@value</column>
 		<column name="MethodCode">cda:methodCode/@code</column>
 		<column name="MethodCodeSystem">cda:methodCode/@codeSystem</column>
 		<column name="TargetSiteCode">cda:targetSiteCode/@code</column>
@@ -467,8 +467,7 @@
 		<column name="TemplateId">cda:templateId/@root</column>
 		<column name="StatusCode">cda:statusCode/@code</column>
 		<column name="effectiveTime">cda:effectiveTime/@value</column>
-		
-
+	</group>
 
 	<!-- Problem Observation -->
 

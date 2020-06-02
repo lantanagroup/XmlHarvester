@@ -9,6 +9,7 @@ using System.Linq;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.InkML;
 using DocumentFormat.OpenXml.Math;
+using Saxon.Api;
 
 namespace LantanaGroup.XmlDocumentConverter
 {
@@ -24,7 +25,11 @@ namespace LantanaGroup.XmlDocumentConverter
         private string username;
         private string password;
         private string outputDirectory;
-        private MappingConfig accessConfig;
+        private MappingConfig config;
+
+        private Processor processor;
+        private DocumentBuilder builder;
+        private XPathCompiler compiler;
 
         public DB2Converter(string configFileName, string inputDirectory, string database, string username, string password, string outputDirectory)
         {
@@ -33,7 +38,14 @@ namespace LantanaGroup.XmlDocumentConverter
             this.username = username;
             this.password = password;
             this.outputDirectory = outputDirectory;
-            this.accessConfig = MappingConfig.LoadFromFileWithParents(configFileName);
+            this.config = MappingConfig.LoadFromFileWithParents(configFileName);
+
+            this.processor = new Processor();
+            this.builder = this.processor.NewDocumentBuilder();
+            this.compiler = this.processor.NewXPathCompiler();
+
+            foreach (var theNs in this.config.Namespace)
+                this.compiler.DeclareNamespace(theNs.Prefix, theNs.Uri);
         }
 
         private int InsertData(DbConnection conn, string tableName, Dictionary<string, object> columns)
@@ -74,57 +86,6 @@ namespace LantanaGroup.XmlDocumentConverter
             }
         }
 
-        private string GetValue(XmlNodeList nodes, bool isNarrative)
-        {
-            if (nodes == null)
-                return string.Empty;
-
-            string cellValue = string.Empty;
-
-            for (var i = 0; i < nodes.Count; i++)
-            {
-                string nodeValue = string.Empty;
-
-                if (isNarrative)
-                {
-                    var allNodes = nodes[i].SelectNodes(".//*/text()");
-
-                    foreach (XmlNode nextNode in allNodes)
-                    {
-                        if (!string.IsNullOrEmpty(nodeValue))
-                            nodeValue += " ";
-                        nodeValue += nextNode.Value;
-                    }
-                }
-                else
-                {
-                    nodeValue = nodes[i].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["value"] != null)
-                        nodeValue = nodes[i].Attributes["value"].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["displayName"] != null)
-                        nodeValue = nodes[i].Attributes["displayName"].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["code"] != null)
-                        nodeValue = nodes[i].Attributes["code"].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue))
-                        nodeValue = nodes[i].InnerText;
-                }
-
-                if (!string.IsNullOrEmpty(nodeValue))
-                {
-                    if (i > 0)
-                        cellValue += "\r\n";
-
-                    cellValue += nodeValue;
-                }
-            }
-
-            return cellValue;
-        }
-
         private void ProcessGroup(DbConnection conn, MappingGroup groupConfig, XmlNode parentNode, XmlNamespaceManager nsManager, int parentId, string parentName)
         {
             var groupNodes = parentNode.SelectNodes(groupConfig.Context, nsManager);
@@ -161,22 +122,34 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             try
             {
-                XmlNodeList nodes = !string.IsNullOrEmpty(xpath) ? parent.SelectNodes(xpath, nsManager) : null;
-                return GetValue(nodes, isNarrative);
-            }
-            catch
-            {
-                try
-                {
-                    var eval = parent.CreateNavigator().Evaluate(xpath, nsManager);
+                var parentXdmNode = this.builder.Build(parent);
+                var compiledXpath = compiler.Compile(xpath);
+                var selector = compiledXpath.Load();
+                selector.ContextItem = parentXdmNode;
+                var results = selector.Evaluate().GetList();
 
-                    if (eval != null)
-                        return eval.ToString();
-                }
-                catch (Exception exx)
+                if (results.Count == 1)
                 {
-                    this.LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + exx.Message + "\r\n");
+                    return results[0].GetStringValue();
                 }
+                else if (results.Count > 1)
+                {
+                    String ret = "";
+
+                    foreach (var next in results)
+                    {
+                        if (!string.IsNullOrEmpty(ret)) ret += ", ";
+                        ret += next.GetStringValue();
+                    }
+
+                    return ret;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                this.LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + ex.Message + "\r\n");
             }
 
             return null;
@@ -258,17 +231,17 @@ namespace LantanaGroup.XmlDocumentConverter
 
         private void ValidateSchema(DbConnection conn)
         {
-            List<MappingColumn> columns = new List<MappingColumn>(this.accessConfig.Column);
+            List<MappingColumn> columns = new List<MappingColumn>(this.config.Column);
             columns.Insert(0, new MappingColumn()
             {
                 Name = "FILENAME"
             });
 
-            this.EnsureTable(conn, this.accessConfig.TableName, columns);
+            this.EnsureTable(conn, this.config.TableName, columns);
 
-            this.accessConfig.Group.ForEach(delegate (MappingGroup nextGroup)
+            this.config.Group.ForEach(delegate (MappingGroup nextGroup)
             {
-                this.EnsureGroup(conn, nextGroup, this.accessConfig.TableName);
+                this.EnsureGroup(conn, nextGroup, this.config.TableName);
             });
         }
 
@@ -308,7 +281,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
                     XmlNamespaceManager nsManager = new XmlNamespaceManager(xmlDoc.NameTable);
 
-                    foreach (var configNamespace in this.accessConfig.Namespace)
+                    foreach (var configNamespace in this.config.Namespace)
                     {
                         nsManager.AddNamespace(configNamespace.Prefix, configNamespace.Uri);
                     }
@@ -317,21 +290,21 @@ namespace LantanaGroup.XmlDocumentConverter
                     headerColumnData["FILENAME"] = fileInfo.Name;
 
                     // Read the header columns
-                    foreach (var colConfig in this.accessConfig.Column)
+                    foreach (var colConfig in this.config.Column)
                     {
                         string xpath = colConfig.Value;
                         string cellValue = this.GetValue(xpath, xmlDoc.DocumentElement, nsManager, colConfig.IsNarrative);
                         headerColumnData.Add(colConfig.Name.ToUpper(), cellValue);
                     }
 
-                    recordId = this.InsertData(conn, this.accessConfig.TableName, headerColumnData);
+                    recordId = this.InsertData(conn, this.config.TableName, headerColumnData);
 
                     if (recordId < 0)
                         continue;
 
-                    foreach (var groupConfig in this.accessConfig.Group)
+                    foreach (var groupConfig in this.config.Group)
                     {
-                        this.ProcessGroup(conn, groupConfig, xmlDoc, nsManager, recordId, this.accessConfig.TableName);
+                        this.ProcessGroup(conn, groupConfig, xmlDoc, nsManager, recordId, this.config.TableName);
                     }
                 }
 

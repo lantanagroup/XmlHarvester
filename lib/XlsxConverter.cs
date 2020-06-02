@@ -2,6 +2,7 @@
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Validation;
+using Saxon.Api;
 using System;
 using System.IO;
 using System.Linq;
@@ -16,15 +17,26 @@ namespace LantanaGroup.XmlDocumentConverter
         public delegate void ConversionCompleteEventHandler();
         public event ConversionCompleteEventHandler ConversionComplete;
 
-        private MappingConfig xlsxConfig;
+        private MappingConfig config;
         private string outputDirectory;
         private string inputDirectory;
 
+        private Processor processor;
+        private DocumentBuilder builder;
+        private XPathCompiler compiler;
+
         public XlsxConverter(string configFileName, string inputDirectory, string outputDirectory)
         {
-            this.xlsxConfig = MappingConfig.LoadFromFileWithParents(configFileName);
+            this.config = MappingConfig.LoadFromFileWithParents(configFileName);
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
+
+            this.processor = new Processor();
+            this.builder = this.processor.NewDocumentBuilder();
+            this.compiler = this.processor.NewXPathCompiler();
+
+            foreach (var theNs in this.config.Namespace)
+                this.compiler.DeclareNamespace(theNs.Prefix, theNs.Uri);
         }
 
         private WorkbookStylesPart AddStyleSheet(SpreadsheetDocument spreadsheet)
@@ -80,80 +92,41 @@ namespace LantanaGroup.XmlDocumentConverter
             return stylesheet;
         }
 
-        private string GetValue(XmlNodeList nodes, bool isNarrative)
-        {
-            if (nodes == null)
-                return string.Empty;
-
-            string cellValue = string.Empty;
-
-            for (var i = 0; i < nodes.Count; i++)
-            {
-                string nodeValue = string.Empty;
-
-                if (isNarrative)
-                {
-                    var allNodes = nodes[i].SelectNodes(".//*/text()");
-
-                    foreach (XmlNode nextNode in allNodes)
-                    {
-                        if (!string.IsNullOrEmpty(nodeValue))
-                            nodeValue += " ";
-                        nodeValue += nextNode.Value;
-                    }
-                }
-                else
-                {
-                    nodeValue = nodes[i].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["value"] != null)
-                        nodeValue = nodes[i].Attributes["value"].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["displayName"] != null)
-                        nodeValue = nodes[i].Attributes["displayName"].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["code"] != null)
-                        nodeValue = nodes[i].Attributes["code"].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue))
-                        nodeValue = nodes[i].InnerText;
-                }
-
-                if (!string.IsNullOrEmpty(nodeValue))
-                {
-                    if (i > 0)
-                        cellValue += "\r\n";
-
-                    cellValue += nodeValue;
-                }
-            }
-
-            return cellValue;
-        }
-
         private string GetValue(string xpath, XmlNode parent, XmlNamespaceManager nsManager, bool isNarrative)
         {
             try
             {
-                XmlNodeList nodes = !string.IsNullOrEmpty(xpath) ? parent.SelectNodes(xpath, nsManager) : null;
-                return GetValue(nodes, isNarrative);
-            }
-            catch
-            {
-                try
-                {
-                    var eval = parent.CreateNavigator().Evaluate(xpath, nsManager);
+                var parentXdmNode = this.builder.Build(parent);
+                var compiledXpath = compiler.Compile(xpath);
+                var selector = compiledXpath.Load();
+                selector.ContextItem = parentXdmNode;
+                var results = selector.Evaluate().GetList();
 
-                    if (eval != null)
-                        return eval.ToString();
-                } 
-                catch (Exception exx)
+                if (results.Count == 1)
                 {
-                    this.LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + exx.Message + "\r\n");
+                    return results[0].GetStringValue();
                 }
+                else if (results.Count > 1)
+                {
+                    String ret = "";
+
+                    foreach (var next in results)
+                    {
+                        if (!string.IsNullOrEmpty(ret)) ret += ", ";
+                        ret += next.GetStringValue();
+                    }
+
+                    return ret;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                this.LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + ex.Message + "\r\n");
             }
 
-            return string.Empty;
+            return null;
         }
 
         private void ProcessGroup(MappingGroup groupConfig, ExcelFormat excelFormat, XmlNode node, XmlNamespaceManager nsManager)
@@ -227,25 +200,25 @@ namespace LantanaGroup.XmlDocumentConverter
 
                         XmlNamespaceManager nsManager = new XmlNamespaceManager(xmlDoc.NameTable);
                         
-                        foreach (var configNamespace in this.xlsxConfig.Namespace)
+                        foreach (var configNamespace in this.config.Namespace)
                         {
                             nsManager.AddNamespace(configNamespace.Prefix, configNamespace.Uri);
                         }
 
-                        foreach (var columnConfig in this.xlsxConfig.Column)
+                        foreach (var columnConfig in this.config.Column)
                         {
                             string xpath = columnConfig.Value;
                             string cellValue = GetValue(xpath, xmlDoc.DocumentElement, nsManager, columnConfig.IsNarrative);
                             excelFormat.AddData(null, columnConfig, cellValue, cellValue.IndexOf("\r\n") >= 0);
                         }
 
-                        foreach (var groupConfig in this.xlsxConfig.Group)
+                        foreach (var groupConfig in this.config.Group)
                         {
                             this.ProcessGroup(groupConfig, excelFormat, xmlDoc.DocumentElement, nsManager);
                         }
                     }
 
-                    excelFormat.PopulateSpreadsheet(this.xlsxConfig, spreadsheet);
+                    excelFormat.PopulateSpreadsheet(this.config, spreadsheet);
 
                     // save worksheet
                     spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.Save();

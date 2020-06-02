@@ -1,4 +1,5 @@
 ﻿using ADOX;
+using Saxon.Api;
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
@@ -18,13 +19,24 @@ namespace LantanaGroup.XmlDocumentConverter
 
         private string inputDirectory;
         private string outputDirectory;
-        private MappingConfig accessConfig;
+        private MappingConfig config;
+
+        private Processor processor;
+        private DocumentBuilder builder;
+        private XPathCompiler compiler;
 
         public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory)
         {
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
-            this.accessConfig = MappingConfig.LoadFromFileWithParents(configFileName);
+            this.config = MappingConfig.LoadFromFileWithParents(configFileName);
+
+            this.processor = new Processor();
+            this.builder = this.processor.NewDocumentBuilder();
+            this.compiler = this.processor.NewXPathCompiler();
+
+            foreach (var theNs in this.config.Namespace)
+                this.compiler.DeclareNamespace(theNs.Prefix, theNs.Uri);
         }
 
         private string GetConnectionString(bool delete = false)
@@ -53,7 +65,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
             newTable.Keys.Append(tableName + "PK", KeyTypeEnum.adKeyPrimary, "id");
 
-            if (tableName == this.accessConfig.TableName)
+            if (tableName == this.config.TableName)
             {
                 var fileNameCol = new ADOX.Column();
                 fileNameCol.Name = "fileName";
@@ -118,9 +130,9 @@ namespace LantanaGroup.XmlDocumentConverter
 
             cat.Create(this.GetConnectionString(true));
 
-            var recordTable = this.CreateTable(cat, null, this.accessConfig.TableName, this.accessConfig.Column);
+            var recordTable = this.CreateTable(cat, null, this.config.TableName, this.config.Column);
 
-            foreach (var groupConfig in this.accessConfig.Group)
+            foreach (var groupConfig in this.config.Group)
             {
                 try
                 {
@@ -172,57 +184,6 @@ namespace LantanaGroup.XmlDocumentConverter
             }
         }
 
-        private string GetValue(XmlNodeList nodes, bool isNarrative)
-        {
-            if (nodes == null)
-                return string.Empty;
-
-            string cellValue = string.Empty;
-
-            for (var i = 0; i < nodes.Count; i++)
-            {
-                string nodeValue = string.Empty;
-
-                if (isNarrative)
-                {
-                    var allNodes = nodes[i].SelectNodes(".//*/text()");
-
-                    foreach (XmlNode nextNode in allNodes)
-                    {
-                        if (!string.IsNullOrEmpty(nodeValue))
-                            nodeValue += " ";
-                        nodeValue += nextNode.Value;
-                    }
-                }
-                else
-                {
-                    nodeValue = nodes[i].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["value"] != null)
-                        nodeValue = nodes[i].Attributes["value"].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["displayName"] != null)
-                        nodeValue = nodes[i].Attributes["displayName"].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue) && nodes[i].Attributes["code"] != null)
-                        nodeValue = nodes[i].Attributes["code"].Value;
-
-                    if (string.IsNullOrEmpty(nodeValue))
-                        nodeValue = nodes[i].InnerText;
-                }
-
-                if (!string.IsNullOrEmpty(nodeValue))
-                {
-                    if (i > 0)
-                        cellValue += "\r\n";
-
-                    cellValue += nodeValue;
-                }
-            }
-
-            return cellValue;
-        }
-
         private void ProcessGroup(OleDbConnection conn, MappingGroup groupConfig, XmlNode parentNode, XmlNamespaceManager nsManager, int parentId, string parentName)
         {
             var groupNodes = parentNode.SelectNodes(groupConfig.Context, nsManager);
@@ -259,22 +220,34 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             try
             {
-                XmlNodeList nodes = !string.IsNullOrEmpty(xpath) ? parent.SelectNodes(xpath, nsManager) : null;
-                return GetValue(nodes, isNarrative);
-            }
-            catch
-            {
-                try
+                var parentXdmNode = this.builder.Build(parent);
+                var compiledXpath = compiler.Compile(xpath);
+                var selector = compiledXpath.Load();
+                selector.ContextItem = parentXdmNode;
+                var results = selector.Evaluate().GetList();
+                
+                if (results.Count == 1)
                 {
-                    var eval = parent.CreateNavigator().Evaluate(xpath, nsManager);
+                    return results[0].GetStringValue();
+                }
+                else if (results.Count > 1)
+                {
+                    String ret = "";
 
-                    if (eval != null)
-                        return eval.ToString();
+                    foreach (var next in results)
+                    {
+                        if (!string.IsNullOrEmpty(ret)) ret += ", ";
+                        ret += next.GetStringValue();
+                    }
+
+                    return ret;
                 }
-                catch (Exception exx)
-                {
-                    this.LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + exx.Message + "\r\n");
-                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                this.LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + ex.Message + "\r\n");
             }
 
             return null;
@@ -312,7 +285,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
                     XmlNamespaceManager nsManager = new XmlNamespaceManager(xmlDoc.NameTable);
 
-                    foreach (var configNamespace in this.accessConfig.Namespace)
+                    foreach (var configNamespace in this.config.Namespace)
                     {
                         nsManager.AddNamespace(configNamespace.Prefix, configNamespace.Uri);
                     }
@@ -321,21 +294,21 @@ namespace LantanaGroup.XmlDocumentConverter
                     headerColumnData["fileName"] = fileInfo.Name;
 
                     // Read the header columns
-                    foreach (var colConfig in this.accessConfig.Column)
+                    foreach (var colConfig in this.config.Column)
                     {
                         string xpath = colConfig.Value;
                         string cellValue = this.GetValue(xpath, xmlDoc.DocumentElement, nsManager, colConfig.IsNarrative);
                         headerColumnData.Add(colConfig.Name, cellValue);
                     }
 
-                    recordId = this.InsertData(dbConnection, this.accessConfig.TableName, headerColumnData);
+                    recordId = this.InsertData(dbConnection, this.config.TableName, headerColumnData);
 
                     if (recordId < 0)
                         continue;
 
-                    foreach (var groupConfig in this.accessConfig.Group)
+                    foreach (var groupConfig in this.config.Group)
                     {
-                        this.ProcessGroup(dbConnection, groupConfig, xmlDoc, nsManager, recordId, this.accessConfig.TableName);
+                        this.ProcessGroup(dbConnection, groupConfig, xmlDoc, nsManager, recordId, this.config.TableName);
                     }
                 }
 

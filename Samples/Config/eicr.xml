@@ -18,9 +18,8 @@
 	<column name="confidentialityCodeSystem">/cda:ClinicalDocument/cda:confidentialityCode/@codeSystem</column>
 	<column name="confidentialityCodeSystemName">/cda:ClinicalDocument/cda:confidentialityCode/@codeSystemName</column>
 
-<!-- string-join(cda:id/concat(@extension, ' (', @root, ')'), ', ') -->
 	<!--  Patient Details-->
-	<column name="patientIdSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/string-join(cda:id/@extension, ', ')</column>
+	<column name="patientIdSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/string-join(cda:id/concat(@extension, ' (', @root, ')'), ', ')</column>
 	<column name="patientNameGiven">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name/cda:given</column>
 	<column name="patientNameFamily">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name/cda:family</column>
 	<column name="dob">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:birthTime</column>

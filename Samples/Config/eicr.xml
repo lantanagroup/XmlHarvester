@@ -18,9 +18,9 @@
 	<column name="confidentialityCodeSystem">/cda:ClinicalDocument/cda:confidentialityCode/@codeSystem</column>
 	<column name="confidentialityCodeSystemName">/cda:ClinicalDocument/cda:confidentialityCode/@codeSystemName</column>
 
+<!-- string-join(cda:id/concat(@extension, ' (', @root, ')'), ', ') -->
 	<!--  Patient Details-->
-	<column name="patientIdSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:id/@root</column>
-	<column name="patientSSN">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole[cda:id/@root='2.16.840.1.113883.4.1']/cda:id/@extension</column>
+	<column name="patientIdSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/string-join(cda:id/@extension, ', ')</column>
 	<column name="patientNameGiven">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name/cda:given</column>
 	<column name="patientNameFamily">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name/cda:family</column>
 	<column name="dob">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:birthTime</column>
@@ -181,6 +181,8 @@
 		<column name="ParticipantCodeSystemName">cda:participant/cda:participantRole/cda:playingDevice/cda:code/@codeSystemName</column>    
 	</group>  
 
+
+
 	<!-- Medication Activity Id 2.16.840.1.113883.10.20.22.4.16 -->
 	<group tableName="MedicationActivity" columnPrefix="Medication Activity" context="//cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.16']">
 		<column name="SubstanceMoodCode">@moodCode</column>
@@ -188,6 +190,8 @@
 		<column name="SubstanceTempIdExtension">cda:templateId/@extension</column>
 		<column name="SubstanceId">cda:id/@root</column>
 		<column name="SubstanceStatusCode">cda:statusCode/@code</column>
+		<column name="SubstanceOperator">cda:effectiveTime/@operator</column>
+		<column name="SubstanceDateTime">cda:effectiveTime/@value</column>
 		<column name="SubstanceStartDateTime">cda:effectiveTime/cda:low/@value</column>
 		<column name="SubstanceEndDateTime">cda:effectiveTime/cda:high/@value</column>
 		<column name="SubstancePeriod">cda:effectiveTime/cda:period/@value</column>
@@ -199,6 +203,11 @@
 		<column name="SubstanceRouteCode">cda:routeCode/@code</column>
 		<column name="SubstanceRouteSystem">cda:routeCode/@codeSystem</column>
 		<column name="SubstanceRouteDisplay">cda:routeCode/@displayName</column>
+		<column name="SubstanceRouteText">cda:routeCode/cda:originalText</column>
+		<column name="SubstanceRouteTranslationCode">cda:routeCode/cda:translation/@code</column>
+		<column name="SubstanceRouteTranslationCodeSystem">cda:routeCode/cda:translation/@codeSystem</column>
+		<column name="SubstanceRouteTranslationCodeSystemName">cda:routeCode/cda:translation/@codeSystemName</column>
+		<column name="SubstanceRouteTranslationDisplay">cda:routeCode/cda:translation/@displayName</column>
 		<column name="ApproachSiteCode">cda:approachSiteCode/@code</column>
 		<column name="ApproachSiteSystem">cda:approachSiteCode/@codeSystem</column>
 		<column name="MaxDoseQuantity">cda:maxDoseQuantity/@value</column>
@@ -241,7 +250,7 @@
 	</group>  
 
 	<!-- Encounter Performed Id 2.16.840.1.113883.10.20.22.4.49 -->
-	<group tableName="encounterActivity" columnPrefix="Encounter Activity" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']">
+	<group tableName="encounterActivity" columnPrefix="Encounter Activity" context="//cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']">
 		<column name="ActivityTemplateId">cda:templateId/@root</column>
 		<column name="ActivityTempIdExtension">cda:templateId/@extension</column>
 		<column name="ActivityId">cda:id/@root</column>
@@ -249,79 +258,69 @@
 		<column name="ActivityCodeSystem">cda:code/@codeSystem</column>
 		<column name="ActivityCodeSystemName">cda:code/@codeSystemName</column>
 		<column name="ActivityCodeDisplayName">cda:code/@displayName</column>
-		<column name="ActivityStatusCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:statusCode/@code</column>
-		<column name="ActivityStartDate">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:effectiveTime/cda:low/@value</column>
-		<column name="ActivityEndDate">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:effectiveTime/cda:high/@value</column>
-		<column name="ObsIdRoot">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:id/@root</column>
-		<column name="ObsCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:code/@code</column>
-		<column name="ObsDisplay">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:code/@displayName</column>
-		<column name="ObsCodeSystem">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:code/@codeSystem</column>
-		<column name="ObsCodeSystemName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:code/@codeSystemName</column>
-		<column name="ObsStatusCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:statusCode/@code</column>
-		<column name="ObsValueCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:value/@code</column>
-		<column name="ObsValueDisplay">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:value/@displayName</column>
-		<column name="ObsValueCodeSystem">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:value/@codeSystem</column>
-		<column name="ObsValueCodeSystemName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:value/@codeSystemName</column>
-		<column name="ObsValueValueSet">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:observation/cda:value/@sdtc:valueSet</column>
-		<!-- Encounter Diagnosis Id 2.16.840.1.113883.10.20.22.4.80 --> 
-		<column name="DiagnosisTemplateId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:templateId/@root</column>
-		<column name="DiagnosisTemplateIdExt">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:templateId/@extension</column>
-		<column name="DiagnosisCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:code/@code</column> 
-		<column name="DiagnosisCodeDisplayName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:code/@displayName</column> 
-		<column name="DiagnosisCodeSystem">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:code/@codeSystem</column>
-		<column name="DiagnosisCodeSystemName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:code/@codeSystemName</column> 
-		<column name="DiagnosisObsTemplateId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:templateId/@root</column>
-		<column name="DiagnosisObsTemplateIdExtension">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:templateId/@extension</column>
-		<column name="DiagnosisObsId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:id/@root</column>
-		<column name="DiagnosisObsCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:code/@code</column>
-		<column name="DiagnosisObsCodeSystem">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:code/@codeSystem</column>
-		<column name="DiagnosisObsCodeDisplay">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:code/@displayName</column>
-		<column name="DiagnosisObsStatusCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:statusCode/@code</column>
-		<column name="DiagnosisObsStartDateTime">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:effectiveTime/cda:low/@value</column>
-		<column name="DiagnosisObsEndDateTime">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:effectiveTime/cda:high/@value</column>
-		<column name="DiagnosisObsValueCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:value/@code</column>
-		<column name="DiagnosisObsValueDisplay">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:value/@displayName</column>
-		<column name="DiagnosisObsValueCodeSystem">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:value/@codeSystem</column>
-		<column name="DiagnosisObsValueCodeSystemName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:value/@codeSystemName</column>
-		<column name="DiagnosisObsValueValueSet">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.80']/cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.4']/cda:value/@sdtc:valueSet</column>
-		<!-- Facility Location Id 2.16.840.1.113883.10.20.24.3.100 --> 
-		<column name="ParticipantTemplateId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:participant[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.100']/cda:templateId/@root</column>
-		<column name="ParticipantStartDateTime">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:participant[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.100']/cda:time/cda:low/@value</column>
-		<column name="ParticipantEndDateTime">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:participant[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.100']/cda:time/cda:high/@value</column>
-		<column name="ParticipantCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:participant[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.100']/cda:participantRole/cda:code/@code</column> 
-		<column name="ParticipantCodeSystem">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:participant[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.100']/cda:participantRole/cda:code/@codeSystem</column>
-		<column name="ParticipantCodeSystemName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:participant[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.100']/cda:participantRole/cda:code/@codeSystemName</column> 
-		<column name="ParticipantCodeDisplayName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:participant[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.100']/cda:participantRole/cda:code/@displayName</column> 
-		<column name="ParticipantTelecom">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.49']/cda:participant[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.100']/cda:participantRole/cda:telecom</column> 
+		<column name="ActivityText">cda:text/cda:reference/@value</column>
+		<column name="ActivityStatusCode">cda:statusCode/@code</column>
+		<column name="ActivityEffectiveDateTime">cda:effectiveTime/@value</column>
+		<column name="ActivityEffectiveDateTimeLow">cda:effectiveTime/cda:low/@value</column>
+		<column name="ActivityEffectiveDateTimeHigh">cda:effectiveTime/cda:high/@value</column>
+		<!-- Encounter Performer -->
+		<column name="ActivityPerformerIDSystem">cda:performer/cda:assignedEntity/cda:id/@root</column>
+		<column name="ActivityPerformerIDValue">cda:performer/cda:assignedEntity/cda:id/@extension</column>
+		<column name="ActivityPerformerIDName">cda:performer/cda:assignedEntity/cda:id/@assigningAuthorityName</column>
+		<column name="ActivityPerformerStreet">cda:performer/cda:assignedEntity/cda:addr/cda:streetAddressLine</column>
+		<column name="ActivityPerformerCity">cda:performer/cda:assignedEntity/cda:addr/cda:city</column>
+		<column name="ActivityPerformerState">cda:performer/cda:assignedEntity/cda:addr/cda:state</column>
+		<column name="ActivityPerformerZip">cda:performer/cda:assignedEntity/cda:addr/cda:postalCode</column>
+		<column name="ActivityPerformerTelecom">cda:performer/cda:assignedEntity/cda:telecome/@value</column>
+		<column name="ActivityPerformerGiven">cda:performer/cda:assignedEntity/cda:assignedPerson/cda:name/cda:given</column>
+		<column name="ActivityPerformerFamily">cda:performer/cda:assignedEntity/cda:assignedPerson/cda:name/cda:family</column>
+		<!-- Encounter Participant -->
+		<column name="ActivityParticipantType">cda:participant/@typeCode</column>
+		<column name="ActivityParticipantRole">cda:participant/cda:participantRole/@classCode</column>
+		<column name="ActivityParticipantID">cda:participant/cda:participantRole/cda:templateId/@root</column>
+		<column name="ActivityParticipantCode">cda:participant/cda:participantRole/cda:code/@code</column>
+		<column name="ActivityParticipantStreet">cda:performer/cda:assignedEntity/cda:addr/cda:streetAddressLine</column>
+		<column name="ActivityParticipantCity">cda:performer/cda:assignedEntity/cda:addr/cda:city</column>
+		<column name="ActivityParticipantState">cda:performer/cda:assignedEntity/cda:addr/cda:state</column>
+		<column name="ActivityParticipantZip">cda:performer/cda:assignedEntity/cda:addr/cda:postalCode</column>
+		<column name="ActivityParticipantTelecom">cda:performer/cda:assignedEntity/cda:telecome/@value</column>
+		<!-- Encounter Diagnosis Id 2.16.840.1.113883.10.20.22.4.80 -->
+		<column name="ActivityEncounterdiagnosisTemplate">cda:entryRelationship/cda:act/cda:templateId/@root</column>
+		<column name="ActivityEncounterdiagnosisCode">cda:entryRelationship/cda:act/cda:code/@code</column>
+		<column name="ActivityEncounterdiagnosisCodeSystem">cda:entryRelationship/cda:act/cda:code/@codeSystem</column>
+		<column name="ActivityEncounterdiagnosisCodeSystemName">cda:entryRelationship/cda:act/cda:code/@codeSystemName</column>
+		<column name="ActivityEncounterdiagnosisDisplayName">cda:entryRelationship/cda:act/cda:code/@displayName</column>
+		<column name="ActivityEncounterdiagnosisTime">cda:entryRelationship/cda:act/cda:effectiveTime/@value</column>
+		<column name="ActivityEncounterdiagnosisLowTime">cda:entryRelationship/cda:act/cda:effectiveTime/cda:low/@value</column>
+		<column name="ActivityEncounterdiagnosisHighTime">cda:entryRelationship/cda:act/cda:effectiveTime/cda:high/@value</column>
+		<column name="ActivityEncounterdiagnosisObsTemp">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:templateId/@root</column>
+		<column name="ActivityEncounterdiagnosisObsCode">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:code/@code</column>
+		<column name="ActivityEncounterdiagnosisObsCodeSystem">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:code/@codeSystem</column>
+		<column name="ActivityEncounterdiagnosisObsCodeSystemName">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:code/@codeSystemName</column>
+		<column name="ActivityEncounterdiagnosisObsDisplay">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:code/@displayName</column>
+		<column name="ActivityEncounterdiagnosisObsCodeTranslationCode">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:code/cda:translation/@code</column>
+		<column name="ActivityEncounterdiagnosisObsCodeTranslationCodeSystem">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:code/cda:translation/@codeSystem</column>
+		<column name="ActivityEncounterdiagnosisObsCodeTranslationCodeSystemName">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:code/cda:translation/@codeSystemName</column>
+		<column name="ActivityEncounterdiagnosisObsCodeTranslationDisplay">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:code/cda:translation/@displayName</column>
+		<column name="ActivityEncounterdiagnosisObsStatusCode">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:statusCode/@code</column>
+		<column name="ActivityEncounterdiagnosisObsTime">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:effectiveTime/@value</column>
+		<column name="ActivityEncounterdiagnosisObsLowTime">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:effectiveTime/@value</column>
+		<column name="ActivityEncounterdiagnosisObsHighTime">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:effectiveTime/@value</column>
+		<!-- Encounter diagnosis value -->
+		<column name="ActivityEncounterdiagnosisValueCode">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:value/@code</column>
+		<column name="ActivityEncounterdiagnosisValueCodeSystem">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:value/@codeSystem</column>
+		<column name="ActivityEncounterdiagnosisValueCodeSystemName">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:value/@codeSystemName</column>
+		<column name="ActivityEncounterdiagnosisValueDisplay">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:value/@displayName</column>
+		<column name="ActivityEncounterdiagnosisText">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:value/cda:originalText</column>
 
-	</group>
+	</group> 
+
+
+
+	<!-- Facility Location Id 2.16.840.1.113883.10.20.24.3.100 --> 
+
 
 	<!-- Encounter Order Act Id 2.16.840.1.113883.10.20.24.3.132-->
-	<group tableName="encounterOrder" columnPrefix="Encounter Ordered" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.24.3.132']">
-		<column name="TemplateId">cda:templateId/@root</column>
-		<column name="IdRoot">cda:id/@root</column>
-		<column name="Code">cda:code/@code</column>
-		<column name="CodeDisplayName">cda:code/@displayName</column>
-		<column name="CodeSystem">cda:code/@codeSystem</column>
-		<column name="CodeSystemName">cda:code/@codeSystemName</column>
-		<!-- Planned Encounter Id 2.16.840.1.113883.10.20.22.4.40 --> 
-		<column name="EncPlannedTemplateId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:templateId/@root</column>
-		<column name="EncPlannedTempIdExtension">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:templateId/@extension</column>
-		<column name="EncPlannedId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:Id/@root</column>
-		<column name="EncPlannedCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:code/@code</column>
-		<column name="EncPlannedCodeSystem">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:code/@codeSystem</column>
-		<column name="EncPlannedCodeSystemName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:code/@codeSystemName</column>
-		<column name="EncPlannedCodeDisplayName">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:code/@displayName</column>
-		<column name="EncPlannedCodeValueSet">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:code/@sdtc:valueSet</column>
-		<column name="EncPlannedText" isNarrative="true">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:text</column>
-		<column name="EncPlannedStatusCode">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:statusCode/@code</column>
-		<column name="EncPlannedStartDate">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:effectiveTime/cda:low/@value</column>
-		<column name="EncPlannedEndDate">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:effectiveTime/cda:high/@value</column>
-		<!-- Author Participation Id 2.16.840.1.113883.10.20.22.4.119 --> 
-		<column name="AuthorTemplateId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:author[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.119']/cda:templateId/@root</column>
-		<column name="EncParticipantStartDateTime">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:author[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.119']/cda:time/@value</column>
-		<column name="EncParticipantId">cda:entryRelationship/cda:encounter[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.40']/cda:author[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.119']/cda:assignedAuthor/id</column>
-	</group>
 
 
 	<!-- Birth Sex Observation id: 2.16.840.1.113883.10.20.22.4.200 -->
@@ -411,6 +410,14 @@
 		<column name="Text">cda:text</column>
 	</group>
 
+	<!-- Social History Section id 2.16.840.1.113883.10.20.22.2.17-->
+	<group tableName="TreatmentPlan" columnPrefix="Plan of Treatment Section" context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.10']">
+		<column name="TemplateId">cda:templateId/@root</column>
+		<column name="Title">cda:title</column>
+		<column name="Text">cda:text</column>
+	</group>
+
+
 	<!-- Immunization Activity id 2.16.840.1.113883.10.20.22.4.52 -->
 	<group tableName="ImzAct" columnPrefix="Immunization Activity" context="//cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.52']">
 		<column name="mood">@moodCode</column>
@@ -453,13 +460,31 @@
 	<group tableName="PlannedObs" columnPrefix="Planned Observation" context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.44']">
 		<column name="mood">@moodCode</column>
 		<column name="TemplateId">cda:templateId/@root</column>
+		<column name="PalnnedObsCode">cda:code/@code</column>
+		<column name="PlannedObsCodeSystem">cda:code/@codeSystem</column>
+		<column name="PlannedObsCodeSystemName">cda:code/@codeSystemName</column>
+		<column name="PlannedObsCodeDisplay">cda:code/@displayName</column>
+		<column name="PalnnedObsTanslationCode">cda:code/cda:translation/@code</column>
+		<column name="PlannedObsTranslationCodeSystem">cda:code/cda:translation/@codeSystem</column>
+		<column name="PlannedObsTranslationCodeSystemName">cda:code/cda:translation/@codeSystemName</column>
+		<column name="PlannedObsTranslationCodeDisplay">cda:code/cda:translation/@displayName</column>
+		<column name="PlannedObsText">cda:code/cda:originalText</column>
 		<column name="effectiveTime">cda:effectiveTime/@value</column>
+		<column name="PalnnedObsStatus">cda:statusCode</column>
 		<column name="Value">cda:value/@value</column>
 		<column name="MethodCode">cda:methodCode/@code</column>
 		<column name="MethodCodeSystem">cda:methodCode/@codeSystem</column>
 		<column name="TargetSiteCode">cda:targetSiteCode/@code</column>
 		<column name="TargetSiteCodeSystem">cda:targetSiteCode/@codeSystem</column>
-		<!-- TODO: performer, authorParticipation, etc. -->
+		<column name="PlanedObsAuthorAddrStreet">cda:author/cda:assignedAuthor/cda:addr/cda:streetAddressLine</column>
+		<column name="PlanedObsAuthorAddrCity">cda:author/cda:assignedAuthor/cda:addr/cda:city</column>
+		<column name="PlanedObsAuthorAddrState">cda:author/cda:assignedAuthor/cda:addr/cda:state</column>
+		<column name="PlanedObsAuthorAddrZip">cda:author/cda:assignedAuthor/cda:addr/cda:postalCode</column>
+		<column name="PlanedObsAuthorTelecom">cda:author/cda:assignedAuthor/cda:telecom/@value</column>
+		<column name="PlanedObsAuthorTelecomUse">cda:author/cda:assignedAuthor/cda:telecom/@use</column>
+		<column name="PlanedObsAuthorGiven">cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name/cda:given</column>
+		<column name="PlanedObsAuthorFamily">cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name/cda:family</column>
+		
 	</group>
 	<!-- eICR Trigger Code Lab Test Order -->
 
@@ -470,11 +495,6 @@
 		<column name="StatusCode">cda:statusCode/@code</column>
 		<column name="effectiveTime">cda:effectiveTime/@value</column>
 	</group>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 039dd962f633e6dcb072bf3d8875e6e0f7888d6c
 
 	<!-- Problem Observation -->
 
@@ -499,6 +519,7 @@
 	</group>
 
 	<!-- eICR Trigger Code Result Observation -->
+
 
 	<!-- Social History Observation id 2.16.840.1.113883.10.20.22.4.38-->
 	<group tableName="SocialHxObs" columnPrefix="Social History Observation" context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.38']">

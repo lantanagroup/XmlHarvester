@@ -1,0 +1,2308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:voc="urn:hl7-org:v3/voc" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<realmCode code="US"/>
+	<typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+	<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.1.1"/>
+	<templateId root="2.16.840.1.113883.10.20.22.1.1"/>
+	<templateId root="2.16.840.1.113883.10.20.15.2" extension="2016-12-01"/>
+	<id extension="1899729054011780" root="1.2.840.113619.21.1.139060385287897942.5.3"/>
+	<code code="55751-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Initial Public Health Case Report"/>
+	<title>Initial Public Health Case Report</title>
+	<effectiveTime value="20200313143054-0500"/>
+	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.1.11.16926" codeSystemName="ConfidentialityCode" displayName="Normal"/>
+	<languageCode code="en-US"/>
+	<recordTarget>
+		<patientRole>
+			<id root="1.2.840.113619.21.1.139060385287897942.2.1.1.1" extension="1009843200000000"/>
+			<id root="1.2.840.113619.21.1.139060385287897942.2.1.1.2" extension="97531-ERXT999" assigningAuthorityName="GE EMR-CPS PatientId"/>
+			<addr>
+				<streetAddressLine>215 W Ohio</streetAddressLine>
+				<streetAddressLine>Apt #1</streetAddressLine>
+				<city>Chicago</city>
+				<state>IL</state>
+				<postalCode>60654</postalCode>
+			</addr>
+			<telecom nullFlavor="NI"/>
+			<patient>
+				<name use="L">
+					<given>Erx</given>
+					<family>Test Patient</family>
+				</name>
+				<administrativeGenderCode code="M" displayName="Male" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender"/>
+				<birthTime value="19760704"/>
+				<sdtc:deceasedInd value="false"/>
+				<raceCode nullFlavor="UNK"/>
+				<ethnicGroupCode nullFlavor="UNK"/>
+				<languageCommunication>
+					<languageCode code="dz"/>
+					<preferenceInd value="true"/>
+				</languageCommunication>
+			</patient>
+		</patientRole>
+	</recordTarget>
+	<author>
+		<templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+		<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+		<time value="20200313143054-0500"/>
+		<assignedAuthor>
+			<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1467041069000630" assigningAuthorityName=" Providers by PVID"/>
+			<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="365" assigningAuthorityName=" Providers by DoctorFacility"/>
+			<addr>
+				<streetAddressLine>Winfield Moody</streetAddressLine>
+				<streetAddressLine>1276 N Clybourn</streetAddressLine>
+				<city>Chicago</city>
+				<state>IL</state>
+				<postalCode>60653</postalCode>
+			</addr>
+			<telecom use="WP" value="tel:3123371073"/>
+			<telecom use="MC" value="tel:3123377616"/>
+			<assignedPerson>
+				<name>
+					<given>KH WH</given>
+					<family>Nurse Desk</family>
+				</name>
+			</assignedPerson>
+		</assignedAuthor>
+	</author>
+	<author>
+		<time value="20200313143054-0500"/>
+		<assignedAuthor>
+			<id root="1.2.840.113619.21.1.139060385287897942.11"/>
+			<addr>
+				<streetAddressLine>1276 N Clybourn</streetAddressLine>
+				<city>Chicago</city>
+				<state>IL </state>
+				<postalCode>60610</postalCode>
+				<country>USA</country>
+			</addr>
+			<telecom use="WP" value="tel:3123371073"/>
+			<telecom value="mailto:wtijani@nmh.org"/>
+			<assignedAuthoringDevice>
+				<manufacturerModelName>12.3/9.12</manufacturerModelName>
+				<softwareName>GE Healthcare API Server</softwareName>
+			</assignedAuthoringDevice>
+			<representedOrganization>
+				<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Organization/LO-0" assigningAuthorityName=" API Resource Identifier"/>
+				<id root="UNK" extension="LO-0" assigningAuthorityName="Organization Identifier"/>
+				<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Tax ID number"/>
+				<name>Near North Health Service Corporation</name>
+				<telecom use="WP" value="tel:3123371073"/>
+				<addr>
+					<streetAddressLine>1276 N Clybourn</streetAddressLine>
+					<city>Chicago</city>
+					<state>IL </state>
+					<postalCode>60610</postalCode>
+					<country>USA</country>
+				</addr>
+			</representedOrganization>
+		</assignedAuthor>
+	</author>
+	<custodian typeCode="CST">
+		<assignedCustodian classCode="ASSIGNED">
+			<representedCustodianOrganization classCode="ORG">
+				<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Organization/LO-0" assigningAuthorityName=" API Resource Identifier"/>
+				<id root="UNK" extension="LO-0" assigningAuthorityName="Organization Identifier"/>
+				<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Tax ID number"/>
+				<name>Near North Health Service Corporation</name>
+				<telecom use="WP" value="tel:3123371073"/>
+				<addr>
+					<streetAddressLine>1276 N Clybourn</streetAddressLine>
+					<city>Chicago</city>
+					<state>IL </state>
+					<postalCode>60610</postalCode>
+					<country>USA</country>
+				</addr>
+			</representedCustodianOrganization>
+		</assignedCustodian>
+	</custodian>
+	<informationRecipient>
+		<intendedRecipient>
+			<informationRecipient>
+				<name nullFlavor="NI"/>
+			</informationRecipient>
+		</intendedRecipient>
+	</informationRecipient>
+	<participant typeCode="IND">
+		<associatedEntity classCode="CAREGIVER" nullFlavor="NI">
+			<addr nullFlavor="NI"/>
+			<telecom nullFlavor="NI"/>
+			<associatedPerson nullFlavor="NI">
+				<name nullFlavor="NI"/>
+			</associatedPerson>
+		</associatedEntity>
+	</participant>
+	<documentationOf>
+		<serviceEvent>
+			<code code="PHC1464" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)" displayName="Manually Generated EICR"/>
+			<effectiveTime>
+				<low value="20200313143054-0500"/>
+			</effectiveTime>
+		</serviceEvent>
+	</documentationOf>
+	<!--
+					******************************************************** CDA Body
+					********************************************************
+				-->
+	<component>
+		<structuredBody>
+			<component>
+				<section nullFlavor="NI">
+					<templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.4"/>
+					<code code="10164-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HISTORY OF PRESENT ILLNESS"/>
+					<title>HISTORY OF PRESENT ILLNESS</title>
+					<text>
+						<paragraph>No Information Available</paragraph>
+					</text>
+				</section>
+			</component>
+			<component>
+				<section nullFlavor="NI">
+					<templateId root="2.16.840.1.113883.10.20.22.2.12"/>
+					<code code="29299-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="REASON FOR VISIT"/>
+					<title>REASON FOR VISIT</title>
+					<text>
+						<paragraph>No Information Available</paragraph>
+					</text>
+				</section>
+			</component>
+			<component>
+				<section nullFlavor="NI">
+					<templateId root="2.16.840.1.113883.10.20.22.2.17" extension="2015-08-01"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.17"/>
+					<code code="29762-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="SOCIAL HISTORY"/>
+					<title>SOCIAL HISTORY</title>
+					<text>
+						<paragraph>No Information Available</paragraph>
+					</text>
+				</section>
+			</component>
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.22.1" extension="2015-08-01"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.22.1"/>
+					<code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTERS"/>
+					<title>ENCOUNTERS</title>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th align="left">Date</th>
+									<th align="left">Type</th>
+									<th align="left">Provider</th>
+									<th align="left">Location</th>
+									<th align="left">Encounter Diagnosis</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ID="d27e13-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2020/02/06 - 2020/02/06</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Admin Alliance </item>
+										</list>
+									</td>
+									<td>Near North Health Service Corporation</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e92-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2020/01/28 - 2020/01/28</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Fredrick Reid </item>
+										</list>
+									</td>
+									<td>Komed Holman Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e171-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2020/01/02 - 2020/01/02</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Admin Alliance </item>
+										</list>
+									</td>
+									<td>Louise Landau Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e250-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/10/23 - 2019/10/23</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Elizabeth Herzan-Taylor </item>
+										</list>
+									</td>
+									<td>Komed Holman Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e332-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/10/23 - 2019/10/23</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Elizabeth Herzan-Taylor </item>
+										</list>
+									</td>
+									<td>Komed Holman Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e414-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/10/01 - 2019/10/01</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Admin Alliance </item>
+										</list>
+									</td>
+									<td>Louise Landau Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e497-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/10/01 - 2019/10/01</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Timothy Long </item>
+											<item>Admin Alliance </item>
+										</list>
+									</td>
+									<td>Komed Holman Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e585-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/09/08 - 2019/09/08</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Care Coordination Desktop </item>
+											<item>LinkLogic </item>
+										</list>
+									</td>
+									<td>Near North Health Service Corporation</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e673-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/09/17 - 2019/09/17</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Elizabeth Herzan-Taylor </item>
+										</list>
+									</td>
+									<td>Reavis School-based Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e755-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/09/17 - 2019/09/17</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Elizabeth Herzan-Taylor </item>
+										</list>
+									</td>
+									<td>Reavis School-based Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e837-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/09/17 - 2019/09/17</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Elizabeth Herzan-Taylor </item>
+										</list>
+									</td>
+									<td>Reavis School-based Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e919-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/09/13 - 2019/09/13</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Rhonda Greyer </item>
+										</list>
+									</td>
+									<td>Sunnyside Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e1001-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/08/30 - 2019/08/30</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Admin Alliance </item>
+										</list>
+									</td>
+									<td>Louise Landau Health Center</td>
+									<td>
+										<list listType="unordered">
+											<item>Gonorrhea, acute</item>
+										</list>
+									</td>
+								</tr>
+								<tr ID="d27e1083-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/07/22 - 2019/07/22</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Deina Nemiary </item>
+											<item>Admin Alliance </item>
+										</list>
+									</td>
+									<td>Winfield Moody Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e1172-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/06/18 - 2019/06/18</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Admin Alliance </item>
+										</list>
+									</td>
+									<td>Louise Landau Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e1254-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/05/01 - 2019/05/01</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Kristina Sorensen </item>
+											<item>Joel Carnazzo </item>
+										</list>
+									</td>
+									<td>Komed Holman Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e1345-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2019/03/14 - 2019/03/14</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Regina Midgett </item>
+										</list>
+									</td>
+									<td>Komed Holman Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e1428-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2018/11/15 - 2018/11/15</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Amber Lightbourne </item>
+										</list>
+									</td>
+									<td>Winfield Moody Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e1508-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2018/09/18 - 2018/09/18</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Amber Lightbourne </item>
+										</list>
+									</td>
+									<td>Winfield Moody Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e1590-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2018/09/18 - 2018/09/18</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Amber Lightbourne </item>
+										</list>
+									</td>
+									<td>Winfield Moody Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e1672-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2018/07/25 - 2018/07/25</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Crystal Kittisopikul </item>
+										</list>
+									</td>
+									<td>Denny Community Health Center</td>
+									<td>UNK</td>
+								</tr>
+								<tr ID="d27e1752-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267">
+									<td>2018/06/06 - 2018/06/06</td>
+									<td> Ambulatory Encounter </td>
+									<td>
+										<list listType="unordered">
+											<item>Adam Arendt </item>
+										</list>
+									</td>
+									<td>Komed Holman Health Center</td>
+									<td>UNK</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1896602119238660" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e13-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20200206">
+								<high value="20200206"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1635684796000010" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="8" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="99999999-19" assigningAuthorityName="US National Provider Identifiers"/>
+									<addr>
+										<streetAddressLine>215 W. Ohio Street</streetAddressLine>
+										<streetAddressLine>4th Floor</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60654</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3122740068"/>
+									<telecom use="MC" value="tel:3122740069"/>
+									<assignedPerson>
+										<name>
+											<given>Admin</given>
+											<family>Alliance</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>1276 N Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL </state>
+										<postalCode>60610</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom value="mailto:wtijani@nmh.org"/>
+									<playingEntity classCode="PLC">
+										<name>Near North Health Service Corporation</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1895841505726540" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e92-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20200128">
+								<high value="20200128"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1727085086053410" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="2.16.840.1.113883.4.6" nullFlavor="UNK" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="1080" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<addr>
+										<streetAddressLine>Winfield Moody</streetAddressLine>
+										<streetAddressLine>1276 N. Clybourn Ave</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL </state>
+										<postalCode>60619</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom use="MC" value="tel:3123377616"/>
+									<assignedPerson>
+										<name>
+											<given>Fredrick</given>
+											<family>Reid</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>4259 S. Berkeley</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60653</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7732687600"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Komed Holman Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1893593602915290" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e171-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20200128">
+								<high value="20200128"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1635684796000010" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="8" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="99999999-19" assigningAuthorityName="US National Provider Identifiers"/>
+									<addr>
+										<streetAddressLine>215 W. Ohio Street</streetAddressLine>
+										<streetAddressLine>4th Floor</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60654</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3122740068"/>
+									<telecom use="MC" value="tel:3122740069"/>
+									<assignedPerson>
+										<name>
+											<given>Admin</given>
+											<family>Alliance</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>800 N Kedzie</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60651</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7738263450"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Louise Landau Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1887444137204410" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e250-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20191023">
+								<high value="20191023"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1697100898957460" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="921" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="1336395078" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Federal Tax Identifier"/>
+									<addr>
+										<streetAddressLine>Denny Community Health Center</streetAddressLine>
+										<streetAddressLine>30 W. Chicago</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3129263964"/>
+									<telecom use="MC" value="tel:3129263028"/>
+									<assignedPerson>
+										<name>
+											<given>Elizabeth</given>
+											<family>Herzan-Taylor</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>4259 S. Berkeley</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60653</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7732687600"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Komed Holman Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1887444093198930" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e332-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20191023">
+								<high value="20191023"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1697100898957460" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="921" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="1336395078" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Federal Tax Identifier"/>
+									<addr>
+										<streetAddressLine>Denny Community Health Center</streetAddressLine>
+										<streetAddressLine>30 W. Chicago</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3129263964"/>
+									<telecom use="MC" value="tel:3129263028"/>
+									<assignedPerson>
+										<name>
+											<given>Elizabeth</given>
+											<family>Herzan-Taylor</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>4259 S. Berkeley</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60653</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7732687600"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Komed Holman Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1885564907118950" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e414-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20191001">
+								<high value="20191001"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1635684796000010" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="8" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="99999999-19" assigningAuthorityName="US National Provider Identifiers"/>
+									<addr>
+										<streetAddressLine>215 W. Ohio Street</streetAddressLine>
+										<streetAddressLine>4th Floor</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60654</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3122740068"/>
+									<telecom use="MC" value="tel:3122740069"/>
+									<assignedPerson>
+										<name>
+											<given>Admin</given>
+											<family>Alliance</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>800 N Kedzie</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60651</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7738263450"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Louise Landau Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1885542739218570" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e497-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20191004">
+								<high value="20191004"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1647534119856120" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="243" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="1528081239" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Federal Tax Identifier"/>
+									<addr>
+										<streetAddressLine>Komed Holman Health Center</streetAddressLine>
+										<streetAddressLine>4259 South Berkeley Avenue</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60653</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:7732687600"/>
+									<telecom use="MC" value="tel:7732689088"/>
+									<assignedPerson>
+										<name>
+											<given>Timothy</given>
+											<family>Long</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1635684796000010" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="8" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="99999999-19" assigningAuthorityName="US National Provider Identifiers"/>
+									<addr>
+										<streetAddressLine>215 W. Ohio Street</streetAddressLine>
+										<streetAddressLine>4th Floor</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60654</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3122740068"/>
+									<telecom use="MC" value="tel:3122740069"/>
+									<assignedPerson>
+										<name>
+											<given>Admin</given>
+											<family>Alliance</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>4259 S. Berkeley</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60653</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7732687600"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Komed Holman Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1884468964206710" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e585-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20190918">
+								<high value="20190918"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1802789358232340" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="2.16.840.1.113883.4.6" nullFlavor="UNK" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="1470" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<addr>
+										<streetAddressLine>Winfield Moody Health Center</streetAddressLine>
+										<streetAddressLine>1276 N. Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL </state>
+										<postalCode>60610</postalCode>
+										<country>United States</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom use="MC" value="tel:3123371073"/>
+									<assignedPerson>
+										<name>
+											<given>Care Coordination</given>
+											<family>Desktop</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="-3" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="2.16.840.1.113883.4.6" nullFlavor="UNK" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="-1002" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<addr nullFlavor="NI">
+										<streetAddressLine nullFlavor="NI"/>
+										<city nullFlavor="NI"/>
+										<state nullFlavor="NI"/>
+										<postalCode nullFlavor="NI"/>
+										<country nullFlavor="NI"/>
+									</addr>
+									<telecom nullFlavor="NI"/>
+									<assignedPerson>
+										<name>
+											<family>LinkLogic</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>1276 N Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL </state>
+										<postalCode>60610</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom value="mailto:wtijani@nmh.org"/>
+									<playingEntity classCode="PLC">
+										<name>Near North Health Service Corporation</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1884336474247660" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e673-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20190917">
+								<high value="20190917"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1697100898957460" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="921" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="1336395078" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Federal Tax Identifier"/>
+									<addr>
+										<streetAddressLine>Denny Community Health Center</streetAddressLine>
+										<streetAddressLine>30 W. Chicago</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3129263964"/>
+									<telecom use="MC" value="tel:3129263028"/>
+									<assignedPerson>
+										<name>
+											<given>Elizabeth</given>
+											<family>Herzan-Taylor</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>834 E. 50th Street</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60615</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7733586767"/>
+									<telecom value="tel:3123371073"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Reavis School-based Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1884336313231950" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e755-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20190917">
+								<high value="20190917"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1697100898957460" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="921" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="1336395078" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Federal Tax Identifier"/>
+									<addr>
+										<streetAddressLine>Denny Community Health Center</streetAddressLine>
+										<streetAddressLine>30 W. Chicago</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3129263964"/>
+									<telecom use="MC" value="tel:3129263028"/>
+									<assignedPerson>
+										<name>
+											<given>Elizabeth</given>
+											<family>Herzan-Taylor</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>834 E. 50th Street</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60615</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7733586767"/>
+									<telecom value="tel:3123371073"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Reavis School-based Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1884327523454390" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e837-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20190917">
+								<high value="20190917"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1697100898957460" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="921" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="1336395078" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Federal Tax Identifier"/>
+									<addr>
+										<streetAddressLine>Denny Community Health Center</streetAddressLine>
+										<streetAddressLine>30 W. Chicago</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3129263964"/>
+									<telecom use="MC" value="tel:3129263028"/>
+									<assignedPerson>
+										<name>
+											<given>Elizabeth</given>
+											<family>Herzan-Taylor</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>834 E. 50th Street</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60615</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7733586767"/>
+									<telecom value="tel:3123371073"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Reavis School-based Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1883998051014080" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e919-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20190913">
+								<high value="20190913"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1837940096111040" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="2.16.840.1.113883.4.6" nullFlavor="UNK" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="1644" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<addr>
+										<streetAddressLine>North Kostner Health Center</streetAddressLine>
+										<streetAddressLine>1520 N. Kostner Ave.</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60651</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:12 6 820"/>
+									<telecom use="MC" value="tel:73 2 476"/>
+									<assignedPerson>
+										<name>
+											<given>Rhonda</given>
+											<family>Greyer</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>4501 N Sheridan Road</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL </state>
+										<postalCode>60640</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:7738788098"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Sunnyside Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1882804434610870" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e1001-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20190830">
+								<high value="20190830"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1635684796000010" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="8" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="99999999-19" assigningAuthorityName="US National Provider Identifiers"/>
+									<addr>
+										<streetAddressLine>215 W. Ohio Street</streetAddressLine>
+										<streetAddressLine>4th Floor</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60654</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3122740068"/>
+									<telecom use="MC" value="tel:3122740069"/>
+									<assignedPerson>
+										<name>
+											<given>Admin</given>
+											<family>Alliance</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>800 N Kedzie</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60651</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7738263450"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Louise Landau Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+							<entryRelationship typeCode="SUBJ">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.19"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Condition/1882804434611020" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+									<effectiveTime xsi:type="IVL_TS">
+										<low value="20190830000000-0500"/>
+									</effectiveTime>
+									<entryRelationship typeCode="SUBJ">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
+											<templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+											<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Condition/1882804434611020" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+											<code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+												<translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+											</code>
+											<statusCode code="completed"/>
+											<effectiveTime xsi:type="IVL_TS">
+												<low value="20190830000000-0500"/>
+											</effectiveTime>
+											<value xsi:type="CD" code="15628003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+												<originalText>Gonorrhea, acute</originalText>
+												<translation code="A54.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-US"/>
+												<translation code="098.0" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9 Diagnosis Codes (USA)"/>
+												<translation code="ICD-098.0" codeSystem="1.2.840.113619.21.1.139060385287897942.2.1.1.4" codeSystemName="MEL"/>
+											</value>
+										</observation>
+									</entryRelationship>
+								</act>
+							</entryRelationship>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1879409482907420" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e1083-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20190909">
+								<high value="20190909"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1859041315883770" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="1727" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="1851556856" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Federal Tax Identifier"/>
+									<addr>
+										<streetAddressLine>Winfield Moody</streetAddressLine>
+										<streetAddressLine>1276 N. Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom use="MC" value="tel:3123377616"/>
+									<assignedPerson>
+										<name>
+											<given>Deina</given>
+											<family>Nemiary</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1635684796000010" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="8" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="99999999-19" assigningAuthorityName="US National Provider Identifiers"/>
+									<addr>
+										<streetAddressLine>215 W. Ohio Street</streetAddressLine>
+										<streetAddressLine>4th Floor</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60654</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3122740068"/>
+									<telecom use="MC" value="tel:3122740069"/>
+									<assignedPerson>
+										<name>
+											<given>Admin</given>
+											<family>Alliance</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>1276 N. Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Winfield Moody Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1876487014968240" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e1172-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20190618">
+								<high value="20190618"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1635684796000010" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="8" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="99999999-19" assigningAuthorityName="US National Provider Identifiers"/>
+									<addr>
+										<streetAddressLine>215 W. Ohio Street</streetAddressLine>
+										<streetAddressLine>4th Floor</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60654</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3122740068"/>
+									<telecom use="MC" value="tel:3122740069"/>
+									<assignedPerson>
+										<name>
+											<given>Admin</given>
+											<family>Alliance</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>800 N Kedzie</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60651</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7738263450"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Louise Landau Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1872341657865040" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e1254-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20190501">
+								<high value="20190501"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1818503267525600" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="2.16.840.1.113883.4.6" nullFlavor="UNK" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="1557" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<addr>
+										<streetAddressLine>Winfield Moody</streetAddressLine>
+										<streetAddressLine>1276 N. Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL </state>
+										<postalCode>60610</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371076"/>
+									<telecom use="MC" value="tel:3123377616"/>
+									<assignedPerson>
+										<name>
+											<given>Kristina</given>
+											<family>Sorensen</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1807028544504890" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="1483" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="1013020452" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Federal Tax Identifier"/>
+									<addr>
+										<streetAddressLine>Winfield Moody</streetAddressLine>
+										<streetAddressLine>1276 N. Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL </state>
+										<postalCode>60610</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom use="MC" value="tel:3123377616"/>
+									<assignedPerson>
+										<name>
+											<given>Joel</given>
+											<family>Carnazzo</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>4259 S. Berkeley</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60653</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7732687600"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Komed Holman Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1868191486625310" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e1345-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20190402">
+								<high value="20190402"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1839664557867350" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="2.16.840.1.113883.4.6" nullFlavor="UNK" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="1647" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<addr>
+										<streetAddressLine>Komed Holman Health Center</streetAddressLine>
+										<streetAddressLine>4259 South Berkeley Avenue</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL </state>
+										<postalCode>60653</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom use="MC" value="tel:3133337676"/>
+									<assignedPerson>
+										<name>
+											<given>Regina</given>
+											<family>Midgett</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>4259 S. Berkeley</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60653</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7732687600"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Komed Holman Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1857906924838580" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e1428-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20181115">
+								<high value="20181115"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1688979404007640" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="2.16.840.1.113883.4.6" nullFlavor="UNK" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="898" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<addr>
+										<streetAddressLine>1276 N Clybourn</streetAddressLine>
+										<streetAddressLine>WM</streetAddressLine>
+										<city>Chicago</city>
+										<state>IIl</state>
+										<postalCode nullFlavor="UNK"/>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom use="MC" value="tel:3123371073"/>
+									<assignedPerson>
+										<name>
+											<given>Amber</given>
+											<family>Lightbourne</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>1276 N. Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Winfield Moody Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1852904265166980" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e1508-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20180918">
+								<high value="20180918"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1688979404007640" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="2.16.840.1.113883.4.6" nullFlavor="UNK" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="898" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<addr>
+										<streetAddressLine>1276 N Clybourn</streetAddressLine>
+										<streetAddressLine>WM</streetAddressLine>
+										<city>Chicago</city>
+										<state>IIl</state>
+										<postalCode nullFlavor="UNK"/>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom use="MC" value="tel:3123371073"/>
+									<assignedPerson>
+										<name>
+											<given>Amber</given>
+											<family>Lightbourne</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>1276 N. Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Winfield Moody Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1852904235160920" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e1590-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20180918">
+								<high value="20180918"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1688979404007640" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="2.16.840.1.113883.4.6" nullFlavor="UNK" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="898" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<addr>
+										<streetAddressLine>1276 N Clybourn</streetAddressLine>
+										<streetAddressLine>WM</streetAddressLine>
+										<city>Chicago</city>
+										<state>IIl</state>
+										<postalCode nullFlavor="UNK"/>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom use="MC" value="tel:3123371073"/>
+									<assignedPerson>
+										<name>
+											<given>Amber</given>
+											<family>Lightbourne</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>1276 N. Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Winfield Moody Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1848144603546080" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e1672-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20180725">
+								<high value="20180725"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1831906828922920" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="1612" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="1508107657" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Federal Tax Identifier"/>
+									<addr>
+										<streetAddressLine>Winfield Moody</streetAddressLine>
+										<streetAddressLine>1276 N. Clybourn</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3123371073"/>
+									<telecom use="MC" value="tel:3123377616"/>
+									<assignedPerson>
+										<name>
+											<given>Crystal</given>
+											<family>Kittisopikul</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>30 West Chicago</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60610</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:3129263964"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Denny Community Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+					<entry typeCode="DRIV">
+						<encounter classCode="ENC" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Encounter/1843899613817250" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+							<text>
+								<reference value="#d27e1752-1.2.840.113619.21.1.139060385287897942.10.1584127856704.75267"/>
+							</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20180606">
+								<high value="20180606"/>
+							</effectiveTime>
+							<performer>
+								<assignedEntity>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1757592685652660" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="1222" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="1497072987" assigningAuthorityName="US National Provider Identifiers"/>
+									<id root="2.16.840.1.113883.4.2" extension="363197647" assigningAuthorityName="Federal Tax Identifier"/>
+									<addr>
+										<streetAddressLine>Komed Holman Health Center</streetAddressLine>
+										<streetAddressLine>4259 South Berkeley Avenue</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60653</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:7733371073"/>
+									<telecom use="MC" value="tel:7732689088"/>
+									<assignedPerson>
+										<name>
+											<given>Adam</given>
+											<family>Arendt</family>
+										</name>
+									</assignedPerson>
+								</assignedEntity>
+							</performer>
+							<participant typeCode="LOC">
+								<participantRole classCode="SDLOC">
+									<templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+									<code nullFlavor="NI"/>
+									<addr>
+										<streetAddressLine>4259 S. Berkeley</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60653</postalCode>
+										<country>USA</country>
+									</addr>
+									<telecom use="WP" value="tel:7732687600"/>
+									<telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+									<playingEntity classCode="PLC">
+										<name>Komed Holman Health Center</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+						</encounter>
+					</entry>
+				</section>
+			</component>
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.10" extension="2014-06-09"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.10"/>
+					<code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="TREATMENT PLAN"/>
+					<title>TREATMENT PLAN</title>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th align="left">Date</th>
+									<th align="left">Name</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<!--Planned Observation (V2)-->
+									<td align="left">2019/06/18</td>
+									<td>A1c</td>
+								</tr>
+								<tr>
+									<!--Planned Observation (V2)-->
+									<td align="left">2019/06/18</td>
+									<td>FIT Occult Blood, Stool Test</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry>
+						<!-- Planned Observation (V2) -->
+						<observation classCode="OBS" moodCode="INT">
+							<templateId root="2.16.840.1.113883.10.20.22.4.44" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.44"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="DiagnosticOrder/1876487020970500" assigningAuthorityName=" API Resource Identifier"/>
+							<id root="UNK" extension="821115-3" assigningAuthorityName="Unknown"/>
+							<code code="83036" codeSystem="2.16.840.1.113883.6.12" codeSystemName="Current Procedure Terminology">
+								<originalText>A1c</originalText>
+							</code>
+							<statusCode code="active"/>
+							<author>
+								<templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+								<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+								<time value="20190618142449.250-0500"/>
+								<assignedAuthor>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1635684796000010" assigningAuthorityName=" Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="8" assigningAuthorityName=" Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="99999999-19" assigningAuthorityName="US National Provider Identifiers"/>
+									<addr>
+										<streetAddressLine>215 W. Ohio Street</streetAddressLine>
+										<streetAddressLine>4th Floor</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60654</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3122740068"/>
+									<telecom use="MC" value="tel:3122740069"/>
+									<assignedPerson>
+										<name>
+											<given>Admin</given>
+											<family>Alliance</family>
+										</name>
+									</assignedPerson>
+								</assignedAuthor>
+							</author>
+						</observation>
+					</entry>
+					<entry>
+						<!-- Planned Observation (V2) -->
+						<observation classCode="OBS" moodCode="INT">
+							<templateId root="2.16.840.1.113883.10.20.22.4.44" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.44"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="DiagnosticOrder/1876487020970490" assigningAuthorityName=" API Resource Identifier"/>
+							<id root="UNK" extension="821115-2" assigningAuthorityName="Unknown"/>
+							<code code="82274" codeSystem="2.16.840.1.113883.6.12" codeSystemName="Current Procedure Terminology">
+								<originalText>FIT Occult Blood, Stool Test</originalText>
+							</code>
+							<statusCode code="active"/>
+							<author>
+								<templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+								<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+								<time value="20190618142449.070-0500"/>
+								<assignedAuthor>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1635684796000010" assigningAuthorityName=" Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="8" assigningAuthorityName=" Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="99999999-19" assigningAuthorityName="US National Provider Identifiers"/>
+									<addr>
+										<streetAddressLine>215 W. Ohio Street</streetAddressLine>
+										<streetAddressLine>4th Floor</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60654</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3122740068"/>
+									<telecom use="MC" value="tel:3122740069"/>
+									<assignedPerson>
+										<name>
+											<given>Admin</given>
+											<family>Alliance</family>
+										</name>
+									</assignedPerson>
+								</assignedAuthor>
+							</author>
+						</observation>
+					</entry>
+				</section>
+			</component>
+			<component>
+				<section nullFlavor="NI">
+					<templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.2.38"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.38"/>
+					<code code="29549-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="MEDICATIONS ADMINISTERED"/>
+					<title>MEDICATIONS ADMINISTERED</title>
+					<text>No Known MEDICATIONS ADMINISTERED</text>
+					<entry>
+						<substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="true">
+							<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+							<templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.16"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.10.1584127856235.177862"/>
+							<statusCode code="active"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="19700101000000"/>
+								<high value="20200313143056.235-0500"/>
+							</effectiveTime>
+							<doseQuantity nullFlavor="NI"/>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+									<templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+									<manufacturedMaterial>
+										<code codeSystem="2.16.840.1.113883.6.88" nullFlavor="OTH">
+											<translation code="410942007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="drug or medication"/>
+										</code>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+						</substanceAdministration>
+					</entry>
+				</section>
+			</component>
+			<component>
+				<section nullFlavor="NI">
+					<templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.2.1"/>
+					<templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.2.1.1"/>
+					<code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of medication use Narrative"/>
+					<title>Medications</title>
+					<text>No Known Medication Information</text>
+					<entry>
+						<substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="true">
+							<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+							<templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.16"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.10.1584127856642.704700"/>
+							<statusCode code="active"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="19700101000000"/>
+								<high value="20200313143056.642-0500"/>
+							</effectiveTime>
+							<doseQuantity nullFlavor="NI"/>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+									<templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+									<manufacturedMaterial>
+										<code codeSystem="2.16.840.1.113883.6.88" nullFlavor="OTH">
+											<translation code="410942007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="drug or medication"/>
+										</code>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+						</substanceAdministration>
+					</entry>
+				</section>
+			</component>
+			<component>
+				<section nullFlavor="NI">
+					<templateId root="2.16.840.1.113883.10.20.22.2.2.1" extension="2015-08-01"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.2.1"/>
+					<code code="11369-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HISTORY OF IMMUNIZATIONS"/>
+					<title>HISTORY OF IMMUNIZATIONS</title>
+					<text>
+						<paragraph>No Information Available</paragraph>
+					</text>
+				</section>
+			</component>
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.5.1" extension="2015-08-01"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.5.1"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.5" extension="2015-08-01"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.5"/>
+					<code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="PROBLEMS"/>
+					<title>PROBLEMS</title>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th align="left">Condition</th>
+									<th align="left">Status</th>
+									<th align="left">Date</th>
+									<th align="left">Provider</th>
+									<th align="left">Notes</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ID="d85e13-1.2.840.113619.21.1.139060385287897942.10.1584127856845.150779">
+									<td>Gonorrhea, acute</td>
+									<td>active</td>
+									<td>2019/08/30</td>
+									<td>Admin Alliance </td>
+									<td/>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.3"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.3"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Condition/1882804434611020" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/>
+							<text>
+								<reference value="#d85e13-1.2.840.113619.21.1.139060385287897942.10.1584127856845.150779"/>
+							</text>
+							<statusCode code="active"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20190830000000-0500"/>
+								<high nullFlavor="UNK"/>
+							</effectiveTime>
+							<author>
+								<templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+								<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+								<time value="20190830171523.323-0500"/>
+								<assignedAuthor>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.2" extension="1635684796000010" assigningAuthorityName="31913-41995-12761042 Providers by PVID"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.2.1" extension="8" assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility"/>
+									<id root="2.16.840.1.113883.4.6" extension="99999999-19" assigningAuthorityName="US National Provider Identifiers"/>
+									<addr>
+										<streetAddressLine>215 W. Ohio Street</streetAddressLine>
+										<streetAddressLine>4th Floor</streetAddressLine>
+										<city>Chicago</city>
+										<state>IL</state>
+										<postalCode>60654</postalCode>
+									</addr>
+									<telecom use="WP" value="tel:3122740068"/>
+									<telecom use="MC" value="tel:3122740069"/>
+									<assignedPerson>
+										<name>
+											<given>Admin</given>
+											<family>Alliance</family>
+										</name>
+									</assignedPerson>
+								</assignedAuthor>
+							</author>
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Condition/1882804434611020" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+									<code code="64572001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Condition">
+										<translation code="75323-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Condition"/>
+									</code>
+									<statusCode code="completed"/>
+									<effectiveTime xsi:type="IVL_TS">
+										<low value="20190830000000-0500"/>
+										<high nullFlavor="UNK"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="15628003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+										<originalText>Gonorrhea, acute</originalText>
+										<translation code="A54.9" codeSystem="2.16.840.1.113883.6.90" codeSystemName="ICD-10-US"/>
+										<translation code="098.0" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9 Diagnosis Codes (USA)"/>
+										<translation code="ICD-098.0" codeSystem="1.2.840.113619.21.1.139060385287897942.2.1.1.4" codeSystemName="MEL"/>
+									</value>
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+			<component>
+				<section>
+					<templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2015-08-01"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.3.1"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.3" extension="2015-08-01"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.3"/>
+					<code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="RESULTS"/>
+					<title>RESULTS</title>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th align="left">Date</th>
+									<th align="left">Observation</th>
+									<th align="left">Value</th>
+									<th align="left">Provider</th>
+									<th align="left">Reference Range</th>
+									<th align="left">Interpretation</th>
+									<th align="left">Location</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ID="d29e13-1.2.840.113619.21.1.139060385287897942.10.1584127857423.313634">
+									<td align="left">2019/09/27</td>
+									<td>chlamydia, nucleic acid amplification test (NAAT) result, urethra culture</td>
+									<td>NOT DETECTED</td>
+									<td>Admin Alliance </td>
+									<td/>
+									<td/>
+									<td/>
+								</tr>
+								<tr ID="d29e100-1.2.840.113619.21.1.139060385287897942.10.1584127857423.313634">
+									<td align="center">"</td>
+									<td>chlamydia, nucleic acid amplification test (NAAT) result, throat culture</td>
+									<td>NOT DETECTED</td>
+									<td>Admin Alliance </td>
+									<td/>
+									<td/>
+									<td/>
+								</tr>
+								<tr ID="d29e187-1.2.840.113619.21.1.139060385287897942.10.1584127857423.313634">
+									<td align="center">"</td>
+									<td>Chlamydia Rectal Nucleic acid amplification test (NAAT)</td>
+									<td>NOT DETECTED</td>
+									<td>Admin Alliance </td>
+									<td/>
+									<td/>
+									<td/>
+								</tr>
+								<tr ID="d29e274-1.2.840.113619.21.1.139060385287897942.10.1584127857423.313634">
+									<td align="center">"</td>
+									<td>MICROBE IDENTIFICATION</td>
+									<td>Negative</td>
+									<td>Admin Alliance </td>
+									<td/>
+									<td/>
+									<td/>
+								</tr>
+								<tr ID="d29e361-1.2.840.113619.21.1.139060385287897942.10.1584127857423.313634">
+									<td align="center">"</td>
+									<td>Neisseria gonorrhoeae, urethral culture</td>
+									<td>DETECTED</td>
+									<td>Admin Alliance </td>
+									<td/>
+									<td/>
+									<td/>
+								</tr>
+								<tr ID="d29e452-1.2.840.113619.21.1.139060385287897942.10.1584127857423.313634">
+									<td align="center">"</td>
+									<td>Neisseria gonorrhoeae, throat culture</td>
+									<td>DETECTED</td>
+									<td>Admin Alliance </td>
+									<td/>
+									<td/>
+									<td/>
+								</tr>
+								<tr ID="d29e540-1.2.840.113619.21.1.139060385287897942.10.1584127857423.313634">
+									<td align="center">"</td>
+									<td>Gonorrhea Culture Rectum</td>
+									<td>NOT DETECTED</td>
+									<td>Admin Alliance </td>
+									<td/>
+									<td/>
+									<td/>
+								</tr>
+								<tr ID="d29e627-1.2.840.113619.21.1.139060385287897942.10.1584127857423.313634">
+									<td align="center">"</td>
+									<td>Neisseria gonorrhoeae DNA probe</td>
+									<td>Positive</td>
+									<td>Admin Alliance </td>
+									<td/>
+									<td/>
+									<td/>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<organizer classCode="CLUSTER" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2015-08-01"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.1"/>
+							<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Observation/1885543262278850" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+							<code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="RESULTS"/>
+							<statusCode code="completed"/>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Observation/1885543262278850" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+									<code code="314330" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="CHLAMURETHRA">
+										<originalText>chlamydia, nucleic acid amplification test (NAAT) result, urethra culture</originalText>
+									</code>
+									<statusCode code="completed"/>
+									<effectiveTime value="20190927095220-0500"/>
+									<value xsi:type="CD" nullFlavor="UNK">
+										<originalText>NOT DETECTED</originalText>
+									</value>
+								</observation>
+							</component>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Observation/1885543262278830" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+									<code code="314329" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="CHLAMTHROAT">
+										<originalText>chlamydia, nucleic acid amplification test (NAAT) result, throat culture</originalText>
+									</code>
+									<statusCode code="completed"/>
+									<effectiveTime value="20190927095220-0500"/>
+									<value xsi:type="CD" nullFlavor="UNK">
+										<originalText>NOT DETECTED</originalText>
+									</value>
+								</observation>
+							</component>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Observation/1885543262278810" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+									<code code="117631" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="CHLAMRECNAAT">
+										<originalText>Chlamydia Rectal Nucleic acid amplification test (NAAT)</originalText>
+									</code>
+									<statusCode code="completed"/>
+									<effectiveTime value="20190927095220-0500"/>
+									<value xsi:type="CD" nullFlavor="UNK">
+										<originalText>NOT DETECTED</originalText>
+									</value>
+								</observation>
+							</component>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Observation/1885543262278790" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+									<code code="2716" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="CHLAM DNA PR">
+										<originalText>MICROBE IDENTIFICATION</originalText>
+									</code>
+									<statusCode code="completed"/>
+									<effectiveTime value="20190927095220-0500"/>
+									<value xsi:type="CD" nullFlavor="UNK">
+										<originalText>Negative</originalText>
+									</value>
+								</observation>
+							</component>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Observation/1885543262278770" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+									<code code="24111-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="Logical Observation Identifiers, Names and Codes" displayName="Neisseria gonorrhoeae DNA [Presence] in Unspecified specimen by NAA with probe detection">
+										<originalText>Neisseria gonorrhoeae, urethral culture</originalText>
+										<translation code="3552" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="GC-URETHRA"/>
+									</code>
+									<statusCode code="completed"/>
+									<effectiveTime value="20190927095220-0500"/>
+									<value xsi:type="CD" nullFlavor="UNK">
+										<originalText>DETECTED</originalText>
+									</value>
+								</observation>
+							</component>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Observation/1885543262278750" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+									<code code="3553" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="GC-THROAT">
+										<originalText>Neisseria gonorrhoeae, throat culture</originalText>
+									</code>
+									<statusCode code="completed"/>
+									<effectiveTime value="20190927095220-0500"/>
+									<value xsi:type="CD" nullFlavor="UNK">
+										<originalText>DETECTED</originalText>
+									</value>
+								</observation>
+							</component>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Observation/1885543262278730" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+									<code code="12700004" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="GC RECTUM">
+										<originalText>Gonorrhea Culture Rectum</originalText>
+									</code>
+									<statusCode code="completed"/>
+									<effectiveTime value="20190927095220-0500"/>
+									<value xsi:type="CD" nullFlavor="UNK">
+										<originalText>NOT DETECTED</originalText>
+									</value>
+								</observation>
+							</component>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+									<id root="1.2.840.113619.21.1.139060385287897942.9" extension="Observation/1885543262278710" assigningAuthorityName="31913-41995-12761042 API Resource Identifier"/>
+									<code code="24111-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="Logical Observation Identifiers, Names and Codes" displayName="Neisseria gonorrhoeae DNA [Presence] in Unspecified specimen by NAA with probe detection">
+										<originalText>Neisseria gonorrhoeae DNA probe</originalText>
+										<translation code="2719" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="GC DNA PROBE"/>
+									</code>
+									<statusCode code="completed"/>
+									<effectiveTime value="20190927095220-0500"/>
+									<value xsi:type="CD" nullFlavor="UNK">
+										<originalText>Positive</originalText>
+									</value>
+								</observation>
+							</component>
+						</organizer>
+					</entry>
+				</section>
+			</component>
+		</structuredBody>
+	</component>
+</ClinicalDocument>

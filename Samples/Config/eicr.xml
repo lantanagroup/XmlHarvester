@@ -484,19 +484,10 @@
 		<column name="PlanedObsAuthorTelecomUse">cda:author/cda:assignedAuthor/cda:telecom/@use</column>
 		<column name="PlanedObsAuthorGiven">cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name/cda:given</column>
 		<column name="PlanedObsAuthorFamily">cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name/cda:family</column>
-		
 	</group>
+	
+	
 	<!-- eICR Trigger Code Lab Test Order -->
-
-
-	<!-- Problem Concern Act -->
-	<group tableName="PblmConcAct" columnPrefix="Problem Concern Act" context="//cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.3']">
-		<column name="TemplateId">cda:templateId/@root</column>
-		<column name="StatusCode">cda:statusCode/@code</column>
-		<column name="effectiveTime">cda:effectiveTime/@value</column>
-	</group>
-
-	<!-- Problem Observation -->
 
 
 	<!-- eICR Manual Initiation Reason Observation -->
@@ -504,18 +495,39 @@
 	<!-- eICR Trigger Code Problem Observation -->
 
 	<!-- Result Observation -->
-	<group tableName="ResultObs" columnPrefix="Result Observation" context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.2']">
+	<group tableName="ResultObservation" columnPrefix="Result Observation" context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.2']">
 		<column name="TemplateId">cda:templateId/@root</column>
+		<column name="TemplateIdDate">cda:templateId/@extension</column>
+		<column name="TemplateClassCode">/@classCode</column>
+		<column name="TemplateMoodCode">/@moodCode</column>
+		<column name="ObservationIDSystem">cda:id/@root</column>
+		<column name="ObservationIDValue">cda:id/@extension</column>
+		<column name="ObservationIDAssigningAuthority">cda:id/@assigningAuthorityName</column>
 		<column name="TestCode">cda:code/@code</column>
 		<column name="TestCodeSystem">cda:code/@codeSystem</column>
 		<column name="TestDisplay">cda:code/@displayName</column>
+		<column name="TestOriginalText">cda:code/cda:originalText</column>
 		<column name="Status">cda:statusCode/@code</column>
 		<column name="effectiveTime">cda:effectiveTime/@value</column>
+		<column name="TestResultValueDataType">cda:value/@xsi:type</column>
 		<column name="TestResultValue">cda:value/@value</column>
-		<column name="TestResultValueUnit">cda:statusCode/@unit</column>
+		<column name="TestResultValueUnit">cda:value/@unit</column>
+		<column name="TestResultValueOriginalText">cda:value/cda:originalText</column>
 		<column name="InterpretationCode">cda:interpretationCode/@code</column>
 		<column name="InterpretationCodeSystem">cda:interpretationCode/@codeSystem</column>
-		<!-- TODO: author, referenceRange -->
+		<column name="InterpretationDisplay">cda:interpretationCode/@displayName</column>
+		<!-- methodCode -->
+		<!-- targetSiteCode -->
+		<!-- author -->
+		<column name="ReferenceRangeText">cda:referenceRange/cda:observationRange/cda:text</column>
+		<column name="ReferenceRangeValueDataType">cda:referenceRange/cda:observationRange/cda:value/@xsi:type</column>
+		<column name="ReferenceRangeValueLow">cda:referenceRange/cda:observationRange/cda:value/cda:low/@value</column>
+		<column name="ReferenceRangeValueLowUnit">cda:referenceRange/cda:observationRange/cda:value/cda:low/@unit</column>
+		<column name="ReferenceRangeValueHigh">cda:referenceRange/cda:observationRange/cda:value/cda:high/@value</column>
+		<column name="ReferenceRangeValueHighUnit">cda:referenceRange/cda:observationRange/cda:value/cda:high/@unit</column>
+		<column name="RefInterpretationCode">cda:referenceRange/cda:observationRange/cda:interpretationCode/@code</column>
+		<column name="RefInterpretationCodeSystem">cda:referenceRange/cda:observationRange/cda:interpretationCode/@codeSystem</column>
+		<column name="RefInterpretationDisplay">cda:referenceRange/cda:observationRange/cda:interpretationCode/@displayName</column>
 	</group>
 
 	<!-- eICR Trigger Code Result Observation -->

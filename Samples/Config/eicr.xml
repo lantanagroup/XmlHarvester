@@ -5,40 +5,60 @@
 	<namespace prefix="sdtc" uri="urn:hl7-org:sdtc" />
 
 	<!--  Document Details-->
-	<column name="relatedTemplateId" heading="Related Template ID">/cda:ClinicalDocument/cda:templateId/@root</column>
-	<column name="documentId">/cda:ClinicalDocument/cda:id/@root</column>
-	<column name="code">/cda:ClinicalDocument/cda:code/@code</column>
-	<column name="codeSystem">/cda:ClinicalDocument/cda:code/@codeSystem</column>
-	<column name="codeSystemName">/cda:ClinicalDocument/cda:code/@codeSystemName</column>
-	<column name="codeDisplay">/cda:ClinicalDocument/cda:code/@displayName</column>
-	<column name="DoctTitle">/cda:ClinicalDocument/cda:title</column>
-	<column name="DocEffectiveTime">/cda:ClinicalDocument/cda:effectiveTime/@value</column>
+	<column name="TemplateId" heading="Related Template ID">/cda:ClinicalDocument/cda:templateId/@root</column>
+	<column name="DocumentId">/cda:ClinicalDocument/cda:id/concat(@extension, ' (', @root, ')')</column>
+	<column name="Code">/cda:ClinicalDocument/cda:code/@code</column>
+	<column name="CodeSystem">/cda:ClinicalDocument/cda:code/@codeSystem</column>
+	<column name="CodeSystemName">/cda:ClinicalDocument/cda:code/@codeSystemName</column>
+	<column name="CodeDisplay">/cda:ClinicalDocument/cda:code/@displayName</column>
+	<column name="Title">/cda:ClinicalDocument/cda:title</column>
+	<column name="EffectiveTime">/cda:ClinicalDocument/cda:effectiveTime/@value</column>
 	<column name="languageCode">/cda:ClinicalDocument/cda:languageCode/@code</column>
-	<column name="DocconfidentialityCode">/cda:ClinicalDocument/cda:confidentialityCode/@code</column>
-	<column name="confidentialityCodeSystem">/cda:ClinicalDocument/cda:confidentialityCode/@codeSystem</column>
-	<column name="confidentialityCodeSystemName">/cda:ClinicalDocument/cda:confidentialityCode/@codeSystemName</column>
+	<column name="ConfidentialityCode">/cda:ClinicalDocument/cda:confidentialityCode/@code</column>
+	<column name="ConfidentialityCS">/cda:ClinicalDocument/cda:confidentialityCode/@codeSystem</column>
+	<column name="ConfidentialityCSN">/cda:ClinicalDocument/cda:confidentialityCode/@codeSystemName</column>
 
-	<!--  Patient Details-->
-	<column name="patientIdSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/string-join(cda:id/concat(@extension, ' (', @root, ')'), ', ')</column>
-	<column name="patientNameGiven">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name/cda:given</column>
-	<column name="patientNameFamily">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:name/cda:family</column>
-	<column name="dob">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:birthTime</column>
-	<column name="AdminGender">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:administrativeGenderCode/@code</column>
-	<column name="AdminGenderCodeSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:administrativeGenderCode/@codeSystem</column>
-	<column name="maritalStatusCode">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:maritalStatusCode/@code</column>
-	<column name="maritalStatusDisplay">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:maritalStatusCode/@displayName</column>
-	<column name="maritalStatusCodeSystem">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:maritalStatusCode/@codeSystem</column>
-	<column name="maritalStatusCodeSystemName">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:maritalStatusCode/@codeSystemName</column>
-	<column name="race">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:raceCode</column>
-	<column name="ethnicity">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:ethnicGroupCode</column>
-	<column name="patientLanguage">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient/cda:languageCommunication</column>
-	<column name="patientAddrStreetName">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:addr/cda:streetAddressLine</column>
-	<column name="patientAddrCity">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:addr/cda:city</column>
-	<column name="patientAddrState">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:addr/cda:state</column>
-	<column name="patientAddrZip">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:addr/cda:postalCode</column>
-	<column name="patientHomePhone">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole[cda:telecom/@use='HP']/cda:telecom/@value</column>
-	<column name="patientMobilePhone">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole[cda:telecom/@use='MC']/cda:telecom/@value</column>
-	<column name="patientEmergencyContact">/cda:ClinicalDocument/cda:recordTarget/cda:patientRole[cda:telecom/@use='EC']/cda:telecom/@value</column>
+	<!--  Patient Demographic Details-->
+	<group tableName="Demographics" context="/cda:ClinicalDocument/cda:recordTarget/cda:patientRole">
+		<column name="FirstPatientId">/cda:patientRole/cda:id[1]/concat(@extension, ' (', @root, ')')</column>
+		<column name="GivenName">/cda:patientRole/cda:patient/cda:name/cda:given</column>
+		<column name="FamilyName">/cda:patientRole/cda:patient/cda:name/cda:family</column>
+		<column name="PtDOB">/cda:patientRole/cda:patient/cda:birthTime/@value</column>
+		<column name="AdminGender">/cda:patientRole/cda:patient/cda:administrativeGenderCode/@code</column>
+		<column name="AdminGenderCS">/cda:patientRole/cda:patient/cda:administrativeGenderCode/@codeSystem</column>
+		<column name="MaritalStatusCode">/cda:patientRole/cda:patient/cda:maritalStatusCode/@code</column>
+		<column name="MaritalStatusDisplay">/cda:patientRole/cda:patient/cda:maritalStatusCode/@displayName</column>
+		<column name="MaritalStatusCS">/cda:patientRole/cda:patient/cda:maritalStatusCode/@codeSystem</column>
+		<column name="MaritalStatusCSN">/cda:patientRole/cda:patient/cda:maritalStatusCode/@codeSystemName</column>
+		<column name="PtDeathInd">/cda:patientRole/cda:patient/sdtc:deceasedInd/@value</column>
+		<column name="PtDeathTime">/cda:patientRole/cda:patient/sdtc:deceasedTime/@value</column>
+		<column name="PtReligion">/cda:patientRole/cda:patient/cda:religiousAffiliationCode/@code</column>
+		<column name="PtReligionCS">/cda:patientRole/cda:patient/cda:religiousAffiliationCode/@codeSystem</column>
+		<column name="PtReligionDisplay">/cda:patientRole/cda:patient/cda:religiousAffiliationCode/@displayName</column>
+		<column name="PtRace">/cda:patientRole/cda:patient/cda:raceCode/@code</column>
+		<column name="PtRaceCS">/cda:patientRole/cda:patient/cda:raceCode/@codeSystem</column>
+		<column name="PtAddRace">/cda:patientRole/cda:patient/sdtc:raceCode/@code</column>
+		<column name="PtAddRaceCS">/cda:patientRole/cda:patient/sdtc:raceCode/@codeSystem</column>
+		<column name="PtRaceDisplay">/cda:patientRole/cda:patient/cda:raceCode/@displayName</column>
+		<column name="PtEthnicity">/cda:patientRole/cda:patient/cda:ethnicGroupCode/@code</column>
+		<column name="PtEthnicityCS">/cda:patientRole/cda:patient/cda:ethnicGroupCode/@codeSystem</column>
+		<column name="PtEthnicityDisplay">/cda:patientRole/cda:patient/cda:ethnicGroupCode/@displayName</column>
+		<column name="PtLanguage">/cda:patientRole/cda:patient/cda:languageCommunication/cda:languageCode/@code</column>
+		<column name="PtLanguagePref">/cda:patientRole/cda:patient/cda:languageCommunication/cda:preferenceInd/@value</column>
+		<column name="PtAddrStreetName">/cda:patientRole/cda:addr/cda:streetAddressLine</column>
+		<column name="PtAddrCity">/cda:patientRole/cda:addr/cda:city</column>
+		<column name="PtAddrState">/cda:patientRole/cda:addr/cda:state</column>
+		<column name="PtAddrZip">/cda:patientRole/cda:addr/cda:postalCode</column>
+		<column name="PtHomePhone">/cda:patientRole[cda:telecom/@use='HP']/cda:telecom/@value</column>
+		<column name="PtMobilePhone">/cda:patientRole[cda:telecom/@use='MC']/cda:telecom/@value</column>
+		<column name="PtEmergencyContact">/cda:patientRole[cda:telecom/@use='EC']/cda:telecom/@value</column>
+	</group>
+
+	<!-- Patient IDs -->
+	<group tableName="AlternatePtIds" context="/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:id">
+		<column name="root">@root</column>
+		<column name="extension">@extension</column>
+	</group>
 
 	<!--  Custodian Details-->
 	<column name="custodianId">/cda:ClinicalDocument/cda:custodian/cda:assignedCustodian/cda:representedCustodianOrganization/cda:id/@root</column>
@@ -52,8 +72,8 @@
 	<column name="custodianPostalCode">/cda:ClinicalDocument/cda:custodian/cda:assignedCustodian/cda:representedCustodianOrganization/cda:addr/cda:postalCode</column>
 
 	<!--  Information Recipient Details-->
-	<column name="informationRecipientId">/cda:ClinicalDocument/cda:informationRecipient/cda:intendedRecipient/cda:id/@root</column>
-	<column name="informationRecipientExtension">/cda:ClinicalDocument/cda:informationRecipient/cda:intendedRecipient/cda:id/@extension</column>
+	<column name="infoRecipientId">/cda:ClinicalDocument/cda:informationRecipient/cda:intendedRecipient/cda:id/@root</column>
+	<column name="infoRecipientExtension">/cda:ClinicalDocument/cda:informationRecipient/cda:intendedRecipient/cda:id/@extension</column>
 
 	<!--  Legal Authenticator Details-->
 	<column name="legalAuthenticatorTime">/cda:ClinicalDocument/cda:legalAuthenticator/cda:time</column>
@@ -484,8 +504,8 @@
 		<column name="PlanedObsAuthorGiven">cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name/cda:given</column>
 		<column name="PlanedObsAuthorFamily">cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name/cda:family</column>
 	</group>
-	
-	
+
+
 	<!-- eICR Trigger Code Lab Test Order -->
 
 
@@ -540,6 +560,7 @@
 		<column name="TranslationCode">cda:code/cda:translation/@code</column>
 		<column name="TranslationCodeSystem">cda:code/cda:translation/@codeSystem</column>
 		<column name="TranslationDisplay">cda:code/cda:translation/@displayName</column>
+		<column name="CodeOriginalText">cda:code/cda:originalText</column>
 		<column name="Status">cda:statusCode/@code</column>
 		<column name="effectiveTimeLow">cda:effectiveTime/cda:low/@value</column>
 		<column name="effectiveTimeHigh">cda:effectiveTime/cda:high/@value</column>
@@ -547,6 +568,7 @@
 		<column name="Value">cda:value/@value</column>
 		<column name="ValueType">cda:value/@type</column>
 		<column name="ValueUnit">cda:value/@unit</column>
+		<column name="ValueOriginalText">cda:value/cda:originalText</column>
 	</group>
 
 	<!-- Travel History id 2.16.840.1.113883.10.20.15.2.3.1 -->

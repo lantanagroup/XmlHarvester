@@ -1,0 +1,2503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:voc="urn:hl7-org:v3/voc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <realmCode code="US"/>
+   <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+   <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.1.1"/>
+   <templateId root="2.16.840.1.113883.10.20.22.1.1"/>
+   <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2"/>
+   <id extension="1906844699671550" root="1.2.840.113619.21.1.139060385287897942.5.3"/>
+   <code code="55751-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Initial Public Health Case Report"/>
+   <title>Initial Public Health Case Report</title>
+   <effectiveTime value="20200603230504-0500"/>
+   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.1.11.16926" codeSystemName="ConfidentialityCode" displayName="Normal"/>
+   <languageCode code="en-US"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="1457800377600610" root="1.2.840.113619.21.1.139060385287897942.2.1.1.1"/>
+         <id assigningAuthorityName="GE EMR-CPS PatientId" extension="50391" root="1.2.840.113619.21.1.139060385287897942.2.1.1.2"/>
+         <id assigningAuthorityName="GE EMR-CPS PatientMRN" extension="K83852" root="1.2.840.113619.21.1.139060385287897942.2.1.1"/>
+                 <addr>
+            <streetAddressLine>7 Sample Street</streetAddressLine>
+            <streetAddressLine>apt 2</streetAddressLine>
+            <city>Chicago</city>
+            <state>IL</state>
+            <postalCode>60653</postalCode>
+         </addr>
+         <telecom use="MC" value="tel:3129998888"/>
+         <patient>
+            <name use="L">
+               <given>Sample</given>
+               <family>Patient7</family>
+            </name>
+            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" displayName="Female"/>
+            <birthTime value="19910701"/>
+            <sdtc:deceasedInd value="false"/>
+            <raceCode code="2054-5" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race and Ethnicity-CDC" displayName="Black or African American"/>
+            <ethnicGroupCode code="2186-5" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race and Ethnicity-CDC" displayName="Not Hispanic or Latino"/>
+            <languageCommunication>
+               <languageCode code="en"/>
+               <preferenceInd value="true"/>
+            </languageCommunication>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <author>
+      <templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+      <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+      <time value="20200603230504-0500"/>
+      <assignedAuthor>
+         <id assigningAuthorityName=" Providers by PVID" extension="1467041069000630" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+         <id assigningAuthorityName=" Providers by DoctorFacility" extension="365" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+         <addr>
+            <streetAddressLine>Winfield Moody</streetAddressLine>
+            <streetAddressLine>1276 N Clybourn</streetAddressLine>
+            <city>Chicago</city>
+            <state>IL</state>
+            <postalCode>60653</postalCode>
+         </addr>
+         <telecom use="WP" value="tel:3123371073"/>
+         <telecom use="MC" value="tel:3123377616"/>
+         <assignedPerson>
+            <name>
+               <given>KH WH</given>
+               <family>Nurse Desk</family>
+            </name>
+         </assignedPerson>
+         <representedOrganization>
+            <id assigningAuthorityName=" API Resource Identifier" extension="Organization/DF-76" root="1.2.840.113619.21.1.139060385287897942.9"/>
+            <id assigningAuthorityName="Organization Identifier" extension="DF-76" root="UNK"/>
+            <id assigningAuthorityName="National Provider Identifier" extension="1821079088" root="2.16.840.1.113883.4.6"/>
+            <id assigningAuthorityName="Tax ID number" extension="363197647" root="2.16.840.1.113883.4.2"/>
+            <name>Winfield Moody Health Center</name>
+            <telecom use="WP" value="tel:3123371073     "/>
+            <addr>
+               <streetAddressLine>1276 N Clybourn</streetAddressLine>
+               <city>Chicago</city>
+               <state>IL </state>
+               <postalCode>60610     </postalCode>
+            </addr>
+         </representedOrganization>
+      </assignedAuthor>
+   </author>
+   <author>
+      <time value="20200603230504-0500"/>
+      <assignedAuthor>
+         <id root="1.2.840.113619.21.1.139060385287897942.11"/>
+         <addr>
+            <streetAddressLine>4259 S. Berkeley</streetAddressLine>
+            <city>Chicago</city>
+            <state>IL</state>
+            <postalCode>60653</postalCode>
+            <country>USA</country>
+         </addr>
+         <telecom use="WP" value="tel:7732687600"/>
+         <telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+         <assignedAuthoringDevice>
+            <manufacturerModelName>12.3/9.12</manufacturerModelName>
+            <softwareName>GE Healthcare API Server</softwareName>
+         </assignedAuthoringDevice>
+         <representedOrganization>
+            <id assigningAuthorityName=" API Resource Identifier" extension="Organization/LO-1454412490000610" root="1.2.840.113619.21.1.139060385287897942.9"/>
+            <id assigningAuthorityName="Organization Identifier" extension="LO-1454412490000610" root="UNK"/>
+            <id assigningAuthorityName="Tax ID number" extension="363197647" root="2.16.840.1.113883.4.2"/>
+            <name>Komed Holman Health Center</name>
+            <telecom use="WP" value="tel:7732687600"/>
+            <addr>
+               <streetAddressLine>4259 S. Berkeley</streetAddressLine>
+               <city>Chicago</city>
+               <state>IL</state>
+               <postalCode>60653</postalCode>
+               <country>USA</country>
+            </addr>
+         </representedOrganization>
+      </assignedAuthor>
+   </author>
+   <custodian typeCode="CST">
+      <assignedCustodian classCode="ASSIGNED">
+         <representedCustodianOrganization classCode="ORG">
+            <id assigningAuthorityName=" API Resource Identifier" extension="Organization/LO-1454412490000610" root="1.2.840.113619.21.1.139060385287897942.9"/>
+            <id assigningAuthorityName="Organization Identifier" extension="LO-1454412490000610" root="UNK"/>
+            <id assigningAuthorityName="Tax ID number" extension="363197647" root="2.16.840.1.113883.4.2"/>
+            <name>Komed Holman Health Center</name>
+            <telecom use="WP" value="tel:7732687600"/>
+            <addr>
+               <streetAddressLine>4259 S. Berkeley</streetAddressLine>
+               <city>Chicago</city>
+               <state>IL</state>
+               <postalCode>60653</postalCode>
+               <country>USA</country>
+            </addr>
+         </representedCustodianOrganization>
+      </assignedCustodian>
+   </custodian>
+   <participant typeCode="IND">
+      <associatedEntity classCode="CAREGIVER" nullFlavor="NI">
+         <addr nullFlavor="NI"/>
+         <telecom nullFlavor="NI"/>
+         <associatedPerson nullFlavor="NI">
+            <name nullFlavor="NI"/>
+         </associatedPerson>
+      </associatedEntity>
+   </participant>
+   <documentationOf>
+      <serviceEvent>
+         <code code="PHC1464" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)" displayName="Manually Generated EICR"/>
+         <effectiveTime>
+            <low value="20200603230504-0500"/>
+         </effectiveTime>
+      </serviceEvent>
+   </documentationOf>
+   <componentOf>
+      <encompassingEncounter>
+         <id nullFlavor="NA"/>
+         <code code="PHC2237" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)" displayName="External Encounter"/>
+         <effectiveTime>
+            <low nullFlavor="NA"/>
+         </effectiveTime>
+         <responsibleParty>
+            <assignedEntity>
+               <id nullFlavor="NA" root="2.16.840.1.113883.4.6"/>
+               <addr>
+                  <streetAddressLine nullFlavor="NA"/>
+                  <city nullFlavor="NA"/>
+                  <state nullFlavor="NA"/>
+                  <postalCode nullFlavor="NA"/>
+               </addr>
+               <telecom nullFlavor="NA"/>
+               <assignedPerson>
+                  <name>
+                     <given nullFlavor="NA"/>
+                     <family nullFlavor="NA"/>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <name nullFlavor="NA"/>
+                  <addr>
+                     <streetAddressLine nullFlavor="NA"/>
+                     <city nullFlavor="NA"/>
+                     <state nullFlavor="NA"/>
+                     <postalCode nullFlavor="NA"/>
+                  </addr>
+               </representedOrganization>
+            </assignedEntity>
+         </responsibleParty>
+         <location>
+            <healthCareFacility>
+               <id nullFlavor="NA" root="2.16.840.1.113883.4.6"/>
+               <code nullFlavor="NA"/>
+               <location>
+                  <addr>
+                     <streetAddressLine nullFlavor="NA"/>
+                     <city nullFlavor="NA"/>
+                     <state nullFlavor="NA"/>
+                     <postalCode nullFlavor="NA"/>
+                  </addr>
+               </location>
+               <serviceProviderOrganization>
+                  <name nullFlavor="NA"/>
+                  <telecom nullFlavor="NA"/>
+                  <addr>
+                     <streetAddressLine nullFlavor="NA"/>
+                     <city nullFlavor="NA"/>
+                     <state nullFlavor="NA"/>
+                     <postalCode nullFlavor="NA"/>
+                  </addr>
+               </serviceProviderOrganization>
+            </healthCareFacility>
+         </location>
+      </encompassingEncounter>
+   </componentOf>
+   <!--					******************************************************** CDA Body					********************************************************				-->
+   <component>
+      <structuredBody>
+         <component>
+            <section>
+               <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.4"/>
+               <code code="10164-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HISTORY OF PRESENT ILLNESS"/>
+               <title>HISTORY OF PRESENT ILLNESS</title>
+               <text>IUD surveillance - New &#13;
+1) Annual exam and IUD check set in 6 weeks. - tolerating IUD well, Yeast infection - New &#13;
+1) Annual exam and IUD check set in 6 weeks. - tolerating IUD well, extended (4 or more elements), SB is here for vaginitis check adn sTI check.  she is sexually active iwth one partner, using condoms but desires STI testing.  She has history of Chlamydia.  She has white thick vaignal disharge with irritation for 4 days, no odor, no pelvic pain.  No vaignal lesions or history of HSV.  She has a copper IUD in place and has a regular cycle Q 4 weeks, no spotting in between.  No urinary symptoms or bowel symptoms&#13;
+No CP, SOB, cough, Wheezing or ill contacts&#13;
+, No, No, No, No, No</text>
+            </section>
+         </component>
+         <component>
+            <section>
+               <templateId root="2.16.840.1.113883.10.20.22.2.12"/>
+               <code code="29299-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="REASON FOR VISIT"/>
+               <title>REASON FOR VISIT</title>
+               <text>std check, discharge</text>
+            </section>
+         </component>
+         <component>
+            <section>
+               <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.2.17"/>
+               <templateId root="2.16.840.1.113883.10.20.22.2.17"/>
+               <code code="29762-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="SOCIAL HISTORY"/>
+               <title>SOCIAL HISTORY</title>
+               <text>
+                  <table border="1" width="100%">
+                     <thead>
+                        <tr>
+                           <th align="left">Date</th>
+                           <th align="left">Observation</th>
+                           <th align="left">Value</th>
+                           <th align="left">Provider</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr ID="d58984e13-1.2.840.113619.21.1.139060385287897942.10.1591243504355.281177">
+                           <td align="left">2020/06/01</td>
+                           <td>passive cigarette smoke exposure</td>
+                           <td>No</td>
+                           <td>Katrina Lee </td>
+                        </tr>
+                        <tr ID="d58984e195-1.2.840.113619.21.1.139060385287897942.10.1591243504355.281177">
+                           <td align="center">"</td>
+                           <td>if the patient is using/has used a vaping item, Current, Former, Never Used, Not asked</td>
+                           <td>No</td>
+                           <td>Katrina Lee </td>
+                        </tr>
+                        <tr ID="d58984e282-1.2.840.113619.21.1.139060385287897942.10.1591243504355.281177">
+                           <td align="center">"</td>
+                           <td>Exercise Program Referral</td>
+                           <td>T</td>
+                           <td>Katrina Lee </td>
+                        </tr>
+                        <tr ID="d58984e373-1.2.840.113619.21.1.139060385287897942.10.1591243504355.281177">
+                           <td align="center">"</td>
+                           <td>Weight Management Counseling Provided</td>
+                           <td>T</td>
+                           <td>Katrina Lee </td>
+                        </tr>
+                        <tr ID="d58984e460-1.2.840.113619.21.1.139060385287897942.10.1591243504355.281177">
+                           <td align="center">"</td>
+                           <td>Nutrition intervention</td>
+                           <td>T</td>
+                           <td>Katrina Lee </td>
+                        </tr>
+                        <tr ID="d58984e548-1.2.840.113619.21.1.139060385287897942.10.1591243504355.281177">
+                           <td align="center">"</td>
+                           <td>is there any chance that you could be pregnant?</td>
+                           <td>No</td>
+                           <td>Katrina Lee </td>
+                        </tr>
+                        <tr ID="d58984e635-1.2.840.113619.21.1.139060385287897942.10.1591243504355.281177">
+                           <td align="center">"</td>
+                           <td>smoking status</td>
+                           <td>never smoker</td>
+                           <td>Katrina Lee </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+               <entry>
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906647279967810" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="229819007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Tobacco use and exposure">
+                        <originalText>passive cigarette smoke exposure</originalText>
+                        <translation code="2739" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="PAS CIG SMOK"/>
+                     </code>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200601161053-0500"/>
+                     <value nullFlavor="UNK" xsi:type="CD">
+                        <originalText>No</originalText>
+                     </value>
+                  </observation>
+               </entry>
+               <entry>
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906647251966770" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="549318" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="VAPE_USE">
+                        <originalText>if the patient is using/has used a vaping item, Current, Former, Never Used, Not asked</originalText>
+                        <translation nullFlavor="UNK"/>
+                     </code>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200601161053-0500"/>
+                     <value nullFlavor="UNK" xsi:type="CD">
+                        <originalText>No</originalText>
+                     </value>
+                  </observation>
+               </entry>
+               <entry>
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906647251966730" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="304549008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Giving encouragement to exercise (procedure)">
+                        <originalText>Exercise Program Referral</originalText>
+                        <translation code="156247" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="EXERPRG REF"/>
+                     </code>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200601161053-0500"/>
+                     <value nullFlavor="UNK" xsi:type="CD">
+                        <originalText>T</originalText>
+                     </value>
+                  </observation>
+               </entry>
+               <entry>
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906647251966710" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="156251" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="WGTMGMTCOUNS">
+                        <originalText>Weight Management Counseling Provided</originalText>
+                        <translation nullFlavor="UNK"/>
+                     </code>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200601161053-0500"/>
+                     <value nullFlavor="UNK" xsi:type="CD">
+                        <originalText>T</originalText>
+                     </value>
+                  </observation>
+               </entry>
+               <entry>
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906647147960470" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="241375" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="NUTRITIONIVN">
+                        <originalText>Nutrition intervention</originalText>
+                        <translation nullFlavor="UNK"/>
+                     </code>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200601161053-0500"/>
+                     <value nullFlavor="UNK" xsi:type="CD">
+                        <originalText>T</originalText>
+                     </value>
+                  </observation>
+               </entry>
+               <entry>
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906647095958810" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="418494" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="CHANCEPREGN">
+                        <originalText>is there any chance that you could be pregnant?</originalText>
+                        <translation nullFlavor="UNK"/>
+                     </code>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200601161053-0500"/>
+                     <value nullFlavor="UNK" xsi:type="CD">
+                        <originalText>No</originalText>
+                     </value>
+                  </observation>
+               </entry>
+               <entry>
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.78"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906647095958790" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="72166-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="Logical Observation Identifiers, Names and Codes" displayName="Tobacco smoking status NHIS">
+                        <originalText>smoking status</originalText>
+                        <translation code="11366-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="Logical Observation Identifiers, Names and Codes" displayName="History of tobacco use Narrative"/>
+                        <translation code="229819007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Tobacco use and exposure"/>
+                        <translation code="300015" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="SMOK STATUS"/>
+                     </code>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200601161053-0500"/>
+                     <value code="266919005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Never smoked tobacco (finding)" xsi:type="CD">
+                        <originalText>never smoker</originalText>
+                        <translation code="72166-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="Logical Observation Identifiers, Names and Codes" displayName="Tobacco smoking status NHIS"/>
+                     </value>
+                  </observation>
+               </entry>
+            </section>
+         </component>
+         <component>
+            <section>
+               <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.2.22.1"/>
+               <templateId root="2.16.840.1.113883.10.20.22.2.22.1"/>
+               <code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTERS"/>
+               <title>ENCOUNTERS</title>
+               <text>
+                  <table border="1" width="100%">
+                     <thead>
+                        <tr>
+                           <th align="left">Date</th>
+                           <th align="left">Type</th>
+                           <th align="left">Provider</th>
+                           <th align="left">Location</th>
+                           <th align="left">Encounter Diagnosis</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr ID="d58931e13-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098">
+                           <td>2020/06/01 - 2020/06/01</td>
+                           <td>Consent Forms</td>
+                           <td>
+                              <list listType="unordered">
+                                 <item>Registration NNHSC Desktop </item>
+                                 <item>LinkLogic </item>
+                              </list>
+                           </td>
+                           <td>Komed Holman Health Center</td>
+                           <td>UNK</td>
+                        </tr>
+                        <tr ID="d58931e101-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098">
+                           <td>2020/06/01 - 2020/06/01</td>
+                           <td>Consent Forms</td>
+                           <td>
+                              <list listType="unordered">
+                                 <item>Registration NNHSC Desktop </item>
+                                 <item>LinkLogic </item>
+                              </list>
+                           </td>
+                           <td>Komed Holman Health Center</td>
+                           <td>UNK</td>
+                        </tr>
+                        <tr ID="d58931e189-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098">
+                           <td>2020/06/01 - 2020/06/01</td>
+                           <td>Registration</td>
+                           <td>
+                              <list listType="unordered">
+                                 <item>Registration NNHSC Desktop </item>
+                                 <item>LinkLogic </item>
+                              </list>
+                           </td>
+                           <td>Komed Holman Health Center</td>
+                           <td>UNK</td>
+                        </tr>
+                        <tr ID="d58931e277-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098">
+                           <td>2020/06/03 - 2020/06/03</td>
+                           <td>Phone Note</td>
+                           <td>
+                              <list listType="unordered">
+                                 <item>Abby Lankhorst </item>
+                              </list>
+                           </td>
+                           <td>Winfield Moody Health Center</td>
+                           <td>UNK</td>
+                        </tr>
+                        <tr ID="d58931e359-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098">
+                           <td>2020/06/01 - 2020/06/01</td>
+                           <td>Lab Report</td>
+                           <td>
+                              <list listType="unordered">
+                                 <item>Abby Lankhorst </item>
+                                 <item>LinkLogic </item>
+                              </list>
+                           </td>
+                           <td>Near North Health Service Corporation</td>
+                           <td>UNK</td>
+                        </tr>
+                        <tr ID="d58931e447-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098">
+                           <td>2020/06/01 - 2020/06/01</td>
+                           <td>Lab Report</td>
+                           <td>
+                              <list listType="unordered">
+                                 <item>Abby Lankhorst </item>
+                                 <item>LinkLogic </item>
+                              </list>
+                           </td>
+                           <td>Near North Health Service Corporation</td>
+                           <td>UNK</td>
+                        </tr>
+                        <tr ID="d58931e536-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098">
+                           <td>2020/06/01 - 2020/06/01</td>
+                           <td>Office Visit</td>
+                           <td>
+                              <list listType="unordered">
+                                 <item>Abby Lankhorst </item>
+                                 <item>Katrina Lee </item>
+                                 <item>Salama Witherspoon </item>
+                              </list>
+                           </td>
+                           <td>Komed Holman Health Center</td>
+                           <td>
+                              <list listType="unordered">
+                                 <item>VISUAL ACUITY, DECREASED</item>
+                                 <item>BMI =&gt; 95%ile for age</item>
+                                 <item>Well adolescent 12yr-18yr</item>
+                                 <item>CRACKED TOOTH</item>
+                                 <item>Stress</item>
+                                 <item>FAMILY PLANNING</item>
+                                 <item>Health screening</item>
+                                 <item>Abdominal pain</item>
+                                 <item>Yeast infection</item>
+                                 <item>IUD surveillance</item>
+                              </list>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+               <entry typeCode="DRIV">
+                  <encounter classCode="ENC" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Encounter/1906795110127630" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+                     <text>
+                        <reference value="#d58931e13-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098"/>
+                     </text>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200603">
+                        <high value="20200603"/>
+                     </effectiveTime>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="1499000214000700" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" nullFlavor="UNK" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="467" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <addr>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123371073"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Registration NNHSC</given>
+                                 <family>Desktop</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="-3" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" nullFlavor="UNK" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="-1002" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <addr nullFlavor="NI">
+                              <streetAddressLine nullFlavor="NI"/>
+                              <city nullFlavor="NI"/>
+                              <state nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <country nullFlavor="NI"/>
+                           </addr>
+                           <telecom nullFlavor="NI"/>
+                           <assignedPerson>
+                              <name>
+                                 <family>LinkLogic</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <participant typeCode="LOC">
+                        <participantRole classCode="SDLOC">
+                           <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                           <code nullFlavor="NI"/>
+                           <addr>
+                              <streetAddressLine>4259 S. Berkeley</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60653</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:7732687600"/>
+                           <telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+                           <playingEntity classCode="PLC"/>
+                        </participantRole>
+                     </participant>
+                  </encounter>
+               </entry>
+               <entry typeCode="DRIV">
+                  <encounter classCode="ENC" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Encounter/1906795109127430" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+                     <text>
+                        <reference value="#d58931e101-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098"/>
+                     </text>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200603">
+                        <high value="20200603"/>
+                     </effectiveTime>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="1499000214000700" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" nullFlavor="UNK" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="467" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <addr>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123371073"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Registration NNHSC</given>
+                                 <family>Desktop</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="-3" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" nullFlavor="UNK" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="-1002" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <addr nullFlavor="NI">
+                              <streetAddressLine nullFlavor="NI"/>
+                              <city nullFlavor="NI"/>
+                              <state nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <country nullFlavor="NI"/>
+                           </addr>
+                           <telecom nullFlavor="NI"/>
+                           <assignedPerson>
+                              <name>
+                                 <family>LinkLogic</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <participant typeCode="LOC">
+                        <participantRole classCode="SDLOC">
+                           <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                           <code nullFlavor="NI"/>
+                           <addr>
+                              <streetAddressLine>4259 S. Berkeley</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60653</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:7732687600"/>
+                           <telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+                           <playingEntity classCode="PLC"/>
+                        </participantRole>
+                     </participant>
+                  </encounter>
+               </entry>
+               <entry typeCode="DRIV">
+                  <encounter classCode="ENC" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Encounter/1906795081125820" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+                     <text>
+                        <reference value="#d58931e189-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098"/>
+                     </text>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200603">
+                        <high value="20200603"/>
+                     </effectiveTime>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="1499000214000700" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" nullFlavor="UNK" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="467" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <addr>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123371073"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Registration NNHSC</given>
+                                 <family>Desktop</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="-3" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" nullFlavor="UNK" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="-1002" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <addr nullFlavor="NI">
+                              <streetAddressLine nullFlavor="NI"/>
+                              <city nullFlavor="NI"/>
+                              <state nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <country nullFlavor="NI"/>
+                           </addr>
+                           <telecom nullFlavor="NI"/>
+                           <assignedPerson>
+                              <name>
+                                 <family>LinkLogic</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <participant typeCode="LOC">
+                        <participantRole classCode="SDLOC">
+                           <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                           <code nullFlavor="NI"/>
+                           <addr>
+                              <streetAddressLine>4259 S. Berkeley</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60653</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:7732687600"/>
+                           <telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+                           <playingEntity classCode="PLC"/>
+                        </participantRole>
+                     </participant>
+                  </encounter>
+               </entry>
+               <entry typeCode="DRIV">
+                  <encounter classCode="ENC" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Encounter/1906794701097410" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+                     <text>
+                        <reference value="#d58931e277-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098"/>
+                     </text>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200603">
+                        <high value="20200603"/>
+                     </effectiveTime>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>Winfield Moody</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123377616"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Abby</given>
+                                 <family>Lankhorst</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <participant typeCode="LOC">
+                        <participantRole classCode="SDLOC">
+                           <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                           <code nullFlavor="NI"/>
+                           <addr>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+                           <playingEntity classCode="PLC"/>
+                        </participantRole>
+                     </participant>
+                  </encounter>
+               </entry>
+               <entry typeCode="DRIV">
+                  <encounter classCode="ENC" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Encounter/1906773451818200" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+                     <text>
+                        <reference value="#d58931e359-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098"/>
+                     </text>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200603">
+                        <high value="20200603"/>
+                     </effectiveTime>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>Winfield Moody</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123377616"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Abby</given>
+                                 <family>Lankhorst</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="-3" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" nullFlavor="UNK" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="-1002" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <addr nullFlavor="NI">
+                              <streetAddressLine nullFlavor="NI"/>
+                              <city nullFlavor="NI"/>
+                              <state nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <country nullFlavor="NI"/>
+                           </addr>
+                           <telecom nullFlavor="NI"/>
+                           <assignedPerson>
+                              <name>
+                                 <family>LinkLogic</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <participant typeCode="LOC">
+                        <participantRole classCode="SDLOC">
+                           <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                           <code nullFlavor="NI"/>
+                           <addr>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom value="mailto:wtijani@nmh.org"/>
+                           <playingEntity classCode="PLC"/>
+                        </participantRole>
+                     </participant>
+                  </encounter>
+               </entry>
+               <entry typeCode="DRIV">
+                  <encounter classCode="ENC" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Encounter/1906706253273780" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+                     <text>
+                        <reference value="#d58931e447-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098"/>
+                     </text>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200602">
+                        <high value="20200602"/>
+                     </effectiveTime>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>Winfield Moody</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123377616"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Abby</given>
+                                 <family>Lankhorst</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="-3" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" nullFlavor="UNK" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="-1002" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <addr nullFlavor="NI">
+                              <streetAddressLine nullFlavor="NI"/>
+                              <city nullFlavor="NI"/>
+                              <state nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <country nullFlavor="NI"/>
+                           </addr>
+                           <telecom nullFlavor="NI"/>
+                           <assignedPerson>
+                              <name>
+                                 <family>LinkLogic</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <participant typeCode="LOC">
+                        <participantRole classCode="SDLOC">
+                           <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                           <code nullFlavor="NI"/>
+                           <addr>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom value="mailto:wtijani@nmh.org"/>
+                           <playingEntity classCode="PLC"/>
+                        </participantRole>
+                     </participant>
+                  </encounter>
+               </entry>
+               <entry typeCode="DRIV">
+                  <encounter classCode="ENC" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Encounter/1906647065956850" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <id assigningAuthorityName="Unknown" extension="892521" root="UNK"/>
+                     <code code="99201" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT4" displayName="Office Visit"/>
+                     <text>
+                        <reference value="#d58931e536-1.2.840.113619.21.1.139060385287897942.10.1591243504308.98098"/>
+                     </text>
+                     <statusCode code="completed"/>
+                     <effectiveTime value="20200602">
+                        <high value="20200602"/>
+                     </effectiveTime>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>Winfield Moody</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123377616"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Abby</given>
+                                 <family>Lankhorst</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="1646135546206110" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="166" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="0" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>Komed Holman Health Center</streetAddressLine>
+                              <streetAddressLine>4259 South Berkeley</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL </state>
+                              <postalCode>60653</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:77326876002135"/>
+                           <telecom use="MC" value="tel:3372681480"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Katrina</given>
+                                 <family>Lee</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <performer>
+                        <assignedEntity>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by PVID" extension="1773218509597640" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName="31913-41995-12761042 Providers by DoctorFacility" extension="1319" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="0000" root="2.16.840.1.113883.4.6"/>
+                           <addr>
+                              <streetAddressLine>Winfield Moody</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL </state>
+                              <postalCode>60610</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123377616"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Salama</given>
+                                 <family>Witherspoon</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedEntity>
+                     </performer>
+                     <participant typeCode="LOC">
+                        <participantRole classCode="SDLOC">
+                           <templateId root="2.16.840.1.113883.10.20.22.4.32"/>
+                           <code nullFlavor="NI"/>
+                           <addr>
+                              <streetAddressLine>4259 S. Berkeley</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60653</postalCode>
+                              <country>USA</country>
+                           </addr>
+                           <telecom use="WP" value="tel:7732687600"/>
+                           <telecom value="mailto:nnhsc.emrcoordinator@nm.org"/>
+                           <playingEntity classCode="PLC"/>
+                        </participantRole>
+                     </participant>
+                     <entryRelationship typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1561039606004670" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low value="20090619000000-0500"/>
+                              <high value="20200601000000-0500"/>
+                           </effectiveTime>
+                           <entryRelationship typeCode="SUBJ">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.5"/>
+                                 <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1561039606004670" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                 <code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+                                    <translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+                                 </code>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime xsi:type="IVL_TS">
+                                    <low value="20090619000000-0500"/>
+                                    <high value="20200601000000-0500"/>
+                                 </effectiveTime>
+                                 <value nullFlavor="OTH" xsi:type="CD">
+                                    <originalText>Manual eICR document generated from Athenahealth API Server</originalText>
+                                 </value>
+                              </observation>
+                           </entryRelationship>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1819528692836010" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low value="20170828000000-0500"/>
+                              <high value="20200601000000-0500"/>
+                           </effectiveTime>
+                           <entryRelationship typeCode="SUBJ">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.5"/>
+                                 <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1819528692836010" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                 <code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+                                    <translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+                                 </code>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime xsi:type="IVL_TS">
+                                    <low value="20170828000000-0500"/>
+                                    <high value="20200601000000-0500"/>
+                                 </effectiveTime>
+                                 <value nullFlavor="OTH" xsi:type="CD">
+                                    <originalText>Manual eICR document generated from Athenahealth API Server</originalText>
+                                 </value>
+                              </observation>
+                           </entryRelationship>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1845624612628100" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low value="20180626000000-0500"/>
+                              <high value="20200601000000-0500"/>
+                           </effectiveTime>
+                           <entryRelationship typeCode="SUBJ">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.5"/>
+                                 <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1845624612628100" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                 <code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+                                    <translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+                                 </code>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime xsi:type="IVL_TS">
+                                    <low value="20180626000000-0500"/>
+                                    <high value="20200601000000-0500"/>
+                                 </effectiveTime>
+                                 <value nullFlavor="OTH" xsi:type="CD">
+                                    <originalText>Manual eICR document generated from Athenahealth API Server</originalText>
+                                 </value>
+                              </observation>
+                           </entryRelationship>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1861435653081510" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low value="20181226000000-0600"/>
+                              <high value="20200601000000-0500"/>
+                           </effectiveTime>
+                           <entryRelationship typeCode="SUBJ">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.5"/>
+                                 <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1861435653081510" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                 <code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+                                    <translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+                                 </code>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime xsi:type="IVL_TS">
+                                    <low value="20181226000000-0600"/>
+                                    <high value="20200601000000-0500"/>
+                                 </effectiveTime>
+                                 <value nullFlavor="OTH" xsi:type="CD">
+                                    <originalText>Manual eICR document generated from Athenahealth API Server</originalText>
+                                 </value>
+                              </observation>
+                           </entryRelationship>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1877334568785280" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low value="20190628000000-0500"/>
+                              <high value="20200601000000-0500"/>
+                           </effectiveTime>
+                           <entryRelationship typeCode="SUBJ">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.5"/>
+                                 <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1877334568785280" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                 <code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+                                    <translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+                                 </code>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime xsi:type="IVL_TS">
+                                    <low value="20190628000000-0500"/>
+                                    <high value="20200601000000-0500"/>
+                                 </effectiveTime>
+                                 <value nullFlavor="OTH" xsi:type="CD">
+                                    <originalText>Manual eICR document generated from Athenahealth API Server</originalText>
+                                 </value>
+                              </observation>
+                           </entryRelationship>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1877334795806920" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low value="20190628000000-0500"/>
+                              <high value="20200601000000-0500"/>
+                           </effectiveTime>
+                           <entryRelationship typeCode="SUBJ">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.5"/>
+                                 <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1877334795806920" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                 <code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+                                    <translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+                                 </code>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime xsi:type="IVL_TS">
+                                    <low value="20190628000000-0500"/>
+                                    <high value="20200601000000-0500"/>
+                                 </effectiveTime>
+                                 <value nullFlavor="OTH" xsi:type="CD">
+                                    <originalText>Manual eICR document generated from Athenahealth API Server</originalText>
+                                 </value>
+                              </observation>
+                           </entryRelationship>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1885647988233290" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low value="20191002000000-0500"/>
+                              <high value="20200601000000-0500"/>
+                           </effectiveTime>
+                           <entryRelationship typeCode="SUBJ">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.5"/>
+                                 <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1885647988233290" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                 <code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+                                    <translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+                                 </code>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime xsi:type="IVL_TS">
+                                    <low value="20191002000000-0500"/>
+                                    <high value="20200601000000-0500"/>
+                                 </effectiveTime>
+                                 <value nullFlavor="OTH" xsi:type="CD">
+                                    <originalText>Manual eICR document generated from Athenahealth API Server</originalText>
+                                 </value>
+                              </observation>
+                           </entryRelationship>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1885650171498210" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low value="20191002000000-0500"/>
+                              <high value="20200601000000-0500"/>
+                           </effectiveTime>
+                           <entryRelationship typeCode="SUBJ">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.5"/>
+                                 <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1885650171498210" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                 <code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+                                    <translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+                                 </code>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime xsi:type="IVL_TS">
+                                    <low value="20191002000000-0500"/>
+                                    <high value="20200601000000-0500"/>
+                                 </effectiveTime>
+                                 <value nullFlavor="OTH" xsi:type="CD">
+                                    <originalText>Manual eICR document generated from Athenahealth API Server</originalText>
+                                 </value>
+                              </observation>
+                           </entryRelationship>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1906647911987810" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low value="20200601000000-0500"/>
+                              <high value="20200602000000-0500"/>
+                           </effectiveTime>
+                           <entryRelationship typeCode="SUBJ">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.5"/>
+                                 <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1906647911987810" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                 <code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+                                    <translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+                                 </code>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime xsi:type="IVL_TS">
+                                    <low value="20200601000000-0500"/>
+                                    <high value="20200602000000-0500"/>
+                                 </effectiveTime>
+                                 <value nullFlavor="OTH" xsi:type="CD">
+                                    <originalText>Manual eICR document generated from Athenahealth API Server</originalText>
+                                 </value>
+                              </observation>
+                           </entryRelationship>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1906647911987840" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="ENCOUNTER DIAGNOSIS"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low value="20200601000000-0500"/>
+                           </effectiveTime>
+                           <entryRelationship typeCode="SUBJ">
+                              <observation classCode="OBS" moodCode="EVN">
+                                 <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                                 <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.5"/>
+                                 <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Condition/1906647911987840" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                 <code code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT" displayName="Finding">
+                                    <translation code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical finding"/>
+                                 </code>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime xsi:type="IVL_TS">
+                                    <low value="20200601000000-0500"/>
+                                 </effectiveTime>
+                                 <value nullFlavor="OTH" xsi:type="CD">
+                                    <originalText>Manual eICR document generated from Athenahealth API Server</originalText>
+                                 </value>
+                              </observation>
+                           </entryRelationship>
+                        </act>
+                     </entryRelationship>
+                  </encounter>
+               </entry>
+            </section>
+         </component>
+         <component>
+            <section nullFlavor="NI">
+               <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.2.38"/>
+               <templateId root="2.16.840.1.113883.10.20.22.2.38"/>
+               <code code="29549-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="MEDICATIONS ADMINISTERED"/>
+               <title>MEDICATIONS ADMINISTERED</title>
+               <text>No Known MEDICATIONS ADMINISTERED</text>
+               <entry>
+                  <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="true">
+                     <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <id root="1.2.840.113619.21.1.139060385287897942.10.1591243504308.738531"/>
+                     <statusCode code="active"/>
+                     <effectiveTime xsi:type="IVL_TS">
+                        <low value="19700101000000"/>
+                        <high value="20200603230504.308-0500"/>
+                     </effectiveTime>
+                     <doseQuantity nullFlavor="NI"/>
+                     <consumable>
+                        <manufacturedProduct classCode="MANU">
+                           <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <manufacturedMaterial>
+                              <code codeSystem="2.16.840.1.113883.6.88" nullFlavor="OTH">
+                                 <translation code="410942007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="drug or medication"/>
+                              </code>
+                           </manufacturedMaterial>
+                        </manufacturedProduct>
+                     </consumable>
+                  </substanceAdministration>
+               </entry>
+            </section>
+         </component>
+         <component>
+            <section>
+               <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.2.1.1"/>
+               <templateId root="2.16.840.1.113883.10.20.22.2.1.1"/>
+               <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.2.1"/>
+               <templateId root="2.16.840.1.113883.10.20.22.2.1"/>
+               <code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HISTORY OF MEDICATION USE"/>
+               <title>HISTORY OF MEDICATION USE</title>
+               <text>
+                  <table border="1" width="100%">
+                     <thead>
+                        <tr>
+                           <th align="left">Medication</th>
+                           <th align="left">Status</th>
+                           <th align="left">Instructions</th>
+                           <th align="left">Dates</th>
+                           <th align="left">Provider</th>
+                           <th align="left">Indications</th>
+                           <th align="left">Comments</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr ID="d59016e18-1.2.840.113619.21.1.139060385287897942.10.1591243504339.561780">
+                           <td ID="d59016e77">CEFTRIAXONE SODIUM 250 MG INJECTION SOLUTION RECONSTITUTED</td>
+                           <td>active</td>
+                           <td ID="d59016e80">Please bring to office for injection</td>
+                           <td>2020/06/03</td>
+                           <td>Abby Lankhorst </td>
+                           <td/>
+                           <td/>
+                        </tr>
+                        <tr ID="d59016e86-1.2.840.113619.21.1.139060385287897942.10.1591243504339.561780">
+                           <td ID="d59016e150">AZITHROMYCIN 500 MG ORAL TABLET</td>
+                           <td>active</td>
+                           <td ID="d59016e153">2 pills by mouth at once</td>
+                           <td>2020/06/03 - 2020/06/04</td>
+                           <td>Abby Lankhorst </td>
+                           <td/>
+                           <td/>
+                        </tr>
+                        <tr ID="d59016e169-1.2.840.113619.21.1.139060385287897942.10.1591243504339.561780">
+                           <td ID="d59016e228">FLUCONAZOLE 150 MG ORAL TABLET</td>
+                           <td>active</td>
+                           <td ID="d59016e231">Take one tab by mouth today and one tab by mouth in 4 days</td>
+                           <td>2020/06/01</td>
+                           <td>Abby Lankhorst </td>
+                           <td/>
+                           <td/>
+                        </tr>
+                        <tr ID="d59016e247-1.2.840.113619.21.1.139060385287897942.10.1591243504339.561780">
+                           <td ID="d59016e306">FLUCONAZOLE 150 MG ORAL TABLET</td>
+                           <td>active</td>
+                           <td ID="d59016e309">Take one tab by mouth now and one tab by mouth in 4 days</td>
+                           <td>2020/06/01</td>
+                           <td>Abby Lankhorst </td>
+                           <td/>
+                           <td/>
+                        </tr>
+                        <tr ID="d59016e325-1.2.840.113619.21.1.139060385287897942.10.1591243504339.561780">
+                           <td ID="d59016e384">PARAGARD INTRAUTERINE COPPER INTRAUTERINE INTRAUTERINE DEVICE</td>
+                           <td>active</td>
+                           <td ID="d59016e387">To be placed in office.</td>
+                           <td>2019/06/28</td>
+                           <td>Ashley Chiarappa </td>
+                           <td/>
+                           <td/>
+                        </tr>
+                        <tr ID="d59016e403-1.2.840.113619.21.1.139060385287897942.10.1591243504339.561780">
+                           <td ID="d59016e462">IBUPROFEN 800 MG ORAL TABLET</td>
+                           <td>active</td>
+                           <td ID="d59016e465">1 every 6-8 hours as necessary</td>
+                           <td>2018/12/26</td>
+                           <td>Adewale Lawal </td>
+                           <td/>
+                           <td/>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+               <entry typeCode="DRIV">
+                  <substanceAdministration classCode="SBADM" moodCode="EVN">
+                     <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <id assigningAuthorityName=" API Resource Identifier" extension="MedicationStatement/1906794814104370" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <text>
+                        <reference value="#d59016e77"/>
+                     </text>
+                     <statusCode code="active"/>
+                     <effectiveTime xsi:type="IVL_TS">
+                        <low value="20200603000000-0500"/>
+                        <high nullFlavor="UNK"/>
+                     </effectiveTime>
+                     <routeCode nullFlavor="UNK"/>
+                     <doseQuantity nullFlavor="UNK"/>
+                     <consumable>
+                        <manufacturedProduct classCode="MANU">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <manufacturedMaterial>
+                              <code code="309092" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="CEFTRIAXONE SODIUM">
+                                 <originalText>(CEFTRIAXONE SODIUM) 250 MG SOLR</originalText>
+                                 <translation code="25900" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                 <translation code="02300090102105" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                 <translation code="2880" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                 <translation code="8229" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                 <translation code="00143985925" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                              </code>
+                           </manufacturedMaterial>
+                        </manufacturedProduct>
+                     </consumable>
+                     <author>
+                        <templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="20200603091430.977-0500"/>
+                        <assignedAuthor>
+                           <id assigningAuthorityName=" Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName=" Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>Winfield Moody</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123377616"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Abby</given>
+                                 <family>Lankhorst</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedAuthor>
+                     </author>
+                     <entryRelationship inversionInd="true" typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <code code="967006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <text>
+                              <reference value="#d59016e80"/>Please bring to office for injection
+                           </text>
+                           <statusCode code="completed"/>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="REFR">
+                        <supply classCode="SPLY" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <id assigningAuthorityName=" API Resource Identifier" extension="MedicationOrder/1906794814104400" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <id assigningAuthorityName="Unknown" extension="EA5CB00715EE442793C8DD108DDA696F" root="UNK"/>
+                           <statusCode code="completed"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low nullFlavor="UNK"/>
+                              <high value="20200603091142-0500"/>
+                           </effectiveTime>
+                           <repeatNumber value="0"/>
+                           <quantity value="1"/>
+                           <product>
+                              <manufacturedProduct classCode="MANU">
+                                 <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <manufacturedMaterial>
+                                    <code code="309092" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="CEFTRIAXONE SODIUM">
+                                       <originalText>(CEFTRIAXONE SODIUM) 250 MG SOLR</originalText>
+                                       <translation code="25900" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                       <translation code="02300090102105" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                       <translation code="2880" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                       <translation code="8229" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                       <translation code="00143985925" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                                    </code>
+                                 </manufacturedMaterial>
+                              </manufacturedProduct>
+                           </product>
+                           <author>
+                              <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                              <time value="20200603091442.410-0500"/>
+                              <assignedAuthor>
+                                 <id assigningAuthorityName=" Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                                 <id assigningAuthorityName=" Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                                 <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                                 <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                                 <addr>
+                                    <streetAddressLine>Winfield Moody</streetAddressLine>
+                                    <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                                    <city>Chicago</city>
+                                    <state>IL</state>
+                                    <postalCode>60610</postalCode>
+                                 </addr>
+                                 <telecom use="WP" value="tel:3123371073"/>
+                                 <telecom use="MC" value="tel:3123377616"/>
+                                 <assignedPerson>
+                                    <name>
+                                       <given>Abby</given>
+                                       <family>Lankhorst</family>
+                                    </name>
+                                 </assignedPerson>
+                                 <representedOrganization>
+                                    <id assigningAuthorityName=" API Resource Identifier" extension="Organization/PH-3836" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                    <id assigningAuthorityName="Organization Identifier" extension="PH-3836" root="UNK"/>
+                                    <id assigningAuthorityName="NCPDP" extension="1486681" root="2.16.840.1.113883.3.79"/>
+                                    <name>Komed Holman Health Center / Near North*</name>
+                                    <telecom use="HP" value="tel:7739246000"/>
+                                    <addr>
+                                       <streetAddressLine>4259 S. BERKELEY AVE</streetAddressLine>
+                                       <city>CHICAGO</city>
+                                       <state>IL</state>
+                                       <postalCode>60653</postalCode>
+                                    </addr>
+                                 </representedOrganization>
+                              </assignedAuthor>
+                           </author>
+                        </supply>
+                     </entryRelationship>
+                  </substanceAdministration>
+               </entry>
+               <entry typeCode="DRIV">
+                  <substanceAdministration classCode="SBADM" moodCode="EVN">
+                     <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <id assigningAuthorityName=" API Resource Identifier" extension="MedicationStatement/1906794701097590" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <text>
+                        <reference value="#d59016e150"/>
+                     </text>
+                     <statusCode code="active"/>
+                     <effectiveTime xsi:type="IVL_TS">
+                        <low value="20200603000000-0500"/>
+                        <high value="20200604000000-0500"/>
+                     </effectiveTime>
+                     <routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Metathesaurs" displayName="Oral route">
+                        <originalText>Oral route</originalText>
+                        <translation code="26643006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Oral route"/>
+                     </routeCode>
+                     <doseQuantity nullFlavor="UNK"/>
+                     <consumable>
+                        <manufacturedProduct classCode="MANU">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <manufacturedMaterial>
+                              <code code="248656" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="AZITHROMYCIN">
+                                 <originalText>(AZITHROMYCIN) 500 MG TABS</originalText>
+                                 <translation code="749780" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm"/>
+                                 <translation code="44793" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                 <translation code="03400010000334" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                 <translation code="5799" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                 <translation code="1944" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                 <translation code="50111078810" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                              </code>
+                           </manufacturedMaterial>
+                        </manufacturedProduct>
+                     </consumable>
+                     <author>
+                        <templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="20200603091431.110-0500"/>
+                        <assignedAuthor>
+                           <id assigningAuthorityName=" Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName=" Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>Winfield Moody</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123377616"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Abby</given>
+                                 <family>Lankhorst</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedAuthor>
+                     </author>
+                     <entryRelationship inversionInd="true" typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <code code="967006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <text>
+                              <reference value="#d59016e153"/>2 pills by mouth at once
+                           </text>
+                           <statusCode code="completed"/>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="REFR">
+                        <supply classCode="SPLY" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <id assigningAuthorityName=" API Resource Identifier" extension="MedicationOrder/1906794814104360" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <id assigningAuthorityName="Unknown" extension="92B7EB8F8B244852B67A7005F2A1AB71" root="UNK"/>
+                           <statusCode code="completed"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low nullFlavor="UNK"/>
+                              <high value="20200603091142-0500"/>
+                           </effectiveTime>
+                           <repeatNumber value="0"/>
+                           <quantity value="2"/>
+                           <product>
+                              <manufacturedProduct classCode="MANU">
+                                 <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <manufacturedMaterial>
+                                    <code code="248656" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="AZITHROMYCIN">
+                                       <originalText>(AZITHROMYCIN) 500 MG TABS</originalText>
+                                       <translation code="749780" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm"/>
+                                       <translation code="44793" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                       <translation code="03400010000334" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                       <translation code="5799" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                       <translation code="1944" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                       <translation code="50111078810" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                                    </code>
+                                 </manufacturedMaterial>
+                              </manufacturedProduct>
+                           </product>
+                           <author>
+                              <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                              <time value="20200603091442.143-0500"/>
+                              <assignedAuthor>
+                                 <id assigningAuthorityName=" Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                                 <id assigningAuthorityName=" Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                                 <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                                 <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                                 <addr>
+                                    <streetAddressLine>Winfield Moody</streetAddressLine>
+                                    <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                                    <city>Chicago</city>
+                                    <state>IL</state>
+                                    <postalCode>60610</postalCode>
+                                 </addr>
+                                 <telecom use="WP" value="tel:3123371073"/>
+                                 <telecom use="MC" value="tel:3123377616"/>
+                                 <assignedPerson>
+                                    <name>
+                                       <given>Abby</given>
+                                       <family>Lankhorst</family>
+                                    </name>
+                                 </assignedPerson>
+                                 <representedOrganization>
+                                    <id assigningAuthorityName=" API Resource Identifier" extension="Organization/PH-3836" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                    <id assigningAuthorityName="Organization Identifier" extension="PH-3836" root="UNK"/>
+                                    <id assigningAuthorityName="NCPDP" extension="1486681" root="2.16.840.1.113883.3.79"/>
+                                    <name>Komed Holman Health Center / Near North*</name>
+                                    <telecom use="HP" value="tel:7739246000"/>
+                                    <addr>
+                                       <streetAddressLine>4259 S. BERKELEY AVE</streetAddressLine>
+                                       <city>CHICAGO</city>
+                                       <state>IL</state>
+                                       <postalCode>60653</postalCode>
+                                    </addr>
+                                 </representedOrganization>
+                              </assignedAuthor>
+                           </author>
+                        </supply>
+                     </entryRelationship>
+                  </substanceAdministration>
+               </entry>
+               <entry typeCode="DRIV">
+                  <substanceAdministration classCode="SBADM" moodCode="EVN">
+                     <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <id assigningAuthorityName=" API Resource Identifier" extension="MedicationStatement/1906648550009870" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <text>
+                        <reference value="#d59016e228"/>
+                     </text>
+                     <statusCode code="active"/>
+                     <effectiveTime xsi:type="IVL_TS">
+                        <low value="20200601000000-0500"/>
+                        <high nullFlavor="UNK"/>
+                     </effectiveTime>
+                     <routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Metathesaurs" displayName="Oral route">
+                        <originalText>Oral route</originalText>
+                        <translation code="26643006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Oral route"/>
+                     </routeCode>
+                     <doseQuantity nullFlavor="UNK"/>
+                     <consumable>
+                        <manufacturedProduct classCode="MANU">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <manufacturedMaterial>
+                              <code code="197699" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="FLUCONAZOLE">
+                                 <originalText>(FLUCONAZOLE) 150 MG TABS</originalText>
+                                 <translation code="36392" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                 <translation code="11407015000325" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                 <translation code="20075" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                 <translation code="4975" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                 <translation code="00172541211" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                              </code>
+                           </manufacturedMaterial>
+                        </manufacturedProduct>
+                     </consumable>
+                     <author>
+                        <templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="20200601163600.237-0500"/>
+                        <assignedAuthor>
+                           <id assigningAuthorityName=" Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName=" Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>Winfield Moody</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123377616"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Abby</given>
+                                 <family>Lankhorst</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedAuthor>
+                     </author>
+                     <entryRelationship inversionInd="true" typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <code code="967006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <text>
+                              <reference value="#d59016e231"/>Take one tab by mouth today and one tab by mouth in 4 days
+                           </text>
+                           <statusCode code="completed"/>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="REFR">
+                        <supply classCode="SPLY" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <id assigningAuthorityName=" API Resource Identifier" extension="MedicationOrder/1906648550009910" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <id assigningAuthorityName="Unknown" extension="CEE7F32FD26641EDB8A6D368767349E8" root="UNK"/>
+                           <statusCode code="completed"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low nullFlavor="UNK"/>
+                              <high value="20200601161053-0500"/>
+                           </effectiveTime>
+                           <repeatNumber value="0"/>
+                           <quantity value="2"/>
+                           <product>
+                              <manufacturedProduct classCode="MANU">
+                                 <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <manufacturedMaterial>
+                                    <code code="197699" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="FLUCONAZOLE">
+                                       <originalText>(FLUCONAZOLE) 150 MG TABS</originalText>
+                                       <translation code="36392" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                       <translation code="11407015000325" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                       <translation code="20075" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                       <translation code="4975" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                       <translation code="00172541211" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                                    </code>
+                                 </manufacturedMaterial>
+                              </manufacturedProduct>
+                           </product>
+                           <author>
+                              <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                              <time value="20200601163650.487-0500"/>
+                              <assignedAuthor>
+                                 <id assigningAuthorityName=" Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                                 <id assigningAuthorityName=" Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                                 <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                                 <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                                 <addr>
+                                    <streetAddressLine>Winfield Moody</streetAddressLine>
+                                    <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                                    <city>Chicago</city>
+                                    <state>IL</state>
+                                    <postalCode>60610</postalCode>
+                                 </addr>
+                                 <telecom use="WP" value="tel:3123371073"/>
+                                 <telecom use="MC" value="tel:3123377616"/>
+                                 <assignedPerson>
+                                    <name>
+                                       <given>Abby</given>
+                                       <family>Lankhorst</family>
+                                    </name>
+                                 </assignedPerson>
+                                 <representedOrganization>
+                                    <id assigningAuthorityName=" API Resource Identifier" extension="Organization/PH-543" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                    <id assigningAuthorityName="Organization Identifier" extension="PH-543" root="UNK"/>
+                                    <id assigningAuthorityName="NCPDP" extension="1454684" root="2.16.840.1.113883.3.79"/>
+                                    <name>Walgreens Drug Store 06641*</name>
+                                    <telecom use="WP" value="tel:7732473051"/>
+                                    <addr>
+                                       <streetAddressLine>1614 W. 47th St.</streetAddressLine>
+                                       <city>Chicago</city>
+                                       <state>IL</state>
+                                       <postalCode>606093245</postalCode>
+                                    </addr>
+                                 </representedOrganization>
+                              </assignedAuthor>
+                           </author>
+                        </supply>
+                     </entryRelationship>
+                  </substanceAdministration>
+               </entry>
+               <entry typeCode="DRIV">
+                  <substanceAdministration classCode="SBADM" moodCode="EVN">
+                     <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <id assigningAuthorityName=" API Resource Identifier" extension="MedicationStatement/1906648045992040" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <text>
+                        <reference value="#d59016e306"/>
+                     </text>
+                     <statusCode code="active"/>
+                     <effectiveTime xsi:type="IVL_TS">
+                        <low value="20200601000000-0500"/>
+                        <high nullFlavor="UNK"/>
+                     </effectiveTime>
+                     <routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Metathesaurs" displayName="Oral route">
+                        <originalText>Oral route</originalText>
+                        <translation code="26643006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Oral route"/>
+                     </routeCode>
+                     <doseQuantity nullFlavor="UNK"/>
+                     <consumable>
+                        <manufacturedProduct classCode="MANU">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <manufacturedMaterial>
+                              <code code="197699" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="FLUCONAZOLE">
+                                 <originalText>(FLUCONAZOLE) 150 MG TABS</originalText>
+                                 <translation code="36392" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                 <translation code="11407015000325" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                 <translation code="20075" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                 <translation code="4975" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                 <translation code="00172541211" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                              </code>
+                           </manufacturedMaterial>
+                        </manufacturedProduct>
+                     </consumable>
+                     <author>
+                        <templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="20200601163600.733-0500"/>
+                        <assignedAuthor>
+                           <id assigningAuthorityName=" Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName=" Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>Winfield Moody</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123377616"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Abby</given>
+                                 <family>Lankhorst</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedAuthor>
+                     </author>
+                     <entryRelationship inversionInd="true" typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <code code="967006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <text>
+                              <reference value="#d59016e309"/>Take one tab by mouth now and one tab by mouth in 4 days
+                           </text>
+                           <statusCode code="completed"/>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="REFR">
+                        <supply classCode="SPLY" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <id assigningAuthorityName=" API Resource Identifier" extension="MedicationOrder/1906648045992100" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <id assigningAuthorityName="Unknown" extension="1AA45574DAF444138E2A5CCA6E16CFB7" root="UNK"/>
+                           <statusCode code="completed"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low nullFlavor="UNK"/>
+                              <high value="20200601161053-0500"/>
+                           </effectiveTime>
+                           <repeatNumber value="0"/>
+                           <quantity value="2"/>
+                           <product>
+                              <manufacturedProduct classCode="MANU">
+                                 <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <manufacturedMaterial>
+                                    <code code="197699" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="FLUCONAZOLE">
+                                       <originalText>(FLUCONAZOLE) 150 MG TABS</originalText>
+                                       <translation code="36392" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                       <translation code="11407015000325" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                       <translation code="20075" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                       <translation code="4975" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                       <translation code="00172541211" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                                    </code>
+                                 </manufacturedMaterial>
+                              </manufacturedProduct>
+                           </product>
+                           <author>
+                              <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                              <time value="20200601163650.240-0500"/>
+                              <assignedAuthor>
+                                 <id assigningAuthorityName=" Providers by PVID" extension="1881830337473020" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                                 <id assigningAuthorityName=" Providers by DoctorFacility" extension="1811" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                                 <id assigningAuthorityName="US National Provider Identifiers" extension="1811159825" root="2.16.840.1.113883.4.6"/>
+                                 <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                                 <addr>
+                                    <streetAddressLine>Winfield Moody</streetAddressLine>
+                                    <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                                    <city>Chicago</city>
+                                    <state>IL</state>
+                                    <postalCode>60610</postalCode>
+                                 </addr>
+                                 <telecom use="WP" value="tel:3123371073"/>
+                                 <telecom use="MC" value="tel:3123377616"/>
+                                 <assignedPerson>
+                                    <name>
+                                       <given>Abby</given>
+                                       <family>Lankhorst</family>
+                                    </name>
+                                 </assignedPerson>
+                                 <representedOrganization>
+                                    <id assigningAuthorityName=" API Resource Identifier" extension="Organization/PH-474" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                    <id assigningAuthorityName="Organization Identifier" extension="PH-474" root="UNK"/>
+                                    <id assigningAuthorityName="NCPDP" extension="1478848" root="2.16.840.1.113883.3.79"/>
+                                    <name>Walgreens Drug Store 01101*</name>
+                                    <telecom use="WP" value="tel:7734930733"/>
+                                    <addr>
+                                       <streetAddressLine>1533 E 67th Pl</streetAddressLine>
+                                       <city>Chicago</city>
+                                       <state>IL</state>
+                                       <postalCode>60637</postalCode>
+                                    </addr>
+                                 </representedOrganization>
+                              </assignedAuthor>
+                           </author>
+                        </supply>
+                     </entryRelationship>
+                  </substanceAdministration>
+               </entry>
+               <entry typeCode="DRIV">
+                  <substanceAdministration classCode="SBADM" moodCode="EVN">
+                     <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <id assigningAuthorityName=" API Resource Identifier" extension="MedicationStatement/1877334641792290" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <text>
+                        <reference value="#d59016e384"/>
+                     </text>
+                     <statusCode code="active"/>
+                     <effectiveTime xsi:type="IVL_TS">
+                        <low value="20190628000000-0500"/>
+                        <high nullFlavor="UNK"/>
+                     </effectiveTime>
+                     <routeCode code="C38272" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Metathesaurs" displayName="Intrauterine route">
+                        <originalText>Intrauterine route</originalText>
+                        <translation code="62226000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Intrauterine route"/>
+                     </routeCode>
+                     <doseQuantity nullFlavor="UNK"/>
+                     <consumable>
+                        <manufacturedProduct classCode="MANU">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <manufacturedMaterial>
+                              <code code="2267310" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="COPPER">
+                                 <originalText>PARAGARD INTRAUTERINE COPPER (COPPER) IUD</originalText>
+                                 <translation code="16305" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                 <translation code="25050010005320" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                 <translation code="344" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                 <translation code="14751" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                 <translation code="51285020401" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                              </code>
+                           </manufacturedMaterial>
+                        </manufacturedProduct>
+                     </consumable>
+                     <author>
+                        <templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="20190628095320.657-0500"/>
+                        <assignedAuthor>
+                           <id assigningAuthorityName=" Providers by PVID" extension="1849252276266540" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName=" Providers by DoctorFacility" extension="1678" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="1760983092" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>Winfield Moody</streetAddressLine>
+                              <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60610</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:3123371073"/>
+                           <telecom use="MC" value="tel:3123377616"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Ashley</given>
+                                 <family>Chiarappa</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedAuthor>
+                     </author>
+                     <entryRelationship inversionInd="true" typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <code code="967006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <text>
+                              <reference value="#d59016e387"/>To be placed in office.
+                           </text>
+                           <statusCode code="completed"/>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="REFR">
+                        <supply classCode="SPLY" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <id assigningAuthorityName=" API Resource Identifier" extension="MedicationOrder/1877334795806910" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <id assigningAuthorityName="Unknown" extension="0AE5DA0574B242CC9A191BFB554A2ABC" root="UNK"/>
+                           <statusCode code="completed"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low nullFlavor="UNK"/>
+                              <high value="20190628085325-0500"/>
+                           </effectiveTime>
+                           <repeatNumber value="0"/>
+                           <quantity value="1"/>
+                           <product>
+                              <manufacturedProduct classCode="MANU">
+                                 <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <manufacturedMaterial>
+                                    <code code="2267310" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="COPPER">
+                                       <originalText>PARAGARD INTRAUTERINE COPPER (COPPER) IUD</originalText>
+                                       <translation code="16305" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                       <translation code="25050010005320" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                       <translation code="344" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                       <translation code="14751" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                       <translation code="51285020401" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                                    </code>
+                                 </manufacturedMaterial>
+                              </manufacturedProduct>
+                           </product>
+                           <author>
+                              <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                              <time value="20190628095354.410-0500"/>
+                              <assignedAuthor>
+                                 <id assigningAuthorityName=" Providers by PVID" extension="1849252276266540" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                                 <id assigningAuthorityName=" Providers by DoctorFacility" extension="1678" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                                 <id assigningAuthorityName="US National Provider Identifiers" extension="1760983092" root="2.16.840.1.113883.4.6"/>
+                                 <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                                 <addr>
+                                    <streetAddressLine>Winfield Moody</streetAddressLine>
+                                    <streetAddressLine>1276 N. Clybourn</streetAddressLine>
+                                    <city>Chicago</city>
+                                    <state>IL</state>
+                                    <postalCode>60610</postalCode>
+                                 </addr>
+                                 <telecom use="WP" value="tel:3123371073"/>
+                                 <telecom use="MC" value="tel:3123377616"/>
+                                 <assignedPerson>
+                                    <name>
+                                       <given>Ashley</given>
+                                       <family>Chiarappa</family>
+                                    </name>
+                                 </assignedPerson>
+                                 <representedOrganization>
+                                    <id assigningAuthorityName=" API Resource Identifier" extension="Organization/PH-3836" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                    <id assigningAuthorityName="Organization Identifier" extension="PH-3836" root="UNK"/>
+                                    <id assigningAuthorityName="NCPDP" extension="1486681" root="2.16.840.1.113883.3.79"/>
+                                    <name>Komed Holman Health Center / Near North*</name>
+                                    <telecom use="HP" value="tel:7739246000"/>
+                                    <addr>
+                                       <streetAddressLine>4259 S. BERKELEY AVE</streetAddressLine>
+                                       <city>CHICAGO</city>
+                                       <state>IL</state>
+                                       <postalCode>60653</postalCode>
+                                    </addr>
+                                 </representedOrganization>
+                              </assignedAuthor>
+                           </author>
+                        </supply>
+                     </entryRelationship>
+                  </substanceAdministration>
+               </entry>
+               <entry typeCode="DRIV">
+                  <substanceAdministration classCode="SBADM" moodCode="EVN">
+                     <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <id assigningAuthorityName=" API Resource Identifier" extension="MedicationStatement/1861435742088670" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <text>
+                        <reference value="#d59016e462"/>
+                     </text>
+                     <statusCode code="active"/>
+                     <effectiveTime xsi:type="IVL_TS">
+                        <low value="20181226000000-0600"/>
+                        <high nullFlavor="UNK"/>
+                     </effectiveTime>
+                     <routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Metathesaurs" displayName="Oral route">
+                        <originalText>Oral route</originalText>
+                        <translation code="26643006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Oral route"/>
+                     </routeCode>
+                     <doseQuantity nullFlavor="UNK"/>
+                     <consumable>
+                        <manufacturedProduct classCode="MANU">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <manufacturedMaterial>
+                              <code code="197807" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="IBUPROFEN">
+                                 <originalText>(IBUPROFEN) 800 MG TABS</originalText>
+                                 <translation code="10520" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                 <translation code="66100020000340" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                 <translation code="665" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                 <translation code="6529" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                 <translation code="00904585540" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                              </code>
+                           </manufacturedMaterial>
+                        </manufacturedProduct>
+                     </consumable>
+                     <author>
+                        <templateId root="1.3.6.1.4.1.19376.1.2.20.1"/>
+                        <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                        <time value="20181226092959.123-0600"/>
+                        <assignedAuthor>
+                           <id assigningAuthorityName=" Providers by PVID" extension="1793523672309590" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                           <id assigningAuthorityName=" Providers by DoctorFacility" extension="1434" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                           <id assigningAuthorityName="US National Provider Identifiers" extension="1124373899" root="2.16.840.1.113883.4.6"/>
+                           <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                           <addr>
+                              <streetAddressLine>North and Kostner Health Center</streetAddressLine>
+                              <streetAddressLine>1520 North Kostner Avenue</streetAddressLine>
+                              <city>Chicago</city>
+                              <state>IL</state>
+                              <postalCode>60651</postalCode>
+                           </addr>
+                           <telecom use="WP" value="tel:3122168020"/>
+                           <telecom use="MC" value="tel:7732524876"/>
+                           <assignedPerson>
+                              <name>
+                                 <given>Adewale</given>
+                                 <family>Lawal</family>
+                              </name>
+                           </assignedPerson>
+                        </assignedAuthor>
+                     </author>
+                     <entryRelationship inversionInd="true" typeCode="SUBJ">
+                        <act classCode="ACT" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.20"/>
+                           <code code="967006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                           <text>
+                              <reference value="#d59016e465"/>1 every 6-8 hours as necessary
+                           </text>
+                           <statusCode code="completed"/>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="REFR">
+                        <supply classCode="SPLY" moodCode="INT">
+                           <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <id assigningAuthorityName=" API Resource Identifier" extension="MedicationOrder/1861435742088760" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <id assigningAuthorityName="Unknown" extension="FD8529F7C8674BED92FA34FDDB18BE2C" root="UNK"/>
+                           <statusCode code="completed"/>
+                           <effectiveTime xsi:type="IVL_TS">
+                              <low nullFlavor="UNK"/>
+                              <high value="20181226090123-0600"/>
+                           </effectiveTime>
+                           <repeatNumber value="0"/>
+                           <quantity value="30"/>
+                           <product>
+                              <manufacturedProduct classCode="MANU">
+                                 <templateId extension="2014-06-09" root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <manufacturedMaterial>
+                                    <code code="197807" codeSystem="2.16.840.1.113883.6.88" codeSystemName="Rx Norm" displayName="IBUPROFEN">
+                                       <originalText>(IBUPROFEN) 800 MG TABS</originalText>
+                                       <translation code="10520" codeSystem="2.16.840.1.113883.6.253" codeSystemName="DDID"/>
+                                       <translation code="66100020000340" codeSystem="2.16.840.1.113883.6.68" codeSystemName="GPI"/>
+                                       <translation code="665" codeSystem="1.2.840.113619.21.100.12.998" codeSystemName="KDC"/>
+                                       <translation code="6529" codeSystem="1.2.840.113619.21.100.12.999" codeSystemName="DNID"/>
+                                       <translation code="00904585540" codeSystem="2.16.840.1.113883.6.69" codeSystemName="National Drug Codes"/>
+                                    </code>
+                                 </manufacturedMaterial>
+                              </manufacturedProduct>
+                           </product>
+                           <author>
+                              <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+                              <time value="20181226093049.967-0600"/>
+                              <assignedAuthor>
+                                 <id assigningAuthorityName=" Providers by PVID" extension="1793523672309590" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
+                                 <id assigningAuthorityName=" Providers by DoctorFacility" extension="1434" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
+                                 <id assigningAuthorityName="US National Provider Identifiers" extension="1124373899" root="2.16.840.1.113883.4.6"/>
+                                 <id assigningAuthorityName="Federal Tax Identifier" extension="363197647" root="2.16.840.1.113883.4.2"/>
+                                 <addr>
+                                    <streetAddressLine>North and Kostner Health Center</streetAddressLine>
+                                    <streetAddressLine>1520 North Kostner Avenue</streetAddressLine>
+                                    <city>Chicago</city>
+                                    <state>IL</state>
+                                    <postalCode>60651</postalCode>
+                                 </addr>
+                                 <telecom use="WP" value="tel:3122168020"/>
+                                 <telecom use="MC" value="tel:7732524876"/>
+                                 <assignedPerson>
+                                    <name>
+                                       <given>Adewale</given>
+                                       <family>Lawal</family>
+                                    </name>
+                                 </assignedPerson>
+                                 <representedOrganization>
+                                    <id assigningAuthorityName=" API Resource Identifier" extension="Organization/PH-3836" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                                    <id assigningAuthorityName="Organization Identifier" extension="PH-3836" root="UNK"/>
+                                    <id assigningAuthorityName="NCPDP" extension="1486681" root="2.16.840.1.113883.3.79"/>
+                                    <name>Komed Holman Health Center / Near North*</name>
+                                    <telecom use="HP" value="tel:7739246000"/>
+                                    <addr>
+                                       <streetAddressLine>4259 S. BERKELEY AVE</streetAddressLine>
+                                       <city>CHICAGO</city>
+                                       <state>IL</state>
+                                       <postalCode>60653</postalCode>
+                                    </addr>
+                                 </representedOrganization>
+                              </assignedAuthor>
+                           </author>
+                        </supply>
+                     </entryRelationship>
+                  </substanceAdministration>
+               </entry>
+            </section>
+         </component>
+         <component>
+            <section>
+               <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.2.5.1"/>
+               <templateId root="2.16.840.1.113883.10.20.22.2.5.1"/>
+               <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem list - Reported"/>
+               <title>Problems</title>
+               <text>No Known Problems</text>
+               <entry>
+                  <act classCode="ACT" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.3"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.3"/>
+                     <id root="1.2.840.113619.21.1.139060385287897942.10.1591243504293.332379"/>
+                     <code code="CONC" codeSystem="2.16.840.1.113883.5.6" xsi:type="CE"/>
+                     <statusCode code="active"/>
+                     <effectiveTime>
+                        <low value="19700101000000"/>
+                        <high value="20200603230504.293-0500"/>
+                     </effectiveTime>
+                     <entryRelationship typeCode="SUBJ">
+                        <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                           <id root="1.2.840.113619.21.1.139060385287897942.10.1591243504293.332379"/>
+                           <code code="64572001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+                              <translation code="75323-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Condition"/>
+                           </code>
+                           <statusCode code="completed"/>
+                           <effectiveTime>
+                              <low nullFlavor="NA"/>
+                           </effectiveTime>
+                           <value code="55607006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Problem" xsi:type="CD"/>
+                        </observation>
+                     </entryRelationship>
+                  </act>
+               </entry>
+            </section>
+         </component>
+         <component>
+            <section>
+               <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.2.3.1"/>
+               <templateId root="2.16.840.1.113883.10.20.22.2.3.1"/>
+               <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.2.3"/>
+               <templateId root="2.16.840.1.113883.10.20.22.2.3"/>
+               <code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="RESULTS"/>
+               <title>RESULTS</title>
+               <text>
+                  <table border="1" width="100%">
+                     <thead>
+                        <tr>
+                           <th align="left">Date</th>
+                           <th align="left">Observation</th>
+                           <th align="left">Value</th>
+                           <th align="left">Provider</th>
+                           <th align="left">Reference Range</th>
+                           <th align="left">Interpretation</th>
+                           <th align="left">Location</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr ID="d58945e13-1.2.840.113619.21.1.139060385287897942.10.1591243504324.522646">
+                           <td align="left">2020/06/01</td>
+                           <td>rapid plasma reagin antibody, serum</td>
+                           <td>Non Reactive</td>
+                           <td>LinkLogic </td>
+                           <td>Non Reactive</td>
+                           <td/>
+                           <td/>
+                        </tr>
+                        <tr ID="d58945e112-1.2.840.113619.21.1.139060385287897942.10.1591243504324.522646">
+                           <td align="center">"</td>
+                           <td>Neisseria gonorrhoeae DNA probe</td>
+                           <td>Positive</td>
+                           <td>LinkLogic </td>
+                           <td>Negative</td>
+                           <td>Abnormal</td>
+                           <td/>
+                        </tr>
+                        <tr ID="d58945e217-1.2.840.113619.21.1.139060385287897942.10.1591243504324.522646">
+                           <td align="center">"</td>
+                           <td>chlamydia DNA probe</td>
+                           <td>Positive</td>
+                           <td>LinkLogic </td>
+                           <td>Negative</td>
+                           <td>Abnormal</td>
+                           <td/>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+               <entry typeCode="DRIV">
+                  <organizer classCode="CLUSTER" moodCode="EVN">
+                     <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.1"/>
+                     <templateId root="2.16.840.1.113883.10.20.22.4.1"/>
+                     <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906773452818400" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                     <code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="RESULTS"/>
+                     <statusCode code="completed"/>
+                     <component>
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.2"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906773452818400" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="5291-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="Logical Observation Identifiers, Names and Codes" displayName="Reagin Ab [Units/volume] in Serum by VDRL">
+                              <originalText>rapid plasma reagin antibody, serum</originalText>
+                              <translation code="308" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="RPR"/>
+                           </code>
+                           <statusCode code="completed"/>
+                           <effectiveTime value="20200601162700-0500"/>
+                           <value nullFlavor="UNK" xsi:type="CD">
+                              <originalText>Non Reactive</originalText>
+                           </value>
+                           <referenceRange>
+                              <observationRange>
+                                 <text>Non Reactive</text>
+                                 <value nullFlavor="UNK" xsi:type="PQ"/>
+                              </observationRange>
+                           </referenceRange>
+                        </observation>
+                     </component>
+                     <component>
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.2"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906773451818360" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="24111-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="Logical Observation Identifiers, Names and Codes" displayName="Neisseria gonorrhoeae DNA [Presence] in Unspecified specimen by NAA with probe detection">
+                              <originalText>Neisseria gonorrhoeae DNA probe</originalText>
+                              <translation code="2719" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="GC DNA PROBE"/>
+                           </code>
+                           <statusCode code="completed"/>
+                           <effectiveTime value="20200601162700-0500"/>
+                           <value nullFlavor="UNK" xsi:type="CD">
+                              <originalText>Positive</originalText>
+                           </value>
+                           <interpretationCode code="A" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 Version 2 Table Interpretation Codes" displayName="Abnormal">
+                              <originalText>Abnormal</originalText>
+                           </interpretationCode>
+                           <referenceRange>
+                              <observationRange>
+                                 <text>Negative</text>
+                                 <value nullFlavor="UNK" xsi:type="PQ"/>
+                              </observationRange>
+                           </referenceRange>
+                        </observation>
+                     </component>
+                     <component>
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.2"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.2"/>
+                           <id assigningAuthorityName="31913-41995-12761042 API Resource Identifier" extension="Observation/1906773451818340" root="1.2.840.113619.21.1.139060385287897942.9"/>
+                           <code code="21613-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="Logical Observation Identifiers, Names and Codes" displayName="Chlamydia trachomatis DNA [Presence] in Unspecified specimen by NAA with probe detection">
+                              <originalText>chlamydia DNA probe</originalText>
+                              <translation code="14722" codeSystem="1.2.840.113619.21.100.12.1053.139060385287897942" codeSystemName="GE Healthcare Centricity EMR and Practice Solution Codes for Hierarchcical Identifiers at site 31913-41995-12761042" displayName="CHLAMYD DNA"/>
+                           </code>
+                           <statusCode code="completed"/>
+                           <effectiveTime value="20200601162700-0500"/>
+                           <value nullFlavor="UNK" xsi:type="CD">
+                              <originalText>Positive</originalText>
+                           </value>
+                           <interpretationCode code="A" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 Version 2 Table Interpretation Codes" displayName="Abnormal">
+                              <originalText>Abnormal</originalText>
+                           </interpretationCode>
+                           <referenceRange>
+                              <observationRange>
+                                 <text>Negative</text>
+                                 <value nullFlavor="UNK" xsi:type="PQ"/>
+                              </observationRange>
+                           </referenceRange>
+                        </observation>
+                     </component>
+                  </organizer>
+               </entry>
+            </section>
+         </component>
+      </structuredBody>
+   </component>
+</ClinicalDocument>

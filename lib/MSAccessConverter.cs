@@ -8,35 +8,17 @@ using System.Xml;
 
 namespace LantanaGroup.XmlDocumentConverter
 {
-    public class MSAccessConverter
+    public class MSAccessConverter : BaseConverter
     {
         private const string DatabaseFileName = "output.mdb";
 
-        public delegate void LogEventHandler(string logText);
-        public event LogEventHandler LogEvent;
-        public delegate void ConversionCompleteEventHandler();
-        public event ConversionCompleteEventHandler ConversionComplete;
-
-        private string inputDirectory;
         private string outputDirectory;
-        private MappingConfig config;
+        private OleDbConnection conn;
 
-        private Processor processor;
-        private DocumentBuilder builder;
-        private XPathCompiler compiler;
-
-        public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory)
+        public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory) : base(configFileName)
         {
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
-            this.config = MappingConfig.LoadFromFileWithParents(configFileName);
-
-            this.processor = new Processor();
-            this.builder = this.processor.NewDocumentBuilder();
-            this.compiler = this.processor.NewXPathCompiler();
-
-            foreach (var theNs in this.config.Namespace)
-                this.compiler.DeclareNamespace(theNs.Prefix, theNs.Uri);
         }
 
         private string GetConnectionString(bool delete = false)
@@ -85,15 +67,15 @@ namespace LantanaGroup.XmlDocumentConverter
             foreach (var groupColumnConfig in columns)
             {
                 if (columnNames.Contains(groupColumnConfig.Name))
-                    this.LogEvent?.Invoke(string.Format("Column {0} is a duplicated (occurs more than once)\r\n", groupColumnConfig.Name));
+                    this.Log(string.Format("Column {0} is a duplicated (occurs more than once)\r\n", groupColumnConfig.Name));
                 else
                     columnNames.Add(groupColumnConfig.Name);
 
                 if (groupColumnConfig.Name.ToLower() == "id")
-                    this.LogEvent?.Invoke("Column name \"id\" in table " + tableName + " is reserved for used. Please rename the column in the config.\r\n");
+                    this.Log("Column name \"id\" in table " + tableName + " is reserved for used. Please rename the column in the config.\r\n");
 
                 if (parentTable != null && groupColumnConfig.Name.ToLower() == parentTable.Name.ToLower() + "id")
-                    this.LogEvent?.Invoke("Column name \"" + parentTable.Name + "Id\" is reserved for use. Please rename the column in the config.\r\n");
+                    this.Log("Column name \"" + parentTable.Name + "Id\" is reserved for use. Please rename the column in the config.\r\n");
 
                 var newCol = new ADOX.Column();
                 newCol.Name = groupColumnConfig.Name;
@@ -140,12 +122,12 @@ namespace LantanaGroup.XmlDocumentConverter
                 }
                 catch (Exception ex)
                 {
-                    this.LogEvent?.Invoke(ex.Message + "\r\n");
+                    this.Log(ex.Message + "\r\n");
                 }
             }
         }
 
-        private int InsertData(OleDbConnection conn, string tableName, Dictionary<string, object> columns)
+        protected override int InsertData(string tableName, Dictionary<string, object> columns)
         {
             var columnsNames = columns.Keys;
             string insertQuery = "INSERT INTO [" + tableName + "] ([" + string.Join("], [", columnsNames) + "]) VALUES (";
@@ -167,93 +149,24 @@ namespace LantanaGroup.XmlDocumentConverter
             try
             {
                 OleDbCommand insertCommand = new OleDbCommand();
-                insertCommand.Connection = conn;
+                insertCommand.Connection = this.conn;
                 insertCommand.CommandText = insertQuery;
                 insertCommand.ExecuteNonQuery();
 
                 OleDbCommand getIdCommand = new OleDbCommand();
-                getIdCommand.Connection = conn;
+                getIdCommand.Connection = this.conn;
                 getIdCommand.CommandText = "SELECT @@Identity";
                 int res = (int)getIdCommand.ExecuteScalar();
                 return res;
             }
             catch (Exception ex)
             {
-                this.LogEvent?.Invoke("Error inserting data into database: " + ex.Message + "\r\n");
+                this.Log(String.Format("Error inserting data into {0}: {1}", tableName, ex.Message));
                 return -1;
             }
         }
 
-        private void ProcessGroup(OleDbConnection conn, MappingGroup groupConfig, XmlNode parentNode, XmlNamespaceManager nsManager, int parentId, string parentName)
-        {
-            var groupNodes = parentNode.SelectNodes(groupConfig.Context, nsManager);
-
-            if (groupNodes.Count == 0)
-            {
-                this.LogEvent?.Invoke(string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context));
-                return;
-            }
-
-            foreach (XmlElement groupNode in groupNodes)
-            {
-                Dictionary<string, object> groupColumnData = new Dictionary<string, object>();
-
-                groupColumnData.Add(parentName + "Id", parentId);
-
-                foreach (var colConfig in groupConfig.Column)
-                {
-                    string xpath = colConfig.Value;
-                    string cellValue = this.GetValue(xpath, groupNode, nsManager, colConfig.IsNarrative);
-                    groupColumnData.Add(colConfig.Name, cellValue);
-                }
-
-                int nextId = this.InsertData(conn, groupConfig.TableName, groupColumnData);
-
-                foreach (var childGroup in groupConfig.Group)
-                {
-                    this.ProcessGroup(conn, childGroup, groupNode, nsManager, nextId, groupConfig.TableName);
-                }
-            }
-        }
-
-        private string GetValue(string xpath, XmlNode parent, XmlNamespaceManager nsManager, bool isNarrative)
-        {
-            try
-            {
-                var parentXdmNode = this.builder.Build(parent);
-                var compiledXpath = compiler.Compile(xpath);
-                var selector = compiledXpath.Load();
-                selector.ContextItem = parentXdmNode;
-                var results = selector.Evaluate().GetList();
-                
-                if (results.Count == 1)
-                {
-                    return results[0].GetStringValue();
-                }
-                else if (results.Count > 1)
-                {
-                    String ret = "";
-
-                    foreach (var next in results)
-                    {
-                        if (!string.IsNullOrEmpty(ret)) ret += ", ";
-                        ret += next.GetStringValue();
-                    }
-
-                    return ret;
-                }
-
-                return null;
-            }
-            catch (Exception ex)
-            {
-                this.LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + ex.Message + "\r\n");
-            }
-
-            return null;
-        }
-
-        public void Convert()
+        protected override bool InitializeOutput()
         {
             try
             {
@@ -261,67 +174,27 @@ namespace LantanaGroup.XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.LogEvent?.Invoke(string.Format("Failed to create database and cannot proceed due to: " + ex.Message));
-                this.ConversionComplete?.Invoke();
-                return;
+                this.Log(string.Format("Failed to create database and cannot proceed due to: " + ex.Message));
+                return false;
             }
 
             try
             {
-                OleDbConnection dbConnection = new OleDbConnection(this.GetConnectionString());
-                dbConnection.Open();
-
-                string[] xmlFiles = Directory.GetFiles(this.inputDirectory, "*.xml");
-
-                foreach (var xmlFile in xmlFiles)
-                {
-                    FileInfo fileInfo = new FileInfo(xmlFile);
-
-                    this.LogEvent?.Invoke("\r\nReading XML file: " + fileInfo.Name + "\r\n");
-
-                    int recordId;
-                    XmlDocument xmlDoc = new XmlDocument();
-                    xmlDoc.Load(xmlFile);
-
-                    XmlNamespaceManager nsManager = new XmlNamespaceManager(xmlDoc.NameTable);
-
-                    foreach (var configNamespace in this.config.Namespace)
-                    {
-                        nsManager.AddNamespace(configNamespace.Prefix, configNamespace.Uri);
-                    }
-
-                    Dictionary<string, object> headerColumnData = new Dictionary<string, object>();
-                    headerColumnData["fileName"] = fileInfo.Name;
-
-                    // Read the header columns
-                    foreach (var colConfig in this.config.Column)
-                    {
-                        string xpath = colConfig.Value;
-                        string cellValue = this.GetValue(xpath, xmlDoc.DocumentElement, nsManager, colConfig.IsNarrative);
-                        headerColumnData.Add(colConfig.Name, cellValue);
-                    }
-
-                    recordId = this.InsertData(dbConnection, this.config.TableName, headerColumnData);
-
-                    if (recordId < 0)
-                        continue;
-
-                    foreach (var groupConfig in this.config.Group)
-                    {
-                        this.ProcessGroup(dbConnection, groupConfig, xmlDoc, nsManager, recordId, this.config.TableName);
-                    }
-                }
-
-                dbConnection.Close();
+                this.conn = new OleDbConnection(this.GetConnectionString());
+                this.conn.Open();
             } 
             catch (Exception ex)
             {
-                this.LogEvent?.Invoke("Failed to process data due to: " + ex.Message);
+                this.Log(string.Format("Failed to open created database and cannot proceed due to: " + ex.Message));
+                return false;
             }
-            finally
-            {
-                this.ConversionComplete?.Invoke();
-            }
+
+            return true;
+        }
+
+        protected override void FinalizeOutput()
+        {
+            this.conn.Close();
         }
     }
 }

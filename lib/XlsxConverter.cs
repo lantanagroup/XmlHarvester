@@ -4,39 +4,24 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Validation;
 using Saxon.Api;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
 
 namespace LantanaGroup.XmlDocumentConverter
 {
-    public class XlsxConverter
+    public class XlsxConverter : BaseConverter
     {
-        public delegate void LogEventHandler(string logText);
-        public event LogEventHandler LogEvent;
-        public delegate void ConversionCompleteEventHandler();
-        public event ConversionCompleteEventHandler ConversionComplete;
-
-        private MappingConfig config;
         private string outputDirectory;
-        private string inputDirectory;
 
-        private Processor processor;
-        private DocumentBuilder builder;
-        private XPathCompiler compiler;
+        private SpreadsheetDocument spreadsheet;
+        private ExcelFormat excelFormat;
 
-        public XlsxConverter(string configFileName, string inputDirectory, string outputDirectory)
+        public XlsxConverter(string configFileName, string inputDirectory, string outputDirectory) : base(configFileName)
         {
-            this.config = MappingConfig.LoadFromFileWithParents(configFileName);
             this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
-
-            this.processor = new Processor();
-            this.builder = this.processor.NewDocumentBuilder();
-            this.compiler = this.processor.NewXPathCompiler();
-
-            foreach (var theNs in this.config.Namespace)
-                this.compiler.DeclareNamespace(theNs.Prefix, theNs.Uri);
         }
 
         private WorkbookStylesPart AddStyleSheet(SpreadsheetDocument spreadsheet)
@@ -92,43 +77,6 @@ namespace LantanaGroup.XmlDocumentConverter
             return stylesheet;
         }
 
-        private string GetValue(string xpath, XmlNode parent, XmlNamespaceManager nsManager, bool isNarrative)
-        {
-            try
-            {
-                var parentXdmNode = this.builder.Build(parent);
-                var compiledXpath = compiler.Compile(xpath);
-                var selector = compiledXpath.Load();
-                selector.ContextItem = parentXdmNode;
-                var results = selector.Evaluate().GetList();
-
-                if (results.Count == 1)
-                {
-                    return results[0].GetStringValue();
-                }
-                else if (results.Count > 1)
-                {
-                    String ret = "";
-
-                    foreach (var next in results)
-                    {
-                        if (!string.IsNullOrEmpty(ret)) ret += ", ";
-                        ret += next.GetStringValue();
-                    }
-
-                    return ret;
-                }
-
-                return null;
-            }
-            catch (Exception ex)
-            {
-                this.LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + ex.Message + "\r\n");
-            }
-
-            return null;
-        }
-
         private void ProcessGroup(MappingGroup groupConfig, ExcelFormat excelFormat, XmlNode node, XmlNamespaceManager nsManager)
         {
             string groupXpath = groupConfig.Context;
@@ -139,7 +87,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
                 if (groupNodes.Count == 0)
                 {
-                    this.LogEvent?.Invoke(string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context));
+                    this.Log(string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context));
                     return;
                 }
 
@@ -149,7 +97,8 @@ namespace LantanaGroup.XmlDocumentConverter
                     {
                         string xpath = columnConfig.Value;
                         string cellValue = GetValue(xpath, groupNode, nsManager, columnConfig.IsNarrative);
-                        excelFormat.AddData(groupConfig, columnConfig, cellValue, cellValue.IndexOf("\r\n") >= 0);
+                        bool isBold = !string.IsNullOrEmpty(cellValue) ? cellValue.IndexOf("\r\n") >= 0 : false;
+                        excelFormat.AddData(groupConfig, columnConfig, cellValue, isBold);
                     }
 
                     foreach (MappingGroup childGroupConfig in groupConfig.Group)
@@ -160,102 +109,96 @@ namespace LantanaGroup.XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.LogEvent?.Invoke("Error executing group xpath for " + groupConfig.TableName + ": " + ex.Message + "\r\n");
+                this.Log("Error executing group xpath for " + groupConfig.TableName + ": " + ex.Message + "\r\n");
             }
         }
 
-        public void Convert()
+        protected override int InsertData(string tableName, Dictionary<string, object> columns)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void ProcessFile(XmlDocument xmlDoc, XmlNamespaceManager nsManager, FileInfo fileInfo)
+        {
+            this.excelFormat.AddRow(fileInfo.Name);
+
+            foreach (var columnConfig in this.config.Column)
+            {
+                string xpath = columnConfig.Value;
+                string cellValue = GetValue(xpath, xmlDoc.DocumentElement, nsManager, columnConfig.IsNarrative);
+                bool isBold = !string.IsNullOrEmpty(cellValue) ? cellValue.IndexOf("\r\n") >= 0 : false;
+                this.excelFormat.AddData(null, columnConfig, cellValue, isBold);
+            }
+
+            foreach (var groupConfig in this.config.Group)
+            {
+                this.ProcessGroup(groupConfig, excelFormat, xmlDoc.DocumentElement, nsManager);
+            }
+        }
+
+        protected override bool InitializeOutput()
         {
             try
             {
                 string fileName = MappingConfig.GetOutputFileNameWithoutExtension() + ".xlsx";
                 string filePath = System.IO.Path.Combine(this.outputDirectory, fileName);
 
-                string[] xmlFiles = Directory.GetFiles(this.inputDirectory, "*.xml");
-                ExcelFormat excelFormat = new ExcelFormat();
+                this.excelFormat = new ExcelFormat();
+                this.spreadsheet = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook);
 
-                using (SpreadsheetDocument spreadsheet = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook))
-                {
-                    // create the workbook
-                    spreadsheet.AddWorkbookPart();
-                    spreadsheet.WorkbookPart.Workbook = new Workbook();     // create the worksheet
+                // create the workbook
+                spreadsheet.AddWorkbookPart();
+                spreadsheet.WorkbookPart.Workbook = new Workbook();     // create the worksheet
 
-                    AddStyleSheet(spreadsheet);
+                AddStyleSheet(spreadsheet);
 
-                    spreadsheet.WorkbookPart.AddNewPart<WorksheetPart>();
-                    spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet = new Worksheet();
+                spreadsheet.WorkbookPart.AddNewPart<WorksheetPart>();
+                spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet = new Worksheet();
 
-                    // create sheet data
-                    spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.AppendChild(new SheetData());
-
-                    foreach (var xmlFile in xmlFiles)
-                    {
-                        FileInfo fileInfo = new FileInfo(xmlFile);
-
-                        this.LogEvent?.Invoke("\r\nReading XML file: " + xmlFile + "\r\n");
-                        excelFormat.AddRow(fileInfo.Name);
-
-                        XmlDocument xmlDoc = new XmlDocument();
-                        xmlDoc.Load(xmlFile);
-
-                        XmlNamespaceManager nsManager = new XmlNamespaceManager(xmlDoc.NameTable);
-                        
-                        foreach (var configNamespace in this.config.Namespace)
-                        {
-                            nsManager.AddNamespace(configNamespace.Prefix, configNamespace.Uri);
-                        }
-
-                        foreach (var columnConfig in this.config.Column)
-                        {
-                            string xpath = columnConfig.Value;
-                            string cellValue = GetValue(xpath, xmlDoc.DocumentElement, nsManager, columnConfig.IsNarrative);
-                            excelFormat.AddData(null, columnConfig, cellValue, cellValue.IndexOf("\r\n") >= 0);
-                        }
-
-                        foreach (var groupConfig in this.config.Group)
-                        {
-                            this.ProcessGroup(groupConfig, excelFormat, xmlDoc.DocumentElement, nsManager);
-                        }
-                    }
-
-                    excelFormat.PopulateSpreadsheet(this.config, spreadsheet);
-
-                    // save worksheet
-                    spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.Save();
-
-                    // create the worksheet to workbook relation
-                    spreadsheet.WorkbookPart.Workbook.AppendChild(new Sheets());
-                    spreadsheet.WorkbookPart.Workbook.GetFirstChild<Sheets>().AppendChild(new Sheet()
-                    {
-                        Id = spreadsheet.WorkbookPart.GetIdOfPart(spreadsheet.WorkbookPart.WorksheetParts.First()),
-                        SheetId = 1,
-                        Name = "Summary"
-                    });
-
-                    spreadsheet.WorkbookPart.Workbook.Save();
-
-                    OpenXmlValidator validator = new OpenXmlValidator();
-                    var validationResults = validator.Validate(spreadsheet);
-
-                    if (validationResults.Count() > 0)
-                    {
-                        this.LogEvent?.Invoke("\r\n\r\nExcel validation errors:");
-
-                        foreach (var validationError in validationResults)
-                        {
-                            this.LogEvent?.Invoke("\r\n" + validationError.Description);
-                        }
-                    }
-                }
+                // create sheet data
+                spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.AppendChild(new SheetData());
             }
             catch (Exception ex)
             {
-                this.LogEvent?.Invoke("Failed to process data and produce excel file due to: " + ex.Message);
+                this.Log(String.Format("Error initializing spreadsheet output: {0}", ex.Message));
+                return false;
             }
-            finally
+
+            return true;
+        }
+
+        protected override void FinalizeOutput()
+        {
+            excelFormat.PopulateSpreadsheet(this.config, spreadsheet);
+
+            // save worksheet
+            spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.Save();
+
+            // create the worksheet to workbook relation
+            spreadsheet.WorkbookPart.Workbook.AppendChild(new Sheets());
+            spreadsheet.WorkbookPart.Workbook.GetFirstChild<Sheets>().AppendChild(new Sheet()
             {
-                this.ConversionComplete?.Invoke();
+                Id = spreadsheet.WorkbookPart.GetIdOfPart(spreadsheet.WorkbookPart.WorksheetParts.First()),
+                SheetId = 1,
+                Name = "Summary"
+            });
+
+            spreadsheet.WorkbookPart.Workbook.Save();
+
+            OpenXmlValidator validator = new OpenXmlValidator();
+            var validationResults = validator.Validate(spreadsheet);
+
+            if (validationResults.Count() > 0)
+            {
+                this.Log("\r\n\r\nExcel validation errors:");
+
+                foreach (var validationError in validationResults)
+                {
+                    this.Log("\r\n" + validationError.Description);
+                }
             }
+
+            this.spreadsheet.Close();
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LantanaGroup.XmlDocumentConverter.UI"
         mc:Ignorable="d"
-        Title="XML Document Converter" Height="493.428" Width="679.253">
+        Title="XML Document Converter" MinHeight="500" MinWidth="680">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="b2v" />
         <local:BoolToGridRowHeightConverter x:Key="b2g" />

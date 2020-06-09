@@ -76,31 +76,31 @@
 	<column name="infoRecipientExtension">/cda:ClinicalDocument/cda:informationRecipient/cda:intendedRecipient/cda:id/@extension</column>
 
 	<!--  Legal Authenticator Details-->
-	<column name="legalAuthenticatorTime">/cda:ClinicalDocument/cda:legalAuthenticator/cda:time</column>
-	<column name="legalAuthenticatorCode">/cda:ClinicalDocument/cda:legalAuthenticator/cda:signatureCode/@code</column>
-	<column name="legalAuthenticatorIdRoot">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:id/@root</column>
-	<column name="legalAuthenticatorIdExtension">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:id/@extension</column>
-	<column name="legalAuthenticatorGivenName">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:assignedPerson/cda:name/cda:given</column>
-	<column name="legalAuthenticatorFamilyName">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:assignedPerson/cda:name/cda:family</column>
-	<column name="legalAuthenticatorStreet">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:addr/cda:streetAddressLine</column>
-	<column name="legalAuthenticatorCity">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:addr/cda:city</column>
-	<column name="legalAuthenticatorState">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:addr/cda:state</column>
-	<column name="legalAuthenticatorPostalCode">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:addr/cda:postalCode</column>
-	<column name="legalAuthenticatorCountry">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:addr/cda:country</column>
-	<column name="legalAuthenticatorTelecomUse">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:telecom/@use</column>
-	<column name="legalAuthenticatorTelecomValue">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:telecom/@value</column>
+	<column name="legalAuthTime">/cda:ClinicalDocument/cda:legalAuthenticator/cda:time</column>
+	<column name="legalAuthCode">/cda:ClinicalDocument/cda:legalAuthenticator/cda:signatureCode/@code</column>
+	<column name="legalAuthIdRoot">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:id/@root</column>
+	<column name="legalAuthIdExtension">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:id/@extension</column>
+	<column name="legalAuthGivenName">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:assignedPerson/cda:name/cda:given</column>
+	<column name="legalAuthFamilyName">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:assignedPerson/cda:name/cda:family</column>
+	<column name="legalAuthStreet">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:addr/cda:streetAddressLine</column>
+	<column name="legalAuthCity">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:addr/cda:city</column>
+	<column name="legalAuthState">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:addr/cda:state</column>
+	<column name="legalAuthZip">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:addr/cda:postalCode</column>
+	<column name="legalAuthCountry">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:addr/cda:country</column>
+	<column name="legalAuthTelUse">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:telecom/@use</column>
+	<column name="legalAuthTelValue">/cda:ClinicalDocument/cda:legalAuthenticator/cda:assignedEntity/cda:telecom/@value</column>
 
 	<!--  Participant Details-->
 	<column name="participantIdRoot">/cda:ClinicalDocument/cda:participant/cda:associatedEntity/cda:id/@root</column>
 	<column name="participantIdExtension">/cda:ClinicalDocument/cda:participant/cda:associatedEntity/cda:id/@extension</column>
 
 	<!--  Service Event Details-->
-	<column name="serviceEventStartDateTime">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:effectiveTime/cda:low</column>
-	<column name="serviceEventEndDateTime">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:effectiveTime/cda:high</column>
-	<column name="serviceEventPerformerId">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:performer/cda:assignedEntity/cda:id/@root</column>
-	<column name="serviceEventPerformerIdExtension">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:performer/cda:assignedEntity/cda:id/@extension</column>
-	<column name="serviceEventOrganizationId">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:performer/cda:assignedEntity/cda:representedOrganization/cda:id/@root</column>
-	<column name="serviceEventOrganizationIdExtension">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:performer/cda:assignedEntity/cda:representedOrganization/cda:id/@extension</column>
+	<column name="serviceEvtStartDateTime">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:effectiveTime/cda:low</column>
+	<column name="serviceEvtEndDateTime">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:effectiveTime/cda:high</column>
+	<column name="serviceEvtPerformerId">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:performer/cda:assignedEntity/cda:id/@root</column>
+	<column name="serviceEvtPerformerIdExtension">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:performer/cda:assignedEntity/cda:id/@extension</column>
+	<column name="serviceEvtOrgId">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:performer/cda:assignedEntity/cda:representedOrganization/cda:id/@root</column>
+	<column name="serviceEvtOrgIdExtension">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:performer/cda:assignedEntity/cda:representedOrganization/cda:id/@extension</column>
 
 	<!--  Author and Authoring Device Details-->
 	<group tableName="Author" columnPrefix="Author" context="/cda:ClinicalDocument/cda:author">
@@ -222,7 +222,7 @@
 		<column name="SubstanceRouteCode">cda:routeCode/@code</column>
 		<column name="SubstanceRouteSystem">cda:routeCode/@codeSystem</column>
 		<column name="SubstanceRouteDisplay">cda:routeCode/@displayName</column>
-		<column name="SubstanceRouteText">cda:routeCode/cda:originalText</column>
+		<column name="SubstanceRouteText" isNarrative="true">cda:routeCode/cda:originalText</column>
 		<column name="SubstanceRouteTranslationCode">cda:routeCode/cda:translation/@code</column>
 		<column name="SubstanceRouteTranslationCodeSystem">cda:routeCode/cda:translation/@codeSystem</column>
 		<column name="SubstanceRouteTranslationCodeSystemName">cda:routeCode/cda:translation/@codeSystemName</column>
@@ -237,7 +237,7 @@
 		<column name="IndicationDisplay">cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.19']/cda:value/@displayName</column>
 		<column name="SequenceNum">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.118']/cda:sequenceNumber/@value</column>
 		<column name="PreconditionCode">cda:precondition[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.25']/cda:value/@value</column>
-		<column name="PreconditionText">cda:precondition[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.25']/cda:value/cda:originalText</column>
+		<column name="PreconditionText" isNarrative="true">cda:precondition[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.25']/cda:value/cda:originalText</column>
 		<!-- Medication Information Id 2.16.840.1.113883.10.20.22.4.23 -->
 		<column name="MedicationTemplateId">cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:templateId/@root</column>
 		<column name="MedicationTempIdVersion">cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']/cda:templateId/@extension</column>
@@ -277,7 +277,7 @@
 		<column name="ActivityCodeSystem">cda:code/@codeSystem</column>
 		<column name="ActivityCodeSystemName">cda:code/@codeSystemName</column>
 		<column name="ActivityCodeDisplayName">cda:code/@displayName</column>
-		<column name="ActivityText">cda:text/cda:reference/@value</column>
+		<column name="ActivityText" isNarrative="true">cda:text/cda:reference/@value</column>
 		<column name="ActivityStatusCode">cda:statusCode/@code</column>
 		<column name="ActivityEffectiveDateTime">cda:effectiveTime/@value</column>
 		<column name="ActivityEffectiveDateTimeLow">cda:effectiveTime/cda:low/@value</column>
@@ -330,7 +330,7 @@
 		<column name="ActivityEncounterdiagnosisValueCodeSystem">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:value/@codeSystem</column>
 		<column name="ActivityEncounterdiagnosisValueCodeSystemName">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:value/@codeSystemName</column>
 		<column name="ActivityEncounterdiagnosisValueDisplay">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:value/@displayName</column>
-		<column name="ActivityEncounterdiagnosisText">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:value/cda:originalText</column>
+		<column name="ActivityEncounterdiagnosisText" isNarrative="true">cda:entryRelationship/cda:act/cda:entryRelationship/cda:observation/cda:value/cda:originalText</column>
 
 	</group> 
 
@@ -348,7 +348,7 @@
 		<column name="Code">cda:code/@code</column>
 		<column name="CodeSystem">cda:code/@codeSystem</column>
 		<column name="CodeValue">cda:value/@code</column>
-		<column name="TextValue">cda:value/cda:originalText</column>
+		<column name="TextValue" isNarrative="true">cda:value/cda:originalText</column>
 	</group>
 
 	<!-- Pregnancy Observation id: 2.16.840.1.113883.10.20.15.3.8 -->
@@ -412,28 +412,28 @@
 	<group tableName="ChiefComplaint" columnPrefix="Chief Complaint Section" context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.12']">
 		<column name="TemplateId">cda:templateId/@root</column>
 		<column name="Title">cda:title</column>
-		<column name="Text">cda:text</column>
+		<column name="Text" isNarrative="true">cda:text</column>
 	</group>
 
 	<!-- History of Present Illness Section id 1.3.6.1.4.1.19376.1.5.3.1.3.4 -->
 	<group tableName="HPI" columnPrefix="History of Present Illness Section" context="//cda:section[cda:templateId/@root='1.3.6.1.4.1.19376.1.5.3.1.3.4']">
 		<column name="TemplateId">cda:templateId/@root</column>
 		<column name="Title">cda:title</column>
-		<column name="Text">cda:text</column>
+		<column name="Text" isNarrative="true">cda:text</column>
 	</group>
 
 	<!-- Plan of Treatment Section id 2.16.840.1.113883.10.20.22.2.10-->
 	<group tableName="TreatmentPlan" columnPrefix="Plan of Treatment Section" context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.10']">
 		<column name="TemplateId">cda:templateId/@root</column>
 		<column name="Title">cda:title</column>
-		<column name="Text">cda:text</column>
+		<column name="Text" isNarrative="true">cda:text</column>
 	</group>
 
 	<!-- Social History Section id 2.16.840.1.113883.10.20.22.2.17-->
 	<group tableName="TreatmentPlan" columnPrefix="Plan of Treatment Section" context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.10']">
 		<column name="TemplateId">cda:templateId/@root</column>
 		<column name="Title">cda:title</column>
-		<column name="Text">cda:text</column>
+		<column name="Text" isNarrative="true">cda:text</column>
 	</group>
 
 
@@ -459,7 +459,7 @@
 		<column name="IndicationDisplay">cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.19']/cda:value/@displayName</column>
 		<column name="SequenceNum">cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.118']/cda:sequenceNumber/@value</column>
 		<column name="PreconditionCode">cda:precondition[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.25']/cda:value/@value</column>
-		<column name="PreconditionText">cda:precondition[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.25']/cda:value/cda:originalText</column>
+		<column name="PreconditionText" isNarrative="true">cda:precondition[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.25']/cda:value/cda:originalText</column>
 		<!-- Immunization Medication Information Id 2.16.840.1.113883.10.20.22.4.54 -->
 		<column name="IzMedTemplateId">cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.54']/cda:templateId/@root</column>
 		<column name="IzMedTempIdVersion">cda:consumable/cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.54']/cda:templateId/@extension</column>
@@ -487,7 +487,7 @@
 		<column name="PlannedObsTranslationCodeSystem">cda:code/cda:translation/@codeSystem</column>
 		<column name="PlannedObsTranslationCodeSystemName">cda:code/cda:translation/@codeSystemName</column>
 		<column name="PlannedObsTranslationCodeDisplay">cda:code/cda:translation/@displayName</column>
-		<column name="PlannedObsText">cda:code/cda:originalText</column>
+		<column name="PlannedObsText" isNarrative="true">cda:code/cda:originalText</column>
 		<column name="effectiveTime">cda:effectiveTime/@value</column>
 		<column name="PalnnedObsStatus">cda:statusCode</column>
 		<column name="Value">cda:value/@value</column>
@@ -525,20 +525,20 @@
 		<column name="TestCode">cda:code/@code</column>
 		<column name="TestCodeSystem">cda:code/@codeSystem</column>
 		<column name="TestDisplay">cda:code/@displayName</column>
-		<column name="TestOriginalText">cda:code/cda:originalText</column>
+		<column name="TestOriginalText" isNarrative="true">cda:code/cda:originalText</column>
 		<column name="Status">cda:statusCode/@code</column>
 		<column name="effectiveTime">cda:effectiveTime/@value</column>
 		<column name="TestResultValueDataType">cda:value/@xsi:type</column>
 		<column name="TestResultValue">cda:value/@value</column>
 		<column name="TestResultValueUnit">cda:value/@unit</column>
-		<column name="TestResultValueOriginalText">cda:value/cda:originalText</column>
+		<column name="TestResultValueOriginalText" isNarrative="true">cda:value/cda:originalText</column>
 		<column name="InterpretationCode">cda:interpretationCode/@code</column>
 		<column name="InterpretationCodeSystem">cda:interpretationCode/@codeSystem</column>
 		<column name="InterpretationDisplay">cda:interpretationCode/@displayName</column>
 		<!-- methodCode -->
 		<!-- targetSiteCode -->
 		<!-- author -->
-		<column name="ReferenceRangeText">cda:referenceRange/cda:observationRange/cda:text</column>
+		<column name="ReferenceRangeText" isNarrative="true">cda:referenceRange/cda:observationRange/cda:text</column>
 		<column name="ReferenceRangeValueDataType">cda:referenceRange/cda:observationRange/cda:value/@xsi:type</column>
 		<column name="ReferenceRangeValueLow">cda:referenceRange/cda:observationRange/cda:value/cda:low/@value</column>
 		<column name="ReferenceRangeValueLowUnit">cda:referenceRange/cda:observationRange/cda:value/cda:low/@unit</column>
@@ -560,7 +560,7 @@
 		<column name="TranslationCode">cda:code/cda:translation/@code</column>
 		<column name="TranslationCodeSystem">cda:code/cda:translation/@codeSystem</column>
 		<column name="TranslationDisplay">cda:code/cda:translation/@displayName</column>
-		<column name="CodeOriginalText">cda:code/cda:originalText</column>
+		<column name="CodeOriginalText" isNarrative="true">cda:code/cda:originalText</column>
 		<column name="Status">cda:statusCode/@code</column>
 		<column name="effectiveTimeLow">cda:effectiveTime/cda:low/@value</column>
 		<column name="effectiveTimeHigh">cda:effectiveTime/cda:high/@value</column>
@@ -568,7 +568,7 @@
 		<column name="Value">cda:value/@value</column>
 		<column name="ValueType">cda:value/@type</column>
 		<column name="ValueUnit">cda:value/@unit</column>
-		<column name="ValueOriginalText">cda:value/cda:originalText</column>
+		<column name="ValueOriginalText" isNarrative="true">cda:value/cda:originalText</column>
 	</group>
 
 	<!-- Travel History id 2.16.840.1.113883.10.20.15.2.3.1 -->
@@ -576,7 +576,7 @@
 		<column name="TemplateId">cda:templateId/@root</column>
 		<column name="TemplateCode">cda:code/@code</column>
 		<column name="TemplateCodeSystem">cda:code/@codeSystem</column>
-		<column name="Text">cda:text</column>
+		<column name="Text" isNarrative="true">cda:text</column>
 		<column name="effectiveTimeLow">cda:effectiveTime/cda:low/@value</column>
 		<column name="effectiveTimeHigh">cda:effectiveTime/cda:high/@value</column>
 		<column name="effectiveTime">cda:effectiveTime/@value</column>

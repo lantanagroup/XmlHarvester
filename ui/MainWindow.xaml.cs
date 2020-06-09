@@ -88,22 +88,19 @@ namespace LantanaGroup.XmlDocumentConverter
 
         private void InputDirectoryButton_Click(object sender, RoutedEventArgs e)
         {
-            using (var dialog = new FolderBrowserDialog())
+            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+
+            if (!string.IsNullOrEmpty(this.InputDirectoryText.Text))
+                dialog.SelectedPath = this.InputDirectoryText.Text;
+            else
+                dialog.SelectedPath = Directory.GetCurrentDirectory();
+
+            if (dialog.ShowDialog(this).GetValueOrDefault())
             {
-                if (!string.IsNullOrEmpty(this.InputDirectoryText.Text))
-                    dialog.SelectedPath = this.InputDirectoryText.Text;
-                else
-                    dialog.SelectedPath = Directory.GetCurrentDirectory();
+                this.InputDirectoryText.Text = dialog.SelectedPath;
+                Registry.SetValue(REG_SOFTWARE_KEY, REG_INPUT_DIR_NAME, this.InputDirectoryText.Text);
 
-                DialogResult result = dialog.ShowDialog();
-
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    this.InputDirectoryText.Text = dialog.SelectedPath;
-                    Registry.SetValue(REG_SOFTWARE_KEY, REG_INPUT_DIR_NAME, this.InputDirectoryText.Text);
-
-                    this.EnableConvertButton();
-                }
+                this.EnableConvertButton();
             }
         }
 

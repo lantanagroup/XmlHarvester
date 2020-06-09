@@ -46,20 +46,17 @@ namespace LantanaGroup.XmlDocumentConverter.UI
 
         private void OutputDirectoryButton_Click(object sender, RoutedEventArgs e)
         {
-            using (var dialog = new FolderBrowserDialog())
+            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+
+            if (!string.IsNullOrEmpty(this.OutputDirectoryText.Text))
+                dialog.SelectedPath = this.OutputDirectoryText.Text;
+            else
+                dialog.SelectedPath = Directory.GetCurrentDirectory();
+
+            if (dialog.ShowDialog().GetValueOrDefault())
             {
-                if (!string.IsNullOrEmpty(this.OutputDirectoryText.Text))
-                    dialog.SelectedPath = this.OutputDirectoryText.Text;
-                else
-                    dialog.SelectedPath = Directory.GetCurrentDirectory();
-
-                DialogResult result = dialog.ShowDialog();
-
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    this.OutputDirectoryText.Text = dialog.SelectedPath;
-                    Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_OUPUT_DIR_NAME, this.OutputDirectoryText.Text);
-                }
+                this.OutputDirectoryText.Text = dialog.SelectedPath;
+                Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_OUPUT_DIR_NAME, this.OutputDirectoryText.Text);
             }
         }
     }

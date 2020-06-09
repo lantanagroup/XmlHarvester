@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.IO;
+using System.Linq;
 using System.Xml;
 
 namespace LantanaGroup.XmlDocumentConverter
@@ -127,21 +128,37 @@ namespace LantanaGroup.XmlDocumentConverter
             }
         }
 
-        protected override int InsertData(string tableName, Dictionary<string, object> columns)
+        protected override int InsertData(string tableName, Dictionary<MappingColumn, object> columns)
         {
-            var columnsNames = columns.Keys;
+            var columnsNames = columns.Keys.Select(y => y.Name);
             string insertQuery = "INSERT INTO [" + tableName + "] ([" + string.Join("], [", columnsNames) + "]) VALUES (";
 
             List<string> values = new List<string>();
 
-            foreach (var value in columns.Values)
+            foreach (var key in columns.Keys)
             {
+                var value = columns[key];
+
                 if (value == null)
+                {
                     values.Add("null");
+                }
                 else if (value.GetType() == typeof(string))
-                    values.Add("'" + value.ToString().Replace("'", "''") + "'");
+                {
+                    string stringValue = ((string)value).Replace("'", "''");
+
+                    if (!key.IsNarrative && stringValue.Length > 255)
+                    {
+                        stringValue = stringValue.Substring(0, 254);
+                        this.Log(String.Format("Value for column {0} is more than 255 characters and will be truncated. Consider using isNarrative=true on the column definition.", key.Name, key.Heading));
+                    }
+
+                    values.Add("'" + stringValue + "'");
+                }
                 else
+                {
                     values.Add(value.ToString());
+                }
             }
             
             insertQuery += string.Join(", ", values) + ")";

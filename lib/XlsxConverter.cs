@@ -113,7 +113,7 @@ namespace LantanaGroup.XmlDocumentConverter
             }
         }
 
-        protected override int InsertData(string tableName, Dictionary<string, object> columns)
+        protected override int InsertData(string tableName, Dictionary<MappingColumn, object> columns)
         {
             throw new NotImplementedException();
         }

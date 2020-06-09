@@ -35,7 +35,7 @@ namespace LantanaGroup.XmlDocumentConverter
                 this.compiler.DeclareNamespace(theNs.Prefix, theNs.Uri);
         }
 
-        protected abstract int InsertData(string tableName, Dictionary<string, object> columns);
+        protected abstract int InsertData(string tableName, Dictionary<MappingColumn, object> columns);
 
         protected void Log(string message)
         {
@@ -51,15 +51,20 @@ namespace LantanaGroup.XmlDocumentConverter
 
             foreach (XmlElement groupNode in groupNodes)
             {
-                Dictionary<string, object> groupColumnData = new Dictionary<string, object>();
+                Dictionary<MappingColumn, object> groupColumnData = new Dictionary<MappingColumn, object>();
 
-                groupColumnData.Add(parentName + "Id", parentId);
+                var parentCol = new MappingColumn()
+                {
+                    Name = parentName + "Id",
+                    Heading = parentName + "Id"
+                };
+                groupColumnData.Add(parentCol, parentId);
 
                 foreach (var colConfig in groupConfig.Column)
                 {
                     string xpath = colConfig.Value;
                     string cellValue = this.GetValue(xpath, groupNode, nsManager, colConfig.IsNarrative);
-                    groupColumnData.Add(colConfig.Name, cellValue);
+                    groupColumnData.Add(colConfig, cellValue);
                 }
 
                 int nextId = this.InsertData(groupConfig.TableName, groupColumnData);
@@ -119,15 +124,22 @@ namespace LantanaGroup.XmlDocumentConverter
 
         protected virtual void ProcessFile(XmlDocument xmlDoc, XmlNamespaceManager nsManager, FileInfo fileInfo)
         {
-            Dictionary<string, object> headerColumnData = new Dictionary<string, object>();
-            headerColumnData["FILENAME"] = fileInfo.Name;
+            Dictionary<MappingColumn, object> headerColumnData = new Dictionary<MappingColumn, object>();
+
+            MappingColumn headerCol = new MappingColumn()
+            {
+                Name = "FILENAME",
+                Heading = "FILENAME"
+            };
+
+            headerColumnData.Add(headerCol, fileInfo.Name);
 
             // Read the header columns
             foreach (var colConfig in this.config.Column)
             {
                 string xpath = colConfig.Value;
                 string cellValue = this.GetValue(xpath, xmlDoc.DocumentElement, nsManager, colConfig.IsNarrative);
-                headerColumnData.Add(colConfig.Name.ToUpper(), cellValue);
+                headerColumnData.Add(colConfig, cellValue);
             }
 
             int recordId = this.InsertData(this.config.TableName, headerColumnData);

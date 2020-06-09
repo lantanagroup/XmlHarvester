@@ -53,6 +53,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseConverter.cs" />
     <Compile Include="ExcelFormat.cs" />
     <Compile Include="MappingColumn.cs" />
     <Compile Include="MappingConfig.Designer.cs" />

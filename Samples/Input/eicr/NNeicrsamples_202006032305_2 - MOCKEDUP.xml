@@ -36,7 +36,7 @@
             <religiousAffiliationCode code="1013" displayName="Christian (non-Catholic, non-specific)" codeSystem="2.16.840.1.113883.5.1076" codeSystemName="HL7 Religious Affiliation" />
             <!-- CDC Race and Ethnicity code set contains the five minimum
                  race and ethnicity categories defined by OMB Standards -->
-            <raceCode code="2106-3" displayName="White" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race and Ethnicity - CDC" />
+            <raceCode code="2054-5-3" displayName="Black or African American" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race and Ethnicity - CDC" />
             <!-- The raceCode extension is only used if raceCode is valued -->
             <sdtc:raceCode code="2076-8" displayName="Hawaiian or Other Pacific Islander" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race and Ethnicity - CDC" />
             <ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race and Ethnicity - CDC" />
@@ -58,7 +58,7 @@
          <id assigningAuthorityName=" Providers by PVID" extension="1467041069000630" root="1.2.840.113619.21.1.139060385287897942.2.2"/>
          <id assigningAuthorityName=" Providers by DoctorFacility" extension="365" root="1.2.840.113619.21.1.139060385287897942.2.1"/>
          <addr>
-            <streetAddressLine>Winfield Moody</streetAddressLine>
+            <streetAddressLine>Winfield Moody-TEST</streetAddressLine>
             <streetAddressLine>1276 N Clybourn</streetAddressLine>
             <city>Chicago</city>
             <state>IL</state>
@@ -68,7 +68,7 @@
          <telecom use="MC" value="tel:3123377616"/>
          <assignedPerson>
             <name>
-               <given>KH WH</given>
+               <given>KH WH-TEST</given>
                <family>Nurse Desk</family>
             </name>
          </assignedPerson>
@@ -77,7 +77,7 @@
             <id assigningAuthorityName="Organization Identifier" extension="DF-76" root="UNK"/>
             <id assigningAuthorityName="National Provider Identifier" extension="1821079088" root="2.16.840.1.113883.4.6"/>
             <id assigningAuthorityName="Tax ID number" extension="363197647" root="2.16.840.1.113883.4.2"/>
-            <name>Winfield Moody Health Center</name>
+            <name>Winfield Moody Health Center-TEST</name>
             <telecom use="WP" value="tel:3123371073     "/>
             <addr>
                <streetAddressLine>1276 N Clybourn</streetAddressLine>
@@ -93,7 +93,7 @@
       <assignedAuthor>
          <id root="1.2.840.113619.21.1.139060385287897942.11"/>
          <addr>
-            <streetAddressLine>4259 S. Berkeley</streetAddressLine>
+            <streetAddressLine>4259 S. Berkeley-TEST</streetAddressLine>
             <city>Chicago</city>
             <state>IL</state>
             <postalCode>60653</postalCode>
@@ -109,7 +109,7 @@
             <id assigningAuthorityName=" API Resource Identifier" extension="Organization/LO-1454412490000610" root="1.2.840.113619.21.1.139060385287897942.9"/>
             <id assigningAuthorityName="Organization Identifier" extension="LO-1454412490000610" root="UNK"/>
             <id assigningAuthorityName="Tax ID number" extension="363197647" root="2.16.840.1.113883.4.2"/>
-            <name>Komed Holman Health Center</name>
+            <name>Komed Holman Health Center-TEST</name>
             <telecom use="WP" value="tel:7732687600"/>
             <addr>
                <streetAddressLine>4259 S. Berkeley</streetAddressLine>
@@ -127,7 +127,7 @@
             <id assigningAuthorityName=" API Resource Identifier" extension="Organization/LO-1454412490000610" root="1.2.840.113619.21.1.139060385287897942.9"/>
             <id assigningAuthorityName="Organization Identifier" extension="LO-1454412490000610" root="UNK"/>
             <id assigningAuthorityName="Tax ID number" extension="363197647" root="2.16.840.1.113883.4.2"/>
-            <name>Komed Holman Health Center</name>
+            <name>Komed Holman Health Center-TEST</name>
             <telecom use="WP" value="tel:7732687600"/>
             <addr>
                <streetAddressLine>4259 S. Berkeley</streetAddressLine>

@@ -19,7 +19,7 @@
 	<column name="ConfidentialityCSN">/cda:ClinicalDocument/cda:confidentialityCode/@codeSystemName</column>
 
 	<!--  Patient Demographic Details-->
-	<group tableName="Demographics" context="/cda:ClinicalDocument/cda:recordTarget/cda:patientRole">
+	<group tableName="PatientDemographics" context="/cda:ClinicalDocument/cda:recordTarget/cda:patientRole">
 		<column name="FirstPatientId">/cda:patientRole/cda:id[1]/concat(@extension, ' (', @root, ')')</column>
 		<column name="GivenName">/cda:patientRole/cda:patient/cda:name/cda:given</column>
 		<column name="FamilyName">/cda:patientRole/cda:patient/cda:name/cda:family</column>
@@ -108,7 +108,6 @@
 		<column name="PartCountry">/cda:ClinicalDocument/cda:participant/cda:associatedEntity/cda:addr/cda:country</column>
 	</group>
 
-
 	<!--  Service Event Details-->
 	<group tableName="ServiceEvent">
 		<column name="StartDateTime">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:effectiveTime/cda:low</column>
@@ -119,11 +118,8 @@
 		<column name="OrgIdExt">/cda:ClinicalDocument/cda:documentationOf/cda:serviceEvent/cda:performer/cda:assignedEntity/cda:representedOrganization/cda:id/@extension</column>
 	</group>
 
-
 	<!--  Author and Authoring Device Details-->
 	<group tableName="Author" columnPrefix="Author" context="/cda:ClinicalDocument/cda:author">
-		<column name="IdRoot">cda:assignedAuthor/cda:id/@root</column>
-		<column name="IdExt">cda:assignedAuthor/cda:id/@extension</column>
 		<column name="GivenName">cda:assignedAuthor/cda:assignedPerson/cda:name/cda:given</column>
 		<column name="FamilyName">cda:assignedAuthor/cda:assignedPerson/cda:name/cda:family</column>
 		<column name="StreetAddress">cda:assignedAuthor/cda:addr/cda:streetAddressLine</column>

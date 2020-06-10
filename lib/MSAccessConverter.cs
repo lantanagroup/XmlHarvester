@@ -34,7 +34,7 @@ namespace LantanaGroup.XmlDocumentConverter
             return connectionString;
         }
 
-        private ADOX.Table CreateTable(ADOX.CatalogClass cat, ADOX.Table parentTable, string tableName, List<MappingColumn> columns)
+        private ADOX.Table CreateTable(ADOX.CatalogClass cat, ADOX.Table parentTable, string tableName, List<MappingColumn> columns, bool createIndex)
         {
             var newTable = new ADOX.Table();
             newTable.Name = tableName;
@@ -60,7 +60,9 @@ namespace LantanaGroup.XmlDocumentConverter
             if (parentTable != null)
             {
                 newTable.Columns.Append(parentTable.Name + "Id", DataTypeEnum.adInteger);
-                newTable.Keys.Append(tableName + "FKey", KeyTypeEnum.adKeyForeign, parentTable.Name + "Id", parentTable.Name, "id");
+
+                if (createIndex)
+                    newTable.Keys.Append(tableName + "FKey", KeyTypeEnum.adKeyForeign, parentTable.Name + "Id", parentTable.Name, "id");
             }
 
             List<string> columnNames = new List<string>();
@@ -95,13 +97,14 @@ namespace LantanaGroup.XmlDocumentConverter
             return newTable;
         }
 
-        private ADOX.Table CreateGroupTable(ADOX.CatalogClass cat, ADOX.Table parentTable, MappingGroup group)
+        private ADOX.Table CreateGroupTable(ADOX.CatalogClass cat, ADOX.Table parentTable, MappingGroup group, bool createIndex)
         {
-            var newTable = this.CreateTable(cat, parentTable, group.TableName, group.Column);
+            var newTable = this.CreateTable(cat, parentTable, group.TableName, group.Column, createIndex);
 
             foreach (var childGroup in group.Group)
             {
-                this.CreateGroupTable(cat, newTable, childGroup);
+                int index = group.Group.IndexOf(childGroup);            // MDB has maximum of 32 indexes per table
+                this.CreateGroupTable(cat, newTable, childGroup, index < 31);
             }
 
             return newTable;
@@ -113,13 +116,15 @@ namespace LantanaGroup.XmlDocumentConverter
 
             cat.Create(this.GetConnectionString(true));
 
-            var recordTable = this.CreateTable(cat, null, this.config.TableName, this.config.Column);
+            var recordTable = this.CreateTable(cat, null, this.config.TableName, this.config.Column, false);
 
             foreach (var groupConfig in this.config.Group)
             {
+                int index = this.config.Group.IndexOf(groupConfig);     // MDB has maximum of 32 indexes per table
+
                 try
                 {
-                    this.CreateGroupTable(cat, recordTable, groupConfig);
+                    this.CreateGroupTable(cat, recordTable, groupConfig, index < 31);
                 }
                 catch (Exception ex)
                 {

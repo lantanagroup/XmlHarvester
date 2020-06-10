@@ -47,7 +47,17 @@ namespace LantanaGroup.XmlDocumentConverter
 
         protected virtual void ProcessGroup(MappingGroup groupConfig, XmlNode parentNode, XmlNamespaceManager nsManager, int parentId, string parentName)
         {
-            var groupNodes = parentNode.SelectNodes(groupConfig.Context, nsManager);
+            XmlNodeList groupNodes = null;
+
+            try
+            {
+                groupNodes = parentNode.SelectNodes(groupConfig.Context, nsManager);
+            }
+            catch (Exception ex)
+            {
+                this.Log(string.Format("XPATH error when selecting context for the group {0}: {1}", groupConfig.TableName, ex.Message));
+                return;
+            }
 
             if (groupNodes.Count == 0)
                 return;

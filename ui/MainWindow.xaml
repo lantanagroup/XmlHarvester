@@ -27,27 +27,26 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="300" Width="38*" />
                 <ColumnDefinition Width="262*"/>
-                <ColumnDefinition Width="67*"/>
-                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="75" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
-                <RowDefinition Height="60" x:Name="SettingsRow" />
+                <RowDefinition Height="130" x:Name="SettingsRow" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Label x:Name="MappingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Content="What config should be used?" Margin="5,2"/>
-            <TextBox x:Name="MappingFileText" Grid.Row="1" Grid.Column="0" IsReadOnly="true" Margin="5,2" Grid.ColumnSpan="3" />
+            <Label x:Name="MappingLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="What config should be used?" Margin="5,2"/>
+            <TextBox x:Name="MappingFileText" Grid.Row="1" Grid.Column="0" IsReadOnly="true" Margin="5,2" Grid.ColumnSpan="2" />
             <Button x:Name="MappingFileButton" Grid.Row="1" Grid.Column="3" Content="Select" Margin="5,2" Click="MappingFileButton_Click" />
-            <Label x:Name="InputDirectoryLabel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="What directory contains the input files?" Margin="5,2"/>
-            <TextBox x:Name="InputDirectoryText" Grid.Row="3" Grid.Column="0" IsReadOnly="true" Margin="5,2" Grid.ColumnSpan="3" />
+            <Label x:Name="InputDirectoryLabel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Content="What directory contains the input files?" Margin="5,2"/>
+            <TextBox x:Name="InputDirectoryText" Grid.Row="3" Grid.Column="0" IsReadOnly="true" Margin="5,2" Grid.ColumnSpan="2" />
             <Button x:Name="InputDirectoryButton" Grid.Row="3" Grid.Column="3" Content="Select" Margin="5,2" Click="InputDirectoryButton_Click" />
-            <local:XlsxSettingsPanel x:Name="XlsxSettings" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5" Visibility="{Binding ElementName=XlsxButton, Path=IsChecked, Converter={StaticResource b2v}}" />
-            <local:MdbSettingsPanel x:Name="MdbSettings" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5" Visibility="{Binding ElementName=MSAccessButton, Path=IsChecked, Converter={StaticResource b2v}}" />
-            <local:DB2SettingsPanel x:Name="Db2Settings" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5" Visibility="{Binding ElementName=DB2Button, Path=IsChecked, Converter={StaticResource b2v}}" SettingsChanged="EnableConvertButton" />
-            <TextBox x:Name="LogText" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="#FFEEEEEE" />
+            <local:XlsxSettingsPanel x:Name="XlsxSettings" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" RenderTransformOrigin="0.5,0.5" Visibility="{Binding ElementName=XlsxButton, Path=IsChecked, Converter={StaticResource b2v}}" />
+            <local:MdbSettingsPanel x:Name="MdbSettings" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" RenderTransformOrigin="0.5,0.5" Visibility="{Binding ElementName=MSAccessButton, Path=IsChecked, Converter={StaticResource b2v}}" />
+            <local:DB2SettingsPanel x:Name="Db2Settings" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" RenderTransformOrigin="0.5,0.5" Visibility="{Binding ElementName=DB2Button, Path=IsChecked, Converter={StaticResource b2v}}" SettingsChanged="EnableConvertButton" />
+            <TextBox x:Name="LogText" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="#FFEEEEEE" />
         </Grid>
     </DockPanel>
 </Window>

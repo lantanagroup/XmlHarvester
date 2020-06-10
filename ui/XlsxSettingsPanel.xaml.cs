@@ -80,5 +80,11 @@ namespace LantanaGroup.XmlDocumentConverter.UI
                 Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, this.MoveDirectoryText.Text);
             }
         }
+
+        private void ClearMoveDirectoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.MoveDirectoryText.Text = string.Empty;
+            Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, string.Empty);
+        }
     }
 }

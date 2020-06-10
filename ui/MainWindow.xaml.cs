@@ -18,6 +18,7 @@ namespace LantanaGroup.XmlDocumentConverter
         public const string REG_MAPPING_FILE_NAME = "mappingFile";
         public const string REG_INPUT_DIR_NAME = "inputDirectory";
         public const string REG_OUPUT_DIR_NAME = "outputDirectory";
+        public const string REG_MOVE_DIR_NAME = "moveDirectory";
         public const string REG_OUTPUT_XLSX_NAME = "outputXlsx";
         public const string REG_OUTPUT_MDB_NAME = "outputMdb";
         public const string REG_OUTPUT_DB2_NAME = "outputDb2";
@@ -123,7 +124,7 @@ namespace LantanaGroup.XmlDocumentConverter
             {
                 this.LogText.Text = "";
                 this.ConvertButton.IsEnabled = false;
-                XlsxConverter converter = new XlsxConverter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.XlsxSettings.OutputDirectory);
+                XlsxConverter converter = new XlsxConverter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.XlsxSettings.OutputDirectory, this.XlsxSettings.MoveDirectory);
 
                 converter.LogEvent += delegate (string logText)
                 {
@@ -157,7 +158,7 @@ namespace LantanaGroup.XmlDocumentConverter
             {
                 this.LogText.Text = "";
                 this.ConvertButton.IsEnabled = false;
-                MSAccessConverter converter = new MSAccessConverter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.MdbSettings.OutputDirectory);
+                MSAccessConverter converter = new MSAccessConverter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.MdbSettings.OutputDirectory, this.MdbSettings.MoveDirectory);
 
                 converter.LogEvent += delegate (string logText)
                 {
@@ -191,7 +192,7 @@ namespace LantanaGroup.XmlDocumentConverter
             {
                 this.LogText.Text = "";
                 this.ConvertButton.IsEnabled = false;
-                DB2Converter converter = new DB2Converter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.Db2Settings.Database, this.Db2Settings.Username, this.Db2Settings.Password, this.Db2Settings.OutputDirectory);
+                DB2Converter converter = new DB2Converter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.Db2Settings.Database, this.Db2Settings.Username, this.Db2Settings.Password, this.Db2Settings.MoveDirectory);
 
                 converter.LogEvent += delegate (string logText)
                 {
@@ -251,9 +252,9 @@ namespace LantanaGroup.XmlDocumentConverter
         private void ChangeSettingsRowHeight()
         {
             if (this.XlsxButton.IsChecked == true)
-                this.SettingsRow.Height = new GridLength(60);
+                this.SettingsRow.Height = new GridLength(130);
             else if (this.MSAccessButton.IsChecked == true)
-                this.SettingsRow.Height = new GridLength(60);
+                this.SettingsRow.Height = new GridLength(130);
             else if (this.DB2Button.IsChecked == true)
                 this.SettingsRow.Height = new GridLength(240);
         }

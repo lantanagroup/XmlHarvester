@@ -14,10 +14,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label x:Name="OutputDirectoryLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Content="What directory should the converted files be saved to?" Margin="5,2"/>
-        <TextBox x:Name="OutputDirectoryText" Grid.Row="1" Grid.Column="0" IsReadOnly="true" Margin="5,2" />
-        <Button x:Name="OutputDirectoryButton" Grid.Row="1" Grid.Column="1" Content="Select" Margin="5,2" Click="OutputDirectoryButton_Click" />
+        <Label x:Name="MoveDirectoryLabel" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Content="What directory should the input files be moved to when done?" Margin="5,2"/>
+        <TextBox x:Name="MoveDirectoryText" Grid.Row="1" Grid.Column="0" IsReadOnly="true" Margin="5,2" />
+        <Button x:Name="MoveDirectoryButton" Grid.Row="1" Grid.Column="2" Content="Select" Margin="5,2" Click="MoveDirectoryButton_Click" />
+        <Label x:Name="OutputDirectoryLabel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Content="What directory should the converted files be saved to?" Margin="5,2"/>
+        <TextBox x:Name="OutputDirectoryText" Grid.Row="3" Grid.Column="0" IsReadOnly="true" Margin="5,2" />
+        <Button x:Name="OutputDirectoryButton" Grid.Row="3" Grid.Column="1" Content="Select" Margin="5,2" Click="OutputDirectoryButton_Click" />
     </Grid>
 </UserControl>

@@ -16,9 +16,9 @@ namespace LantanaGroup.XmlDocumentConverter
         private string outputDirectory;
         private OleDbConnection conn;
 
-        public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory) : base(configFileName)
+        public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory, string moveDirectory) : 
+            base(configFileName, inputDirectory, moveDirectory)
         {
-            this.inputDirectory = inputDirectory;
             this.outputDirectory = outputDirectory;
         }
 

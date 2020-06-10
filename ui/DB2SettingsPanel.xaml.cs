@@ -35,7 +35,7 @@ namespace LantanaGroup.XmlDocumentConverter.UI
 
             this.DatabaseText.Text = (string)Registry.GetValue(MainWindow.REG_SOFTWARE_KEY, REG_DB2_DATABASE_NAME, string.Empty);
             this.UsernameText.Text = (string)Registry.GetValue(MainWindow.REG_SOFTWARE_KEY, REG_DB2_USERNAME_NAME, string.Empty);
-            this.OutputDirectoryText.Text = (string)Registry.GetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_OUPUT_DIR_NAME, string.Empty);
+            this.MoveDirectoryText.Text = (string)Registry.GetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, string.Empty);
         }
 
         public string Database
@@ -53,9 +53,9 @@ namespace LantanaGroup.XmlDocumentConverter.UI
             get { return this.PasswordText.Password; }
         }
 
-        public string OutputDirectory
+        public string MoveDirectory
         {
-            get { return this.OutputDirectoryText.Text; }
+            get { return this.MoveDirectoryText.Text; }
         }
 
         public bool IsValid
@@ -63,23 +63,6 @@ namespace LantanaGroup.XmlDocumentConverter.UI
             get
             {
                 return !string.IsNullOrEmpty(this.DatabaseText.Text) && !string.IsNullOrEmpty(this.UsernameText.Text) && !string.IsNullOrEmpty(this.PasswordText.Password);
-            }
-        }
-
-        private void OutputDirectoryButton_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
-
-            if (!string.IsNullOrEmpty(this.OutputDirectoryText.Text))
-                dialog.SelectedPath = this.OutputDirectoryText.Text;
-            else
-                dialog.SelectedPath = Directory.GetCurrentDirectory();
-
-            if (dialog.ShowDialog().GetValueOrDefault())
-            {
-                this.OutputDirectoryText.Text = dialog.SelectedPath;
-                Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_OUPUT_DIR_NAME, this.OutputDirectoryText.Text);
-                this.SettingsChanged?.Invoke();
             }
         }
 
@@ -98,6 +81,22 @@ namespace LantanaGroup.XmlDocumentConverter.UI
         private void PasswordText_PasswordChanged(object sender, RoutedEventArgs e)
         {
             this.SettingsChanged?.Invoke();
+        }
+
+        private void MoveDirectoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+
+            if (!string.IsNullOrEmpty(this.MoveDirectoryText.Text))
+                dialog.SelectedPath = this.MoveDirectoryText.Text;
+            else
+                dialog.SelectedPath = Directory.GetCurrentDirectory();
+
+            if (dialog.ShowDialog().GetValueOrDefault())
+            {
+                this.MoveDirectoryText.Text = dialog.SelectedPath;
+                Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, this.MoveDirectoryText.Text);
+            }
         }
     }
 }

@@ -19,14 +19,17 @@ namespace LantanaGroup.XmlDocumentConverter
         public event LogEventHandler LogEvent;
 
         protected string inputDirectory;
+        protected string moveDirectory;
         protected MappingConfig config;
         protected Processor processor;
         protected DocumentBuilder builder;
         protected XPathCompiler compiler;
 
-        protected BaseConverter(string configFileName)
+        protected BaseConverter(string configFileName, string inputDirectory, string moveDirectory)
         {
             this.config = MappingConfig.LoadFromFileWithParents(configFileName);
+            this.inputDirectory = inputDirectory;
+            this.moveDirectory = moveDirectory;
             this.processor = new Processor();
             this.builder = this.processor.NewDocumentBuilder();
             this.compiler = this.processor.NewXPathCompiler();
@@ -196,12 +199,25 @@ namespace LantanaGroup.XmlDocumentConverter
                         nsManager.AddNamespace(configNamespace.Prefix, configNamespace.Uri);
                     }
 
-                    this.ProcessFile(xmlDoc, nsManager, fileInfo);
+                    try
+                    {
+                        this.ProcessFile(xmlDoc, nsManager, fileInfo);
+
+                        if (!String.IsNullOrEmpty(this.moveDirectory))
+                        {
+                            string destinationFilePath = Path.Combine(this.moveDirectory, fileInfo.Name);
+                            fileInfo.MoveTo(destinationFilePath);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        this.Log(String.Format("Failed to process file {0} data due to: {1}", fileInfo.Name, ex.Message));
+                    }
                 }
             }
             catch (Exception ex)
             {
-                this.Log("Failed to process data due to: " + ex.Message);
+                this.Log("Failed to process files data due to: " + ex.Message);
             }
             finally
             {

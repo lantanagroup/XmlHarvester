@@ -28,12 +28,17 @@ namespace LantanaGroup.XmlDocumentConverter.UI
             InitializeComponent();
 
             this.OutputDirectoryText.Text = (string)Registry.GetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_OUPUT_DIR_NAME, "");
+            this.MoveDirectoryText.Text = (string)Registry.GetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, "");
         }
 
         public string OutputDirectory
         {
             get { return this.OutputDirectoryText.Text; }
-            set { this.OutputDirectoryText.Text = value; }
+        }
+
+        public string MoveDirectory
+        {
+            get { return this.MoveDirectoryText.Text; }
         }
 
         public bool IsValid
@@ -57,6 +62,22 @@ namespace LantanaGroup.XmlDocumentConverter.UI
             {
                 this.OutputDirectoryText.Text = dialog.SelectedPath;
                 Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_OUPUT_DIR_NAME, this.OutputDirectoryText.Text);
+            }
+        }
+
+        private void MoveDirectoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+
+            if (!string.IsNullOrEmpty(this.OutputDirectoryText.Text))
+                dialog.SelectedPath = this.MoveDirectoryText.Text;
+            else
+                dialog.SelectedPath = Directory.GetCurrentDirectory();
+
+            if (dialog.ShowDialog().GetValueOrDefault())
+            {
+                this.MoveDirectoryText.Text = dialog.SelectedPath;
+                Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, this.MoveDirectoryText.Text);
             }
         }
     }

@@ -12,31 +12,33 @@ namespace cli
     {
         static void Main(string[] args)
         {
-            Parser.Default.ParseArguments<Options>(args)
-                .WithParsed<Options>(o =>
+            var result = Parser.Default.ParseArguments<XLSXOptions, MDBOptions, DB2Options>(args)
+                .WithParsed<XLSXOptions>(o =>
                 {
-                    switch (o.Format)
+                    XlsxConverter xlsxConverter = new XlsxConverter(o.MappingConfig, o.InputDirectory, o.OutputDirectory, o.MoveDirectory);
+                    xlsxConverter.LogEvent += delegate (string logText)
                     {
-                        case Formats.MDB:
-                            MSAccessConverter mdbConverter = new MSAccessConverter(o.MappingConfig, o.InputDirectory, o.OutputDirectory);
-                            mdbConverter.LogEvent += delegate (string logText)
-                            {
-                                Console.WriteLine(logText);
-                            };
-                            mdbConverter.Convert();
-                            break;
-                        case Formats.XLSX:
-                            XlsxConverter xlsxConverter = new XlsxConverter(o.MappingConfig, o.InputDirectory, o.OutputDirectory);
-                            xlsxConverter.LogEvent += delegate (string logText)
-                            {
-                                Console.WriteLine(logText);
-                            };
-                            xlsxConverter.Convert();
-                            break;
-                    }
-
-                    Console.WriteLine("Done. Press enter to continue...");
-                    Console.ReadLine();
+                        Console.WriteLine(logText);
+                    };
+                    xlsxConverter.Convert();
+                })
+                .WithParsed<MDBOptions>(o =>
+                {
+                    MSAccessConverter mdbConverter = new MSAccessConverter(o.MappingConfig, o.InputDirectory, o.OutputDirectory, o.MoveDirectory);
+                    mdbConverter.LogEvent += delegate (string logText)
+                    {
+                        Console.WriteLine(logText);
+                    };
+                    mdbConverter.Convert();
+                })
+                .WithParsed<DB2Options>(o =>
+                {
+                    DB2Converter db2Converter = new DB2Converter(o.MappingConfig, o.InputDirectory, o.Database, o.Username, o.Password, o.MoveDirectory);
+                    db2Converter.LogEvent += delegate (string logText)
+                    {
+                        Console.WriteLine(logText);
+                    };
+                    db2Converter.Convert();
                 });
         }
     }

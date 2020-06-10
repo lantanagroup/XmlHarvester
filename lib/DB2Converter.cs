@@ -18,17 +18,15 @@ namespace LantanaGroup.XmlDocumentConverter
         private string database;
         private string username;
         private string password;
-        private string outputDirectory;
 
         private DbConnection conn;
 
-        public DB2Converter(string configFileName, string inputDirectory, string database, string username, string password, string outputDirectory) : base(configFileName)
+        public DB2Converter(string configFileName, string inputDirectory, string database, string username, string password, string moveDirectory) : 
+            base(configFileName, inputDirectory, moveDirectory)
         {
-            this.inputDirectory = inputDirectory;
             this.database = database;
             this.username = username;
             this.password = password;
-            this.outputDirectory = outputDirectory;
         }
 
         protected override int InsertData(string tableName, Dictionary<MappingColumn, object> columns)

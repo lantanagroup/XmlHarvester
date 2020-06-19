@@ -255,7 +255,7 @@
 		<!-- Medication Reason -->
 		<column name="Reason">cda:entryRelationship[@typeCode='RSON']/cda:observation/cda:code/cda:originalText</column>
 		<!-- Instruction -->
-		<column name="Instruction">cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.20']/cda:text/cda:reference</column>
+		<column name="Instruction">cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.20']/cda:text</column>
 	</group>
 
 	<!-- Laboratory Test Performed Id 2.16.840.1.113883.10.20.22.4.2 -->

@@ -16,6 +16,7 @@
          <id extension="1607607480054040" root="1.2.840.113619.21.1.139060385287897942.2.1.1.1"/>
          <id assigningAuthorityName="GE EMR-CPS PatientId" extension="88132" root="1.2.840.113619.21.1.139060385287897942.2.1.1.2"/>
          <id assigningAuthorityName="GE EMR-CPS PatientMRN" extension="K115209" root="1.2.840.113619.21.1.139060385287897942.2.1.1"/>
+        <id assigningAuthorityName="Social Security Administration" extension="999-99-9999" root="2.16.840.1.113883.4.1"/>
                  <addr>
             <streetAddressLine>2 Sample Street</streetAddressLine>
             <streetAddressLine>apt 2</streetAddressLine>
@@ -132,10 +133,16 @@
    </custodian>
    <participant typeCode="IND">
       <associatedEntity classCode="CAREGIVER" nullFlavor="NI">
-         <addr nullFlavor="NI"/>
-         <telecom nullFlavor="NI"/>
+        <addr>
+          <streetAddressLine>3 Sample Street</streetAddressLine>
+          <streetAddressLine>apt 2</streetAddressLine>
+          <city>Chicago</city>
+          <state>IL</state>
+          <postalCode>60653</postalCode>
+        </addr>
+        <telecom use="MC" value="tel:5555555555"/>
          <associatedPerson nullFlavor="NI">
-            <name nullFlavor="NI"/>
+            <name>Some Associated Person Name</name>
          </associatedPerson>
       </associatedEntity>
    </participant>

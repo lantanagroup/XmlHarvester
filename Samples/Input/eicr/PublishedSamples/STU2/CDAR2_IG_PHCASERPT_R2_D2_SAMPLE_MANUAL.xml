@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    File:               CDAR2_IG_PHCASERPT_R2_D2_SAMPLE_MANUAL.xml
+    Specification:      Public Health Case Report, Release 2, STU Release 2 - US Realm
+    
+    Created:            Eric M Haas, Health eData Inc, on behalf of HL7 PHER Working Group
+    
+    Revision History:   October/November 2016   Sarah Gaunt     Additions/Revisions for 1st update to STU Release 1 (Release 1, STU Release 1.1)
+                        March 2019              Sarah Gaunt     Updates for STU 2
+                        Aug-Nov 2019            Sarah Gaunt     Updates
+                        Jan 2020                Sarah Gaunt     Update for publication of STU2
+-->
+<!--
+    Disclaimer: 
+    This sample file is informative only.
+    This sample file contains representative data elements from the eICR IG. 
+    The file depicts a fictional character's health data. Any resemblance to a real person is coincidental.
+    To illustrate as many data elements as possible, the clinical scenario may not be entirely plausible. 
+    The data in this sample file is not intended to represent a real patients, people or clinical events. 
+    This sample is designed to be used in conjunction with the eICR IG.
+     
+    Where guidance has been given to the conformance or cardinality of elements or
+    attributes and there is a discrepancy with the IG, the IG is always the normative
+    source of truth.
+    
+    Please note:  This sample is valid against the Schema and Schematron for ERRORS (not warnings). 
+    Logical schematron WARNINGS will generate from the sample file. 
+    It is logical to generate a samples file from a system with valid warnings.
+-->
+<!-- 
+    Templates are identified in comments above their template id.  
+    The IG in which the template version was first published is identified in square brackets before the template name.
+    
+    e.g.: [C-CDA 2.1] Continuity of Care (CCD) (V3)       indicates that the Discharge Summary (V3) template was first published in IG C-CDA R2.1
+          [C-CDA R2.0] Plan of Treatment Section (V2)     indicates that the Plan of Treatment Section (V2) template was first published in IG C-CDA R2.0
+          [C-CDA R1.1] History of Present Illness Section indicates that the Hospital Course Section was first published in IG C-CDA R1.1
+          
+    Even though all 3 templates above are included in IG C-CDA 2.1, because there have been no new versions of 
+    the History of Present Illness Section template in IGs later than C-CDA R1.1, it is considered to be published in R1.1. 
+    Similarly, there have been no new versions of the Plan of Treatment Section template later than C-CDA R.2 so it 
+    is considered to be published in R2.0.
+-->
+<!--
+    While assertion of conformance with both C-CDA R2.1 and C-CDA R1.1 is NOT a requirement of the eICR IG, it is recommended that, if the 
+    originating system includes both the versioned and un-versioned templateId, then both these templateIds SHOULD be preserved in the eICR document.
+    The examples and sample file included with this IG illustrate the optional use of the C-CDA R1.1 templateId.
+-->
+<?xml-stylesheet type="text/xsl" href="../../transform/CDAR2_eCR_eICR.xsl"?>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc"
+  xmlns:voc="http://www.lantanagroup.com/voc">
+  <!--
+        ********************************************************
+        CDA Header
+        ********************************************************
+    -->
+  <!-- US Realm Header template -->
+  <realmCode code="US" />
+  <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3" />
+  <!-- [C-CDA R1.1] US Realm Header -->
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" />
+  <!-- [C-CDA R2.1] US Realm Header (V3) -->
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2015-08-01" />
+  <!-- [eICR R2 STU2] Initial Public Health Case Report Document (eICR) (V3) -->
+  <templateId root="2.16.840.1.113883.10.20.15.2" extension="2019-04-01" />
+  <!-- Globally unique document ID (extension) is scoped by vendor/software -->
+  <id root="2.16.840.1.113883.9.9.9.9.9" extension="db734647-fc99-424c-a864-7e3cda82e704" />
+  <!-- Document Code -->
+  <code code="55751-2" codeSystem="2.16.840.1.113883.6.1" displayName="Public Health Case Report" />
+  <title>Initial Public Health Case Report</title>
+  <effectiveTime value="20181107094421-0500" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="Normal" />
+  <languageCode code="en-US" />
+
+  <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="31" />
+  <!-- the first in the series -->
+  <versionNumber value="1" />
+  <!--
+        ********************************************************
+        recordTarget: The patient
+        ********************************************************
+    -->
+  <recordTarget>
+    <!-- Patient demographic information -->
+    <patientRole>
+      <!-- Fake root for sample -->
+      <id extension="123453" root="2.16.840.1.113883.19.5" />
+      <!--SSN-->
+      <id extension="444-22-2222" root="2.16.840.1.113883.4.1" />
+      <!-- For greatest utility to public health, a patient's address 
+        should be a home address if available (PostalAddressUse = 'H' or 'HP'); 
+        would also request a second address, preferably a work address, 
+        (PostalAddressUse='WP') if available. 
+
+        If the patient is homeless, complete as much address information 
+        as possible (city, zip, county, etc.) and use the 
+        Characteristics of Home Environment template in the 
+        Social History Section to indicate that the patient is homeless. -->
+      <addr use="H">
+        <streetAddressLine>2222 Home Street</streetAddressLine>
+        <city>Ann Arbor</city>
+        <state>MI</state>
+        <postalCode>99999</postalCode>
+        <!-- Although "county" is not explicitly specified in the 
+          US Realm Address, it is not precluded from use and for 
+          the purposes of this IG it SHOULD be included. 
+          See the IG for more information. -->
+        <county>26001</county>
+        <country>US</country>
+      </addr>
+      <telecom use="HP" value="tel:+1-555-555-2003" />
+      <telecom use="WP" value="tel:+1-555-555-2004" />
+      <patient>
+        <name use="L">
+          <given>Eve</given>
+          <given qualifier="IN">H</given>
+          <family>Everywoman</family>
+        </name>
+        <name use="A">
+          <given>Ruth</given>
+          <given qualifier="IN">L</given>
+          <family>Everywoman</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" />
+        <birthTime value="19741124" />
+        <!-- If sdtc:deceasedInd is true then sdtc:deceasedTime must be present -->
+        <sdtc:deceasedInd value="false" />
+        <raceCode code="2106-3" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="White" />
+        <ethnicGroupCode code="2186-5" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="Not Hispanic or Latino" />
+        <!-- Parent/Guardian information-->
+        <guardian>
+          <!-- Parent/Guardian Address -->
+          <addr use="H">
+            <streetAddressLine>4444 Home Street</streetAddressLine>
+            <city>Ann Arbor</city>
+            <state>MI</state>
+            <postalCode>99999</postalCode>
+            <country>US</country>
+          </addr>
+          <!-- Parent/Guardian phone -->
+          <telecom use="HP" value="tel:+1-555-555-2006" />
+          <!-- Parent/Guardian email -->
+          <telecom value="mailto:mail@guardian.com" />
+          <guardianPerson>
+            <!-- Parent/guardian name -->
+            <name use="L">
+              <given>Martha</given>
+              <given qualifier="IN">L</given>
+              <family>Mum</family>
+            </name>
+          </guardianPerson>
+        </guardian>
+        <languageCommunication>
+          <languageCode code="en" />
+          <modeCode code="ESP" codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode" displayName="Expressed spoken" />
+          <proficiencyLevelCode code="G" codeSystem="2.16.840.1.113883.5.61" codeSystemName="LanguageAbilityProficiency" displayName="Good" />
+          <!-- Preferred Language -->
+          <preferenceInd value="true" />
+        </languageCommunication>
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <!--
+        ********************************************************
+        author
+        ********************************************************
+    -->
+  <author>
+    <time value="20181107094421-0500" />
+    <!--Author/authenticator may be software or may be a provider such as "infection control professional".-->
+    <assignedAuthor>
+      <!--Id for authoring device - made up application OID-->
+      <id root="2.16.840.1.113883.3.72.5.20" />
+      <!--authoring device address - may or may not be same as facility where care provided for case-->
+      <addr>
+        <streetAddressLine>1002 Healthcare Drive</streetAddressLine>
+        <city>Ann Arbor</city>
+        <state>MI</state>
+        <postalCode>99999</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom use="WP" value="tel:+1-(555)555-1212;ext=9998" />
+      <assignedAuthoringDevice>
+        <manufacturerModelName displayName="Acme" />
+        <softwareName displayName="Acme EHR" />
+      </assignedAuthoringDevice>
+    </assignedAuthor>
+  </author>
+  <!--
+        ********************************************************
+        custodian: The custodian of the CDA document is the generator of the document
+        ********************************************************
+    -->
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id extension="88888888" root="2.16.840.1.113883.4.6" />
+        <name>Good Health Hospital</name>
+        <telecom use="WP" value="tel:+1(555)555-1212" />
+        <addr>
+          <streetAddressLine>1000 Hospital Lane</streetAddressLine>
+          <city>Ann Arbor</city>
+          <state>MI</state>
+          <postalCode>99999</postalCode>
+          <country>US</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  
+  <!-- When documentationOf/serviceEvent is present, it indicates that 
+         this eICR document was manually initiated/generated by the provider. 
+    -->
+  <documentationOf>
+    <serviceEvent>
+      <code code="PHC1464" displayName="Manually Initiated eICR" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)" />
+      <effectiveTime>
+        <low value="20181106000000-0500" />
+      </effectiveTime>
+    </serviceEvent>
+  </documentationOf>
+  <!--
+        ********************************************************
+        componentOf: contains the encompassingEncouter and the
+        provider and facility infomation for the case
+        ********************************************************
+    -->
+  <componentOf>
+    <encompassingEncounter>
+      <!--encounter ID-->
+      <id extension="9937012" root="2.16.840.1.113883.19" />
+      <!-- Where a trigger occurs outside of an encounter use 
+              code="PHC2237" | 
+              codeSystem="2.16.840.1.114222.4.5.274" | 
+              codeSystemName="PHIN VS (CDC Local Coding System)" 
+              (External Historical Encounter) 
+           and set effectiveTime/low/@nullFlavor="NA" and omit responsibleParty and location. -->
+      <!--ActClassEncounterCodes -->
+      <code code="AMB" codeSystem="2.16.840.1.113883.5.4" codeSystemName="HL7 ActEncounterCode" displayName="Ambulatory">
+        <!--      <code code="PHC2237" codeSystem="2.16.840.1.114222.4.5.274" codeSystemName="PHIN VS (CDC Local Coding System)" displayName="External Historical Encounter">-->
+        <!--CPT-4 E/M codes -->
+        <translation code="99213" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4" displayName="Office outpatient visit 15 minutes" />
+      </code>
+      <effectiveTime>
+        <low value="20181107" />
+      </effectiveTime>
+      <!--provider in charge of care when case reported-->
+      <responsibleParty>
+        <assignedEntity>
+          <id extension="6666666666666" root="2.16.840.1.113883.4.6" />
+          <addr>
+            <streetAddressLine>1002 Healthcare Drive</streetAddressLine>
+            <city>Ann Arbor</city>
+            <state>MI</state>
+            <postalCode>99999</postalCode>
+            <country>US</country>
+          </addr>
+          <!-- Provider Phone -->
+          <telecom use="WP" value="tel:+1(555)555-1003" />
+          <!-- Provider Fax -->
+          <telecom use="WP" value="fax:+1(555)555-1234" />
+          <!-- Provider Email -->
+          <telecom use="WP" value="mailto:mail@provider_domain.com" />
+          <assignedPerson>
+            <!-- Provider Name -->
+            <name>
+              <given>Henry</given>
+              <family>Seven</family>
+              <suffix qualifier="AC">M.D.</suffix>
+            </name>
+          </assignedPerson>
+          <representedOrganization>
+            <!-- Provider Facility/Office Name -->
+            <name>Community Health and Hospitals</name>
+            <!-- Provider Address -->
+            <addr>
+              <streetAddressLine>1002 Healthcare Drive</streetAddressLine>
+              <city>Ann Arbor</city>
+              <state>MI</state>
+              <postalCode>99999</postalCode>
+              <country>US</country>
+            </addr>
+          </representedOrganization>
+        </assignedEntity>
+      </responsibleParty>
+      <!-- Information about facility where care was provided when case reported-->
+      <location>
+        <healthCareFacility>
+          <id extension="77777777777" root="2.16.840.1.113883.4.6" />
+          <!-- Facility Type-->
+          <code code="OF" codeSystem="2.16.840.1.113883.5.111" displayName="Outpatient facility" />
+          <!-- Facility location within larger healthcare organization e.g Kaiser Vacaville within Kaiser North-->
+          <location>
+            <addr>
+              <streetAddressLine>1000 Hospital Lane</streetAddressLine>
+              <city>Ann Arbor</city>
+              <state>MI</state>
+              <postalCode>99999</postalCode>
+              <country>US</country>
+            </addr>
+          </location>
+          <!--Facility contact information-->
+          <serviceProviderOrganization>
+            <!-- Facility Name -->
+            <name>Good Health Hospital</name>
+            <!-- Facility Phone -->
+            <telecom use="WP" value="tel: 1+(555)-555-1212" />
+            <!-- Facility Fax -->
+            <telecom use="WP" value="fax: 1+(555)-555-3333" />
+            <!-- Facility Addr -->
+            <addr>
+              <streetAddressLine>1000 Hospital Lane</streetAddressLine>
+              <city>Ann Arbor</city>
+              <state>MI</state>
+              <postalCode>99999</postalCode>
+              <country>US</country>
+            </addr>
+          </serviceProviderOrganization>
+        </healthCareFacility>
+      </location>
+    </encompassingEncounter>
+  </componentOf>
+  <component>
+    <structuredBody>
+
+      <!--
+                ********************************************************
+                Encounters Section (entries required) (V3)
+                ********************************************************
+            -->
+      <component>
+        <section>
+          <!-- [C-CDA R1.1] Encounters Section (entries optional) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.22" />
+          <!-- [C-CDA R2.1] Encounters Section (entries optional) (V3) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.22" extension="2015-08-01" />
+          <!-- [C-CDA R1.1] Encounters Section (entries required) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.22.1" />
+          <!-- [C-CDA R2.1] Encounters Section (entries required) (V3) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.22.1" extension="2015-08-01" />
+          <code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of encounters" />
+          <title>Encounters</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Encounter</th>
+                  <th>Date(s)</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="id_2a620155-9d11-439e-92b3-5d9815ff4de8_ref">
+                  <td>Office outpatient visit 15 minutes</td>
+                  <td>NOV 7, 2018</td>
+                  <td>
+                    <list styleCode="none">
+                      <item>
+                        <content styleCode="Italics">Urgent Care Center</content>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="20">
+                    <list styleCode="none">
+                      <item>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Initiation Reason Type</th>
+                              <th>Initiation Reason</th>
+                              <th>Date(s)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ID="id_ab1791b0-5c71-11db-b0de-0800200c9a65_ref">
+                              <td>Complaint</td>
+                              <td>Free text containing the reason for the eICR document</td>
+                              <td>NOV 4, 2018</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <!-- [C-CDA R1.1] Encounter Activity -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <!-- [C-CDA R2.1] Encounter Activity (V3)-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01" />
+              <id root="2a620155-9d11-439e-92b3-5d9815ff4de8" />
+              <code code="99213" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4" displayName="Office outpatient visit 15 minutes" />
+              <effectiveTime value="20181107" />
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <!--Service Delivery Location  maps to Hospital Unit -->
+                  <code code="1160-1" codeSystem="2.16.840.1.113883.1.11.20275" codeSystemName="HealthcareServiceLocation" displayName="Urgent Care Center" />
+                </participantRole>
+              </participant>
+              <!-- Reason for the initiation - free text -->
+              <entryRelationship typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [C-CDA R2.1] Problem Observation (V3) -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01" />
+                  <!-- [eICR R2 STU2] Initial Case Report Initiation Reason Observation (V2) -->
+                  <templateId root="2.16.840.1.113883.10.20.15.2.3.5" extension="2019-04-01" />
+                  <id root="ab1791b0-5c71-11db-b0de-0800200c9a65" />
+                  <code code="75322-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Complaint">
+                    <translation code="409586006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Complaint" />
+                  </code>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20181106000000-0500" />
+                  </effectiveTime>
+                  <value xsi:type="CD" nullFlavor="OTH">
+                    <originalText>Free text containing the reason for the initiation</originalText>
+                  </value>
+                </observation>
+              </entryRelationship>
+              <!-- Reason for the initiation - coded -->
+              <entryRelationship typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [C-CDA R2.1] Problem Observation (V3) -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01" />
+                  <!-- [eICR R2 STU2] Initial Case Report Initiation Reason Observation (V2) -->
+                  <templateId root="2.16.840.1.113883.10.20.15.2.3.5" extension="2019-04-01" />
+                  <id root="ab1791b0-5c71-11db-b0de-0800200c9a65" />
+                  <code code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Clinical Finding">
+                    <translation code="404684003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Clinical finding (finding)" />
+                  </code>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20181106000000-0500" />
+                  </effectiveTime>
+                  <value xsi:type="CD" code="460531000124100" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"
+                    displayName="Presumptive recent Zika virus infection (situation)" />
+                </observation>
+              </entryRelationship>
+            </encounter>
+          </entry>
+        </section>
+      </component>
+      <!--
+                 ********************************************************
+                 History of Present Illness Section
+                 ********************************************************
+            -->
+      <component>
+        <section>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.4" />
+          <code code="10164-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HISTORY OF PRESENT ILLNESS" />
+          <title>History of Present Illness</title>
+          <text mediaType="text/x-hl7-text+xml">
+            <paragraph>Persistent Cough REPORTED starting on 2018/10/05<br /> Whooping Respiration not reported<br /> Paroxysms Of
+                        Coughing REPORTED starting on 2018/11/04<br /> Post-tussive vomiting not reported<br />
+            </paragraph>
+          </text>
+        </section>
+      </component>
+      <!--
+                ********************************************************
+                Medications Administered Section (V2)
+                ********************************************************
+            -->
+      <component>
+        <section>
+          <!-- [C-CDA R1.1] Medications Administered Section -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.38" />
+          <!-- [C-CDA R2.0] Medications Administered Section (V2) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.38" extension="2014-06-09" />
+          <code code="29549-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Medications Administered" />
+          <title>Medications Administered</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Medication</th>
+                  <th>Dose</th>
+                  <th>Duration</th>
+                  <th>Route</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="id_6c844c75-aa34-411c-b7bd-5e4a9f206e29_ref">
+                  <td>Azithromycin 500 MG Oral Tablet</td>
+                  <td>1 g</td>
+                  <td>NOV 7, 2018 11:60</td>
+                  <td>ORAL</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <substanceAdministration classCode="SBADM" moodCode="EVN">
+              <!-- [C-CDA R1.1] Medication Activity -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+              <!-- [C-CDA R2.0] Medication Activity (V2) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09" />
+              <id root="6c844c75-aa34-411c-b7bd-5e4a9f206e29" />
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS" operator="A" value="201811071160-0700" />
+              <routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="ORAL" />
+              <doseQuantity value="1" unit="g" />
+              <consumable>
+                <manufacturedProduct classCode="MANU">
+                  <!-- [C-CDA R2.0] Medication Information (V2) -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09" />
+                  <id root="2a620155-9d11-439e-92b3-5d9815ff4ee8" />
+                  <manufacturedMaterial>
+                    <code code="248656" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" displayName="Azithromycin 500 MG Oral Tablet" />
+                  </manufacturedMaterial>
+                </manufacturedProduct>
+              </consumable>
+            </substanceAdministration>
+          </entry>
+        </section>
+      </component>
+      <!--
+                ********************************************************
+                Problem Section (entries required) (V3)
+                ********************************************************
+            -->
+      <component>
+        <section>
+          <!-- [C-CDA R1.1] Problem Section (entries optional) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.5" />
+          <!-- [C-CDA R2.1] Problem Section (entries optional) (V3) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.5" extension="2015-08-01" />
+          <!-- [C-CDA R1.1] Problem Section (entries required) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.5.1" />
+          <!-- [C-CDA R2.1] Problem Section (entries required) (V3) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.5.1" extension="2015-08-01" />
+          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem List" />
+          <title>Problems</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Concern</th>
+                  <th>Concern Status</th>
+                  <th>Date(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="id_ec8a6ff8-ed4b-4f7e-82c3-e98e58b45de7_ref">
+                  <td>Problem</td>
+                  <td>active</td>
+                  <td>NOV 7, 2018</td>
+                </tr>
+                <tr>
+                  <td colspan="20">
+                    <list styleCode="none">
+                      <item>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Problem Type</th>
+                              <th>Problem</th>
+                              <th>Date(s)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ID="id_ab1791b0-5c71-11db-b0de-0800200c9a66_ref">
+                              <td>Symptom</td>
+                              <td>Dark stools (finding)</td>
+                              <td>NOV 1, 2018</td>
+                            </tr>
+                            <tr ID="id_ab1791b0-5c71-11db-b0de-0800200c9a67_ref">
+                              <td>Complaint</td>
+                              <td>Paroxysmal cough (finding)</td>
+                              <td>NOV 4, 2018</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <!-- [C-CDA 1.1] Problem Concern Act -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.3" />
+              <!-- [C-CDA 2.1] Problem Concern Act (V3) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.3" extension="2015-08-01" />
+              <id root="ec8a6ff8-ed4b-4f7e-82c3-e98e58b45de7" />
+              <code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern" />
+              <!-- The statusCode represents the need to continue tracking the problem -->
+              <!-- This is of ongoing concern to the provider -->
+              <statusCode code="active" />
+              <effectiveTime>
+                <!-- The low value represents when the problem was first recorded in the patient's chart -->
+                <low value="20181107" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [C-CDA R1.1] Problem Observation -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+                  <!-- [C-CDA R2.1] Problem Observation (V3) -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01" />
+                  <id root="ab1791b0-5c71-11db-b0de-0800200c9a66" />
+                  <code code="75325-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Symptom">
+                    <translation code="418799008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Symptom" />
+                  </code>
+                  <!-- The statusCode reflects the status of the observation itself -->
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <!-- The low value reflects the date of onset -->
+                    <low value="20181101" />
+                  </effectiveTime>
+                  <value code="35064005" codeSystem="2.16.840.1.113883.6.96" displayName="Dark stools (finding)" xsi:type="CD" />
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [C-CDA R1.1] Problem Observation -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+                  <!-- [C-CDA R2.1] Problem Observation (V3) -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01" />
+                  <id root="ab1791b0-5c71-11db-b0de-0800200c9a67" />
+                  <code code="75322-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Complaint">
+                    <translation code="409586006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Complaint" />
+                  </code>
+                  <!-- The statusCode reflects the status of the observation itself -->
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <!-- The low value reflects the date of onset -->
+                    <low value="20181104" />
+                  </effectiveTime>
+                  <value code="43025008" codeSystem="2.16.840.1.113883.6.96" displayName="Paroxysmal cough (finding)" xsi:type="CD" />
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+      <!--
+               ********************************************************
+               Reason for Visit Section
+               ********************************************************
+            -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.12" />
+          <code code="29299-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Reason for visit" />
+          <title>Reason for Visit</title>
+          <text>
+            <paragraph>Dark stools</paragraph>
+          </text>
+        </section>
+      </component>
+      <!--
+                ********************************************************
+                Results Section (entries required) (V3)
+                ********************************************************
+            -->
+      <component>
+        <section>
+          <!-- [C-CDA R1.1] Results Section (entries optional) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.3" />
+          <!-- [C-CDA R2.1] Results Section (entries optional) (V3) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.3" extension="2015-08-01" />
+          <!-- [C-CDA R1.1] Results Section (entries required) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.3.1" />
+          <!-- [C-CDA R2.1] Results Section (entries required) (V3) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2015-08-01" />
+          <code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Relevant diagnostic tests and/or laboratory data" />
+          <title>Results</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Results Panel</th>
+                  <th>Date(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="id_7d5a02b0-67a4-11db-bd13-0800200c9a66_ref">
+                  <td>CBC W Auto Differential panel in Blood</td>
+                  <td>NOV 7, 2018 to NOV 7, 2018</td>
+                </tr>
+                <tr>
+                  <td colspan="20">
+                    <list styleCode="none">
+                      <item>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Test</th>
+                              <th>Outcome</th>
+                              <th>Interpretation</th>
+                              <th>Date(s)</th>
+                              <th>Reference Range</th>
+                              <th>Reference Range Interpretation</th>
+                              <th>Reference Range Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ID="id_7c0704bb-9c40-41b5-9c7d-26b2d59e234f_ref">
+                              <td>Hematocrit</td>
+                              <td>35.3 %</td>
+                              <td>Low</td>
+                              <td>NOV 7, 2018</td>
+                              <td>34.9 % to 44.5 %</td>
+                              <td>Low</td>
+                              <td>Low</td>
+                            </tr>
+                            <tr ID="id_7c0704bb-9c40-41b5-9c7d-26b2d59e234g_ref">
+                              <td>Lymphocytes [#/​volume] in Blood by Automated count</td>
+                              <td>5.2 10*3/uL</td>
+                              <td>High</td>
+                              <td>NOV 7, 2018</td>
+                              <td>1.0 10*3/uL to 4.8 10*3/uL</td>
+                              <td>Normal</td>
+                              <td />
+                            </tr>
+                          </tbody>
+                        </table>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <organizer classCode="BATTERY" moodCode="EVN">
+              <!-- [C-CDA R1.1] Result Organizer -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" />
+              <!-- [C-CDA R2.1] Result Organizer (V3) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2015-08-01" />
+              <id root="7d5a02b0-67a4-11db-bd13-0800200c9a66" />
+              <code code="57021-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="CBC W Auto Differential panel in Blood" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20181107" />
+                <high value="20181107" />
+              </effectiveTime>
+              <component>
+                <!-- This observation is a non-trigger code result observation -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [C-CDA R1.1] Result Observation -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                  <!-- [C-CDA R2.1] Result Observation (V3) -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01" />
+                  <id root="7c0704bb-9c40-41b5-9c7d-26b2d59e234f" />
+                  <code code="20570-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Hematocrit" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20181107" />
+                  <value unit="%" value="35.3" xsi:type="PQ" />
+                  <interpretationCode code="L" codeSystem="2.16.840.1.113883.5.83" displayName="Low" />
+                  <referenceRange>
+                    <observationRange>
+                      <text>Low</text>
+                      <value xsi:type="IVL_PQ">
+                        <low unit="%" value="34.9" />
+                        <high unit="%" value="44.5" />
+                      </value>
+                      <interpretationCode code="L" codeSystem="2.16.840.1.113883.5.83" displayName="Low" />
+                    </observationRange>
+                  </referenceRange>
+                </observation>
+              </component>
+              <component>
+                <!-- This observation is a non-trigger code result observation -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [C-CDA R1.1] Result Observation -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                  <!-- [C-CDA R2.1] Result Observation (V3) -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01" />
+                  <id root="7c0704bb-9c40-41b5-9c7d-26b2d59e234g" />
+                  <code code="731-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Lymphocytes [#/​volume] in Blood by Automated count" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20181107" />
+                  <value unit="10*3/uL" value="5.2" xsi:type="PQ" />
+                  <interpretationCode code="H" codeSystem="2.16.840.1.113883.5.83" displayName="High" />
+                  <referenceRange>
+                    <observationRange>
+                      <value xsi:type="IVL_PQ">
+                        <low unit="10*3/uL" value="1.0" />
+                        <high unit="10*3/uL" value="4.8" />
+                      </value>
+                      <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" displayName="Normal" />
+                    </observationRange>
+                  </referenceRange>
+                </observation>
+              </component>
+            </organizer>
+          </entry>
+        </section>
+      </component>
+      <!--
+          ********************************************************
+          Social History Section (V3)
+          ********************************************************
+      -->
+      <component>
+        <section>
+          <!-- [C-CDA 1.1] Social History Section -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.17" />
+          <!-- [C-CDA 2.1] Social History Section (V3) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.17" extension="2015-08-01" />
+          <code code="29762-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Social History" />
+          <title>Social History</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Birth Sex</th>
+                  <th>Value</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Sex Assigned At Birth</td>
+                  <td>Female</td>
+                  <td>NOV 24, 1974</td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Current Occupation</th>
+                  <th>Current Industry</th>
+                  <th>Current Job Title</th>
+                  <th>Current Employer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Actuaries</td>
+                  <td>Accounting, tax preparation, bookkeeping, and payroll services</td>
+                  <td>Senior Accountant</td>
+                  <td>CDC, Peachtree St, South Atlanta Georgia, 555-1212</td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Usual Occupation</th>
+                  <th>Usual Industry</th>
+                  <th>Occupational Exposure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Actuaries</td>
+                  <td>Accounting, tax preparation, bookkeeping, and payroll services</td>
+                  <td>Asbestos</td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Travel History: Date(s)</th>
+                  <th>Notes</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1999 to 2007</td>
+                  <td>Spent 8 years in the UK during the BSE outbreak</td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>In the 3 weeks before NOV 9, 2018</td>
+                  <td />
+                  <td>
+                    <list styleCode="none">
+                      <item>Brazil</item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td>APR 29, 2018 to OCT 30, 2018</td>
+                  <td />
+                  <td>
+                    <list styleCode="none">
+                      <item>Nadi, FJ</item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td>MAY 6, 2018 to MAY 15, 2018</td>
+                  <td />
+                  <td>
+                    <list styleCode="none">
+                      <item>Montreal, QC, CA</item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td>JUL 13, 2018 to JUL 15, 2018</td>
+                  <td />
+                  <td>
+                    <list styleCode="none">
+                      <item>Sydney, NSW, AU</item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td>OCT 22, 2018 to OCT 30, 2018</td>
+                  <td />
+                  <td>
+                    <list styleCode="none">
+                      <item>1170 N Rancho Robles Rd Oracle, AZ8562, US</item>
+                    </list>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- [C-CDA R2.1 Companion Guide] Birth Sex Observation -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.200" extension="2016-06-01" />
+              <code code="76689-9" codeSystem="2.16.840.1.113883.6.1" displayName="Sex Assigned At Birth" />
+              <statusCode code="completed" />
+              <!-- effectiveTime if present should match birthTime -->
+              <effectiveTime value="19741124" />
+              <value xsi:type="CD" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" code="F" displayName="Female"> </value>
+            </observation>
+          </entry>
+          <entry typeCode="DRIV">
+            <!-- Travel History - text example - no specific location -->
+            <act classCode="ACT" moodCode="EVN">
+              <!-- [eICR R2 STU1.1] Travel History -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.1" extension="2016-12-01" />
+              <id root="79565142-eae0-4213-a3b3-b73cdf474682" />
+              <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Travel" />
+              <text>Spent 8 years in the UK during the BSE outbreak</text>
+              <statusCode code="completed" />
+              <!-- Duration (from 1999 to 2007) -->
+              <effectiveTime>
+                <low value="1999" />
+                <high value="2007" />
+              </effectiveTime>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <!-- Travel History - participant with coded location -->
+            <act classCode="ACT" moodCode="EVN">
+              <!-- [eICR R2 STU1.1] Travel History -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.1" extension="2016-12-01" />
+              <id root="030df1dc-1d31-4e5d-abdd-5edd0b74c5c3" />
+              <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Travel" />
+              <statusCode code="completed" />
+              <!-- Denotes "past 3 weeks" with the high value being the date the statement was made -->
+              <effectiveTime>
+                <width value="3" unit="weeks" />
+                <high value="20181109" />
+              </effectiveTime>
+              <participant typeCode="LOC">
+                <participantRole classCode="TERR">
+                  <!-- Code specifiying the location traveled -->
+                  <code code="BRA" displayName="Brazil" codeSystem="1.0.3166.1" codeSystemName="Country (ISO 3166-1)" />
+                </participantRole>
+              </participant>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <!-- Travel History - participant location with address specific to city -->
+            <act classCode="ACT" moodCode="EVN">
+              <!-- [eICR R2 STU1.1] Travel History -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.1" extension="2016-12-01" />
+              <id root="b98e410c-d29a-46d8-8fc8-f55a9d3022b9" />
+              <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Travel" />
+              <statusCode code="completed" />
+              <!-- Duration -->
+              <effectiveTime>
+                <low value="20180429" />
+                <high value="20181030" />
+              </effectiveTime>
+              <participant typeCode="LOC">
+                <participantRole classCode="TERR">
+                  <!-- Address specific to city -->
+                  <addr>
+                    <country>FJ</country>
+                    <city>Nadi</city>
+                  </addr>
+                </participantRole>
+              </participant>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <!-- Travel History - participant location with addr 
+                         specific to city and state (province) -->
+            <act classCode="ACT" moodCode="EVN">
+              <!-- [eICR R2 STU1.1] Travel History -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.1" extension="2016-12-01" />
+              <id root="b97346f7-8f9e-4c5b-97bb-df4f6e057fd4" />
+              <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Travel" />
+              <statusCode code="completed" />
+              <!-- Duration -->
+              <effectiveTime>
+                <low value="20180506" />
+                <high value="20180515" />
+              </effectiveTime>
+              <participant typeCode="LOC">
+                <participantRole classCode="TERR">
+                  <addr>
+                    <country>CA</country>
+                    <city>Montreal</city>
+                    <state>QC</state>
+                  </addr>
+                </participantRole>
+              </participant>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <!-- Travel History - participant location with addr 
+                 specific to city and state -->
+            <act classCode="ACT" moodCode="EVN">
+              <!-- [eICR R2 STU1.1] Travel History -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.1" extension="2016-12-01" />
+              <id root="1d957c2a-6133-427d-a6cc-26f132773b86" />
+              <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Travel" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20180713" />
+                <high value="20180715" />
+              </effectiveTime>
+              <participant typeCode="LOC">
+                <participantRole classCode="TERR">
+                  <addr>
+                    <country>AU</country>
+                    <city>Sydney</city>
+                    <state>NSW</state>
+                  </addr>
+                </participantRole>
+              </participant>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <!-- Travel History - participant location with addr
+                 specific to street address-->
+            <act classCode="ACT" moodCode="EVN">
+              <!-- [eICR R2 STU1.1] Travel History -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.1" extension="2016-12-01" />
+              <id root="45397b5c-e974-4cf1-8b19-e1555bd55701" />
+              <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Travel" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20181022" />
+                <high value="20181030" />
+              </effectiveTime>
+              <participant typeCode="LOC">
+                <participantRole classCode="TERR">
+                  <addr>
+                    <streetAddressLine>1170 N Rancho Robles Rd</streetAddressLine>
+                    <city>Oracle</city>
+                    <state>AZ</state>
+                    <postalCode>8562</postalCode>
+                    <country>US</country>
+                  </addr>
+                </participantRole>
+              </participant>
+            </act>
+          </entry>
+          <!-- Usual Occupation Observation -->
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- [ODH R1] Usual Occupation Observation -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.221" extension="2017-11-30" />
+              <id root="4f4b3876-8570-41a0-b995-cf34f37c5cbf" />
+              <code code="21843-8" displayName="Usual Occupation" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="19961124" />
+              </effectiveTime>
+              <!-- eICR Data element: Usual occupation -->
+              <value xsi:type="CD" code="1200" displayName="Actuaries" codeSystem="2.16.840.1.114222.4.5.314" codeSystemName="Occupation CDC Census 2010" />
+              <!-- eICR Usual Industry Occupation -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [ODH R1] Usual Industry Observation -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.219" extension="2017-11-30" />
+                  <id root="280af6dc-bef4-4216-beb4-25579add98d4" />
+                  <code code="21844-6" displayName="Usual Industry" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="19961124" />
+                  </effectiveTime>
+                  <!-- eICR Data element: Usual industry -->
+                  <value xsi:type="CD" code="7280" displayName="Accounting, tax preparation, bookkeeping, and payroll services" codeSystem="2.16.840.1.114222.4.5.315"
+                    codeSystemName="Industry CDC Census 2010" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <!-- Past or Present Occupation Observation -->
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- [ODH R1] Past or Present Occupation Observation -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.217" extension="2017-11-30" />
+              <id root="1728123a-7b6c-418c-adc2-f78417caf62c" />
+              <code code="11341-5" displayName="History of Occupation" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+              <!-- statusCode=active indicates that this is the current occupation -->
+              <statusCode code="active" />
+              <!-- effectiveTime/high omitted as this is the current occupation -->
+              <effectiveTime>
+                <low value="20150424" />
+              </effectiveTime>
+              <!-- eICR Data element: Current occupation -->
+              <value xsi:type="CD" code="1200" displayName="Actuaries" codeSystem="2.16.840.1.114222.4.5.314" codeSystemName="Occupation CDC Census 2010" />
+              <participant typeCode="IND">
+                <participantRole classCode="ROL">
+                  <id root="58822180-ab0d-42e4-90c6-35336bf55654" extension="12345" />
+                  <!-- eICR Data element: Employer address -->
+                  <addr>
+                    <streetAddressLine>Peachtree St</streetAddressLine>
+                    <city>South Atlanta</city>
+                    <state>Georgia</state>
+                  </addr>
+                  <!-- eICR Data element: Employer phone -->
+                  <telecom use="WP" value="555-1212" />
+                  <playingEntity>
+                    <!-- eICR Data element: Employer name -->
+                    <name>CDC</name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              <!-- Occupational Hazard Observation -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [ODH R1] Occupational Hazard Observation -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.215" extension="2017-11-30" />
+                  <id root="8cb3c421-473b-43ee-96cd-a8e3514f7dc7" />
+                  <code code="87729-0" displayName="History of Occupational hazard" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+                  <statusCode code="completed" />
+                  <!-- eICR Data element: Occupational exposure -->
+                  <value xsi:type="ST">Asbestos</value>
+                </observation>
+              </entryRelationship>
+              <!-- Past or Present Industry Occupation -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [ODH R1] Past or Present Industry Observation -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.216" extension="2017-11-30" />
+                  <id root="2cbd83d6-5fd7-436e-99cd-3e1644aa8742" />
+                  <code code="86188-0" displayName="Occupation Industry" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+                  <text>Senior Accountant</text>
+                  <statusCode code="completed" />
+                  <!-- eICR Data element: Current industry -->
+                  <value xsi:type="CD" code="7280" displayName="Accounting, tax preparation, bookkeeping, and payroll services" codeSystem="2.16.840.1.114222.4.5.315"
+                    codeSystemName="Industry CDC Census 2010" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

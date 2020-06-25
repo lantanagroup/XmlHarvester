@@ -22,12 +22,11 @@
     >/cda:ClinicalDocument/cda:confidentialityCode/@codeSystem</column>
   <column name="ConfidentialityCSN"
     >/cda:ClinicalDocument/cda:confidentialityCode/@codeSystemName</column>
+  <column name="ConfidentialityDisplay">/cda:ClinicalDocument/cda:confidentialityCode/@displayName</column>
 
   <!--  Patient Demographic Details-->
   <group tableName="PatientDemographics"
     context="/cda:ClinicalDocument/cda:recordTarget/cda:patientRole">
-    <column name="FirstPatientId"
-      >/cda:patientRole/cda:id[1]/concat(@extension, ' (', @root, ')')</column>
     <column name="GivenName">/cda:patientRole/cda:patient/cda:name/cda:given</column>
     <column name="FamilyName">/cda:patientRole/cda:patient/cda:name/cda:family</column>
     <column name="PtDOB">/cda:patientRole/cda:patient/cda:birthTime/@value</column>
@@ -51,16 +50,6 @@
       >/cda:patientRole/cda:patient/cda:religiousAffiliationCode/@codeSystem</column>
     <column name="PtReligionDisplay"
       >/cda:patientRole/cda:patient/cda:religiousAffiliationCode/@displayName</column>
-    <column name="PtRace">/cda:patientRole/cda:patient/cda:raceCode/@code</column>
-    <column name="PtRaceCS">/cda:patientRole/cda:patient/cda:raceCode/@codeSystem</column>
-    <column name="PtAddRace">/cda:patientRole/cda:patient/sdtc:raceCode/@code</column>
-    <column name="PtAddRaceCS">/cda:patientRole/cda:patient/sdtc:raceCode/@codeSystem</column>
-    <column name="PtRaceDisplay">/cda:patientRole/cda:patient/cda:raceCode/@displayName</column>
-    <column name="PtEthnicity">/cda:patientRole/cda:patient/cda:ethnicGroupCode/@code</column>
-    <column name="PtEthnicityCS"
-      >/cda:patientRole/cda:patient/cda:ethnicGroupCode/@codeSystem</column>
-    <column name="PtEthnicityDisplay"
-      >/cda:patientRole/cda:patient/cda:ethnicGroupCode/@displayName</column>
     <column name="PtLanguage"
       >/cda:patientRole/cda:patient/cda:languageCommunication/cda:languageCode/@code</column>
     <column name="PtLanguagePref"
@@ -74,12 +63,51 @@
     <column name="PtEmergencyContact"
       >/cda:patientRole[cda:telecom/@use='EC']/cda:telecom/@value</column>
   </group>
+  
+  <!-- PatientRace -->
+  <group tableName="PatientRace"
+    context="/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient">
+    <column name="PrimaryRaceCode">cda:race/@code</column>
+    <column name="PrimaryRaceCS">cda:race/@codeSystem</column>
+    <column name="PrimaryRaceDisplay">cda:race/@displayName</column>
+    <column name="OtherRaceCode">sdtc:race/@code</column>
+    <column name="OtherRaceCS">sdtc:race/@codeSystem</column>
+    <column name="OtherRaceDisplay">sdtc:race/@displayName</column>
+  </group>  
+  
+  <!-- PatientEthnicity -->
+  <group tableName="PatientEthnicity"
+    context="/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient">
+    <column name="PrimaryEthnicCode">cda:ethnicGroupCode/@code</column>
+    <column name="PrimaryEthnicCS">cda:ethnicGroupCode/@codeSystem</column>
+    <column name="PrimaryEthnicDisplay">cda:ethnicGroupCode/@displayName</column>
+    <column name="OtherEthnicCode">sdtc:ethnicGroupCode/@code</column>
+    <column name="OtherEthnicCS">sdtc:ethnicGroupCode/@codeSystem</column>
+    <column name="OtherEthnicDisplay">sdtc:ethnicGroupCode/@displayName</column>
+  </group>  
 
-  <!-- Alternate Patient IDs -->
+  <!-- Patient IDs -->
   <group tableName="AlternatePtIds"
     context="/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:id">
     <column name="root">@root</column>
     <column name="extension">@extension</column>
+  </group>
+  
+  <!--  Author and Authoring Device Details-->
+  <group tableName="Author" columnPrefix="Author" context="/cda:ClinicalDocument/cda:author">
+    <column name="GivenName">cda:assignedAuthor/cda:assignedPerson/cda:name/cda:given</column>
+    <column name="FamilyName">cda:assignedAuthor/cda:assignedPerson/cda:name/cda:family</column>
+    <column name="StreetAddress">cda:assignedAuthor/cda:addr/cda:streetAddressLine</column>
+    <column name="City">cda:assignedAuthor/cda:addr/cda:city</column>
+    <column name="State">cda:assignedAuthor/cda:addr/cda:state</column>
+    <column name="Zip">cda:assignedAuthor/cda:addr/cda:postalCode</column>
+    <column name="Country">cda:assignedAuthor/cda:addr/cda:country</column>
+    <column name="TelType">cda:assignedAuthor/cda:telecom/@use</column>
+    <column name="TelNumber">cda:assignedAuthor/cda:telecom/@value</column>
+    <column name="DeviceName"
+      >cda:assignedAuthor/cda:assignedAuthoringDevice/cda:manufacturerModelName</column>
+    <column name="DeviceSoftware"
+      >cda:assignedAuthor/cda:assignedAuthoringDevice/cda:softwareName</column>
   </group>
 
   <!--  Custodian Details-->
@@ -118,7 +146,7 @@
   </group>
 
   <!--  Participant Details-->
-  <group tableName="Participant" context="/cda:ClinicalDocument/cda:participant">
+  <group tableName="DocumentParticipant" context="/cda:ClinicalDocument/cda:participant">
     <column name="PartClassCode">cda:associatedEntity/@classCode</column>
     <column name="PartStreet">cda:associatedEntity/cda:addr/cda:streetAddressLine</column>
     <column name="PartCity">cda:associatedEntity/cda:addr/cda:city</column>
@@ -153,23 +181,6 @@
       >cda:performer/cda:assignedEntity/cda:representedOrganization/cda:id/@extension</column>
   </group>
 
-  <!--  Author and Authoring Device Details-->
-  <group tableName="Author" columnPrefix="Author" context="/cda:ClinicalDocument/cda:author">
-    <column name="GivenName">cda:assignedAuthor/cda:assignedPerson/cda:name/cda:given</column>
-    <column name="FamilyName">cda:assignedAuthor/cda:assignedPerson/cda:name/cda:family</column>
-    <column name="StreetAddress">cda:assignedAuthor/cda:addr/cda:streetAddressLine</column>
-    <column name="City">cda:assignedAuthor/cda:addr/cda:city</column>
-    <column name="State">cda:assignedAuthor/cda:addr/cda:state</column>
-    <column name="Zip">cda:assignedAuthor/cda:addr/cda:postalCode</column>
-    <column name="Country">cda:assignedAuthor/cda:addr/cda:country</column>
-    <column name="TelType">cda:assignedAuthor/cda:telecom/@use</column>
-    <column name="TelNumber">cda:assignedAuthor/cda:telecom/@value</column>
-    <column name="DeviceName"
-      >cda:assignedAuthor/cda:assignedAuthoringDevice/cda:manufacturerModelName</column>
-    <column name="DeviceSoftware"
-      >cda:assignedAuthor/cda:assignedAuthoringDevice/cda:softwareName</column>
-  </group>
-
   <!-- encompassingEncounter -->
   <group tableName="EncompassingEncounter" columnPrefix="encompassingEncounter"
     context="/cda:ClinicalDocument/cda:componentOf/cda:encompassingEncounter">
@@ -178,7 +189,7 @@
     <column name="CodeSystem">cda:code/@codeSystem</column>
     <column name="CodeSystemName">cda:code/@codeSystemName</column>
     <column name="CodeDisplayName">cda:code/@displayName</column>
-    <column name="StateDateTime">cda:effectiveTime/cda:low/@value</column>
+    <column name="StartDateTime">cda:effectiveTime/cda:low/@value</column>
     <column name="EndDateTime">cda:effectiveTime/cda:high/@value</column>
     <column name="ResponsibleProviderID"
       >cda:responsibleParty/cda:assignedEntity/cda:id/@value</column>
@@ -376,6 +387,7 @@
     <column name="TestCodeSystemName">cda:code/@codeSystemName</column>
     <column name="TestOriginalText" isNarrative="true">cda:code/cda:originalText</column>
     <column name="StatusCode">cda:statusCode/@code</column>
+    <!-- EffectiveTime of a Result Observation represents the biologically relevant time of the measurement (e.g., the time a blood pressure reading is obtained, the time the blood sample was obtained for a chemistry test). -->
     <column name="EffectiveDateTime">cda:effectiveTime/@value</column>
     <column name="StartDateTime">cda:effectiveTime/cda:low/@value</column>
     <column name="EndDateTime">cda:effectiveTime/cda:high/@value</column>
@@ -386,6 +398,10 @@
       >cda:value/cda:originalText</column>
     <column name="InterpCode">cda:interpretationCode/@code</column>
     <column name="InterpCS">cda:interpretationCode/@codeSystem</column>
+    <column name="MethodCode">cda:methodCode/@code</column>
+    <column name="MethodCS">cda:methodCode/@codeSystem</column>
+    <column name="TargetSiteCode">cda:targetSiteCode/@code</column>
+    <column name="TargetSiteCodeSystem">cda:targetSiteCode/@codeSystem</column>
     <!-- Result/Observation Author -->
     <column name="AuthoredOn">cda:author/cda:time/@value</column>
     <column name="AuthorID">cda:author/cda:assignedAuthor/@extension</column>
@@ -731,6 +747,9 @@
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.15.2.3.5']">
     <column name="ObsId">cda:id/@root</column>
     <column name="ReasonText">cda:value/cda:originalText</column>
+    <column name="ReasonCode">cda:value/@code</column>
+    <column name="ReasonCS">cda:value/@codeSystem</column>
+    <column name="ReasonDisplay">cda:value/@displayName</column>
   </group>
 
   <!-- eICR Trigger Code Problem Observation id 2.16.840.1.113883.10.20.15.2.3.3 -->

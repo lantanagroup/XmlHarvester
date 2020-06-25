@@ -33,7 +33,7 @@
             <birthTime value="19910101"/>
             <sdtc:deceasedInd value="false"/>
             <raceCode code="2054-5" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race and Ethnicity-CDC" displayName="Black or African American"/>
-            <ethnicGroupCode code="2186-5" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race and Ethnicity-CDC" displayName="Not Hispanic or Latino"/>
+           <ethnicGroupCode code="2186-5" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race and Ethnicity-CDC" displayName="Not Hispanic or Latino"/>
             <languageCommunication>
                <languageCode code="en"/>
                <preferenceInd value="true"/>

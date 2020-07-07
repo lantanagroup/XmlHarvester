@@ -42,22 +42,54 @@ Example:
 
 A CLI is available to run the tool from the command line (or automatically from another process).
 
-`XmlDocConverterCli.exe --help` for more information.
+The general format of the CLI is as follows:
+
+`XmlDocConverterCli.exe <command> [options]`
+
+Help can be provided by the CLI tool itself:
+
+`XmlDocConverterCli.exe [command] --help`
+
+### Command: xlsx
 
 | Parameter | Description |
-| -f, --format | (Default: MDB) The output format to produce (MDB or XLSX). |
-|  -c, --config | Required. The location of the mapping config XML file. |
+| --------- | ----------- |
+| -c, --config | Required. The location of the mapping config XML file. |
 | -i, --input | Required. The directory that contains the input XML files. |
-| -o, --output | Required. The directory where output (XLSX and MDB) files should go. |
+| -o, --output | Required. The directory where output (XLSX) files should go. |
+| -m, --move | The directory to move input files to once they are done being processed. |
 
+### Command: mdb
+
+| Parameter | Description |
+| --------- | ----------- |
+| -c, --config | Required. The location of the mapping config XML file. |
+| -i, --input | Required. The directory that contains the input XML files. |
+| -o, --output | Required. The directory where output (MDB) files should go. |
+| -m, --move | The directory to move input files to once they are done being processed. |
+
+### Command: db2
+
+| Parameter | Description |
+| --------- | ----------- |
+| -c, --config | Required. The location of the mapping config XML file. |
+| -i, --input | Required. The directory that contains the input XML files. |
+| -u, --username | Required. The authenticated username to access the DB. |
+| -p, --password | Required. The authenticated password to access the DB. |
+| -d, --database | (Default: xdc) The name of the database to convert/output to. |
+| -m, --move | The directory to move input files to once they are done being processed. |
 
 ## DB2 Conversion
 
-### Example db2dsdriver.cfg
+### Pre-requisites
 
-```
+To convert to a DB2 database, the machine that executes the XmlDocumentConverter must have the [IBM Data Server Runtime Client](https://www.ibm.com/support/pages/download-initial-version-115-clients-and-drivers) installed as a dependency. In addition to installing the runtime client, it must be configured to describe the database you want to export to. In the below example, "xdc" is the database that is being used for conversion.
+
+**Example db2dsdriver.cfg**
+
+```xml
 <configuration>
-     <!-- Multi-line comments are not supported -->
+   <!-- Multi-line comments are not supported -->
    <dsncollection>
       <dsn alias="dock" name="docker" description="alias1_description" host="localhost" port="50000"/>
    </dsncollection>
@@ -74,10 +106,13 @@ A CLI is available to run the tool from the command line (or automatically from 
          <specialregisters>
             <parameter name="CURRENT DEGREE" value="'ANY'"/>
          </specialregisters>
-         <sessionglobalvariables>
-            <parameter name="global_var1" value="abc"/>
-         </sessionglobalvariables>
       </database>
    </databases>
 </configuration>
 ```
+
+### Running
+
+To output/convert to a DB2 database, specify the named database in the "Database to connect to" field, as well as the username and password of the user. The name of the database should match the  name in the `db2dsdriver.cfg` file (ex: "xdc" in the above example).
+
+When conversion begins, it will first check to ensure that the DB2 database has the schema as described by the mapping configuration. If a table already exists and the columns do *not* align with the mapping config, an error will be produced. If the table does not already exist, it will be automatically created by the XmlDocumentConverter tool.

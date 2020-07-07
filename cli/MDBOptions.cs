@@ -10,9 +10,6 @@ namespace LantanaGroup.XmlDocumentConverter
     [Verb("mdb", HelpText = "Convert XML files into an MS Access DB")]
     internal class MDBOptions
     {
-        [Option('f', "format", Default = Formats.MDB, HelpText = "The output format to produce (MDB or XLSX)." )]
-        public Formats Format { get; set; }
-
         [Option('c', "config", Required = true, HelpText = "The location of the mapping config XML file.")]
         public string MappingConfig { get; set; }
 

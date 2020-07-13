@@ -21,8 +21,8 @@ namespace LantanaGroup.XmlDocumentConverter
 
         private DbConnection conn;
 
-        public DB2Converter(string configFileName, string inputDirectory, string database, string username, string password, string moveDirectory) : 
-            base(configFileName, inputDirectory, moveDirectory)
+        public DB2Converter(string configFileName, string inputDirectory, string database, string username, string password, string moveDirectory, string schemaPath, string schematronPath) : 
+            base(configFileName, inputDirectory, moveDirectory, schemaPath, schematronPath)
         {
             this.database = database;
             this.username = username;

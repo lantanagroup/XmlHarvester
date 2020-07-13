@@ -15,7 +15,7 @@ namespace cli
             var result = Parser.Default.ParseArguments<XLSXOptions, MDBOptions, DB2Options>(args)
                 .WithParsed<XLSXOptions>(o =>
                 {
-                    XlsxConverter xlsxConverter = new XlsxConverter(o.MappingConfig, o.InputDirectory, o.OutputDirectory, o.MoveDirectory);
+                    XlsxConverter xlsxConverter = new XlsxConverter(o.MappingConfig, o.InputDirectory, o.OutputDirectory, o.MoveDirectory, o.SchemaPath, o.SchematronPath);
                     xlsxConverter.LogEvent += delegate (string logText)
                     {
                         Console.WriteLine(logText);
@@ -24,7 +24,7 @@ namespace cli
                 })
                 .WithParsed<MDBOptions>(o =>
                 {
-                    MSAccessConverter mdbConverter = new MSAccessConverter(o.MappingConfig, o.InputDirectory, o.OutputDirectory, o.MoveDirectory);
+                    MSAccessConverter mdbConverter = new MSAccessConverter(o.MappingConfig, o.InputDirectory, o.OutputDirectory, o.MoveDirectory, o.SchemaPath, o.SchematronPath);
                     mdbConverter.LogEvent += delegate (string logText)
                     {
                         Console.WriteLine(logText);
@@ -33,7 +33,7 @@ namespace cli
                 })
                 .WithParsed<DB2Options>(o =>
                 {
-                    DB2Converter db2Converter = new DB2Converter(o.MappingConfig, o.InputDirectory, o.Database, o.Username, o.Password, o.MoveDirectory);
+                    DB2Converter db2Converter = new DB2Converter(o.MappingConfig, o.InputDirectory, o.Database, o.Username, o.Password, o.MoveDirectory, o.SchemaPath, o.SchematronPath);
                     db2Converter.LogEvent += delegate (string logText)
                     {
                         Console.WriteLine(logText);

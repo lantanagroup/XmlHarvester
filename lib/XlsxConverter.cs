@@ -18,8 +18,8 @@ namespace LantanaGroup.XmlDocumentConverter
         private SpreadsheetDocument spreadsheet;
         private ExcelFormat excelFormat;
 
-        public XlsxConverter(string configFileName, string inputDirectory, string outputDirectory, string moveDirectory) : 
-            base(configFileName, inputDirectory, moveDirectory)
+        public XlsxConverter(string configFileName, string inputDirectory, string outputDirectory, string moveDirectory, string schemaPath, string schematronPath) : 
+            base(configFileName, inputDirectory, moveDirectory, schemaPath, schematronPath)
         {
             this.outputDirectory = outputDirectory;
         }

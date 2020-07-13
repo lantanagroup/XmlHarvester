@@ -58,6 +58,8 @@ Help can be provided by the CLI tool itself:
 | -i, --input | Required. The directory that contains the input XML files. |
 | -o, --output | Required. The directory where output (XLSX) files should go. |
 | -m, --move | The directory to move input files to once they are done being processed. |
+| -x, --xsd | The path to an XML Schema (XSD) that should be used to validate the structure of each XMl document processed. |
+| -s, --sch | The path to an ISO Schematron (SCH) file that should be used to validate the content of each XMl document processed. |
 
 ### Command: mdb
 
@@ -67,6 +69,8 @@ Help can be provided by the CLI tool itself:
 | -i, --input | Required. The directory that contains the input XML files. |
 | -o, --output | Required. The directory where output (MDB) files should go. |
 | -m, --move | The directory to move input files to once they are done being processed. |
+| -x, --xsd | The path to an XML Schema (XSD) that should be used to validate the structure of each XMl document processed. |
+| -s, --sch | The path to an ISO Schematron (SCH) file that should be used to validate the content of each XMl document processed. |
 
 ### Command: db2
 
@@ -78,6 +82,8 @@ Help can be provided by the CLI tool itself:
 | -p, --password | Required. The authenticated password to access the DB. |
 | -d, --database | (Default: xdc) The name of the database to convert/output to. |
 | -m, --move | The directory to move input files to once they are done being processed. |
+| -x, --xsd | The path to an XML Schema (XSD) that should be used to validate the structure of each XMl document processed. |
+| -s, --sch | The path to an ISO Schematron (SCH) file that should be used to validate the content of each XMl document processed. |
 
 ## DB2 Conversion
 

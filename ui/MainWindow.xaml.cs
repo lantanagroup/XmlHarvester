@@ -22,6 +22,8 @@ namespace LantanaGroup.XmlDocumentConverter
         public const string REG_OUTPUT_XLSX_NAME = "outputXlsx";
         public const string REG_OUTPUT_MDB_NAME = "outputMdb";
         public const string REG_OUTPUT_DB2_NAME = "outputDb2";
+        public const string REG_SCHEMA_FILE_NAME = "schemaFile";
+        public const string REG_SCHEMATRON_FILE_NAME = "schematronFile";
 
         public MainWindow()
         {
@@ -29,6 +31,8 @@ namespace LantanaGroup.XmlDocumentConverter
 
             this.MappingFileText.Text = (string) Registry.GetValue(REG_SOFTWARE_KEY, REG_MAPPING_FILE_NAME, "");
             this.InputDirectoryText.Text = (string) Registry.GetValue(REG_SOFTWARE_KEY, REG_INPUT_DIR_NAME, "");
+            this.SchemaFileText.Text = (string)Registry.GetValue(REG_SOFTWARE_KEY, REG_SCHEMA_FILE_NAME, "");
+            this.SchematronFileText.Text = (string)Registry.GetValue(REG_SOFTWARE_KEY, REG_SCHEMATRON_FILE_NAME, "");
 
             object outputXlsx = Registry.GetValue(REG_SOFTWARE_KEY, REG_OUTPUT_XLSX_NAME, 0);
             object outputMdb = Registry.GetValue(REG_SOFTWARE_KEY, REG_OUTPUT_MDB_NAME, 0);
@@ -124,7 +128,7 @@ namespace LantanaGroup.XmlDocumentConverter
             {
                 this.LogText.Text = "";
                 this.ConvertButton.IsEnabled = false;
-                XlsxConverter converter = new XlsxConverter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.XlsxSettings.OutputDirectory, this.XlsxSettings.MoveDirectory);
+                XlsxConverter converter = new XlsxConverter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.XlsxSettings.OutputDirectory, this.XlsxSettings.MoveDirectory, this.SchemaFileText.Text, this.SchematronFileText.Text);
 
                 converter.LogEvent += delegate (string logText)
                 {
@@ -158,7 +162,7 @@ namespace LantanaGroup.XmlDocumentConverter
             {
                 this.LogText.Text = "";
                 this.ConvertButton.IsEnabled = false;
-                MSAccessConverter converter = new MSAccessConverter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.MdbSettings.OutputDirectory, this.MdbSettings.MoveDirectory);
+                MSAccessConverter converter = new MSAccessConverter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.MdbSettings.OutputDirectory, this.MdbSettings.MoveDirectory, this.SchemaFileText.Text, this.SchematronFileText.Text);
 
                 converter.LogEvent += delegate (string logText)
                 {
@@ -192,7 +196,7 @@ namespace LantanaGroup.XmlDocumentConverter
             {
                 this.LogText.Text = "";
                 this.ConvertButton.IsEnabled = false;
-                DB2Converter converter = new DB2Converter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.Db2Settings.Database, this.Db2Settings.Username, this.Db2Settings.Password, this.Db2Settings.MoveDirectory);
+                DB2Converter converter = new DB2Converter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.Db2Settings.Database, this.Db2Settings.Username, this.Db2Settings.Password, this.Db2Settings.MoveDirectory, this.SchemaFileText.Text, this.SchematronFileText.Text);
 
                 converter.LogEvent += delegate (string logText)
                 {
@@ -256,7 +260,65 @@ namespace LantanaGroup.XmlDocumentConverter
             else if (this.MSAccessButton.IsChecked == true)
                 this.SettingsRow.Height = new GridLength(130);
             else if (this.DB2Button.IsChecked == true)
-                this.SettingsRow.Height = new GridLength(240);
+                this.SettingsRow.Height = new GridLength(250);
+        }
+
+        private void SchemaFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "XSD Files|*.xsd";
+
+                dialog.InitialDirectory = Directory.GetCurrentDirectory();
+
+                if (!string.IsNullOrEmpty(this.MappingFileText.Text))
+                    dialog.FileName = this.MappingFileText.Text;
+
+                DialogResult result = dialog.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.SchemaFileText.Text = dialog.FileName;
+                    Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMA_FILE_NAME, this.SchemaFileText.Text);
+
+                    this.EnableConvertButton();
+                }
+            }
+        }
+
+        private void SchemaClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.SchemaFileText.Text = string.Empty;
+            Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMA_FILE_NAME, string.Empty);
+        }
+
+        private void SchematronFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "SCH Files|*.sch";
+
+                dialog.InitialDirectory = Directory.GetCurrentDirectory();
+
+                if (!string.IsNullOrEmpty(this.MappingFileText.Text))
+                    dialog.FileName = this.MappingFileText.Text;
+
+                DialogResult result = dialog.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.SchematronFileText.Text = dialog.FileName;
+                    Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMATRON_FILE_NAME, this.SchematronFileText.Text);
+
+                    this.EnableConvertButton();
+                }
+            }
+        }
+
+        private void SchematronClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.SchematronFileText.Text = string.Empty;
+            Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMATRON_FILE_NAME, string.Empty);
         }
     }
 }

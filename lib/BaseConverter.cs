@@ -25,7 +25,9 @@ namespace LantanaGroup.XmlDocumentConverter
         protected DocumentBuilder builder;
         protected XPathCompiler compiler;
 
-        protected BaseConverter(string configFileName, string inputDirectory, string moveDirectory)
+        private Validator validator;
+
+        protected BaseConverter(string configFileName, string inputDirectory, string moveDirectory, string schemaPath, string schematronPath)
         {
             this.config = MappingConfig.LoadFromFileWithParents(configFileName);
             this.inputDirectory = inputDirectory;
@@ -36,6 +38,8 @@ namespace LantanaGroup.XmlDocumentConverter
 
             foreach (var theNs in this.config.Namespace)
                 this.compiler.DeclareNamespace(theNs.Prefix, theNs.Uri);
+
+            this.validator = new Validator(schemaPath, schematronPath);
         }
 
         protected abstract int InsertData(string tableName, Dictionary<MappingColumn, object> columns);
@@ -189,7 +193,7 @@ namespace LantanaGroup.XmlDocumentConverter
                     FileInfo fileInfo = new FileInfo(xmlFile);
                     XmlDocument xmlDoc = null;
 
-                    this.Log("---------------------------------------------\r\nReading XML file: " + fileInfo.Name + "\r\n");
+                    this.Log("---------------------------------------------\r\nReading XML file: " + fileInfo.Name);
 
                     try
                     {
@@ -212,16 +216,51 @@ namespace LantanaGroup.XmlDocumentConverter
                     try
                     {
                         this.ProcessFile(xmlDoc, nsManager, fileInfo);
-
-                        if (!String.IsNullOrEmpty(this.moveDirectory))
-                        {
-                            string destinationFilePath = Path.Combine(this.moveDirectory, fileInfo.Name);
-                            fileInfo.MoveTo(destinationFilePath);
-                        }
                     }
                     catch (Exception ex)
                     {
                         this.Log(String.Format("Failed to process file {0} data due to: {1}", fileInfo.Name, ex.Message));
+                        break;
+                    }
+
+                    try
+                    {
+                        // Always run Validate(). If not configured with validation schema and/or schematron, it will just return "valid"
+                        bool isSchemaValid = this.validator.ValidateSchema(xmlFile);
+                        bool isSchematronValid = this.validator.ValidateSchematron(xmlFile);
+
+                        if (this.validator.WillValidate)
+                        {
+                            this.Log("Validation results:");
+
+                            if (this.validator.WillValidateSchema)
+                                this.Log(string.Format("Schema (XSD): {0}", isSchemaValid ? "valid" : "not valid"));
+                            else
+                                this.Log("Schema (XSD): n/a");
+
+                            if (this.validator.WillValidateSchematron)
+                                this.Log(string.Format("Schematron (SCH): {0}", isSchematronValid ? "valid" : "not valid"));
+                            else
+                                this.Log("Schematron (SCH): n/a");
+                        }
+
+                        if (!String.IsNullOrEmpty(this.moveDirectory))
+                        {
+                            string destinationFilePath = Path.Combine(this.moveDirectory, fileInfo.Name);
+
+                            // If configured to validate, move the file to a subdirectory "valid" or "invalid" depending on the validation results
+                            if (this.validator.WillValidate)
+                                destinationFilePath = Path.Combine(destinationFilePath, isSchemaValid ? "valid" : "invalid");
+
+                            fileInfo.MoveTo(destinationFilePath);
+                        }
+
+                        this.Log(string.Format("Done processing file {0}", fileInfo.Name));
+                    }
+                    catch (Exception ex)
+                    {
+                        this.Log(String.Format("Failed to validate and/or move file {0} data due to: {1}", fileInfo.Name, ex.Message));
+                        break;
                     }
                 }
             }

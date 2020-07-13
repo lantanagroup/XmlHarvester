@@ -27,5 +27,11 @@ namespace LantanaGroup.XmlDocumentConverter
 
         [Option('p', "password", Required = true, HelpText = "The authenticated password to access the DB.")]
         public string Password { get; set; }
+        
+        [Option('x', "xsd", Required = false, HelpText = "The path to an XML Schema (XSD) that should be used to validate the structure of each XMl document processed.")]
+        public string SchemaPath { get; set; }
+
+        [Option('s', "sch", Required = false, HelpText = "The path to an ISO Schematron (SCH) file that should be used to validate the content of each XMl document processed.")]
+        public string SchematronPath { get; set; }
     }
 }

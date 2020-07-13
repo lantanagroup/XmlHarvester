@@ -29,7 +29,7 @@
         <TextBox x:Name="UsernameText" Grid.Row="3" Grid.Column="0" Margin="5,2" Grid.ColumnSpan="3" TextChanged="UsernameText_TextChanged" />
         <Label x:Name="PasswordLabel" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Content="Password:" Margin="5,2" />
         <PasswordBox x:Name="PasswordText" Grid.Row="5" Grid.Column="0" Margin="5,2" Grid.ColumnSpan="3" PasswordChanged="PasswordText_PasswordChanged" />
-        <Label x:Name="MoveDirectoryLabel" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Content="What directory should the input files be moved to when done?" Margin="5,2"/>
+        <Label x:Name="MoveDirectoryLabel" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Content="What directory should the input files be moved to when done? (Optional)" Margin="5,2"/>
         <TextBox x:Name="MoveDirectoryText" Grid.Row="7" Grid.Column="0" IsReadOnly="true" Margin="5,2" />
         <Button x:Name="ClearMoveDirectoryButton" Grid.Row="7" Grid.Column="1" Content="Clear" Margin="5,2" Click="ClearMoveDirectoryButton_Click" />
         <Button x:Name="MoveDirectoryButton" Grid.Row="7" Grid.Column="2" Content="Select" Margin="5,2" Click="MoveDirectoryButton_Click" />

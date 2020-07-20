@@ -188,6 +188,9 @@ namespace LantanaGroup.XmlDocumentConverter
             {
                 string[] xmlFiles = Directory.GetFiles(this.inputDirectory, "*.xml");
 
+                if (xmlFiles.Length == 0)
+                    this.Log("No XML files found in input directory.");
+
                 foreach (var xmlFile in xmlFiles)
                 {
                     FileInfo fileInfo = new FileInfo(xmlFile);
@@ -216,11 +219,12 @@ namespace LantanaGroup.XmlDocumentConverter
                     try
                     {
                         this.ProcessFile(xmlDoc, nsManager, fileInfo);
+                        this.Log(string.Format("Done parsing/processing file {0}", fileInfo.Name));
                     }
                     catch (Exception ex)
                     {
                         this.Log(String.Format("Failed to process file {0} data due to: {1}", fileInfo.Name, ex.Message));
-                        break;
+                        continue;
                     }
 
                     try
@@ -246,6 +250,11 @@ namespace LantanaGroup.XmlDocumentConverter
 
                         if (!String.IsNullOrEmpty(this.moveDirectory))
                         {
+                            DirectoryInfo di = new DirectoryInfo(this.moveDirectory);
+
+                            if (!di.Exists)
+                                di.Create();
+
                             string destinationFilePath = Path.Combine(this.moveDirectory, fileInfo.Name);
 
                             // If configured to validate, move the file to a subdirectory "valid" or "invalid" depending on the validation results
@@ -253,14 +262,14 @@ namespace LantanaGroup.XmlDocumentConverter
                                 destinationFilePath = Path.Combine(destinationFilePath, isSchemaValid ? "valid" : "invalid");
 
                             fileInfo.MoveTo(destinationFilePath);
-                        }
 
-                        this.Log(string.Format("Done processing file {0}", fileInfo.Name));
+                            Console.WriteLine("Moved file to " + destinationFilePath);
+                        }
                     }
                     catch (Exception ex)
                     {
                         this.Log(String.Format("Failed to validate and/or move file {0} data due to: {1}", fileInfo.Name, ex.Message));
-                        break;
+                        continue;
                     }
                 }
             }

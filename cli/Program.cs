@@ -40,6 +40,11 @@ namespace cli
                     };
                     db2Converter.Convert();
                 });
+
+#if DEBUG
+            Console.WriteLine("Press <enter> to continue...");
+            Console.ReadLine();
+#endif
         }
     }
 }

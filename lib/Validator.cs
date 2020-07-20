@@ -46,10 +46,6 @@ namespace LantanaGroup.XmlDocumentConverter
             this.schemaPath = schemaPath;
             this.schematronPath = schematronPath;
 
-            this.processor.XmlResolver = new ValidatorResolver(new FileInfo(schematronPath).DirectoryName);
-            this.builder = this.processor.NewDocumentBuilder();
-            this.builder.BaseUri = new Uri("file://");
-
             if (!String.IsNullOrEmpty(this.schemaPath))
             {
                 XmlDocument xsdDoc = new XmlDocument();
@@ -63,6 +59,13 @@ namespace LantanaGroup.XmlDocumentConverter
                     this.readerSettings.Schemas.Add(targetNamespace.Value, this.schemaPath);
                     this.readerSettings.ValidationType = ValidationType.Schema;
                 }
+            }
+
+            if (!string.IsNullOrEmpty(this.schematronPath))
+            {
+                this.processor.XmlResolver = new ValidatorResolver(new FileInfo(schematronPath).DirectoryName);
+                this.builder = this.processor.NewDocumentBuilder();
+                this.builder.BaseUri = new Uri("file://");
             }
         }
 

@@ -215,7 +215,16 @@ namespace LantanaGroup.XmlDocumentConverter
             DbProviderFactory factory = DbProviderFactories.GetFactory("IBM.Data.DB2");
             this.conn = factory.CreateConnection();
             this.conn.ConnectionString = string.Format("Database={0};UID={1};PWD={2}", this.database, this.username, this.password);
-            this.conn.Open();
+
+            try
+            {
+                this.conn.Open();
+            }
+            catch (Exception ex)
+            {
+                this.Log(string.Format("Failed to open connected to the DB2 database: {0}", ex.Message));
+                return false;
+            }
 
             try
             {

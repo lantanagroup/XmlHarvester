@@ -1,5 +1,5 @@
 # XmlDocumentConverter
-Converts multiple XML documents into a MDB (Microsoft Access) database whose structure is defined by config.
+This is an open source tool freely available for anyone to use. The C# source code is also available for anyone to download and configure. This tool extracts discrete data from standard CDA XML files, such as eICR and QRDA files, and stores these data elements in a database. Additionally, the parser is configurable to enable/disable schema (.xsd) and schematron (.sch) validation against provided validation files.
 
 ## Features
 

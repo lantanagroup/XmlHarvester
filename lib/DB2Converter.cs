@@ -212,12 +212,12 @@ namespace LantanaGroup.XmlDocumentConverter
 
         protected override bool InitializeOutput()
         {
-            DbProviderFactory factory = DbProviderFactories.GetFactory("IBM.Data.DB2");
-            this.conn = factory.CreateConnection();
-            this.conn.ConnectionString = string.Format("Database={0};UID={1};PWD={2}", this.database, this.username, this.password);
-
             try
             {
+                DbProviderFactory factory = DbProviderFactories.GetFactory("IBM.Data.DB2");
+                this.conn = factory.CreateConnection();
+                this.conn.ConnectionString = string.Format("Database={0};UID={1};PWD={2}", this.database, this.username, this.password);
+
                 this.conn.Open();
             }
             catch (Exception ex)

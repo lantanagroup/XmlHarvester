@@ -7,8 +7,8 @@
     <ProjectGuid>{BD6FF28F-8277-4A99-A984-202DCA955190}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LantanaGroup.XmlDocumentConverter</RootNamespace>
-    <AssemblyName>XmlDocConverterLib</AssemblyName>
+    <RootNamespace>LantanaGroup.XmlHarvester</RootNamespace>
+    <AssemblyName>XmlHarvesterLib</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

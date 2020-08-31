@@ -1,20 +1,20 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
-using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using MessageBox = System.Windows.MessageBox;
-using System.Threading;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
-namespace LantanaGroup.XmlDocumentConverter
+namespace LantanaGroup.XmlHarvester
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public const string REG_SOFTWARE_KEY = @"HKEY_CURRENT_USER\SOFTWARE\XmlDocumentConverter";
+        public const string REG_SOFTWARE_KEY = @"HKEY_CURRENT_USER\SOFTWARE\XmlHarvester";
         public const string REG_MAPPING_FILE_NAME = "mappingFile";
         public const string REG_INPUT_DIR_NAME = "inputDirectory";
         public const string REG_OUPUT_DIR_NAME = "outputDirectory";
@@ -29,41 +29,41 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             InitializeComponent();
 
-            this.MappingFileText.Text = (string) Registry.GetValue(REG_SOFTWARE_KEY, REG_MAPPING_FILE_NAME, "");
-            this.InputDirectoryText.Text = (string) Registry.GetValue(REG_SOFTWARE_KEY, REG_INPUT_DIR_NAME, "");
-            this.SchemaFileText.Text = (string)Registry.GetValue(REG_SOFTWARE_KEY, REG_SCHEMA_FILE_NAME, "");
-            this.SchematronFileText.Text = (string)Registry.GetValue(REG_SOFTWARE_KEY, REG_SCHEMATRON_FILE_NAME, "");
+            MappingFileText.Text = (string)Registry.GetValue(REG_SOFTWARE_KEY, REG_MAPPING_FILE_NAME, "");
+            InputDirectoryText.Text = (string)Registry.GetValue(REG_SOFTWARE_KEY, REG_INPUT_DIR_NAME, "");
+            SchemaFileText.Text = (string)Registry.GetValue(REG_SOFTWARE_KEY, REG_SCHEMA_FILE_NAME, "");
+            SchematronFileText.Text = (string)Registry.GetValue(REG_SOFTWARE_KEY, REG_SCHEMATRON_FILE_NAME, "");
 
             object outputXlsx = Registry.GetValue(REG_SOFTWARE_KEY, REG_OUTPUT_XLSX_NAME, 0);
             object outputMdb = Registry.GetValue(REG_SOFTWARE_KEY, REG_OUTPUT_MDB_NAME, 0);
             object outputDb2 = Registry.GetValue(REG_SOFTWARE_KEY, REG_OUTPUT_DB2_NAME, 0);
 
-            this.XlsxButton.IsChecked = outputXlsx != null ? (int) outputXlsx == 1 : false;
-            this.MSAccessButton.IsChecked = outputMdb != null ? (int) outputMdb == 1 : false;
-            this.DB2Button.IsChecked = outputDb2 != null ? (int) outputDb2 == 1 : false;
+            XlsxButton.IsChecked = outputXlsx != null ? (int)outputXlsx == 1 : false;
+            MSAccessButton.IsChecked = outputMdb != null ? (int)outputMdb == 1 : false;
+            DB2Button.IsChecked = outputDb2 != null ? (int)outputDb2 == 1 : false;
 
-            this.EnableConvertButton();
-            this.ChangeSettingsRowHeight();
+            EnableConvertButton();
+            ChangeSettingsRowHeight();
         }
 
         private void EnableConvertButton()
         {
-            bool hasFormatSelected = this.XlsxButton.IsChecked == true || this.MSAccessButton.IsChecked == true || this.DB2Button.IsChecked == true;
+            bool hasFormatSelected = XlsxButton.IsChecked == true || MSAccessButton.IsChecked == true || DB2Button.IsChecked == true;
 
-            if (!hasFormatSelected || string.IsNullOrEmpty(this.MappingFileText.Text) || string.IsNullOrEmpty(this.InputDirectoryText.Text))
+            if (!hasFormatSelected || string.IsNullOrEmpty(MappingFileText.Text) || string.IsNullOrEmpty(InputDirectoryText.Text))
             {
-                this.ConvertButton.IsEnabled = false;
+                ConvertButton.IsEnabled = false;
                 return;
             }
 
-            if (this.XlsxButton.IsChecked == true)
-                this.ConvertButton.IsEnabled = this.XlsxSettings.IsValid;
-            else if (this.MSAccessButton.IsChecked == true)
-                this.ConvertButton.IsEnabled = this.MdbSettings.IsValid;
-            else if (this.DB2Button.IsChecked == true)
-                this.ConvertButton.IsEnabled = this.Db2Settings.IsValid;
+            if (XlsxButton.IsChecked == true)
+                ConvertButton.IsEnabled = XlsxSettings.IsValid;
+            else if (MSAccessButton.IsChecked == true)
+                ConvertButton.IsEnabled = MdbSettings.IsValid;
+            else if (DB2Button.IsChecked == true)
+                ConvertButton.IsEnabled = Db2Settings.IsValid;
             else
-                this.ConvertButton.IsEnabled = false;
+                ConvertButton.IsEnabled = false;
         }
 
         #region File/Folder Selection Events
@@ -76,17 +76,17 @@ namespace LantanaGroup.XmlDocumentConverter
 
                 dialog.InitialDirectory = Directory.GetCurrentDirectory();
 
-                if (!string.IsNullOrEmpty(this.MappingFileText.Text))
-                    dialog.FileName = this.MappingFileText.Text;
+                if (!string.IsNullOrEmpty(MappingFileText.Text))
+                    dialog.FileName = MappingFileText.Text;
 
                 DialogResult result = dialog.ShowDialog();
 
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.MappingFileText.Text = dialog.FileName;
-                    Registry.SetValue(REG_SOFTWARE_KEY, REG_MAPPING_FILE_NAME, this.MappingFileText.Text);
+                    MappingFileText.Text = dialog.FileName;
+                    Registry.SetValue(REG_SOFTWARE_KEY, REG_MAPPING_FILE_NAME, MappingFileText.Text);
 
-                    this.EnableConvertButton();
+                    EnableConvertButton();
                 }
             }
         }
@@ -95,17 +95,17 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
 
-            if (!string.IsNullOrEmpty(this.InputDirectoryText.Text))
-                dialog.SelectedPath = this.InputDirectoryText.Text;
+            if (!string.IsNullOrEmpty(InputDirectoryText.Text))
+                dialog.SelectedPath = InputDirectoryText.Text;
             else
                 dialog.SelectedPath = Directory.GetCurrentDirectory();
 
             if (dialog.ShowDialog(this).GetValueOrDefault())
             {
-                this.InputDirectoryText.Text = dialog.SelectedPath;
-                Registry.SetValue(REG_SOFTWARE_KEY, REG_INPUT_DIR_NAME, this.InputDirectoryText.Text);
+                InputDirectoryText.Text = dialog.SelectedPath;
+                Registry.SetValue(REG_SOFTWARE_KEY, REG_INPUT_DIR_NAME, InputDirectoryText.Text);
 
-                this.EnableConvertButton();
+                EnableConvertButton();
             }
         }
 
@@ -113,12 +113,12 @@ namespace LantanaGroup.XmlDocumentConverter
 
         private void EditExternalConfig_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(this.MappingFileText.Text);
+            System.Diagnostics.Process.Start(MappingFileText.Text);
         }
 
         private void EditInternalConfig_Click(object sender, RoutedEventArgs e)
         {
-            EditConfigWindow editConfigWindow = new EditConfigWindow(this.MappingFileText.Text);
+            EditConfigWindow editConfigWindow = new EditConfigWindow(MappingFileText.Text);
             editConfigWindow.Show();
         }
 
@@ -126,24 +126,24 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             try
             {
-                this.LogText.Text = "";
-                this.ConvertButton.IsEnabled = false;
-                XlsxConverter converter = new XlsxConverter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.XlsxSettings.OutputDirectory, this.XlsxSettings.MoveDirectory, this.SchemaFileText.Text, this.SchematronFileText.Text);
+                LogText.Text = "";
+                ConvertButton.IsEnabled = false;
+                XlsxConverter converter = new XlsxConverter(MappingFileText.Text, InputDirectoryText.Text, XlsxSettings.OutputDirectory, XlsxSettings.MoveDirectory, SchemaFileText.Text, SchematronFileText.Text);
 
                 converter.LogEvent += delegate (string logText)
                 {
-                    this.Dispatcher.Invoke(() =>
+                    Dispatcher.Invoke(() =>
                     {
-                        this.LogText.Text += logText + "\n";
+                        LogText.Text += logText + "\n";
                     });
                 };
 
                 converter.ConversionComplete += delegate ()
                 {
-                    this.Dispatcher.Invoke(() =>
+                    Dispatcher.Invoke(() =>
                     {
                         MessageBox.Show("Done!");
-                        this.EnableConvertButton();
+                        EnableConvertButton();
                     });
                 };
 
@@ -152,7 +152,7 @@ namespace LantanaGroup.XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.LogText.Text += "ERROR: " + ex.Message;
+                LogText.Text += "ERROR: " + ex.Message;
             }
         }
 
@@ -160,24 +160,24 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             try
             {
-                this.LogText.Text = "";
-                this.ConvertButton.IsEnabled = false;
-                MSAccessConverter converter = new MSAccessConverter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.MdbSettings.OutputDirectory, this.MdbSettings.MoveDirectory, this.SchemaFileText.Text, this.SchematronFileText.Text);
+                LogText.Text = "";
+                ConvertButton.IsEnabled = false;
+                MSAccessConverter converter = new MSAccessConverter(MappingFileText.Text, InputDirectoryText.Text, MdbSettings.OutputDirectory, MdbSettings.MoveDirectory, SchemaFileText.Text, SchematronFileText.Text);
 
                 converter.LogEvent += delegate (string logText)
                 {
-                    this.Dispatcher.Invoke(() =>
+                    Dispatcher.Invoke(() =>
                     {
-                        this.LogText.Text += logText + "\n";
+                        LogText.Text += logText + "\n";
                     });
                 };
 
                 converter.ConversionComplete += delegate ()
                 {
-                    this.Dispatcher.Invoke(() =>
+                    Dispatcher.Invoke(() =>
                     {
                         MessageBox.Show("Done!");
-                        this.EnableConvertButton();
+                        EnableConvertButton();
                     });
                 };
 
@@ -186,7 +186,7 @@ namespace LantanaGroup.XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.LogText.Text += "ERROR: " + ex.Message;
+                LogText.Text += "ERROR: " + ex.Message;
             }
         }
 
@@ -194,24 +194,24 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             try
             {
-                this.LogText.Text = "";
-                this.ConvertButton.IsEnabled = false;
-                DB2Converter converter = new DB2Converter(this.MappingFileText.Text, this.InputDirectoryText.Text, this.Db2Settings.Database, this.Db2Settings.Username, this.Db2Settings.Password, this.Db2Settings.MoveDirectory, this.SchemaFileText.Text, this.SchematronFileText.Text);
+                LogText.Text = "";
+                ConvertButton.IsEnabled = false;
+                DB2Converter converter = new DB2Converter(MappingFileText.Text, InputDirectoryText.Text, Db2Settings.Database, Db2Settings.Username, Db2Settings.Password, Db2Settings.MoveDirectory, SchemaFileText.Text, SchematronFileText.Text);
 
                 converter.LogEvent += delegate (string logText)
                 {
-                    this.Dispatcher.Invoke(() =>
+                    Dispatcher.Invoke(() =>
                     {
-                        this.LogText.Text += logText + "\n";
+                        LogText.Text += logText + "\n";
                     });
                 };
 
                 converter.ConversionComplete += delegate ()
                 {
-                    this.Dispatcher.Invoke(() =>
+                    Dispatcher.Invoke(() =>
                     {
                         MessageBox.Show("Done!");
-                        this.EnableConvertButton();
+                        EnableConvertButton();
                     });
                 };
 
@@ -220,47 +220,47 @@ namespace LantanaGroup.XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.LogText.Text += "ERROR: " + ex.Message;
+                LogText.Text += "ERROR: " + ex.Message;
             }
         }
 
         private void ConvertButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.XlsxButton.IsChecked == true)
-                this.convertXlsx();
-            else if (this.MSAccessButton.IsChecked == true)
-                this.convertMSAccess();
-            else if (this.DB2Button.IsChecked == true)
-                this.convertDb2();
+            if (XlsxButton.IsChecked == true)
+                convertXlsx();
+            else if (MSAccessButton.IsChecked == true)
+                convertMSAccess();
+            else if (DB2Button.IsChecked == true)
+                convertDb2();
             else
                 MessageBox.Show("No conversion format selected!");
         }
 
         private void ToggleOutputFormat_Click(object sender, RoutedEventArgs e)
         {
-            if (sender == this.XlsxButton && this.XlsxButton.IsChecked == true)
-                this.MSAccessButton.IsChecked = this.DB2Button.IsChecked = false;
-            else if (sender == this.MSAccessButton && this.MSAccessButton.IsChecked == true)
-                this.XlsxButton.IsChecked = this.DB2Button.IsChecked = false;
-            else if (sender == this.DB2Button && this.DB2Button.IsChecked == true)
-                this.XlsxButton.IsChecked = this.MSAccessButton.IsChecked = false;
+            if (sender == XlsxButton && XlsxButton.IsChecked == true)
+                MSAccessButton.IsChecked = DB2Button.IsChecked = false;
+            else if (sender == MSAccessButton && MSAccessButton.IsChecked == true)
+                XlsxButton.IsChecked = DB2Button.IsChecked = false;
+            else if (sender == DB2Button && DB2Button.IsChecked == true)
+                XlsxButton.IsChecked = MSAccessButton.IsChecked = false;
 
-            Registry.SetValue(REG_SOFTWARE_KEY, REG_OUTPUT_XLSX_NAME, this.XlsxButton.IsChecked == true, RegistryValueKind.DWord);
-            Registry.SetValue(REG_SOFTWARE_KEY, REG_OUTPUT_MDB_NAME, this.MSAccessButton.IsChecked == true, RegistryValueKind.DWord);
-            Registry.SetValue(REG_SOFTWARE_KEY, REG_OUTPUT_DB2_NAME, this.DB2Button.IsChecked == true, RegistryValueKind.DWord);
+            Registry.SetValue(REG_SOFTWARE_KEY, REG_OUTPUT_XLSX_NAME, XlsxButton.IsChecked == true, RegistryValueKind.DWord);
+            Registry.SetValue(REG_SOFTWARE_KEY, REG_OUTPUT_MDB_NAME, MSAccessButton.IsChecked == true, RegistryValueKind.DWord);
+            Registry.SetValue(REG_SOFTWARE_KEY, REG_OUTPUT_DB2_NAME, DB2Button.IsChecked == true, RegistryValueKind.DWord);
 
-            this.EnableConvertButton();
-            this.ChangeSettingsRowHeight();
+            EnableConvertButton();
+            ChangeSettingsRowHeight();
         }
 
         private void ChangeSettingsRowHeight()
         {
-            if (this.XlsxButton.IsChecked == true)
-                this.SettingsRow.Height = new GridLength(130);
-            else if (this.MSAccessButton.IsChecked == true)
-                this.SettingsRow.Height = new GridLength(130);
-            else if (this.DB2Button.IsChecked == true)
-                this.SettingsRow.Height = new GridLength(250);
+            if (XlsxButton.IsChecked == true)
+                SettingsRow.Height = new GridLength(130);
+            else if (MSAccessButton.IsChecked == true)
+                SettingsRow.Height = new GridLength(130);
+            else if (DB2Button.IsChecked == true)
+                SettingsRow.Height = new GridLength(250);
         }
 
         private void SchemaFileButton_Click(object sender, RoutedEventArgs e)
@@ -271,24 +271,24 @@ namespace LantanaGroup.XmlDocumentConverter
 
                 dialog.InitialDirectory = Directory.GetCurrentDirectory();
 
-                if (!string.IsNullOrEmpty(this.MappingFileText.Text))
-                    dialog.FileName = this.MappingFileText.Text;
+                if (!string.IsNullOrEmpty(MappingFileText.Text))
+                    dialog.FileName = MappingFileText.Text;
 
                 DialogResult result = dialog.ShowDialog();
 
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.SchemaFileText.Text = dialog.FileName;
-                    Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMA_FILE_NAME, this.SchemaFileText.Text);
+                    SchemaFileText.Text = dialog.FileName;
+                    Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMA_FILE_NAME, SchemaFileText.Text);
 
-                    this.EnableConvertButton();
+                    EnableConvertButton();
                 }
             }
         }
 
         private void SchemaClearButton_Click(object sender, RoutedEventArgs e)
         {
-            this.SchemaFileText.Text = string.Empty;
+            SchemaFileText.Text = string.Empty;
             Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMA_FILE_NAME, string.Empty);
         }
 
@@ -300,24 +300,24 @@ namespace LantanaGroup.XmlDocumentConverter
 
                 dialog.InitialDirectory = Directory.GetCurrentDirectory();
 
-                if (!string.IsNullOrEmpty(this.MappingFileText.Text))
-                    dialog.FileName = this.MappingFileText.Text;
+                if (!string.IsNullOrEmpty(MappingFileText.Text))
+                    dialog.FileName = MappingFileText.Text;
 
                 DialogResult result = dialog.ShowDialog();
 
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.SchematronFileText.Text = dialog.FileName;
-                    Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMATRON_FILE_NAME, this.SchematronFileText.Text);
+                    SchematronFileText.Text = dialog.FileName;
+                    Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMATRON_FILE_NAME, SchematronFileText.Text);
 
-                    this.EnableConvertButton();
+                    EnableConvertButton();
                 }
             }
         }
 
         private void SchematronClearButton_Click(object sender, RoutedEventArgs e)
         {
-            this.SchematronFileText.Text = string.Empty;
+            SchematronFileText.Text = string.Empty;
             Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMATRON_FILE_NAME, string.Empty);
         }
     }

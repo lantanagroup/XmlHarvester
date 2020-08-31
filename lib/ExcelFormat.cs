@@ -1,12 +1,9 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LantanaGroup.XmlDocumentConverter
+namespace LantanaGroup.XmlHarvester
 {
     public class ExcelFormat
     {
@@ -16,11 +13,11 @@ namespace LantanaGroup.XmlDocumentConverter
 
         public void AddRow(string fileName)
         {
-            this.currentRow = new ExcelRow()
+            currentRow = new ExcelRow()
             {
                 FileName = fileName
             };
-            this.rows.Add(this.currentRow);
+            rows.Add(currentRow);
         }
 
         public void AddData(MappingGroup group, MappingColumn column, string data, bool isBold = false)
@@ -31,11 +28,11 @@ namespace LantanaGroup.XmlDocumentConverter
                 Column = column,
                 Data = data == null ? string.Empty : data
             };
-            this.currentRow.Data.Add(excelColumn);
+            currentRow.Data.Add(excelColumn);
 
             // Add a heading if one doesn't arleady exist
-            int dataCount = this.currentRow.Data.Count(y => y.Column == column);
-            int headingCount = this.headings.Count(y => y.Column == column);
+            int dataCount = currentRow.Data.Count(y => y.Column == column);
+            int headingCount = headings.Count(y => y.Column == column);
 
             if (headingCount < dataCount)
             {
@@ -43,17 +40,17 @@ namespace LantanaGroup.XmlDocumentConverter
 
                 if (group != null)
                 {
-                    var lastHeading = this.headings.LastOrDefault(y => y.Group == group);
+                    var lastHeading = headings.LastOrDefault(y => y.Group == group);
 
                     if (lastHeading != null)
-                        insertIndex = this.headings.LastIndexOf(lastHeading);
+                        insertIndex = headings.LastIndexOf(lastHeading);
 
                     if (insertIndex < 0 && group.Parent != null)
                     {
-                        lastHeading = this.headings.LastOrDefault(y => y.Group == group.Parent);
+                        lastHeading = headings.LastOrDefault(y => y.Group == group.Parent);
 
                         if (lastHeading != null)
-                            insertIndex = this.headings.LastIndexOf(lastHeading);
+                            insertIndex = headings.LastIndexOf(lastHeading);
                     }
                 }
 
@@ -65,9 +62,9 @@ namespace LantanaGroup.XmlDocumentConverter
                 };
 
                 if (insertIndex >= 0)
-                    this.headings.Insert(insertIndex + 1, newHeading);
+                    headings.Insert(insertIndex + 1, newHeading);
                 else
-                    this.headings.Add(newHeading);
+                    headings.Add(newHeading);
             }
         }
 
@@ -86,11 +83,11 @@ namespace LantanaGroup.XmlDocumentConverter
             foreach (var heading in orderedHeadings)
             {
                 string headingText = heading.Column.GetHeading();
-                int columnCount = this.headings.Count(y => y.Column == heading.Column);
+                int columnCount = headings.Count(y => y.Column == heading.Column);
 
                 if (heading.Group != null)
                 {
-                    string columnCountText = columnCount > 1 ? " " + (heading.DataIndex+1).ToString() : string.Empty;
+                    string columnCountText = columnCount > 1 ? " " + (heading.DataIndex + 1).ToString() : string.Empty;
 
                     if (string.IsNullOrEmpty(heading.Group.ColumnPrefix))
                         headingText = string.Format("{0}{1} {2}", heading.Group.TableName, columnCountText, heading.Column.GetHeading());
@@ -110,7 +107,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
         public void PopulateSpreadsheet(MappingConfig config, SpreadsheetDocument spreadsheet)
         {
-            var orderedHeadings = new List<ExcelHeading>(this.headings);
+            var orderedHeadings = new List<ExcelHeading>(headings);
 
             /*
             orderedHeadings.Sort((objX, objY) =>
@@ -145,9 +142,9 @@ namespace LantanaGroup.XmlDocumentConverter
             });
             */
 
-            this.PopulateHeaders(config, spreadsheet, orderedHeadings);
+            PopulateHeaders(config, spreadsheet, orderedHeadings);
 
-            foreach (var row in this.rows)
+            foreach (var row in rows)
             {
                 var excelDataRow = new Row();
                 spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.First().AppendChild(excelDataRow);
@@ -201,7 +198,7 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             public ExcelRow()
             {
-                this.Data = new List<ExcelData>();
+                Data = new List<ExcelData>();
             }
 
             public List<ExcelData> Data { get; set; }
@@ -212,7 +209,7 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             public MappingGroup Group { get; set; }
             public MappingColumn Column { get; set; }
-   
+
             public string Data { get; set; }
             public bool IsBold { get; set; }
         }

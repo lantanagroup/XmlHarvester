@@ -1,7 +1,7 @@
-﻿<Application x:Class="XmlDocumentConverter.App"
+﻿<Application x:Class="XmlHarvester.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:XmlDocumentConverter"
+             xmlns:local="clr-namespace:LantanaGroup.XmlHarvester"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

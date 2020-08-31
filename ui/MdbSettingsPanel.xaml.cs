@@ -1,22 +1,8 @@
 ﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace LantanaGroup.XmlDocumentConverter.UI
+namespace LantanaGroup.XmlHarvester.UI
 {
     /// <summary>
     /// Interaction logic for MdbSettingsPanel.xaml
@@ -27,25 +13,25 @@ namespace LantanaGroup.XmlDocumentConverter.UI
         {
             InitializeComponent();
 
-            this.OutputDirectoryText.Text = (string)Registry.GetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_OUPUT_DIR_NAME, "");
-            this.MoveDirectoryText.Text = (string)Registry.GetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, "");
+            OutputDirectoryText.Text = (string)Registry.GetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_OUPUT_DIR_NAME, "");
+            MoveDirectoryText.Text = (string)Registry.GetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, "");
         }
 
         public string OutputDirectory
         {
-            get { return this.OutputDirectoryText.Text; }
+            get { return OutputDirectoryText.Text; }
         }
 
         public string MoveDirectory
         {
-            get { return this.MoveDirectoryText.Text; }
+            get { return MoveDirectoryText.Text; }
         }
 
         public bool IsValid
         {
             get
             {
-                return !string.IsNullOrEmpty(this.OutputDirectoryText.Text);
+                return !string.IsNullOrEmpty(OutputDirectoryText.Text);
             }
         }
 
@@ -53,15 +39,15 @@ namespace LantanaGroup.XmlDocumentConverter.UI
         {
             var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
 
-            if (!string.IsNullOrEmpty(this.OutputDirectoryText.Text))
-                dialog.SelectedPath = this.OutputDirectoryText.Text;
+            if (!string.IsNullOrEmpty(OutputDirectoryText.Text))
+                dialog.SelectedPath = OutputDirectoryText.Text;
             else
                 dialog.SelectedPath = Directory.GetCurrentDirectory();
 
             if (dialog.ShowDialog().GetValueOrDefault())
             {
-                this.OutputDirectoryText.Text = dialog.SelectedPath;
-                Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_OUPUT_DIR_NAME, this.OutputDirectoryText.Text);
+                OutputDirectoryText.Text = dialog.SelectedPath;
+                Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_OUPUT_DIR_NAME, OutputDirectoryText.Text);
             }
         }
 
@@ -69,21 +55,21 @@ namespace LantanaGroup.XmlDocumentConverter.UI
         {
             var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
 
-            if (!string.IsNullOrEmpty(this.OutputDirectoryText.Text))
-                dialog.SelectedPath = this.MoveDirectoryText.Text;
+            if (!string.IsNullOrEmpty(OutputDirectoryText.Text))
+                dialog.SelectedPath = MoveDirectoryText.Text;
             else
                 dialog.SelectedPath = Directory.GetCurrentDirectory();
 
             if (dialog.ShowDialog().GetValueOrDefault())
             {
-                this.MoveDirectoryText.Text = dialog.SelectedPath;
-                Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, this.MoveDirectoryText.Text);
+                MoveDirectoryText.Text = dialog.SelectedPath;
+                Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, MoveDirectoryText.Text);
             }
         }
 
         private void ClearMoveDirectoryButton_Click(object sender, RoutedEventArgs e)
         {
-            this.MoveDirectoryText.Text = string.Empty;
+            MoveDirectoryText.Text = string.Empty;
             Registry.SetValue(MainWindow.REG_SOFTWARE_KEY, MainWindow.REG_MOVE_DIR_NAME, string.Empty);
         }
     }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LantanaGroup.XmlDocumentConverter.UI.Properties {
+namespace LantanaGroup.XmlHarvester.UI.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace LantanaGroup.XmlDocumentConverter.UI.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LantanaGroup.XmlDocumentConverter.UI.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LantanaGroup.XmlHarvester.UI.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -2,14 +2,13 @@
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Validation;
-using Saxon.Api;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
 
-namespace LantanaGroup.XmlDocumentConverter
+namespace LantanaGroup.XmlHarvester
 {
     public class XlsxConverter : BaseConverter
     {
@@ -18,7 +17,7 @@ namespace LantanaGroup.XmlDocumentConverter
         private SpreadsheetDocument spreadsheet;
         private ExcelFormat excelFormat;
 
-        public XlsxConverter(string configFileName, string inputDirectory, string outputDirectory, string moveDirectory, string schemaPath, string schematronPath) : 
+        public XlsxConverter(string configFileName, string inputDirectory, string outputDirectory, string moveDirectory, string schemaPath, string schematronPath) :
             base(configFileName, inputDirectory, moveDirectory, schemaPath, schematronPath)
         {
             this.outputDirectory = outputDirectory;
@@ -87,7 +86,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
                 if (groupNodes.Count == 0)
                 {
-                    this.Log(string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context));
+                    Log(string.Format("No data found for group {0} with XPATH \"{1}\"\r\n", groupConfig.TableName, groupConfig.Context));
                     return;
                 }
 
@@ -103,13 +102,13 @@ namespace LantanaGroup.XmlDocumentConverter
 
                     foreach (MappingGroup childGroupConfig in groupConfig.Group)
                     {
-                        this.ProcessGroup(childGroupConfig, excelFormat, groupNode, nsManager);
+                        ProcessGroup(childGroupConfig, excelFormat, groupNode, nsManager);
                     }
                 }
             }
             catch (Exception ex)
             {
-                this.Log("Error executing group xpath for " + groupConfig.TableName + ": " + ex.Message + "\r\n");
+                Log("Error executing group xpath for " + groupConfig.TableName + ": " + ex.Message + "\r\n");
             }
         }
 
@@ -120,19 +119,19 @@ namespace LantanaGroup.XmlDocumentConverter
 
         protected override void ProcessFile(XmlDocument xmlDoc, XmlNamespaceManager nsManager, FileInfo fileInfo)
         {
-            this.excelFormat.AddRow(fileInfo.Name);
+            excelFormat.AddRow(fileInfo.Name);
 
-            foreach (var columnConfig in this.config.Column)
+            foreach (var columnConfig in config.Column)
             {
                 string xpath = columnConfig.Value;
                 string cellValue = GetValue(xpath, xmlDoc.DocumentElement, nsManager, columnConfig.IsNarrative);
                 bool isBold = !string.IsNullOrEmpty(cellValue) ? cellValue.IndexOf("\r\n") >= 0 : false;
-                this.excelFormat.AddData(null, columnConfig, cellValue, isBold);
+                excelFormat.AddData(null, columnConfig, cellValue, isBold);
             }
 
-            foreach (var groupConfig in this.config.Group)
+            foreach (var groupConfig in config.Group)
             {
-                this.ProcessGroup(groupConfig, excelFormat, xmlDoc.DocumentElement, nsManager);
+                ProcessGroup(groupConfig, excelFormat, xmlDoc.DocumentElement, nsManager);
             }
         }
 
@@ -141,10 +140,10 @@ namespace LantanaGroup.XmlDocumentConverter
             try
             {
                 string fileName = MappingConfig.GetOutputFileNameWithoutExtension() + ".xlsx";
-                string filePath = System.IO.Path.Combine(this.outputDirectory, fileName);
+                string filePath = System.IO.Path.Combine(outputDirectory, fileName);
 
-                this.excelFormat = new ExcelFormat();
-                this.spreadsheet = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook);
+                excelFormat = new ExcelFormat();
+                spreadsheet = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook);
 
                 // create the workbook
                 spreadsheet.AddWorkbookPart();
@@ -160,7 +159,7 @@ namespace LantanaGroup.XmlDocumentConverter
             }
             catch (Exception ex)
             {
-                this.Log(String.Format("Error initializing spreadsheet output: {0}", ex.Message));
+                Log(String.Format("Error initializing spreadsheet output: {0}", ex.Message));
                 return false;
             }
 
@@ -169,7 +168,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
         protected override void FinalizeOutput()
         {
-            excelFormat.PopulateSpreadsheet(this.config, spreadsheet);
+            excelFormat.PopulateSpreadsheet(config, spreadsheet);
 
             // save worksheet
             spreadsheet.WorkbookPart.WorksheetParts.First().Worksheet.Save();
@@ -190,15 +189,15 @@ namespace LantanaGroup.XmlDocumentConverter
 
             if (validationResults.Count() > 0)
             {
-                this.Log("\r\n\r\nExcel validation errors:");
+                Log("\r\n\r\nExcel validation errors:");
 
                 foreach (var validationError in validationResults)
                 {
-                    this.Log("\r\n" + validationError.Description);
+                    Log("\r\n" + validationError.Description);
                 }
             }
 
-            this.spreadsheet.Close();
+            spreadsheet.Close();
         }
     }
 }

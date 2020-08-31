@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace LantanaGroup.XmlDocumentConverter.UI
+namespace LantanaGroup.XmlHarvester.UI
 {
     [ValueConversion(typeof(bool), typeof(GridLength))]
     public class BoolToGridRowHeightConverter : IValueConverter

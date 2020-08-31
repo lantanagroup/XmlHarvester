@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LantanaGroup.XmlDocumentConverter
+﻿namespace LantanaGroup.XmlHarvester
 {
     public partial class MappingColumn
     {
         public bool ErrorShown { get; set; }
         public string GetHeading()
         {
-            if (!string.IsNullOrEmpty(this.Heading))
-                return this.Heading;
+            if (!string.IsNullOrEmpty(Heading))
+                return Heading;
 
-            return this.Name;
+            return Name;
         }
     }
 }

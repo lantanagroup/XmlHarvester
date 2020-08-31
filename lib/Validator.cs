@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 
-namespace LantanaGroup.XmlDocumentConverter
+namespace LantanaGroup.XmlHarvester
 {
     public class Validator
     {
@@ -21,7 +21,7 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             get
             {
-                return !string.IsNullOrEmpty(this.schemaPath) || !string.IsNullOrEmpty(this.schematronPath);
+                return !string.IsNullOrEmpty(schemaPath) || !string.IsNullOrEmpty(schematronPath);
             }
         }
 
@@ -29,7 +29,7 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             get
             {
-                return !string.IsNullOrEmpty(this.schemaPath);
+                return !string.IsNullOrEmpty(schemaPath);
             }
         }
 
@@ -37,7 +37,7 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             get
             {
-                return !string.IsNullOrEmpty(this.schematronPath);
+                return !string.IsNullOrEmpty(schematronPath);
             }
         }
 
@@ -53,19 +53,19 @@ namespace LantanaGroup.XmlDocumentConverter
 
                 if (xsdDoc.DocumentElement != null && xsdDoc.DocumentElement.Attributes != null && xsdDoc.DocumentElement.Attributes.GetNamedItem("targetNamespace") != null)
                 {
-                    XmlAttribute targetNamespace = (XmlAttribute) xsdDoc.DocumentElement.Attributes.GetNamedItem("targetNamespace");
+                    XmlAttribute targetNamespace = (XmlAttribute)xsdDoc.DocumentElement.Attributes.GetNamedItem("targetNamespace");
 
-                    this.readerSettings = new XmlReaderSettings();
-                    this.readerSettings.Schemas.Add(targetNamespace.Value, this.schemaPath);
-                    this.readerSettings.ValidationType = ValidationType.Schema;
+                    readerSettings = new XmlReaderSettings();
+                    readerSettings.Schemas.Add(targetNamespace.Value, this.schemaPath);
+                    readerSettings.ValidationType = ValidationType.Schema;
                 }
             }
 
             if (!string.IsNullOrEmpty(this.schematronPath))
             {
-                this.processor.XmlResolver = new ValidatorResolver(new FileInfo(schematronPath).DirectoryName);
-                this.builder = this.processor.NewDocumentBuilder();
-                this.builder.BaseUri = new Uri("file://");
+                processor.XmlResolver = new ValidatorResolver(new FileInfo(schematronPath).DirectoryName);
+                builder = processor.NewDocumentBuilder();
+                builder.BaseUri = new Uri("file://");
             }
         }
 
@@ -74,13 +74,13 @@ namespace LantanaGroup.XmlDocumentConverter
             bool isValid = true;
 
             // Validate XSD
-            if (this.readerSettings != null)
+            if (readerSettings != null)
             {
-                this.readerSettings.ValidationEventHandler += delegate (object sender, ValidationEventArgs e)
+                readerSettings.ValidationEventHandler += delegate (object sender, ValidationEventArgs e)
                 {
                     if (e.Severity == XmlSeverityType.Error) isValid = false;
                 };
-                XmlReader books = XmlReader.Create(filePath, this.readerSettings);
+                XmlReader books = XmlReader.Create(filePath, readerSettings);
 
                 while (books.Read()) { }
             }
@@ -91,9 +91,9 @@ namespace LantanaGroup.XmlDocumentConverter
         private string Transform(string stylesheetContent, string xmlPath, bool addErrorsPhase = false)
         {
             FileInfo xmlInfo = new FileInfo(xmlPath);
-            XdmNode stylesheet = this.builder.Build(new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(stylesheetContent))));
+            XdmNode stylesheet = builder.Build(new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(stylesheetContent))));
 
-            XsltCompiler compiler = this.processor.NewXsltCompiler();
+            XsltCompiler compiler = processor.NewXsltCompiler();
             XsltExecutable exec = compiler.Compile(stylesheet);
 
             XsltTransformer transformer = exec.Load();
@@ -120,13 +120,13 @@ namespace LantanaGroup.XmlDocumentConverter
 
         public bool ValidateSchematron(string filePath)
         {
-            if (string.IsNullOrEmpty(this.schematronPath)) return true;
+            if (string.IsNullOrEmpty(schematronPath)) return true;
 
-            if (string.IsNullOrEmpty(this.phase1))
+            if (string.IsNullOrEmpty(phase1))
             {
                 string schSkeletonContent;
 
-                using (Stream schSkeletonStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("LantanaGroup.XmlDocumentConverter.iso-sch-conformance1-5.xsl"))
+                using (Stream schSkeletonStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("LantanaGroup.XmlHarvester.iso-sch-conformance1-5.xsl"))
                 {
                     using (StreamReader schSkeletonReader = new StreamReader(schSkeletonStream))
                     {
@@ -134,19 +134,19 @@ namespace LantanaGroup.XmlDocumentConverter
                     }
                 }
 
-                this.phase1 = this.Transform(schSkeletonContent, this.schematronPath, true);
+                phase1 = Transform(schSkeletonContent, schematronPath, true);
             }
 
-            string phase2 = this.Transform(this.phase1, filePath);
+            string phase2 = Transform(phase1, filePath);
 
-            XdmNode phase2Results = this.builder.Build(new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(phase2))));
+            XdmNode phase2Results = builder.Build(new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(phase2))));
 
-            XPathCompiler xpathCompiler = this.processor.NewXPathCompiler();
+            XPathCompiler xpathCompiler = processor.NewXPathCompiler();
             XPathExecutable xpathExec = xpathCompiler.Compile("//failed-assert");
             XPathSelector xpathSelector = xpathExec.Load();
             xpathSelector.ContextItem = phase2Results;
             var xpathResults = xpathSelector.Evaluate();
-            
+
             return xpathResults.Count == 0;
         }
     }

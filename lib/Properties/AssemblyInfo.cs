@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("XmlDocumentConverter Libraries")]
+[assembly: AssemblyTitle("LantanaGroup.XmlHarvester Libraries")]
 [assembly: AssemblyDescription("Light-weight tool that can be configured to convert the contents of an XML document (based on XPATH expressions) into MS Access and MS Excel formats.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Lantana Consulting Group")]
-[assembly: AssemblyProduct("XML Document Converter")]
+[assembly: AssemblyProduct("Xml Harvester")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

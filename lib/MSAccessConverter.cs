@@ -1,13 +1,11 @@
 ﻿using ADOX;
-using Saxon.Api;
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
-using System.Xml;
 
-namespace LantanaGroup.XmlDocumentConverter
+namespace LantanaGroup.XmlHarvester
 {
     public class MSAccessConverter : BaseConverter
     {
@@ -16,7 +14,7 @@ namespace LantanaGroup.XmlDocumentConverter
         private string outputDirectory;
         private OleDbConnection conn;
 
-        public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory, string moveDirectory, string schemaPath, string schematronPath) : 
+        public MSAccessConverter(string configFileName, string inputDirectory, string outputDirectory, string moveDirectory, string schemaPath, string schematronPath) :
             base(configFileName, inputDirectory, moveDirectory, schemaPath, schematronPath)
         {
             this.outputDirectory = outputDirectory;
@@ -25,7 +23,7 @@ namespace LantanaGroup.XmlDocumentConverter
         private string GetConnectionString(bool delete = false)
         {
             string fileName = MappingConfig.GetOutputFileNameWithoutExtension() + ".mdb";
-            string filePath = System.IO.Path.Combine(this.outputDirectory, fileName);
+            string filePath = System.IO.Path.Combine(outputDirectory, fileName);
 
             if (delete && File.Exists(filePath))
                 File.Delete(filePath);
@@ -48,7 +46,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
             newTable.Keys.Append(tableName + "PK", KeyTypeEnum.adKeyPrimary, "id");
 
-            if (tableName == this.config.TableName)
+            if (tableName == config.TableName)
             {
                 var fileNameCol = new ADOX.Column();
                 fileNameCol.Name = "fileName";
@@ -70,15 +68,15 @@ namespace LantanaGroup.XmlDocumentConverter
             foreach (var groupColumnConfig in columns)
             {
                 if (columnNames.Contains(groupColumnConfig.Name))
-                    this.Log(string.Format("Column {0} is a duplicated (occurs more than once)\r\n", groupColumnConfig.Name));
+                    Log(string.Format("Column {0} is a duplicated (occurs more than once)\r\n", groupColumnConfig.Name));
                 else
                     columnNames.Add(groupColumnConfig.Name);
 
                 if (groupColumnConfig.Name.ToLower() == "id")
-                    this.Log("Column name \"id\" in table " + tableName + " is reserved for used. Please rename the column in the config.\r\n");
+                    Log("Column name \"id\" in table " + tableName + " is reserved for used. Please rename the column in the config.\r\n");
 
                 if (parentTable != null && groupColumnConfig.Name.ToLower() == parentTable.Name.ToLower() + "id")
-                    this.Log("Column name \"" + parentTable.Name + "Id\" is reserved for use. Please rename the column in the config.\r\n");
+                    Log("Column name \"" + parentTable.Name + "Id\" is reserved for use. Please rename the column in the config.\r\n");
 
                 var newCol = new ADOX.Column();
                 newCol.Name = groupColumnConfig.Name;
@@ -99,12 +97,12 @@ namespace LantanaGroup.XmlDocumentConverter
 
         private ADOX.Table CreateGroupTable(ADOX.CatalogClass cat, ADOX.Table parentTable, MappingGroup group, bool createIndex)
         {
-            var newTable = this.CreateTable(cat, parentTable, group.TableName, group.Column, createIndex);
+            var newTable = CreateTable(cat, parentTable, group.TableName, group.Column, createIndex);
 
             foreach (var childGroup in group.Group)
             {
                 int index = group.Group.IndexOf(childGroup);            // MDB has maximum of 32 indexes per table
-                this.CreateGroupTable(cat, newTable, childGroup, index < 31);
+                CreateGroupTable(cat, newTable, childGroup, index < 31);
             }
 
             return newTable;
@@ -114,21 +112,21 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             ADOX.CatalogClass cat = new ADOX.CatalogClass();
 
-            cat.Create(this.GetConnectionString(true));
+            cat.Create(GetConnectionString(true));
 
-            var recordTable = this.CreateTable(cat, null, this.config.TableName, this.config.Column, false);
+            var recordTable = CreateTable(cat, null, config.TableName, config.Column, false);
 
-            foreach (var groupConfig in this.config.Group)
+            foreach (var groupConfig in config.Group)
             {
-                int index = this.config.Group.IndexOf(groupConfig);     // MDB has maximum of 32 indexes per table
+                int index = config.Group.IndexOf(groupConfig);     // MDB has maximum of 32 indexes per table
 
                 try
                 {
-                    this.CreateGroupTable(cat, recordTable, groupConfig, index < 31);
+                    CreateGroupTable(cat, recordTable, groupConfig, index < 31);
                 }
                 catch (Exception ex)
                 {
-                    this.Log(ex.Message + "\r\n");
+                    Log(ex.Message + "\r\n");
                 }
             }
         }
@@ -155,7 +153,7 @@ namespace LantanaGroup.XmlDocumentConverter
                     if (!key.IsNarrative && stringValue.Length > 255)
                     {
                         stringValue = stringValue.Substring(0, 254);
-                        this.Log(String.Format("Value for column {0} is more than 255 characters and will be truncated. Consider using isNarrative=true on the column definition.", key.Name, key.Heading));
+                        Log(String.Format("Value for column {0} is more than 255 characters and will be truncated. Consider using isNarrative=true on the column definition.", key.Name, key.Heading));
                     }
 
                     values.Add("'" + stringValue + "'");
@@ -165,25 +163,25 @@ namespace LantanaGroup.XmlDocumentConverter
                     values.Add(value.ToString());
                 }
             }
-            
+
             insertQuery += string.Join(", ", values) + ")";
 
             try
             {
                 OleDbCommand insertCommand = new OleDbCommand();
-                insertCommand.Connection = this.conn;
+                insertCommand.Connection = conn;
                 insertCommand.CommandText = insertQuery;
                 insertCommand.ExecuteNonQuery();
 
                 OleDbCommand getIdCommand = new OleDbCommand();
-                getIdCommand.Connection = this.conn;
+                getIdCommand.Connection = conn;
                 getIdCommand.CommandText = "SELECT @@Identity";
                 int res = (int)getIdCommand.ExecuteScalar();
                 return res;
             }
             catch (Exception ex)
             {
-                this.Log(String.Format("Error inserting data into {0}: {1}", tableName, ex.Message));
+                Log(String.Format("Error inserting data into {0}: {1}", tableName, ex.Message));
                 return -1;
             }
         }
@@ -192,22 +190,22 @@ namespace LantanaGroup.XmlDocumentConverter
         {
             try
             {
-                this.CreateDatabase();
+                CreateDatabase();
             }
             catch (Exception ex)
             {
-                this.Log(string.Format("Failed to create database and cannot proceed due to: " + ex.Message));
+                Log(string.Format("Failed to create database and cannot proceed due to: " + ex.Message));
                 return false;
             }
 
             try
             {
-                this.conn = new OleDbConnection(this.GetConnectionString());
-                this.conn.Open();
-            } 
+                conn = new OleDbConnection(GetConnectionString());
+                conn.Open();
+            }
             catch (Exception ex)
             {
-                this.Log(string.Format("Failed to open created database and cannot proceed due to: " + ex.Message));
+                Log(string.Format("Failed to open created database and cannot proceed due to: " + ex.Message));
                 return false;
             }
 
@@ -216,7 +214,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
         protected override void FinalizeOutput()
         {
-            this.conn.Close();
+            conn.Close();
         }
     }
 }

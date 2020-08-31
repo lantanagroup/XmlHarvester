@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{764BBE4F-CCC2-430A-9601-9F678A35C186}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LantanaGroup.XmlDocumentConverter</RootNamespace>
-    <AssemblyName>XmlDocConverterCli</AssemblyName>
+    <RootNamespace>LantanaGroup.XmlHarvester</RootNamespace>
+    <AssemblyName>XmlHavesterCli</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

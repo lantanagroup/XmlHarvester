@@ -1,11 +1,6 @@
 ﻿using CommandLine;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LantanaGroup.XmlDocumentConverter
+namespace LantanaGroup.XmlHarvester
 {
     [Verb("db2", HelpText = "Store data from XML files in a DB2 database")]
     internal class DB2Options
@@ -27,7 +22,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
         [Option('p', "password", Required = true, HelpText = "The authenticated password to access the DB.")]
         public string Password { get; set; }
-        
+
         [Option('x', "xsd", Required = false, HelpText = "The path to an XML Schema (XSD) that should be used to validate the structure of each XMl document processed.")]
         public string SchemaPath { get; set; }
 

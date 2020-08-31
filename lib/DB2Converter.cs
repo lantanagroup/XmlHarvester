@@ -1,17 +1,10 @@
-﻿using ADOX;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.OleDb;
-using System.IO;
-using System.Xml;
 using System.Data.Common;
 using System.Linq;
-using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.InkML;
-using DocumentFormat.OpenXml.Math;
-using Saxon.Api;
+using System.Xml;
 
-namespace LantanaGroup.XmlDocumentConverter
+namespace LantanaGroup.XmlHarvester
 {
     public class DB2Converter : BaseConverter
     {
@@ -21,7 +14,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
         private DbConnection conn;
 
-        public DB2Converter(string configFileName, string inputDirectory, string database, string username, string password, string moveDirectory, string schemaPath, string schematronPath) : 
+        public DB2Converter(string configFileName, string inputDirectory, string database, string username, string password, string moveDirectory, string schemaPath, string schematronPath) :
             base(configFileName, inputDirectory, moveDirectory, schemaPath, schematronPath)
         {
             this.database = database;
@@ -51,7 +44,7 @@ namespace LantanaGroup.XmlDocumentConverter
                     if (!key.IsNarrative && stringValue.Length > 255)
                     {
                         stringValue = stringValue.Substring(0, 254);
-                        this.Log(String.Format("Value for column {0} is more than 255 characters and will be truncated. Consider using isNarrative=true on the column definition.", key.Name, key.Heading));
+                        Log(String.Format("Value for column {0} is more than 255 characters and will be truncated. Consider using isNarrative=true on the column definition.", key.Name, key.Heading));
                     }
 
                     values.Add("'" + stringValue + "'");
@@ -66,19 +59,19 @@ namespace LantanaGroup.XmlDocumentConverter
 
             try
             {
-                DbCommand insertCommand = this.conn.CreateCommand();
+                DbCommand insertCommand = conn.CreateCommand();
                 insertCommand.CommandText = insertQuery;
                 insertCommand.ExecuteNonQuery();
 
-                DbCommand getIdCommand = this.conn.CreateCommand();
+                DbCommand getIdCommand = conn.CreateCommand();
                 getIdCommand.CommandText = string.Format("SELECT SYSIBM.IDENTITY_VAL_LOCAL() AS ID FROM {0}", tableName.ToUpper());
-                decimal ret = (decimal) getIdCommand.ExecuteScalar();
+                decimal ret = (decimal)getIdCommand.ExecuteScalar();
                 int res = Decimal.ToInt32(ret);
                 return res;
             }
             catch (Exception ex)
             {
-                this.Log(String.Format("Error inserting data into {0}: {1}", tableName, ex.Message));
+                Log(String.Format("Error inserting data into {0}: {1}", tableName, ex.Message));
                 return -1;
             }
         }
@@ -105,15 +98,15 @@ namespace LantanaGroup.XmlDocumentConverter
                 foreach (var colConfig in groupConfig.Column)
                 {
                     string xpath = colConfig.Value;
-                    string cellValue = this.GetValue(xpath, groupNode, nsManager, colConfig.IsNarrative);
+                    string cellValue = GetValue(xpath, groupNode, nsManager, colConfig.IsNarrative);
                     groupColumnData.Add(colConfig, cellValue);
                 }
 
-                int nextId = this.InsertData(groupConfig.TableName, groupColumnData);
+                int nextId = InsertData(groupConfig.TableName, groupColumnData);
 
                 foreach (var childGroup in groupConfig.Group)
                 {
-                    this.ProcessGroup(conn, childGroup, groupNode, nsManager, nextId, groupConfig.TableName);
+                    ProcessGroup(conn, childGroup, groupNode, nsManager, nextId, groupConfig.TableName);
                 }
             }
         }
@@ -125,9 +118,9 @@ namespace LantanaGroup.XmlDocumentConverter
             DbCommand existsCmd = conn.CreateCommand();
             existsCmd.CommandText = string.Format("SELECT COUNT(0) AS TOTAL FROM SYSIBM.SYSTABLES WHERE NAME = '{0}'", tableName.ToUpper());
 
-            int existsResults = (int) existsCmd.ExecuteScalar();
+            int existsResults = (int)existsCmd.ExecuteScalar();
 
-            this.Log("Validating table " + tableName.ToUpper());
+            Log("Validating table " + tableName.ToUpper());
 
             // Check the definition of the table compared to what's defined in config
             if (existsResults == 1)
@@ -149,7 +142,8 @@ namespace LantanaGroup.XmlDocumentConverter
                     string colType = reader.GetString(1);
                     short colLength = reader.GetInt16(2);
 
-                    actualCols.Add(new MappingColumn() {
+                    actualCols.Add(new MappingColumn()
+                    {
                         Name = colName,
                         IsNarrative = colType.Trim() == "LONGVAR"
                     });
@@ -184,27 +178,27 @@ namespace LantanaGroup.XmlDocumentConverter
 
         private void EnsureGroup(DbConnection conn, MappingGroup group, string parentTableName)
         {
-            this.EnsureTable(conn, group.TableName, group.Column, parentTableName);
+            EnsureTable(conn, group.TableName, group.Column, parentTableName);
 
             group.Group.ForEach(delegate (MappingGroup nextGroup)
             {
-                this.EnsureGroup(conn, nextGroup, group.TableName);
+                EnsureGroup(conn, nextGroup, group.TableName);
             });
         }
 
         private void ValidateSchema(DbConnection conn)
         {
-            List<MappingColumn> columns = new List<MappingColumn>(this.config.Column);
+            List<MappingColumn> columns = new List<MappingColumn>(config.Column);
             columns.Insert(0, new MappingColumn()
             {
                 Name = "FILENAME"
             });
 
-            this.EnsureTable(conn, this.config.TableName, columns);
+            EnsureTable(conn, config.TableName, columns);
 
-            this.config.Group.ForEach(delegate (MappingGroup nextGroup)
+            config.Group.ForEach(delegate (MappingGroup nextGroup)
             {
-                this.EnsureGroup(conn, nextGroup, this.config.TableName);
+                EnsureGroup(conn, nextGroup, config.TableName);
             });
         }
 
@@ -215,24 +209,24 @@ namespace LantanaGroup.XmlDocumentConverter
             try
             {
                 DbProviderFactory factory = DbProviderFactories.GetFactory("IBM.Data.DB2");
-                this.conn = factory.CreateConnection();
-                this.conn.ConnectionString = string.Format("Database={0};UID={1};PWD={2}", this.database, this.username, this.password);
+                conn = factory.CreateConnection();
+                conn.ConnectionString = string.Format("Database={0};UID={1};PWD={2}", database, username, password);
 
-                this.conn.Open();
+                conn.Open();
             }
             catch (Exception ex)
             {
-                this.Log(string.Format("Failed to open connected to the DB2 database: {0}", ex.Message));
+                Log(string.Format("Failed to open connected to the DB2 database: {0}", ex.Message));
                 return false;
             }
 
             try
             {
-                this.ValidateSchema(conn);
+                ValidateSchema(conn);
             }
             catch (Exception ex)
             {
-                this.Log(string.Format("Failed to validate database and cannot proceed due to: " + ex.Message));
+                Log(string.Format("Failed to validate database and cannot proceed due to: " + ex.Message));
                 return false;
             }
 
@@ -241,7 +235,7 @@ namespace LantanaGroup.XmlDocumentConverter
 
         protected override void FinalizeOutput()
         {
-            this.conn.Close();
+            conn.Close();
         }
     }
 }

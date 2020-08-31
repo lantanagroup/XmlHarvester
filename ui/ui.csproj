@@ -7,8 +7,8 @@
     <ProjectGuid>{360681E8-FF96-4A94-931C-410EC633796D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LantanaGroup.XmlDocumentConverter.UI</RootNamespace>
-    <AssemblyName>XmlDocConverterUI</AssemblyName>
+    <RootNamespace>LantanaGroup.XmlHarvester.UI</RootNamespace>
+    <AssemblyName>XmlHarvesterUI</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LantanaGroup.XmlHarvester.UI"
         mc:Ignorable="d"
-        Title="Xml Harvester" MinHeight="500" MinWidth="800" Width="800">
+        Title="XML Harvester" MinHeight="500" MinWidth="800" Width="800" Icon="harvester_16.png">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="b2v" />
         <local:BoolToGridRowHeightConverter x:Key="b2g" />
@@ -21,6 +21,8 @@
                 <Separator />
                 <Button x:Name="EditExternalConfigButton" Content="Edit Config (External)" Click="EditExternalConfig_Click" />
                 <!--Button x:Name="editInternalConfigButton" Content="Edit Config" Click="EditInternalConfig_Click" /-->
+                <Separator />
+                <Button x:Name="AboutButton" Content="About" VerticalAlignment="Bottom" Click="AboutButton_Click" />
             </ToolBar>
         </ToolBarTray>
         <Grid x:Name="SettingsGrid">

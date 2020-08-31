@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BoolToGridRowHeightConverter.cs" />
     <Compile Include="DB2SettingsPanel.xaml.cs">
       <DependentUpon>DB2SettingsPanel.xaml</DependentUpon>
@@ -73,6 +76,10 @@
     <Compile Include="XlsxSettingsPanel.xaml.cs">
       <DependentUpon>XlsxSettingsPanel.xaml</DependentUpon>
     </Compile>
+    <Page Include="AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DB2SettingsPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,6 +150,12 @@
       <Project>{bd6ff28f-8277-4a99-a984-202dca955190}</Project>
       <Name>lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="harvester_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="harvester_16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using LantanaGroup.XmlHarvester.UI;
+using Microsoft.Win32;
 using System;
 using System.IO;
 using System.Threading;
@@ -113,7 +114,21 @@ namespace LantanaGroup.XmlHarvester
 
         private void EditExternalConfig_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(MappingFileText.Text);
+            if (!string.IsNullOrEmpty(this.MappingFileText.Text))
+            {
+                if (!File.Exists(this.MappingFileText.Text))
+                {
+                    MessageBox.Show("The specified file does not exist: " + this.MappingFileText.Text);
+                }
+                else
+                {
+                    System.Diagnostics.Process.Start(MappingFileText.Text);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No config file has been specified.");
+            }
         }
 
         private void EditInternalConfig_Click(object sender, RoutedEventArgs e)
@@ -319,6 +334,15 @@ namespace LantanaGroup.XmlHarvester
         {
             SchematronFileText.Text = string.Empty;
             Registry.SetValue(REG_SOFTWARE_KEY, REG_SCHEMATRON_FILE_NAME, string.Empty);
+        }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.IsEnabled = false;
+            AboutWindow aboutWin = new AboutWindow();
+            aboutWin.Owner = this;
+            aboutWin.Show();
+            aboutWin.Closed += (s, ea) => this.IsEnabled = true;
         }
     }
 }

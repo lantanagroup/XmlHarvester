@@ -1,4 +1,4 @@
-# XmlDocumentConverter
+# XmlHarvester
 This is an open source tool freely available for anyone to use. The C# source code is also available for anyone to download and configure. This tool extracts discrete data from standard CDA XML files, such as eICR and QRDA files, and stores these data elements in a database. Additionally, the parser is configurable to enable/disable schema (.xsd) and schematron (.sch) validation against provided validation files.
 
 ## Features
@@ -89,7 +89,7 @@ Help can be provided by the CLI tool itself:
 
 ### Pre-requisites
 
-To convert to a DB2 database, the machine that executes the XmlDocumentConverter must have the [IBM Data Server Runtime Client](https://www.ibm.com/support/pages/download-initial-version-115-clients-and-drivers) installed as a dependency. In addition to installing the runtime client, it must be configured to describe the database you want to export to. In the below example, "xdc" is the database that is being used for conversion.
+To convert to a DB2 database, the machine that executes the XmlHarvester must have the [IBM Data Server Runtime Client](https://www.ibm.com/support/pages/download-initial-version-115-clients-and-drivers) installed as a dependency. In addition to installing the runtime client, it must be configured to describe the database you want to export to. In the below example, "xdc" is the database that is being used for conversion.
 
 **Example db2dsdriver.cfg**
 
@@ -121,4 +121,4 @@ To convert to a DB2 database, the machine that executes the XmlDocumentConverter
 
 To output/convert to a DB2 database, specify the named database in the "Database to connect to" field, as well as the username and password of the user. The name of the database should match the  name in the `db2dsdriver.cfg` file (ex: "xdc" in the above example).
 
-When conversion begins, it will first check to ensure that the DB2 database has the schema as described by the mapping configuration. If a table already exists and the columns do *not* align with the mapping config, an error will be produced. If the table does not already exist, it will be automatically created by the XmlDocumentConverter tool.
+When conversion begins, it will first check to ensure that the DB2 database has the schema as described by the mapping configuration. If a table already exists and the columns do *not* align with the mapping config, an error will be produced. If the table does not already exist, it will be automatically created by the XmlHarvester tool.

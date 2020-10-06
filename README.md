@@ -5,6 +5,7 @@ This is an open source tool freely available for anyone to use. The C# source co
 
 * Convert XML to MDB
 * Convert XML to XLSX
+* Convert XML to DB2
 * Specify structure of MDB and XLSX via config
 * Use XPATH to define where data comes from in source XML documents
 * User interface to specify source and destination directories, and review logs

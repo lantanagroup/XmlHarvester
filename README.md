@@ -9,6 +9,9 @@ This is an open source tool freely available for anyone to use. The C# source co
 * Specify structure of MDB and XLSX via config
 * Use XPATH to define where data comes from in source XML documents
 * User interface to specify source and destination directories, and review logs
+* Validate XML documents using XML Schema (XSD) and Schematron (SCH)
+* Move processed files to a separate directory
+  * Move processed files to valid/invalid directories based on validation
 
 ## Config
 

@@ -847,8 +847,8 @@
     <column name="CodedValueDisplay">cda:value/@displayName</column>
   </group>
 
-  <!-- Last Mentrual Period id 2.16.840.1.113883.10.20.30.3.34 -->
-  <group tableName="LastMentrualPeriod" columnPrefix="Last Mentrual Period"
+  <!-- Last Menstrual Period id 2.16.840.1.113883.10.20.30.3.34 -->
+  <group tableName="LastMenstrualPeriod" columnPrefix="Last Menstrual Period"
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.30.3.34']">
     <column name="TemplateId">cda:templateId/@root</column>
     <column name="Code">cda:code/@code</column>

@@ -67,12 +67,12 @@
   <!-- PatientRace -->
   <group tableName="PatientRace"
     context="/cda:ClinicalDocument/cda:recordTarget/cda:patientRole/cda:patient">
-    <column name="PrimaryRaceCode">cda:race/@code</column>
-    <column name="PrimaryRaceCS">cda:race/@codeSystem</column>
-    <column name="PrimaryRaceDisplay">cda:race/@displayName</column>
-    <column name="OtherRaceCode">sdtc:race/@code</column>
-    <column name="OtherRaceCS">sdtc:race/@codeSystem</column>
-    <column name="OtherRaceDisplay">sdtc:race/@displayName</column>
+    <column name="PrimaryRaceCode">cda:raceCode/@code</column>
+    <column name="PrimaryRaceCS">cda:raceCode/@codeSystem</column>
+    <column name="PrimaryRaceDisplay">cda:raceCode/@displayName</column>
+    <column name="OtherRaceCode">sdtc:raceCode/@code</column>
+    <column name="OtherRaceCS">sdtc:raceCode/@codeSystem</column>
+    <column name="OtherRaceDisplay">sdtc:raceCode/@displayName</column>
   </group>  
   
   <!-- PatientEthnicity -->

@@ -157,7 +157,7 @@
   </group>
 
   <!--  documentationOf Details-->
-  <group tableName="DocumentaitonOf" context="/cda:ClinicalDocument/cda:documentationOf">
+  <group tableName="DocumentationOf" context="/cda:ClinicalDocument/cda:documentationOf">
     <column name="ServiceEventCode">cda:serviceEvent/cda:code/@code</column>
     <column name="ServiceEventCS">cda:serviceEvent/cda:code/@codeSystem</column>
     <column name="ServiceEventDisplay">cda:serviceEvent/cda:code/@displayName</column>

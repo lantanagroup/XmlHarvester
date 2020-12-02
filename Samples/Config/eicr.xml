@@ -62,6 +62,16 @@
     <column name="PtMobilePhone">/cda:patientRole[cda:telecom/@use='MC']/cda:telecom/@value</column>
     <column name="PtEmergencyContact"
       >/cda:patientRole[cda:telecom/@use='EC']/cda:telecom/@value</column>
+    <column name="PtEmail">
+      cda:patientRole/cda:telecom[starts-with(@value, 'mailto:')]/@value</column>
+    <column name="PtGuardianFirstName"
+      >/cda:patientRole/cda:patient/cda:guardian/cda:guardianPerson/cda:name/cda:given</column>
+    <column name="PtGuardianFamilyName"
+      >/cda:patientRole/cda:patient/cda:guardian/cda:guardianPerson/cda:name/cda:family</column>
+    <column name="PtGuardianPhone"
+      >/cda:patientRole/cda:patient/cda:guardian/cda:telecom/@value</column>
+    <column name="PtGuardianEmail"
+      >/cda:patientRole/cda:patient/cda:guardian/cda:telecom[starts-with(@value, 'mailto:')]/@value</column>
   </group>
   
   <!-- PatientRace -->
@@ -108,6 +118,8 @@
       >cda:assignedAuthor/cda:assignedAuthoringDevice/cda:manufacturerModelName</column>
     <column name="DeviceSoftware"
       >cda:assignedAuthor/cda:assignedAuthoringDevice/cda:softwareName</column>
+    <column name="AuthorRepresentedOrgName">cda:assignedAuthor/cda:representedOrganization/cda:name</column>
+    <column name="AuthorRepresentedOrgID">cda:assignedAuthor/cda:representedOrganization/cda:id/@extension</column>
   </group>
 
   <!--  Custodian Details-->
@@ -192,7 +204,7 @@
     <column name="StartDateTime">cda:effectiveTime/cda:low/@value</column>
     <column name="EndDateTime">cda:effectiveTime/cda:high/@value</column>
     <column name="ResponsibleProviderID"
-      >cda:responsibleParty/cda:assignedEntity/cda:id/@value</column>
+      >cda:responsibleParty/cda:assignedEntity/cda:id/@extension</column>
     <column name="ResponsibleProviderOID"
       >cda:responsibleParty/cda:assignedEntity/cda:id/@root</column>
     <column name="ResponsibleProviderTel"
@@ -635,6 +647,7 @@
     <column name="mood">@moodCode</column>
     <column name="negation">@negationInd</column>
     <column name="TemplateId">cda:templateId/@root</column>
+    <column name="Status">cda:statusCode/@code</column>
     <column name="effectiveTime">cda:effectiveTime/@value</column>
     <column name="repeatNumber">cda:repeatNumber/@value</column>
     <column name="routeCode">cda:routeCode/@code</column>
@@ -688,7 +701,7 @@
   <!-- Planned Observation id 2.16.840.1.113883.10.20.22.4.44 -->
   <group tableName="PlannedObs" columnPrefix="Planned Observation"
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.44']">
-    <column name="PalnnedObsCode">cda:code/@code</column>
+    <column name="PlannedObsCode">cda:code/@code</column>
     <column name="PlannedObsCodeSystem">cda:code/@codeSystem</column>
     <column name="PlannedObsCodeSystemName">cda:code/@codeSystemName</column>
     <column name="PlannedObsCodeDisplay">cda:code/@displayName</column>
@@ -803,6 +816,12 @@
     <column name="AuthorGivenName">cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name/cda:given</column>
     <column name="AuthorFamilyName">cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name/cda:family</column>
     <column name="AuthorOrg">cda:author/cda:assignedAuthor/cda:representatedOrganization/cda:name</column>
+  </group>
+  
+  <!-- Occupational History Observation specific -->
+  <group tableName="OccupationHxObs" columnPrefix="Occupational History Observation"
+    context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.38'][cda:code/@code='364703007']">
+    <column name="OccupationValue">cda:value</column>
   </group>
 
   <!-- Travel History id 2.16.840.1.113883.10.20.15.2.3.1 -->

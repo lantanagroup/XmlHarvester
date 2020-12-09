@@ -58,20 +58,15 @@
     <column name="PtAddrCity">/cda:patientRole/cda:addr/cda:city</column>
     <column name="PtAddrState">/cda:patientRole/cda:addr/cda:state</column>
     <column name="PtAddrZip">/cda:patientRole/cda:addr/cda:postalCode</column>
-    <column name="PtHomePhone">/cda:patientRole[cda:telecom/@use='HP']/cda:telecom/@value</column>
-    <column name="PtMobilePhone">/cda:patientRole[cda:telecom/@use='MC']/cda:telecom/@value</column>
+    <column name="PtTelecom">/cda:patientRole/cda:telecom/@value</column>
     <column name="PtEmergencyContact"
       >/cda:patientRole[cda:telecom/@use='EC']/cda:telecom/@value</column>
-    <column name="PtEmail">
-      cda:patientRole/cda:telecom[starts-with(@value, 'mailto:')]/@value</column>
     <column name="PtGuardianFirstName"
       >/cda:patientRole/cda:patient/cda:guardian/cda:guardianPerson/cda:name/cda:given</column>
     <column name="PtGuardianFamilyName"
       >/cda:patientRole/cda:patient/cda:guardian/cda:guardianPerson/cda:name/cda:family</column>
-    <column name="PtGuardianPhone"
+    <column name="PtGuardianTelecom"
       >/cda:patientRole/cda:patient/cda:guardian/cda:telecom/@value</column>
-    <column name="PtGuardianEmail"
-      >/cda:patientRole/cda:patient/cda:guardian/cda:telecom[starts-with(@value, 'mailto:')]/@value</column>
   </group>
   
   <!-- PatientRace -->
@@ -1000,6 +995,7 @@
   <group tableName="ResultOrganizer" columnPrefix="Result Organizer"
     context="//cda:organizer[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.1']">
     <column name="Text">cda:text</column>
+    <column name="FillerOrderNum">cda:id/@root</column>
     <column name="Code">cda:code/@code</column>
     <column name="CodeSystem">cda:code/@codeSystem</column>
     <column name="CodeDisplay">cda:code/@displayName</column>

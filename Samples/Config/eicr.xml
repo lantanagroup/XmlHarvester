@@ -202,7 +202,7 @@
       >cda:responsibleParty/cda:assignedEntity/cda:id/@extension</column>
     <column name="ResponsibleProviderOID"
       >cda:responsibleParty/cda:assignedEntity/cda:id/@root</column>
-    <column name="ResponsibleProviderTel"
+    <column name="ResponsibleProviderTelecom"
       >cda:responsibleParty/cda:assignedEntity/cda:telecom/@value</column>
     <column name="ResponsibleProviderGiven"
       >cda:responsibleParty/cda:assignedEntity/cda:assignedPerson/cda:name/cda:given</column>
@@ -227,9 +227,9 @@
       >cda:location/cda:healthCareFacility/cda:location/cda:addr/cda:county</column>
     <column name="ParentOrgName"
       >cda:location/cda:healthCareFacility/cda:serviceProviderOrganization/cda:name</column>
-    <column name="ParentOrgPhone"
+    <column name="ParentOrgTelecom"
       >cda:location/cda:healthCareFacility/cda:serviceProviderOrganization/cda:telecom/@value</column>
-    <column name="ParentOrgStreetAdress"
+    <column name="ParentOrgStreetAddress"
       >cda:location/cda:healthCareFacility/cda:serviceProviderOrganization/cda:addr/cda:streetAddressLine</column>
     <column name="ParentOrgCity"
       >cda:location/cda:healthCareFacility/cda:serviceProviderOrganization/cda:addr/cda:city</column>
@@ -284,7 +284,7 @@
     <column name="ObsValueVSTrans"
       >cda:value/cda:translation/@sdtc:valueSet</column>
     <!-- eICR Problem Observation Trigger code flag -->
-    <column name="ManualReasonText">cda:value/cda:originalText</column>
+    <column name="ManualReasonText" isNarrative="true">cda:value/cda:originalText</column>
   </group>
 
   <!-- Procedure Performed id 2.16.840.1.113883.10.20.22.4.14 -->
@@ -351,7 +351,7 @@
       >cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.19']/cda:value/@codeSystem</column>
     <column name="ReasonDisplay"
       >cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.19']/cda:value/@displayName</column>
-    <column name="ReasonText"
+    <column name="ReasonText" isNarrative="true"
       >cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.19']/cda:code/cda:originalText</column>
     <column name="SequenceNum"
       >cda:entryRelationship/cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.118']/cda:sequenceNumber/@value</column>
@@ -364,7 +364,7 @@
   <!-- Medication Information Id 2.16.840.1.113883.10.20.22.4.23 -->
   <group tableName="MedicationInformation" columnPrefix="Medication Information"
     context="//cda:manufacturedProduct[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.23']">
-    <column name="MedText">cda:manufacturedMaterial/cda:code/cda:originalText</column>
+    <column name="MedText" isNarrative="true">cda:manufacturedMaterial/cda:code/cda:originalText</column>
     <column name="MedCode">cda:manufacturedMaterial/cda:code/@code</column>
     <column name="MedCodeSystem">cda:manufacturedMaterial/cda:code/@codeSystem</column>
     <column name="MedCodeSystemName">cda:manufacturedMaterial/cda:code/@codeSystemName</column>
@@ -375,10 +375,10 @@
     <column name="MedTransDisplay"
       >cda:manufacturedMaterial/cda:code/cda:translation/@displayName</column>
     <!-- Medication Reason Indication id 2.16.840.1.113883.10.20.22.4.19 -->
-    <column name="Reason"
+    <column name="Reason" isNarrative="true"
       >cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.19']/cda:code/cda:originalText</column>
     <!-- Instruction id 2.16.840.1.113883.10.20.22.4.20 -->
-    <column name="Instruction"
+    <column name="Instruction" isNarrative="true"
       >cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.20']/cda:text</column>
     <column name="eICRFlag"
       >cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.15.2.3.36']</column>
@@ -423,7 +423,7 @@
     <column name="AuthorFamilyName">cda:author/cda:assignedAuthor/cda:assignedPerson/cda:name/cda:family</column>
     <column name="AuthorOrg">cda:author/cda:assignedAuthor/cda:representatedOrganization/cda:name</column>
     <!-- Reference Range -->
-    <column name="RefRangeText">cda:referenceRange/cda:observationRange/cda:text</column>
+    <column name="RefRangeText" isNarrative="true">cda:referenceRange/cda:observationRange/cda:text</column>
     <column name="RefRangeLowValue">cda:referenceRange/cda:observationRange/cda:value/cda:low/@value</column>
     <column name="RefRangeLowUnit">cda:referenceRange/cda:observationRange/cda:value/cda:low/@unit</column>
     <column name="RefRangeHighValue">cda:referenceRange/cda:observationRange/cda:value/cda:high/@value</column>
@@ -560,7 +560,7 @@
   <!-- Reason For Visit Section id 2.16.840.1.113883.10.20.22.2.12 -->
   <group tableName="ReasonForVisit" columnPrefix="ReasonForVisit"
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.12']">
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
   </group>
 
   <!-- Pregnancy Observation SUPPLEMENTAL id 2.16.840.1.113883.10.20.22.4.293 -->
@@ -700,14 +700,14 @@
     <column name="PlannedObsCodeSystem">cda:code/@codeSystem</column>
     <column name="PlannedObsCodeSystemName">cda:code/@codeSystemName</column>
     <column name="PlannedObsCodeDisplay">cda:code/@displayName</column>
-    <column name="PalnnedObsTanslationCode">cda:code/cda:translation/@code</column>
+    <column name="PlannedObsTanslationCode">cda:code/cda:translation/@code</column>
     <column name="PlannedObsTranslationCodeSystem">cda:code/cda:translation/@codeSystem</column>
     <column name="PlannedObsTranslationCodeSystemName"
       >cda:code/cda:translation/@codeSystemName</column>
     <column name="PlannedObsTranslationCodeDisplay">cda:code/cda:translation/@displayName</column>
     <column name="PlannedObsText" isNarrative="true">cda:code/cda:originalText</column>
     <column name="effectiveTime">cda:effectiveTime/@value</column>
-    <column name="PalnnedObsStatus">cda:statusCode</column>
+    <column name="PlannedObsStatus">cda:statusCode</column>
     <column name="Value">cda:value/@value</column>
     <column name="MethodCode">cda:methodCode/@code</column>
     <column name="MethodCS">cda:methodCode/@codeSystem</column>
@@ -754,7 +754,7 @@
   <group tableName="EICRManualTrigger" columnPrefix="Manual Trigger"
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.15.2.3.5']">
     <column name="ObsId">cda:id/@root</column>
-    <column name="ReasonText">cda:value/cda:originalText</column>
+    <column name="ReasonText" isNarrative="true">cda:value/cda:originalText</column>
     <column name="ReasonCode">cda:value/@code</column>
     <column name="ReasonCS">cda:value/@codeSystem</column>
     <column name="ReasonDisplay">cda:value/@displayName</column>
@@ -843,7 +843,7 @@
   <group tableName="LabObsResultStatus" columnPrefix="Lab Obs Result Status"
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.319']">
     <column name="TemplateId">cda:templateId/@root</column>
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
     <column name="Code">cda:code/@code</column>
     <column name="CodeSystem">cda:code/@codeSystem</column>
     <column name="CodedValue">cda:value/@code</column>
@@ -854,7 +854,7 @@
   <group tableName="LabResultStatus" columnPrefix="Lab Obs Result Status"
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.319']">
     <column name="TemplateId">cda:templateId/@root</column>
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
     <column name="Code">cda:code/@code</column>
     <column name="CodeSystem">cda:code/@codeSystem</column>
     <column name="CodedValue">cda:value/@code</column>
@@ -875,7 +875,7 @@
   <group tableName="OccupationHazard" columnPrefix="Occupational Hazard Obs"
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.215']">
     <column name="TemplateId">cda:templateId/@root</column>
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
     <column name="Code">cda:code/@code</column>
     <column name="CodeSystem">cda:code/@codeSystem</column>
     <column name="StatusCode">cda:statusCode/@code</column>
@@ -887,7 +887,7 @@
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.216']">
     <column name="StartDate">cda:effectiveTime/cda:low/@value</column>
     <column name="EndDate">cda:effectiveTime/cda:high/@value</column>
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
     <column name="ValueCode">cda:value/@code</column>
     <column name="ValueCS">cda:value/@codeSystem</column>
     <column name="ValueDisplay">cda:value/@displayName</column>
@@ -898,7 +898,7 @@
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.217']">
     <column name="StartDate">cda:effectiveTime/cda:low/@value</column>
     <column name="EndDate">cda:effectiveTime/cda:high/@value</column>
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
     <column name="Status">cda:statusCode/@code</column>
     <column name="ValueCode">cda:value/@code</column>
     <column name="ValueCS">cda:value/@codeSystem</column>
@@ -918,7 +918,7 @@
   <!-- Planned Immunization Activity id 2.16.840.1.113883.10.20.22.4.120 -->
   <group tableName="PlannedImzAct" columnPrefix="PlannedImzAct"
     context="//cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.120']">
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
     <!-- The effectiveTime in a planned activity represents the time that the medication activity should occur. -->
     <column name="PlannedActDate">cda:effectiveTime/@value</column>
     <column name="PlannedActDateStart">cda:effectiveTime/cda:low/@value</column>
@@ -935,17 +935,17 @@
     <column name="MaxDose">cda:maxDoseQuantity/@value</column>
     <column name="AdminUnitCode">cda:administrationUnitCode/@code</column>
     <!-- Medication Reason Indication id 2.16.840.1.113883.10.20.22.4.19 -->
-    <column name="Reason"
+    <column name="Reason" isNarrative="true"
       >cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.19']/cda:originalText</column>
     <!-- Instruction id 2.16.840.1.113883.10.20.22.4.20 -->
-    <column name="Instruction"
+    <column name="Instruction" isNarrative="true"
       >cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.20']/cda:text</column>
   </group>
 
   <!-- Planned Medication Activity id 2.16.840.1.113883.10.20.22.4.42 -->
   <group tableName="PlannedMedAct" columnPrefix="PlannedMedAct"
     context="//cda:substanceAdministration[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.42']">
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
     <!-- The effectiveTime in a planned activity represents the time that the medication activity should occur. -->
     <column name="PlannedActDate">cda:effectiveTime/@value</column>
     <column name="PlannedActDateStart">cda:effectiveTime/cda:low/@value</column>
@@ -962,17 +962,17 @@
     <column name="MaxDose">cda:maxDoseQuantity/@value</column>
     <column name="AdminUnitCode">cda:administrationUnitCode/@code</column>
     <!-- Medication Reason Indication id 2.16.840.1.113883.10.20.22.4.19 -->
-    <column name="Reason"
+    <column name="Reason" isNarrative="true"
       >cda:entryRelationship/cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.19']/cda:originalText</column>
     <!-- Instruction id 2.16.840.1.113883.10.20.22.4.20 -->
-    <column name="Instruction"
+    <column name="Instruction" isNarrative="true"
       >cda:entryRelationship/cda:act[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.20']/cda:text</column>
   </group>
 
   <!-- PostPartum Status id 2.16.840.1.113883.10.20.22.4.285 -->
   <group tableName="PostPartumStatus" columnPrefix="PostPartumStatus"
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.285']">
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
     <column name="ObservationDate">cda:effectiveTime/@value</column>
     <column name="ValueCode">cda:value/@code</column>
     <column name="ValueCS">cda:value/@codeSystem</column>
@@ -982,7 +982,7 @@
   <!-- Reaction Observation id 2.16.840.1.113883.10.20.22.4.9 -->
   <group tableName="ReactionObservation" columnPrefix="Reaction Observation"
     context="//cda:observation[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.9']">
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
     <column name="ObservationDate">cda:effectiveTime/@value</column>
     <column name="ObservationStartDate">cda:effectiveTime/cda:low/@value</column>
     <column name="ObservationEndDate">cda:effectiveTime/cda:high/@value</column>
@@ -994,7 +994,7 @@
   <!-- Result Organizer id 2.16.840.1.113883.10.20.22.4.1 -->
   <group tableName="ResultOrganizer" columnPrefix="Result Organizer"
     context="//cda:organizer[cda:templateId/@root='2.16.840.1.113883.10.20.22.4.1']">
-    <column name="Text">cda:text</column>
+    <column name="Text" isNarrative="true">cda:text</column>
     <column name="FillerOrderNum">cda:id/@root</column>
     <column name="Code">cda:code/@code</column>
     <column name="CodeSystem">cda:code/@codeSystem</column>

@@ -107,8 +107,8 @@
     <column name="State">cda:assignedAuthor/cda:addr/cda:state</column>
     <column name="Zip">cda:assignedAuthor/cda:addr/cda:postalCode</column>
     <column name="Country">cda:assignedAuthor/cda:addr/cda:country</column>
-    <column name="TelType">cda:assignedAuthor/cda:telecom/@use</column>
-    <column name="TelNumber">cda:assignedAuthor/cda:telecom/@value</column>
+    <column name="TelecomType">cda:assignedAuthor/cda:telecom/@use</column>
+    <column name="Telecom">cda:assignedAuthor/cda:telecom/@value</column>
     <column name="DeviceName"
       >cda:assignedAuthor/cda:assignedAuthoringDevice/cda:manufacturerModelName</column>
     <column name="DeviceSoftware"
@@ -148,8 +148,8 @@
     <column name="State">cda:assignedEntity/cda:addr/cda:state</column>
     <column name="Zip">cda:assignedEntity/cda:addr/cda:postalCode</column>
     <column name="Country">cda:assignedEntity/cda:addr/cda:country</column>
-    <column name="TelUse">cda:assignedEntity/cda:telecom/@use</column>
-    <column name="TelValue">cda:assignedEntity/cda:telecom/@value</column>
+    <column name="TelecomUse">cda:assignedEntity/cda:telecom/@use</column>
+    <column name="TelecomValue">cda:assignedEntity/cda:telecom/@value</column>
   </group>
 
   <!--  Participant Details-->

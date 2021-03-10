@@ -115,12 +115,12 @@ namespace LantanaGroup.XmlHarvester
 
         private void EnsureTable(DbConnection conn, string tableName, List<MappingColumn> columns, string parentTableName = null)
         {
+            Log("Validating table " + tableName.ToUpper());
+
             DbCommand existsCmd = conn.CreateCommand();
             existsCmd.CommandText = string.Format("SELECT COUNT(0) AS TOTAL FROM SYSIBM.SYSTABLES WHERE NAME = '{0}'", tableName.ToUpper());
 
             int existsResults = (int)existsCmd.ExecuteScalar();
-
-            Log("Validating table " + tableName.ToUpper());
 
             // Check the definition of the table compared to what's defined in config
             if (existsResults == 1)

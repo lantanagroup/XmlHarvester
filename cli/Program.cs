@@ -7,7 +7,7 @@ namespace LantanaGroup.XmlHarvester
     {
         static void Main(string[] args)
         {
-            var result = Parser.Default.ParseArguments<XLSXOptions, MDBOptions, DB2Options>(args)
+            var result = Parser.Default.ParseArguments<XLSXOptions, MDBOptions, DB2Options, SqlSvrOptions>(args)
                 .WithParsed<XLSXOptions>(o =>
                 {
                     XlsxConverter xlsxConverter = new XlsxConverter(o.MappingConfig, o.InputDirectory, o.OutputDirectory, o.MoveDirectory, o.SchemaPath, o.SchematronPath);
@@ -34,8 +34,16 @@ namespace LantanaGroup.XmlHarvester
                         Console.WriteLine(logText);
                     };
                     db2Converter.Convert();
-                });
-
+                })
+                .WithParsed<SqlSvrOptions>(o =>
+                 {
+                     SqlServerConverter sqlConverter = new SqlServerConverter(o.MappingConfig, o.InputDirectory, o.Server, o.Database, o.Username, o.Password, o.MoveDirectory, o.SchemaPath, o.SchematronPath);
+                     sqlConverter.LogEvent += delegate (string logText)
+                     {
+                         Console.WriteLine(logText);
+                     };
+                     sqlConverter.Convert();
+                 });
 #if DEBUG
             Console.WriteLine("Press <enter> to continue...");
             Console.ReadLine();

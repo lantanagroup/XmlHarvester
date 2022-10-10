@@ -6,6 +6,7 @@ This is an open source tool freely available for anyone to use. The C# source co
 * Convert XML to MDB
 * Convert XML to XLSX
 * Convert XML to DB2
+* Convert XML to MS SQL Server (work in progress)
 * Specify structure of MDB and XLSX via config
 * Use XPATH to define where data comes from in source XML documents
 * User interface to specify source and destination directories, and review logs
@@ -48,11 +49,11 @@ A CLI is available to run the tool from the command line (or automatically from 
 
 The general format of the CLI is as follows:
 
-`XmlDocConverterCli.exe <command> [options]`
+`XmlHarvesterCli.exe <command> [options]`
 
 Help can be provided by the CLI tool itself:
 
-`XmlDocConverterCli.exe [command] --help`
+`XmlHarvesterCli.exe [command] --help`
 
 ### Command: xlsx
 
@@ -72,6 +73,20 @@ Help can be provided by the CLI tool itself:
 | -c, --config | Required. The location of the mapping config XML file. |
 | -i, --input | Required. The directory that contains the input XML files. |
 | -o, --output | Required. The directory where output (MDB) files should go. |
+| -m, --move | The directory to move input files to once they are done being processed. |
+| -x, --xsd | The path to an XML Schema (XSD) that should be used to validate the structure of each XMl document processed. |
+| -s, --sch | The path to an ISO Schematron (SCH) file that should be used to validate the content of each XMl document processed. |
+
+### Command: mssql
+
+| Parameter | Description |
+| --------- | ----------- |
+| -c, --config | Required. The location of the mapping config XML file. |
+| -i, --input | Required. The directory that contains the input XML files. |
+| -u, --username | Required. The authenticated username to access the DB. |
+| -p, --password | Required. The authenticated password to access the DB. |
+| -v, --server | (Default: localhost) The name of the sql server. |
+| -d, --database | (Default: harvester) The name of the database to convert/output to. |
 | -m, --move | The directory to move input files to once they are done being processed. |
 | -x, --xsd | The path to an XML Schema (XSD) that should be used to validate the structure of each XMl document processed. |
 | -s, --sch | The path to an ISO Schematron (SCH) file that should be used to validate the content of each XMl document processed. |

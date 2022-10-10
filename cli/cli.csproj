@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="DB2Options.cs" />
     <Compile Include="MDBOptions.cs" />
+    <Compile Include="SqlSvrOptions.cs" />
     <Compile Include="XLSXOptions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

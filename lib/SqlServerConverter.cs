@@ -28,6 +28,60 @@ namespace LantanaGroup.XmlHarvester
             this.password = password;
         }
 
+        protected override int InsertData(string tableName, Dictionary<MappingColumn, object> columns)
+        {
+            var columnsNames = columns.Keys.Select(y => y.Name);
+            string insertQuery = "INSERT INTO " + tableName.ToUpper() + " (" + string.Join(", ", columnsNames) + ") VALUES (";
+
+            List<string> values = new List<string>();
+
+            foreach (var key in columns.Keys)
+            {
+                var value = columns[key];
+
+                if (value == null)
+                {
+                    values.Add("null");
+                }
+                else if (value.GetType() == typeof(string))
+                {
+                    string stringValue = ((string)value).Replace("'", "''");
+
+                    if (!key.IsNarrative && stringValue.Length > 255)
+                    {
+                        stringValue = stringValue.Substring(0, 254);
+                        Log(String.Format("Value for column {0} is more than 255 characters and will be truncated. Consider using isNarrative=true on the column definition.", key.Name, key.Heading));
+                    }
+
+                    values.Add("'" + stringValue + "'");
+                }
+                else
+                {
+                    values.Add(value.ToString());
+                }
+            }
+
+            insertQuery += string.Join(", ", values) + ")";
+
+            try
+            {
+                DbCommand insertCommand = conn.CreateCommand();
+                insertCommand.CommandText = insertQuery;
+                insertCommand.ExecuteNonQuery();
+
+                DbCommand getIdCommand = conn.CreateCommand();
+                getIdCommand.CommandText = string.Format("SELECT @@IDENTITY");
+                decimal ret = (decimal)getIdCommand.ExecuteScalar();
+                int res = Decimal.ToInt32(ret);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Log(String.Format("Error inserting data into {0}: {1}", tableName, ex.Message));
+                return -1;
+            }
+        }
+
         #region Schema Creation
 
         private void EnsureTable(DbConnection conn, string tableName, List<MappingColumn> columns, string parentTableName = null)
@@ -73,7 +127,6 @@ namespace LantanaGroup.XmlHarvester
 
                 expectedCols.ForEach(delegate (MappingColumn expected)
                 {
-                    
                     if (actualCols.Find(actual => actual.Name == expected.Name.ToUpper() && actual.IsNarrative == expected.IsNarrative) == null)
                         throw new Exception(string.Format("Could not find correct definition of column {0} in table {1}", expected.Name.ToUpper(), tableName));
                 });
@@ -155,15 +208,9 @@ namespace LantanaGroup.XmlHarvester
             return true;
         }
 
-        protected override int InsertData(string tableName, Dictionary<MappingColumn, object> columns)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override void FinalizeOutput()
         {
             conn.Close();
         }
-
     }
 }

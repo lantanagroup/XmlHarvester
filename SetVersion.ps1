@@ -9,6 +9,8 @@ if (!$Major -or !$Minor -or !$Patch) {
     exit;
 }
 
+Push-Location $PSScriptRoot
+
 $assemblyInfoFiles = Get-ChildItem -Path .\ -Filter AssemblyInfo.cs -Recurse -ErrorAction SilentlyContinue -Force
 $newAssemblyVersion = "[assembly: AssemblyVersion(""" + $Major + "." + $Minor + "." + $Patch + ".0"")]"
 $newAssemblyFileVersion = "[assembly: AssemblyFileVersion(""" + $Major + "." + $Minor + "." + $Patch + ".0"")]"
@@ -29,4 +31,4 @@ ForEach ($assemblyInfoFile in $assemblyInfoFiles) {
     Set-Content -Path $assemblyInfoFile.FullName -Value $assemblyInfo -Encoding UTF8
 }
 
-exit;
+Pop-Location

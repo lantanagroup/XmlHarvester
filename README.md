@@ -141,3 +141,7 @@ To convert to a DB2 database, the machine that executes the XmlHarvester must ha
 To output/convert to a DB2 database, specify the named database in the "Database to connect to" field, as well as the username and password of the user. The name of the database should match the  name in the `db2dsdriver.cfg` file (ex: "xdc" in the above example).
 
 When conversion begins, it will first check to ensure that the DB2 database has the schema as described by the mapping configuration. If a table already exists and the columns do *not* align with the mapping config, an error will be produced. If the table does not already exist, it will be automatically created by the XmlHarvester tool.
+
+# Thanks to...
+
+[@markarnott](https://github.com/markarnott) for creating the SQL server integration

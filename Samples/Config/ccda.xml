@@ -1,0 +1,1573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:trif="http://www.lantanagroup.com" tableName="Document">
+   <namespace prefix="cda" uri="urn:hl7-org:v3"/>
+   <namespace prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+   <namespace prefix="sdtc" uri="urn:hl7-org:sdtc"/>
+   <column name="TemplateId" heading="Related Template ID">/cda:ClinicalDocument/cda:templateId/@root</column>
+   <column name="DocumentId">/cda:ClinicalDocument/cda:id/concat(@extension, ' (', @root, ')')</column>
+   <group tableName="S_Assessment_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.8']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Review_of_Systems_Section"
+          context="//cda:section[cda:templateId/@root='1.3.6.1.4.1.19376.1.5.3.1.3.18']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Chief_Complaint_Section"
+          context="//cda:section[cda:templateId/@root='1.3.6.1.4.1.19376.1.5.3.1.1.13.2.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Reason_for_Visit_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.12']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Chief_Complaint_and_Reason_for_Visit_S"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.13']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_History_of_Present_Illness_Section"
+          context="//cda:section[cda:templateId/@root='1.3.6.1.4.1.19376.1.5.3.1.3.4']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Hospital_Course_Section"
+          context="//cda:section[cda:templateId/@root='1.3.6.1.4.1.19376.1.5.3.1.3.5']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Objective_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.21.2.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Subjective_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.21.2.2']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Hospital_Discharge_Studies_Summary_Sec"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.16']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Hospital_Discharge_Physical_Section"
+          context="//cda:section[cda:templateId/@root='1.3.6.1.4.1.19376.1.5.3.1.3.26']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_General_Status_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.2.5']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Operative_Note_Fluids_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.7.12']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Operative_Note_Surgical_Procedure_Sect"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.7.14']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Surgical_Drains_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.7.13']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Procedure_Description_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.27']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Procedure_Disposition_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.18.2.12']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Procedure_Estimated_Blood_Loss_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.18.2.9']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Procedure_Specimens_Taken_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.31']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Postoperative_Diagnosis_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.35']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Medical_General_History_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.39']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Procedure_Implants_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.40']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_DICOM_Object_Catalog_Section__DCM_121"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.6.1.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Findings_Section_DIR"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.6.1.2']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="code"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Fetus_Subject_Context"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.6.2.3']">
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="sdtc:id"/>
+      <column name="addr"/>
+      <column name="telecom"/>
+      <column name="subject"/>
+      <column name="name"/>
+   </group>
+   <group tableName="S_Observer_Context"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.6.2.4']">
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="sdtc:identifiedBy"/>
+      <column name="code"/>
+      <column name="addr"/>
+      <column name="telecom"/>
+      <column name="assignedPerson"/>
+      <column name="assignedAuthoringDevice"/>
+      <column name="representedOrganization"/>
+   </group>
+   <group tableName="S_Hospital_Discharge_Instructions_Sectio"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.41']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Hospital_Consultations_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.42']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Medications_Section_entries_required_"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.1.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="substanceAdministration"/>
+   </group>
+   <group tableName="S_Medications_Section_entries_optional_"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="substanceAdministration"/>
+   </group>
+   <group tableName="S_Plan_of_Treatment_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.10']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="encounter"/>
+      <column name="entry"/>
+      <column name="act"/>
+      <column name="entry"/>
+      <column name="procedure"/>
+      <column name="entry"/>
+      <column name="substanceAdministration"/>
+      <column name="entry"/>
+      <column name="supply"/>
+      <column name="entry"/>
+      <column name="act"/>
+      <column name="entry"/>
+      <column name="act"/>
+      <column name="entry"/>
+      <column name="act"/>
+      <column name="entry"/>
+      <column name="substanceAdministration"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Health_Status_Evaluations_and_Outcome"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.61']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Goals_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.60']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Medical_Equipment_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.23']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="organizer"/>
+      <column name="entry"/>
+      <column name="supply"/>
+      <column name="entry"/>
+      <column name="procedure"/>
+   </group>
+   <group tableName="S_Medications_Administered_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.38']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="substanceAdministration"/>
+   </group>
+   <group tableName="S_Nutrition_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.57']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Anesthesia_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.25']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="procedure"/>
+      <column name="entry"/>
+      <column name="substanceAdministration"/>
+   </group>
+   <group tableName="Procedures_Section_entries_optional_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.7']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="procedure"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Procedures_Section_entries_required_V"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.7.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+      <column name="observation"/>
+      <column name="procedure"/>
+   </group>
+   <group tableName="S_Functional_Status_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.14']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="organizer"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="supply"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="Reason_for_Referral_Section_V2"
+          context="//cda:section[cda:templateId/@root='1.3.6.1.4.1.19376.1.5.3.1.3.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="Procedure_Indications_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.29']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Assessment_and_Plan_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.9']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="Planned_Procedure_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.30']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="procedure"/>
+   </group>
+   <group tableName="S_Discharge_Diet_Section_DEPRECATED"
+          context="//cda:section[cda:templateId/@root='1.3.6.1.4.1.19376.1.5.3.1.3.33']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="codeSystem"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="Instructions_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.45']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Implants_Section_DEPRECATED"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.33']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Course_of_Care_Section"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.64']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Surgery_Description_Section_DEPRECATED"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.26']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+   </group>
+   <group tableName="S_Admission_Diagnosis_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.43']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Mental_Status_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.56']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="organizer"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Immunizations_Section_entries_require"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.2.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="substanceAdministration"/>
+   </group>
+   <group tableName="S_Immunizations_Section_entries_optiona"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.2']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="substanceAdministration"/>
+   </group>
+   <group tableName="S_Discharge_Diagnosis_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.24']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Discharge_Meds_Sec_entries_Opt"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.11']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Discharge_Meds_Section_entries_R"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.11.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Health_Concerns_Section_V2"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.58']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="act"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Results_Section_entries_optional_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.3']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="organizer"/>
+   </group>
+   <group tableName="S_Results_Section_entries_required_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.3.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="organizer"/>
+   </group>
+   <group tableName="S_Admission_Medications_Section_entries"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.44']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Complications_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.37']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Past_Medical_History_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.20']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Vital_Signs_Section_entries_optional_"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.4']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="organizer"/>
+   </group>
+   <group tableName="S_Vital_Signs_Section_entries_required_"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.4.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="organizer"/>
+   </group>
+   <group tableName="S_Procedure_Findings_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.28']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Problem_Section_entries_optional_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.5']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Problem_Section_entries_required_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.5.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Preoperative_Diagnosis_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.34']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Postprocedure_Diagnosis_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.36']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Physical_Exam_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.2.10']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="title"/>
+      <column name="text"/>
+   </group>
+   <group tableName="S_Payers_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.18']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Interventions_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.21.2.3']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+      <column name="entry"/>
+      <column name="act"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Social_History_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.17']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="observation"/>
+   </group>
+   <group tableName="S_Advance_Directives_Section_entries_op"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.21']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="entry"/>
+      <column name="organizer"/>
+   </group>
+   <group tableName="S_Advance_Directives_Sect_entries_re"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.21.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="observation"/>
+      <column name="organizer"/>
+   </group>
+   <group tableName="S_Family_History_Section_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.15']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="organizer"/>
+   </group>
+   <group tableName="S_Allergies_and_Intolerances_Section_eo"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.6']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Allergies_and_Intolerances_Section_er"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.6.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="act"/>
+   </group>
+   <group tableName="S_Encounters_Section_entries_optional_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.22']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="encounter"/>
+   </group>
+   <group tableName="S_Encounters_Section_entries_required_V3"
+          context="//cda:section[cda:templateId/@root='2.16.840.1.113883.10.20.22.2.22.1']">
+      <column name="ID"/>
+      <column name="nullFlavor"/>
+      <column name="classCode"/>
+      <column name="moodCode"/>
+      <column name="realmCode"/>
+      <column name="typeId"/>
+      <column name="id"/>
+      <column name="title"/>
+      <column name="text"/>
+      <column name="confidentialityCode"/>
+      <column name="languageCode"/>
+      <column name="subject"/>
+      <column name="author"/>
+      <column name="informant"/>
+      <column name="entry"/>
+      <column name="encounter"/>
+   </group>
+</config>

@@ -192,7 +192,7 @@ namespace LantanaGroup.XmlHarvester
                     FileInfo fileInfo = new FileInfo(xmlFile);
                     XmlDocument xmlDoc = null;
 
-                    Log("---------------------------------------------\r\nReading XML file: " + fileInfo.Name);
+                    Log("---------------------------------------------\r\nReading XML file " + fileInfo.Name + " @ " + DateTime.Now.ToString("HH:mm:ss.fff tt"));
 
                     try
                     {
@@ -215,7 +215,7 @@ namespace LantanaGroup.XmlHarvester
                     try
                     {
                         ProcessFile(xmlDoc, nsManager, fileInfo);
-                        Log(string.Format("Done parsing/processing file {0}", fileInfo.Name));
+                        Log(string.Format("Done parsing/processing file {0} @ {1}", fileInfo.Name, DateTime.Now.ToString("HH:mm:ss.fff tt")));
                     }
                     catch (Exception ex)
                     {

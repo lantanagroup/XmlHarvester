@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 
 namespace LantanaGroup.XmlHarvester
@@ -89,19 +90,144 @@ namespace LantanaGroup.XmlHarvester
             }
         }
 
+        private string GetXPathForNode(XmlNode node, XmlNamespaceManager nsManager)
+        {
+            if (node == null)
+                throw new ArgumentNullException(nameof(node));
+
+            if (nsManager == null)
+                throw new ArgumentNullException(nameof(nsManager));
+
+            if (node.NodeType == XmlNodeType.Document)
+                return "/"; // Root of the document
+
+            string path = "";
+
+            while (node != null && node.NodeType != XmlNodeType.Document)
+            {
+                string segment;
+
+                if (node.NodeType == XmlNodeType.Element)
+                {
+                    // Determine the namespace prefix
+                    string prefix = !string.IsNullOrEmpty(node.Prefix)
+                        ? node.Prefix
+                        : nsManager.LookupPrefix(node.NamespaceURI);
+
+                    // If no prefix exists for the namespace, generate one dynamically
+                    if (string.IsNullOrEmpty(prefix) && !string.IsNullOrEmpty(node.NamespaceURI))
+                    {
+                        prefix = GenerateUniquePrefix(); // Generate a unique prefix
+                        nsManager.AddNamespace(prefix, node.NamespaceURI);
+                    }
+
+                    // Add the prefix to the element name if necessary
+                    string nodeName = string.IsNullOrEmpty(prefix)
+                        ? node.LocalName
+                        : $"{prefix}:{node.LocalName}";
+
+                    // Determine the node's position among siblings
+                    int position = 1;
+                    XmlNode sibling = node.PreviousSibling;
+
+                    while (sibling != null)
+                    {
+                        if (sibling.NodeType == XmlNodeType.Element &&
+                            sibling.LocalName == node.LocalName &&
+                            sibling.NamespaceURI == node.NamespaceURI)
+                        {
+                            position++;
+                        }
+                        sibling = sibling.PreviousSibling;
+                    }
+
+                    // Add the element with its position
+                    segment = $"{nodeName}[{position}]";
+                }
+                else if (node.NodeType == XmlNodeType.Attribute)
+                {
+                    // Determine the namespace prefix for attributes
+                    string prefix = !string.IsNullOrEmpty(node.Prefix)
+                        ? node.Prefix
+                        : nsManager.LookupPrefix(node.NamespaceURI);
+
+                    // If no prefix exists for the namespace, generate one dynamically
+                    if (string.IsNullOrEmpty(prefix) && !string.IsNullOrEmpty(node.NamespaceURI))
+                    {
+                        prefix = GenerateUniquePrefix(); // Generate a unique prefix
+                        nsManager.AddNamespace(prefix, node.NamespaceURI);
+                    }
+
+                    // Add the prefix to the attribute name if necessary
+                    segment = string.IsNullOrEmpty(prefix)
+                        ? $"@{node.LocalName}"
+                        : $"@{prefix}:{node.LocalName}";
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Unhandled node type: {node.NodeType}");
+                }
+
+                // Prepend the segment to the path
+                path = "/" + segment + path;
+
+                // Move up to the parent node
+                node = node.ParentNode;
+            }
+
+            return path;
+        }
+
+        private string GenerateUniquePrefix()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, 5)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        private XdmNode GetXdmNodePreservingStructure(XmlNode targetNode, XmlNamespaceManager nsManager)
+        {
+            if (targetNode == null)
+                throw new ArgumentNullException(nameof(targetNode));
+
+            // Get the root of the XmlDocument
+            XmlDocument document = targetNode.OwnerDocument ?? (XmlDocument)targetNode;
+
+            // Build the XdmNode for the entire document
+            XdmNode documentXdmNode = builder.Build(document);
+
+            // Generate the XPath to locate the target node within the XdmNode structure
+            string targetXPath = GetXPathForNode(targetNode, nsManager);
+
+            // Compile and evaluate the XPath to locate the corresponding XdmNode
+            var compiledXPath = compiler.Compile(targetXPath);
+            var selector = compiledXPath.Load();
+            selector.ContextItem = documentXdmNode;
+
+            // Return the resolved XdmNode
+            return (XdmNode)selector.EvaluateSingle();
+        }
+
         protected string GetValue(string xpath, XmlNode parent, XmlNamespaceManager nsManager, bool isNarrative)
         {
             try
             {
-                if (!xpath.StartsWith("/") && parent is XmlElement)
+                // Evaluate the XPath for the parent node
+                XdmNode xdmParentNode = GetXdmNodePreservingStructure(parent, nsManager);
+
+                if (xdmParentNode == null)
                 {
-                    xpath = "/*/" + xpath;
+                    LogEvent?.Invoke($"Could not resolve parent node for XPath '{xpath}'");
+                    return null;
                 }
 
-                var parentXdmNode = builder.Build(parent);
+                // Now evaluate the desired XPath expression relative to the parent node
                 var compiledXpath = compiler.Compile(xpath);
                 var selector = compiledXpath.Load();
-                selector.ContextItem = parentXdmNode;
+                selector.ContextItem = xdmParentNode;
+
+                // Evaluate the XPath expression
                 var results = selector.Evaluate().GetList();
 
                 if (results.Count == 1)
@@ -125,11 +251,13 @@ namespace LantanaGroup.XmlHarvester
             }
             catch (Exception ex)
             {
-                LogEvent?.Invoke("XPATH/Configuration error \"" + xpath + "\": " + ex.Message + "\r\n");
+                LogEvent?.Invoke($"XPATH/Configuration error \"{xpath}\": {ex.Message}\r\n");
             }
 
             return null;
         }
+
+
 
         protected abstract bool InitializeOutput();
 

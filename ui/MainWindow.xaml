@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LantanaGroup.XmlHarvester.UI"
         mc:Ignorable="d"
-        Title="XML Harvester" MinHeight="500" MinWidth="800" Width="800" Icon="harvester_16.png">
+        Title="XML Harvester" MinHeight="500" MinWidth="800" Width="800" Icon="icon.png">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="b2v" />
         <local:BoolToGridRowHeightConverter x:Key="b2g" />

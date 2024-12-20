@@ -144,4 +144,4 @@ When conversion begins, it will first check to ensure that the DB2 database has 
 
 # Thanks to...
 
-[@markarnott](https://github.com/markarnott) for creating the SQL server integration 
+[@markarnott](https://github.com/markarnott) for creating the SQL server integration
